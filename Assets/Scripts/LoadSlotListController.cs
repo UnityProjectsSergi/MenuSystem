@@ -15,8 +15,8 @@ public class LoadSlotListController : MonoBehaviour
     [HideInInspector]
     public InfoSlotResume previouSlotResume;
     private MenuController menuController;
-    public UI.UI_System system;
-    public UI.UI_Screen quetionScreen;
+    public UiSystem system;
+    public UiScreen quetionScreen;
     private UnityEvent Yes, No, Cancel;
     private EventSystem eventSystem;
 
@@ -98,7 +98,7 @@ public class LoadSlotListController : MonoBehaviour
         No.AddListener(() => LoadSlotNoOverrideSlot());
         Cancel.AddListener(() => LoadSlotCanelOverrideSlot());
         quetionScreen.GetComponent<QuestionSceenController>().OpenModal("Ovveride the slot current", "ddd", Yes, No, Cancel);
-        system.SwitchScreen(quetionScreen,false);
+       // system.SwitchScreen(quetionScreen,false);
     }
     /// <summary>
     /// 
@@ -112,7 +112,7 @@ public class LoadSlotListController : MonoBehaviour
         Yes.AddListener(() => DeleteSlot(slot, gameObject));
         No.AddListener(() => system.GoToPreviousScreen());
         quetionScreen.GetComponent<QuestionSceenController>().OpenModal("Delete slot", "ddd", Yes, No);
-        system.SwitchScreen(quetionScreen,false);
+       // system.SwitchScreen(quetionScreen,false);
     }
     /// <summary>
     /// 
@@ -179,7 +179,7 @@ public class LoadSlotListController : MonoBehaviour
         Event e = Event.current;
         if (e.isKey && e.type == EventType.KeyDown)
         {
-            if (system.CurrentScreen.Equals(GetComponent<UI.UI_Screen>()))
+            if (system.CurrentScreen.Equals(GetComponent<UiScreen>()))
             {
                 if (e.keyCode == KeyCode.Delete)
                 {

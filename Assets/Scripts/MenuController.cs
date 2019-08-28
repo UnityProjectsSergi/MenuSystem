@@ -250,11 +250,11 @@ public class MenuController : MonoBehaviour
     }
     public void YesLostGameProgressionFromPause()
     {
-        system.ResetListPrevScreens();
+        //system.ResetListPrevScreens();
         pauseController.AllowEnterPause = false;
         GameController.Instance.currentSlot = null;
         GameController.Instance.currentSlotResume = null;
-        mainMenuController.SetMainMenuWithSlots();
+      //  mainMenuController.SetMainMenuWithSlots();
         pauseController.isPausedGame = false;
         pauseController.AllowEnterPause = false;
         SceneManager.LoadScene("Menu");
@@ -266,7 +266,7 @@ public class MenuController : MonoBehaviour
     }
     public void NoLostGameProgressionContinueFromPause()
     {
-        system.SwitchScreen(GamePlayScreen);
+       // system.SwitchScreen(GamePlayScreen);
     }
     #endregion
 }
