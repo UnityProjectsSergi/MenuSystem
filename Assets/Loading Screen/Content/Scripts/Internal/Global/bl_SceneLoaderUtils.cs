@@ -21,6 +21,18 @@ public static class bl_SceneLoaderUtils
             return sl;
         }
     }
+    public static bl_SceneLoaderSergi GetLoaderSergi
+    {
+        get
+        {
+            bl_SceneLoaderSergi sl = GameObject.FindObjectOfType<bl_SceneLoaderSergi>();
+            if(sl == null)
+            {
+                Debug.LogWarning("Don't have any scene loader in this scene.");
+            }
+            return sl;
+        }
+    }
 
     /// <summary>
     /// 

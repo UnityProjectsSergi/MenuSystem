@@ -12,6 +12,7 @@ public class bl_SceneLoader : MonoBehaviour
     [Range(0.5f,7)]public float SceneSmoothLoad = 3;
     [Range(0.5f,7)]public float FadeInSpeed = 2;
     [Range(0.5f,7)]public float FadeOutSpeed = 2;
+   
     public bool useTimeScale = false;
     [Header("Background")]
     public bool useBackgrounds = true;
@@ -83,6 +84,7 @@ public class bl_SceneLoader : MonoBehaviour
         Source.loop = true;
         if (BackgroundAudio != null) { Source.clip = BackgroundAudio; }
 
+        uis = GetComponent<UiSystem>();
         SetupUI();
     }
 
@@ -109,8 +111,10 @@ public class bl_SceneLoader : MonoBehaviour
         if (Manager.HasTips) { cacheTips = Manager.TipList; }
         if (FilledImage != null) { FilledImage.type = Image.Type.Filled; FilledImage.fillAmount = 0; }
         transform.SetAsLastSibling();
+        
     }
 
+    private UiSystem uis;
     /// <summary>
     /// 
     /// </summary>
@@ -180,10 +184,13 @@ public class bl_SceneLoader : MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+    }
     /// <summary>
     /// 
     /// </summary>
-    void LoadingRotator()
+    private void LoadingRotator()
     {
         if (LoadingCircle == null)
             return;
@@ -194,7 +201,7 @@ public class bl_SceneLoader : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    void OnFinish()
+    private void OnFinish()
     {
         FinishLoad = true;
         if (FlashImage != null) { FlashImage.SetActive(true); }
@@ -475,8 +482,12 @@ public class bl_SceneLoader : MonoBehaviour
             yield return null;
         }
         async.allowSceneActivation = true;
+  
+        
+      
     }
 
+    
     /// <summary>
     /// 
     /// </summary>

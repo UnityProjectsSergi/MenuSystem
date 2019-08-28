@@ -14,7 +14,7 @@ public class loaderScene : MonoBehaviour
     public void FloaderScene()
     {
      
-        bl_SceneLoaderUtils.GetLoader.LoadLevel("Game");
+        bl_SceneLoaderUtils.GetLoaderSergi.LoadLevel("Game");
     }
     // Update is called once per frame
     void Update()

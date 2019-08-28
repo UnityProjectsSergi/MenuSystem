@@ -29,7 +29,9 @@ public class bl_SceneLoaderEditor : Editor
         Script.SceneSmoothLoad = EditorGUILayout.Slider("Progress Smoothing", Script.SceneSmoothLoad, 0.5f, 7);
         Script.FadeInSpeed = EditorGUILayout.Slider("FadeIn Speed", Script.FadeInSpeed, 0.5f, 7);
         Script.FadeOutSpeed = EditorGUILayout.Slider("FadeOut Speed", Script.FadeOutSpeed, 0.5f, 7);
+     
         Script.useTimeScale = EditorGUILayout.ToggleLeft("Use Time Scale", Script.useTimeScale, EditorStyles.toolbarButton);
+        
         GUILayout.EndVertical();
 
         GUILayout.BeginVertical("box");

@@ -13,54 +13,37 @@ public enum ScreenType
     FadeOutToBlack,
     FadeInOutBlack
 }
+
 [RequireComponent(typeof(CanvasGroup))]
 [RequireComponent(typeof(UiFader))]
 public class UiScreen : MonoBehaviour
 {
     public UiFader canvas;
-    [FormerlySerializedAs("FadeInTime")] public float fadeInTime;
-    [FormerlySerializedAs("FadeOutTime")] public float fadeOutTime;
-    public bool isClosed;
-    public bool isOpen;
-    [FormerlySerializedAs("ScreenType")] public ScreenType screenType;
+    public float fadeInTime;
+    public float fadeOutTime;
 
-    [FormerlySerializedAs("TimeFromBlack")]
+
     public float timeFromBlack, timeToBlack;
 
-    private void Start()
+    private void Awake()
     {
-        canvas=GetComponent<UiFader>();
+        canvas = GetComponent<UiFader>();
     }
 
-    public  void OpenScreen(UnityAction mm)
+    public void OpenScreen(UnityAction mm = null, bool FadeInOutBlack = false)
     {
-        if (screenType == ScreenType.FadeInFromBlack || screenType == ScreenType.FadeInOutBlack)
-            canvas.FadeIn(fadeInTime, timeFromBlack);
-        else if (screenType == ScreenType.FadeIn || screenType == ScreenType.FadeInOut)
-            canvas.FadeIn(fadeInTime);
-        else
-            canvas.FadeIn();
+        canvas.FadeIn(mm, fadeInTime,FadeInOutBlack, timeFromBlack);
+        canvas.ActivateCanvasGroup();
     }
 
-
-    public  void CloseScreen()
+    public void Reset()
     {
-       
-            if (screenType == ScreenType.FadeOutToBlack || screenType == ScreenType.FadeInOutBlack)
-            {
-                Debug.Log("fade thi black close");
-                canvas.FadeOut(fadeInTime, timeToBlack);
-            }
-            else if (screenType == ScreenType.FadeOut || screenType == ScreenType.FadeInOut)
-            {
-                canvas.FadeOut(fadeOutTime);
-            }
-            else
-            {
-                canvas.FadeOut();
-            }
+        canvas.Reset();
+    }
 
-    
-        // }
+    public void CloseScreen(bool fadeInOutBlack)
+    {
+       canvas.FadeOut(fadeOutTime,fadeInOutBlack,timeToBlack);
+        canvas.DeactivateCanvasGroup();
     }
 }
