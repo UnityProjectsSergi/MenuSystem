@@ -63,7 +63,6 @@ public class UiSystem : MonoBehaviour
         foreach (UiScreen screen in screens)
         {
             screen.Reset();
-            //         screen.GetComponent<UiScreen>().Reset();
         }
     }
 
@@ -74,14 +73,22 @@ public class UiSystem : MonoBehaviour
             
       //  if (Inputs.Instance.GetUiBackButton()) GoToPreviousScreen();
     }
-
-    public void CallSwitchScreen(UiScreen newScreen, UnityAction Action = null, bool fadeToBlack=false)
+    /// <summary>
+    /// Public SwiychScreen Methodh
+    /// </summary>
+    /// <param name="newScreen">New Screen to Open</param>
+    /// <param name="Action"></param>
+    /// <param name="fadeToBlack"></param>
+    /// <param name="timeInFadeBlack"></param>
+    public void CallSwitchScreen(UiScreen newScreen, UnityAction Action = null, bool fadeToBlack = false,
+        float timeInFadeBlack=0.0f)
     {
         if (canSwitchscreen)
-            StartCoroutine(SwitchScreen(newScreen, Action, fadeToBlack));
+            StartCoroutine(SwitchScreen(newScreen, Action, fadeToBlack,timeInFadeBlack));
     }
 
-    private IEnumerator SwitchScreen(UiScreen newScreen, UnityAction Action = null, bool fadeInOutBlack = false)
+    private IEnumerator SwitchScreen(UiScreen newScreen, UnityAction Action = null, bool fadeInOutBlack = false,
+        float timeInFadeBlack=0.0f)
     {
         if (newScreen)
         {
@@ -100,7 +107,7 @@ public class UiSystem : MonoBehaviour
                     previousScreen = currentScreen;
 
 
-                yield return new WaitForSeconds(currentScreen.fadeOutTime);
+                yield return new WaitForSeconds(timeInFadeBlack);
             }
 
 

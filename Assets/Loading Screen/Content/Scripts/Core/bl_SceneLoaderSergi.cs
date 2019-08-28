@@ -486,9 +486,10 @@ public class bl_SceneLoaderSergi : MonoBehaviour
             FadeImageCanvas.alpha += DeltaTime * FadeInSpeed;
             yield return null;
         }
-      UiSystem.GetComponent<UiSystem>().CallSwitchScreen(GameplayScrren.GetComponent<UiScreen>(), delegate { async.allowSceneActivation = true;
+      UiSystem.GetComponent<UiSystem>().CallSwitchScreen(
+          GameplayScrren.GetComponent<UiScreen>(), delegate {  async.allowSceneActivation = true;
             RootAlpha.alpha = 0;
-        },true);
+        },true,1f);
         
       
     }
