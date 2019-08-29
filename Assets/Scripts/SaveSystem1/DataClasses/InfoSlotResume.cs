@@ -24,7 +24,6 @@ namespace Assets.SaveSystem1.DataClasses
                 if (FolderOfSlot == "") FolderOfSlot = Path.GetRandomFileName();
                 if (!File.Exists(Application.persistentDataPath + "/" + FolderOfSlot))
                 {
-                    Debug.Log("sssssssssssssss");
                     Directory.CreateDirectory(Application.persistentDataPath + "/" + FolderOfSlot);
                     FileSlot = Utils.MakeString(new string[] { Application.persistentDataPath, "/", FolderOfSlot, "/", "Slot_" + Path.GetRandomFileName() + ".json" });
                     // FileSlot = (System.IO.Path.Combine(Application.persistentDataPath,System.IO.Path.Combine(FolderOfSlot,"Slot_" + Path.GetRandomFileName()+".json")));
