@@ -89,9 +89,7 @@ public class MainMenuController : MonoBehaviour
     }
     public void ExitToMainMenuFromMenuPause()
     {
-        // TODO ASk if lose current Progression
-       MenuController.QuestionLoseGameProgressIfExitGameFromPause();
-        
+        MenuController.QuestionLoseGameProgressIfExitGameFromPause();
     }
     public void ExitGame()
     {

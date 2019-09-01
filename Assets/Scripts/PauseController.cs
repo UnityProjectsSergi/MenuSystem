@@ -46,7 +46,7 @@ public class PauseController : MonoBehaviour {
         isPausedGame = false;
        
     }
-    ///TODO fix bug on enter exit pause gameplay
+    
     // Update is called once per frame
     void Update () {
 		

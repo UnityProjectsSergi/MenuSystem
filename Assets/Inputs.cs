@@ -80,11 +80,11 @@ public  class Inputs : MonoBehaviour
 
     private void OnDisable()
     {
-        _inputsControls.Disable();
+       // _inputsControls.Disable();
     }
 
     private void OnEnable()
     {
-        _inputsControls.Enable();
+       // _inputsControls.Enable();
     }
 }

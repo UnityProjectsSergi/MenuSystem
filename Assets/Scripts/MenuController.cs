@@ -292,7 +292,7 @@ public class MenuController : MonoBehaviour
         pauseController.isPausedGame = false;
         pauseController.AllowEnterPause = false;
         SceneManager.LoadScene("Menu");
-        // system.SwitchScreen(mainMenuController.GetComponent<UiScreen>(),true,true);
+        system.CallSwitchScreen(mainMenuController.GetComponent<UiScreen>());
     }
 
     public void YesLostGameProgressionExitGame()
@@ -302,7 +302,7 @@ public class MenuController : MonoBehaviour
 
     public void NoLostGameProgressionContinueFromPause()
     {
-        // system.SwitchScreen(GamePlayScreen);
+         system.CallSwitchScreen(GamePlayScreen);
     }
 
     #endregion

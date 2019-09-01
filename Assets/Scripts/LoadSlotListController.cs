@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -127,10 +128,10 @@ public class LoadSlotListController : MonoBehaviour
     public void DeleteSlot(InfoSlotResume slot, GameObject gameObject)
     {
 
-        Debug.Log("deleteslot");
-        // ToDo Delete File of slot
-        
+        Directory.Delete(Application.persistentDataPath + "/" +slot.FolderOfSlot, true);
         SaveData.objcts.Slots.Remove(slot);
+        if (SaveData.objcts.Slots.Count == 0)
+            SaveData.objcts.previousSlotLoaded = null;
         GameController.Save();
         Destroy(gameObject);
         GenerateSlots();
@@ -158,6 +159,7 @@ public class LoadSlotListController : MonoBehaviour
     {
         Debug.Log("ssss load override slot");
         GameController.Instance.currentSlotResume = slot;
+        //Todo Somehow de 
         MenuController.LoadSceneFromSlot();
     }
     /// <summary>
