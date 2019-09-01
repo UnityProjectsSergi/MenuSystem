@@ -47,7 +47,7 @@ public class MainMenuButtons : MonoBehaviour {
 	}
     public void SetPauseMenu()
     {
-        text.text = "PauseMenu";
+        text.text = "Pause Menu";
         ResumeBtn.gameObject.SetActive(true);
         ExitMainMenuBtn.gameObject.SetActive(true);
         SaveGameBtn.gameObject.SetActive(true);
@@ -57,7 +57,7 @@ public class MainMenuButtons : MonoBehaviour {
     }
     public void SetMainMenu()
     {
-        text.text = "MainMenu";
+        text.text = "Main Menu";
         ContinueBtn.gameObject.SetActive(true);
         ResumeBtn.gameObject.SetActive(false);
         ExitMainMenuBtn.gameObject.SetActive(false);

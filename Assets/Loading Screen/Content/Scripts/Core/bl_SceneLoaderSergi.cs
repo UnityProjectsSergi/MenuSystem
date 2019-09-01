@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Lovatto.SceneLoader;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.SaveSystem1.DataClasses;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(AudioSource))]
@@ -119,6 +120,8 @@ public class bl_SceneLoaderSergi : MonoBehaviour
     }
 
     private UiSystem uis;
+    private bool hasLoad;
+
     /// <summary>
     /// 
     /// </summary>
@@ -141,9 +144,10 @@ public class bl_SceneLoaderSergi : MonoBehaviour
     {
         if (!canSkipWithKey)
             return;
-
+        
         if (Input.anyKeyDown)
         {
+            if(hasLoad)
             LoadNextScene();
         }
     }
@@ -245,12 +249,15 @@ public class bl_SceneLoaderSergi : MonoBehaviour
         CurrentLoadLevel = Manager.GetSceneInfo(level);
         if (CurrentLoadLevel == null)
             return;
-
-        SetupUI(CurrentLoadLevel);
-        StartCoroutine(StartAsyncOperation(CurrentLoadLevel.SceneName));
-        if (CurrentLoadLevel.LoadingType == LoadingType.Fake)
+        hasLoad = true;
+        if (hasLoad)
         {
-            StartCoroutine(StartFakeLoading());
+            SetupUI(CurrentLoadLevel);
+            StartCoroutine(StartAsyncOperation(CurrentLoadLevel.SceneName));
+            if (CurrentLoadLevel.LoadingType == LoadingType.Fake)
+            {
+                StartCoroutine(StartFakeLoading());
+            }
         }
     }
 
@@ -334,6 +341,8 @@ public class bl_SceneLoaderSergi : MonoBehaviour
             RootAlpha.alpha = t;
             yield return null;
         }
+        RootAlpha.interactable = true;
+        RootAlpha.blocksRaycasts = true;
         async = bl_SceneLoaderUtils.LoadLevelAsync(level);
         if (GetSkipType != SceneSkipType.InstantComplete || CurrentLoadLevel.LoadingType == LoadingType.Fake)
         {
@@ -480,6 +489,7 @@ public class bl_SceneLoaderSergi : MonoBehaviour
     /// <returns></returns>
     private IEnumerator LoadNextSceneIE()
     {
+        
         FadeImageCanvas.alpha = 0;
         while (FadeImageCanvas.alpha < 1)
         {
@@ -487,13 +497,39 @@ public class bl_SceneLoaderSergi : MonoBehaviour
             yield return null;
         }
       UiSystem.GetComponent<UiSystem>().CallSwitchScreen(
-          GameplayScrren.GetComponent<UiScreen>(), delegate {  async.allowSceneActivation = true;
-            RootAlpha.alpha = 0;
-        },true,1f);
-        
+          GameplayScrren.GetComponent<UiScreen>(), delegate { 
+              async.allowSceneActivation = true;
+              hasLoad = false;
+              RootAlpha.interactable = false;
+              RootAlpha.blocksRaycasts = false;
+              RootUI.SetActive(false);
+
+              StartCoroutine(GameController.Instance.TakeScreenShoot(1f));
+              StartCoroutine(CallLoadDataNextEscena(0.15f));
+
+
+          },true,0.75f);
       
+      float t = 0;
+      float d = 0;
+      while(d < 1)
+      {
+          d -= DeltaTime * FadeInSpeed;
+          t = StartFadeInCurve.Evaluate(d);
+          RootAlpha.alpha = t;
+          yield return null;
+      }
+
+      
+
     }
 
+    IEnumerator CallLoadDataNextEscena(float t)
+    {
+        yield return new WaitForSeconds(t);
+        SaveData.LoadGameSlotData(SaveData.LoadFromFile<GameSlot>(GameController.Instance.currentSlotResume.FileSlot));
+        GameplayScrren.GetComponent<GamePlayController>().LodGamePlayVars();
+    }
     
     /// <summary>
     /// 

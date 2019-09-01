@@ -21,5 +21,7 @@ namespace Assets.SaveSystem1.DataClasses
         {
             return (v != null);
         }
+[Range(0,1)]
+        public float health=1;
     }
 }

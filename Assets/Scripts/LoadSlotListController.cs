@@ -1,6 +1,7 @@
 ﻿using Assets.SaveSystem1.DataClasses;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -20,10 +21,11 @@ public class LoadSlotListController : MonoBehaviour
     private UnityEvent Yes, No, Cancel;
     private EventSystem eventSystem;
 
+    public MenuController MenuController;
     // Use this for initialization
     void Start()
     {
-        menuController = system.GetComponent<MenuController>();
+        
         Yes = new UnityEvent();
         No = new UnityEvent();
         Cancel = new UnityEvent();
@@ -45,12 +47,14 @@ public class LoadSlotListController : MonoBehaviour
         Debug.Log("GenerateSlotList");
         list.Clear();
         list = SaveData.objcts.Slots;
+        
         foreach (InfoSlotResume item in list)
         {
 
-            GameObject ObjSlot = Instantiate(SlotPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+            GameObject ObjSlot = Instantiate(SlotPrefab, new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), transform.localRotation);
+            ObjSlot.GetComponent<RectTransform>().sizeDelta=new Vector2(1300,100);
             ObjSlot.GetComponentInChildren<Text>().text = ObjSlot.name;
-            ObjSlot.transform.SetParent(parentOflist.transform, false);
+            ObjSlot.transform.SetParent(parentOflist.transform, true);
             SoltUI solt = ObjSlot.GetComponent<SoltUI>();
             if (solt != null)
             {
@@ -58,6 +62,7 @@ public class LoadSlotListController : MonoBehaviour
                 solt.btnLoad.onClick.RemoveAllListeners();
                 solt.btnLoad.onClick.AddListener(() => LoadSlot(solt.slot));
                 solt.btnDel.onClick.AddListener(() => AskForDeleteSlot(solt.slot, ObjSlot));
+                Debug.Log(item.folderDone+" "+item.ScreenShot);
                 solt.Init(item);
             }
 
@@ -86,7 +91,7 @@ public class LoadSlotListController : MonoBehaviour
             SaveData.objcts.previousSlotLoaded = slot;
             GameController.Save();
             Debug.Log("Enter Load from slot");
-            menuController.LoadSceneFromSlot();
+            MenuController.LoadSceneFromSlot();
         }
     }
     public void AskForOverridecurrentSlot(InfoSlotResume slot)
@@ -98,7 +103,7 @@ public class LoadSlotListController : MonoBehaviour
         No.AddListener(() => LoadSlotNoOverrideSlot());
         Cancel.AddListener(() => LoadSlotCanelOverrideSlot());
         quetionScreen.GetComponent<QuestionSceenController>().OpenModal("Ovveride the slot current", "ddd", Yes, No, Cancel);
-       // system.SwitchScreen(quetionScreen,false);
+       system.CallSwitchScreen(quetionScreen);
     }
     /// <summary>
     /// 
@@ -112,7 +117,7 @@ public class LoadSlotListController : MonoBehaviour
         Yes.AddListener(() => DeleteSlot(slot, gameObject));
         No.AddListener(() => system.GoToPreviousScreen());
         quetionScreen.GetComponent<QuestionSceenController>().OpenModal("Delete slot", "ddd", Yes, No);
-       // system.SwitchScreen(quetionScreen,false);
+        system.CallSwitchScreen(quetionScreen);
     }
     /// <summary>
     /// 
@@ -124,6 +129,7 @@ public class LoadSlotListController : MonoBehaviour
 
         Debug.Log("deleteslot");
         // ToDo Delete File of slot
+        
         SaveData.objcts.Slots.Remove(slot);
         GameController.Save();
         Destroy(gameObject);
@@ -137,10 +143,10 @@ public class LoadSlotListController : MonoBehaviour
     /// <param name="gameObject"></param>
     public void DeleteSlot(InfoSlotResume slot)
     {
-
-        Debug.Log("deleteslot");
-        //Todo Delete File of Slot
+        Directory.Delete(Application.persistentDataPath + "/" +slot.FolderOfSlot, true);
         SaveData.objcts.Slots.Remove(slot);
+        if (SaveData.objcts.Slots.Count == 0)
+            SaveData.objcts.previousSlotLoaded = null;
         GameController.Save();
         GenerateSlots();
         system.GoToPreviousScreen();
@@ -150,11 +156,9 @@ public class LoadSlotListController : MonoBehaviour
     /// </summary>
     public void LoadYesOverrideSlot(InfoSlotResume slot)
     {
+        Debug.Log("ssss load override slot");
         GameController.Instance.currentSlotResume = slot;
-        //TODO Load file of new slot lo load on CurrentSlot
-        menuController.LoadSceneFromSlot();
-        Debug.Log("Load yes override current slot,Yes ");
-
+        MenuController.LoadSceneFromSlot();
     }
     /// <summary>
     /// 

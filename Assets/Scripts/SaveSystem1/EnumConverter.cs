@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+
 #region Menu Enums
 
 public enum GrapicsSettings { VeryLow, Low, Medium, High, VeryHigh, Ultra };
@@ -65,6 +65,7 @@ public static class EnumConverter
     {
         return (T[])Enum.GetValues(typeof(T));
     }
-
-    #endregion
+    
+    
 }
+#endregion

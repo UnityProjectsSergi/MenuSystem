@@ -31,13 +31,14 @@ public class SaveData
     /// <param name="currentSlot"></param>
     public static void LoadGameSlotData(GameSlot currentSlot)
     {
-
+        Debug.Log(currentSlot.ObjectsToSaveInSlot.Count);
         if (currentSlot.ObjectsToSaveInSlot.Count > 0)
         {
             foreach (var item in currentSlot.ObjectsToSaveInSlot.ToArray())
             {
                 currentSlot.NumObj++;
-                GameController.CreateObjSaved(item);
+              
+               GameLevelController.CreateObjSaved(item);
             }
             OnLoaded();
             ClearGameObjectsListSlot();
@@ -108,6 +109,7 @@ public class SaveData
             //{
                 // Read the file and put into string variable
                 string json = File.ReadAllText(path);
+                Debug.Log(json);
                 //Convert it from json string into a T object and return the object T 
              //   return JsonUtility.FromJson<T>(json);
                 return JsonConvert.DeserializeObject<T>(json);
@@ -115,6 +117,7 @@ public class SaveData
         }
         else
         {
+            Debug.Log("ileNotExists");
             return new T();
         }
     }
@@ -133,36 +136,38 @@ public class SaveData
             {
                 //delete file and create wen
                 File.Delete(path);
-                if (NamespaceExists("Sirenix.Serialization"))
-                {
-                 //   File.WriteAllBytes(path,Sirenix.Serialization.SerializationUtility.SerializeValueWeak(content, Sirenix.Serialization.DataFormat.JSON));
-                }
-                else
+//          
                         // File.WriteAllText(path, JsonUtility.ToJson(content));
-                File.WriteAllText(path, JsonConvert.SerializeObject(content));
+                File.WriteAllText(path, JsonConvert.SerializeObject(content, Formatting.Indented, 
+                    new JsonSerializerSettings { 
+                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                    }));
             }
             // if exist and not delete
             else
             {
-                //if (NamespaceExists("Sirenix.Serialization"))
-                //{
-                   
-                  
-                //    File.WriteAllBytes(path, ConcatArrays(File.ReadAllBytes(path),  Sirenix.Serialization.SerializationUtility.SerializeValueWeak(content, Sirenix.Serialization.DataFormat.JSON)));
-                //}
-                //else
-                //{
+           
                     
                     // read the file and apped extra information
                     string json = File.ReadAllText(path);
                     //File.WriteAllText(path,json+ JsonUtility.ToJson(content));
-                    Append(path, json + JsonConvert.SerializeObject(content));
+                    Append(path, json + JsonConvert.SerializeObject(content, Formatting.Indented, 
+                                     new JsonSerializerSettings { 
+                                         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                                     }));
               //  }
             }
         }
-        //if not exits wirte
-      //  File.WriteAllText(path, JsonUtility.ToJson(content));
-        File.WriteAllText(path, JsonConvert.SerializeObject(content));
+        else
+        {
+            //if not exits wirte
+            //  File.WriteAllText(path, JsonUtility.ToJson(content));
+            File.WriteAllText(path, JsonConvert.SerializeObject(content, Formatting.Indented, 
+                new JsonSerializerSettings { 
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                }));
+        }
+      
     }
     private static void Append(string path, string contents)
     {

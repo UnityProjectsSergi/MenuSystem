@@ -19,6 +19,7 @@ namespace Assets.SaveSystem1.DataClasses
         }
         public void CrateFolder()
         {
+            Debug.Log("sscrate slor teumfomled");
             if (!folderDone)
             {
                 if (FolderOfSlot == "") FolderOfSlot = Path.GetRandomFileName();
@@ -77,7 +78,7 @@ namespace Assets.SaveSystem1.DataClasses
         /// currentLevelPlay
         /// </summary>
         public string currentLevelPlay="";
-        internal bool isEmpty=false;
+       
         public string FileSlot;
         
     }

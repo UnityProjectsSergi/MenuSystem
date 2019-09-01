@@ -30,11 +30,7 @@ public class GameController : MonoBehaviour
     /// Instance Private 
     /// </summary>
     private static GameController _instance = null;
-    /// <summary>
-    /// 
-    /// </summary>
-    [SerializeField]
-    private bool IsSlotInCurrentSlot;
+   
     /// <summary>
     /// Current Slot Resume loaded
     /// </summary>
@@ -113,7 +109,7 @@ public class GameController : MonoBehaviour
     }
     public static void SaveSlotObj()
     {
-        SaveData.SaveSlot<GameSlot>(GameController.Instance.currentSlotResume.FileSlot, GameController.Instance.currentSlot, true);
+        SaveData.SaveSlot<GameSlot>(GameController.Instance.currentSlotResume.FileSlot, GameController.Instance.currentSlot, false);
     }
     private void Awake()
     {
@@ -143,32 +139,34 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Debug.Log("SAVE");
-            Save();
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            SaveSlotObj(); 
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Debug.Log("Load");
-            Load();
-        }
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            //SaveData.LoadGameSlotData();
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Debug.Log("Create");
-            CreateGameObject(_prefab, new Vector3(2, 5, 0), Quaternion.identity);
-        }
+//        if (Input.GetKeyDown(KeyCode.S))
+//        {
+//            Debug.Log("SAVE");
+//            Save();
+//        }
+//        if (Input.GetKeyDown(KeyCode.D))
+//        {
+//            SaveSlotObj(); 
+//        }
+//        if (Input.GetKeyDown(KeyCode.L))
+//        {
+//            Debug.Log("Load");
+//            Load();
+//        }
+//        if(Input.GetKeyDown(KeyCode.K))
+//        {
+//            //SaveData.LoadGameSlotData();
+//        }
+//        if (Input.GetKeyDown(KeyCode.C))
+//        {
+//            Debug.Log("Create");
+//            CreateGameObject(_prefab, new Vector3(2, 5, 0), Quaternion.identity);
+//        }
     }
     public void TakeScreenShot()
     {
+        string path = Application.persistentDataPath + "/" + GameController.Instance.currentSlotResume.FolderOfSlot +
+                      "/Sheen.png";
        
             ScreenCapture.CaptureScreenshot(Application.persistentDataPath + "/" + GameController.Instance.currentSlotResume.FolderOfSlot + "/ScreenShot.png");
             GameController.Instance.currentSlotResume.ScreenShot = Application.persistentDataPath
@@ -179,5 +177,11 @@ public class GameController : MonoBehaviour
     private void OnApplicationQuit()
     {
         currentSlotResume = null;
+    }
+
+    public IEnumerator TakeScreenShoot(float time)
+    {
+           yield return new WaitForSeconds(1f);
+           TakeScreenShot();
     }
 }

@@ -16,19 +16,22 @@ public class PauseController : MonoBehaviour {
     /// KeyCode for going Back Screen in Pause Menu Screens and Main Menu Screens, and to Enter and exit into Pause Menu Screen frim GamePlay Screen 
     /// </summary>
     public KeyCode backKeyInMenuAndPauseUnpause = KeyCode.Escape;
+
     /// <summary>
     /// Is th Sreen GamePlayScreen
     /// </summary>
-    public UiScreen GamePlayScreen;
+    public UiScreen GamePlayScreen = null;
    
 
     [SerializeField]
-   private MainMenuController mainMenuController;
-    /// <summary>
-    /// Is The Pause Menu Screen same GameObject as Main Menu Screen 
-    /// </summary>
-    
-    private UiSystem system;
+   private UiScreen mainMenuScreen=null;
+   public MainMenuController mainMenuController=null;
+
+   /// <summary>
+   /// Is The Pause Menu Screen same GameObject as Main Menu Screen 
+   /// </summary>
+
+   public UiSystem system = null;
     // Use this for initialization
     public float TimeBetweenPause=1f;
     private float timer;
@@ -43,6 +46,7 @@ public class PauseController : MonoBehaviour {
         isPausedGame = false;
        
     }
+    ///TODO fix bug on enter exit pause gameplay
     // Update is called once per frame
     void Update () {
 		
@@ -50,16 +54,17 @@ public class PauseController : MonoBehaviour {
     /// <summary>
     /// Detect Keys Downof keyboard
     /// </summary>
-    private void OnGUI()
+    private void OnGUI()    
     {
         // if AllowEnterPause is true
         if (AllowEnterPause)
         {
             Event e = Event.current;
-           
+      
             // if Event.current is Key and the keycode is backKeyInMenuAndPauseUnpause and Event Type is KeyDown
-            if (Time.time >= timer && e.isKey && e.keyCode == backKeyInMenuAndPauseUnpause && e.type == EventType.KeyDown)
+            if (Time.time >= timer && e.keyCode == backKeyInMenuAndPauseUnpause && e.type == EventType.KeyDown)
             {
+              
                 // if game is Paused
                 if (isPausedGame)
                 {
@@ -67,14 +72,17 @@ public class PauseController : MonoBehaviour {
                     
                     if (!system.CurrentScreen.Equals(mainMenuController.GetComponent<UiScreen>()))
                     {
+                        
                         // go to previuos screen inside pause menu
                         system.GoToPreviousScreen();
                     }
                     // if current Screen is Pause Menu
                     else
                     {
+                        
+                      
                         // switch screen to GamePlay Screen
-                        system.CallSwitchScreen(GamePlayScreen,null,false);
+                       system.CallSwitchScreen(GamePlayScreen);
                         // set false to IsPausedGeme to unpause the game
                         isPausedGame = false;
                     }
@@ -82,12 +90,14 @@ public class PauseController : MonoBehaviour {
                 // if not paused game so i'm in gameplay
                 else
                 {
+                   
                     //call setpausemenu on mainmenu to set the buttons for pauseMenu
-//                    mainMenuController.mainMenuButtons.SetPauseMenu();
+                  mainMenuController.MainMenuButtons.SetPauseMenu();
 //                    // switchSreen to Pause Menu Screen
-//                    system.SwitchScreen(mainMenuController.gameObject.GetComponent<UI.UI_Screen>(),false);
+                    system.CallSwitchScreen(mainMenuScreen);
                     // set true to isPausedGame to pause the game
                     isPausedGame = true;
+              
                 }
                     timer = Time.time + TimeBetweenPause;
             }

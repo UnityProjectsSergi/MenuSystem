@@ -105,8 +105,9 @@ public class FadeEffect : MonoBehaviour
             yield return new WaitForEndOfFrame(); // wait for the next frame before continuing the loop
         }
 
-        action?.Invoke();
+        
         canvas.alpha =
             endAlpha; // force the alpha to the end alpha before finishing – this is here to mitigate any rounding errors, e.g. leaving the alpha at 0.01 instead of 0
+        action?.Invoke();
     }
 }

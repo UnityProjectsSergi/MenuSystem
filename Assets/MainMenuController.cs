@@ -7,13 +7,14 @@ using UnityEngine.InputSystem.Interactions;
 
 public class MainMenuController : MonoBehaviour
 {
+    public UiScreen LoadSlotListScreen;
     public SlotController SlotController;
     public MainMenuButtons MainMenuButtons;
     public MenuController MenuController;
-    public loaderScene loadscene;
+ 
     public UiSystem UiSystem;
     public UiScreen Options;
-    public UiScreen loderSfen;
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -81,13 +82,35 @@ public class MainMenuController : MonoBehaviour
 
     public UiScreen LevelSelectionScreen;
     private InfoSlotResume slot;
-
-    public void OpenLoadGame()
+    public void ContinueClickBtn()
     {
-        UiSystem.CallSwitchScreen(loderSfen,delegate {     loadscene.FloaderScene(); },true);
-    
+        GameController.Instance.currentSlotResume = SaveData.objcts.previousSlotLoaded;
+        MenuController.LoadSceneFromSlot();
     }
-
+    public void ExitToMainMenuFromMenuPause()
+    {
+        // TODO ASk if lose current Progression
+       MenuController.QuestionLoseGameProgressIfExitGameFromPause();
+        
+    }
+    public void ExitGame()
+    {
+        if ((bool)GameController.Instance.currentSlotResume)
+            MenuController.QuestionLoseGameProgressIfExit();
+        else
+            Application.Quit();
+    }
+    public void ResumeGame()
+    {
+        MenuController.pauseController.isPausedGame  = false;
+        UiSystem.CallSwitchScreen(MenuController.GamePlayScreen);
+    }
+    public void LoadGame()
+    {
+        LoadSlotListScreen.GetComponent<LoadSlotListController>().GenerateSlots();  
+        UiSystem.CallSwitchScreen(LoadSlotListScreen);
+        
+    }
     public void OpenSettings()
     {
         UiSystem.CallSwitchScreen(Options,null,false);
@@ -104,7 +127,7 @@ public class MainMenuController : MonoBehaviour
             if (SaveData.objcts.Slots.Count == 0)
             {
                 // No activate LoadGmeBtn and 
-                MainMenuButtons.LoadGameBtn.gameObject.SetActive(false);
+                   MainMenuButtons.LoadGameBtn.gameObject.SetActive(false);
             }
             // if have slot or slots in list
             else if (SaveData.objcts.Slots.Count >= 1)

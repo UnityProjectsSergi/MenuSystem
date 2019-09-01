@@ -69,7 +69,7 @@ public class UiSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // if(canSwitchscreen)
+      // if(canSwitchscreen)
             
       //  if (Inputs.Instance.GetUiBackButton()) GoToPreviousScreen();
     }
@@ -82,6 +82,7 @@ public class UiSystem : MonoBehaviour
     /// <param name="timeInFadeBlack"></param>
     public void CallSwitchScreen(UiScreen newScreen, UnityAction Action = null, bool fadeToBlack = false,
         float timeInFadeBlack=0.0f)
+    
     {
         if (canSwitchscreen)
             StartCoroutine(SwitchScreen(newScreen, Action, fadeToBlack,timeInFadeBlack));
@@ -107,9 +108,9 @@ public class UiSystem : MonoBehaviour
                     previousScreen = currentScreen;
 
 
-                yield return new WaitForSeconds(timeInFadeBlack);
+               
             }
-
+            yield return new WaitForSeconds(timeInFadeBlack);
 
             currentScreen = newScreen;
 
