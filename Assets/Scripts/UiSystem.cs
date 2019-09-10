@@ -7,6 +7,32 @@ using UnityEngine.EventSystems;
 
 public class UiSystem : MonoBehaviour
 {
+
+    #region Variables In GameMenu
+
+    
+
+    #endregion
+    [Header(
+        "To put IN GAME MENU mode have to put all canvas in world space Render Mode and have more than 1 Canvas inside of UiSystem gameObj Script  ")]
+    [Header("InGameMenu Properites")]
+    /// <summary>
+    /// bool indicates is IN Game Menu with moviment of camera and only have one unity scene because the menu is ingame.
+    /// </summary> 
+    public bool IsInGameMenu;
+
+    [SerializeField]
+    /// <summary>
+    /// bool indicates the movement of the camera is lerped
+    /// </summary>
+    private bool LerpMovimentCaamera;
+    [SerializeField]
+
+    private Camera mainCamera;
+    private Transform OrinTranform;
+    private Canvas currentCanvas;
+    private Canvas previousCanvas;
+    
     public static bool CanOpenNextScreen = true;
     public bool canSwitchscreen;
 
@@ -19,6 +45,7 @@ public class UiSystem : MonoBehaviour
     public List<Canvas> listPrevCanvas;
     public List<UiScreen> listPrevScreens;
     public int numPrvevScreen;
+    public Color BGScreensColor;
     private UiScreen previousScreen;
     public bool SavePathOfScreensToGoPrev;
 
@@ -45,6 +72,7 @@ public class UiSystem : MonoBehaviour
         get { return currentScreen; }
     }
 
+    public bool isd;
     void Start()
     {
         numPrvevScreen = 0;
@@ -52,8 +80,9 @@ public class UiSystem : MonoBehaviour
         if (SavePathOfScreensToGoPrev)
             listPrevScreens = new List<UiScreen>();
         InitiaizeScreens();
-        if (startScreen)
+        if (!isd && startScreen  )
         {
+            isd = true;
             StartCoroutine(SwitchScreen(startScreen));
         }
     }
