@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using System.IO;
+using System.Reflection;
+
 namespace Assets.Scripts.Utils
 {
     public static class Utils
@@ -17,6 +19,19 @@ namespace Assets.Scripts.Utils
                 builder.Append(item);
             }
             return builder.ToString();
+        }
+        public static bool NamespaceExists(string desiredNamespace)
+        {
+            
+            foreach(Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                foreach(Type type in assembly.GetTypes())
+                {
+                    if (type.Namespace == desiredNamespace)
+                        return true;
+                }
+            }
+            return false;
         }
     }
     public class FadeEffect
