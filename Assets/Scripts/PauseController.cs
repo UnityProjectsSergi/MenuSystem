@@ -59,28 +59,26 @@ public class PauseController : MonoBehaviour {
         // if AllowEnterPause is true
         if (AllowEnterPause)
         {
+            
             Event e = Event.current;
       
             // if Event.current is Key and the keycode is backKeyInMenuAndPauseUnpause and Event Type is KeyDown
             if (Time.time >= timer && e.keyCode == backKeyInMenuAndPauseUnpause && e.type == EventType.KeyDown)
+         //   if (Time.time >= timer && Inputs.Instance.GetUiPauuse())
             {
-              
                 // if game is Paused
                 if (isPausedGame)
                 {
                     // if current Screen is not Pause Menu 
-                    
                     if (!system.CurrentScreen.Equals(mainMenuController.GetComponent<UiScreen>()))
                     {
-                        
                         // go to previuos screen inside pause menu
                         system.GoToPreviousScreen();
                     }
                     // if current Screen is Pause Menu
                     else
                     {
-                        
-                      
+                        //   Inputs.Instance.GoToGamPlay();
                         // switch screen to GamePlay Screen
                        system.CallSwitchScreen(GamePlayScreen);
                         // set false to IsPausedGeme to unpause the game
@@ -97,7 +95,7 @@ public class PauseController : MonoBehaviour {
                     system.CallSwitchScreen(mainMenuScreen);
                     // set true to isPausedGame to pause the game
                     isPausedGame = true;
-              
+                    //Inputs.Instance.GoToGamPlay();
                 }
                     timer = Time.time + TimeBetweenPause;
             }

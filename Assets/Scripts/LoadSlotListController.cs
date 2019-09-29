@@ -60,8 +60,8 @@ public class LoadSlotListController : MonoBehaviour
             if (solt != null)
             {
                 solt.btnDel.onClick.RemoveAllListeners();
-                solt.btnLoad.onClick.RemoveAllListeners();
-                solt.btnLoad.onClick.AddListener(() => LoadSlot(solt.slot));
+                solt.btnLoadSave.onClick.RemoveAllListeners();
+                solt.btnLoadSave.onClick.AddListener(() => LoadSlot(solt.slot));
                 solt.btnDel.onClick.AddListener(() => AskForDeleteSlot(solt.slot, ObjSlot));
                 Debug.Log(item.folderDone+" "+item.ScreenShot);
                 solt.Init(item);
@@ -103,7 +103,7 @@ public class LoadSlotListController : MonoBehaviour
         Yes.AddListener(() => LoadYesOverrideSlot(slot));
         No.AddListener(() => LoadSlotNoOverrideSlot());
         Cancel.AddListener(() => LoadSlotCanelOverrideSlot());
-        quetionScreen.GetComponent<QuestionSceenController>().OpenModal("Ovveride the slot current", "ddd", Yes, No, Cancel);
+        quetionScreen.GetComponent<QuestionSceenController>().OpenModal("Ovveride the slot current", "You Sure Override?", Yes, No, Cancel);
        system.CallSwitchScreen(quetionScreen);
     }
     /// <summary>
@@ -152,6 +152,8 @@ public class LoadSlotListController : MonoBehaviour
         GenerateSlots();
         system.GoToPreviousScreen();
     }
+
+    public PauseController pauseController;
     /// <summary>
     /// 
     /// </summary>
@@ -159,6 +161,7 @@ public class LoadSlotListController : MonoBehaviour
     {
         Debug.Log("ssss load override slot");
         GameController.Instance.currentSlotResume = slot;
+        pauseController.AllowEnterPause = false;
         //Todo Somehow de 
         MenuController.LoadSceneFromSlot();
     }

@@ -28,6 +28,14 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "52f6b987-2c48-4d32-a84d-e0d7edf332b9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -46,7 +54,7 @@
                     "name": "",
                     "id": "2124ade7-58ea-4331-92df-4c819a09343c",
                     "path": "<DualShockGamepad>/buttonEast",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": ";PS4",
                     "action": "Back",
@@ -68,7 +76,7 @@
                     "name": "",
                     "id": "274c7870-ab44-4cf6-8ca6-5ebd219ceffb",
                     "path": "<DualShockGamepad>/buttonSouth",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": ";PS4",
                     "action": "Confirm",
@@ -184,6 +192,66 @@
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "0b5e92fa-8397-4c4e-8b41-946dff2f041e",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KayBoard",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a1faf72f-8277-441c-a59e-15f4b92d9379",
+                    "path": "<DualShockGamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS4",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "GamePlay",
+            "id": "04d8a07f-18d8-4594-9d2e-a223f6733308",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "583b9d13-29b7-47f9-917e-69695542e9c0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d89e84af-f1e0-4070-9e8d-faec6d8b0eaf",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KayBoard",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "31ce05f1-f65c-4a7e-b46b-324a1775d23d",
+                    "path": "<DualShockGamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PS4",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
@@ -191,7 +259,6 @@
     "controlSchemes": [
         {
             "name": "KayBoard",
-            "basedOn": "",
             "bindingGroup": "KayBoard",
             "devices": [
                 {
@@ -203,7 +270,6 @@
         },
         {
             "name": "PS4",
-            "basedOn": "",
             "bindingGroup": "PS4",
             "devices": [
                 {

@@ -167,12 +167,17 @@ public class GameController : MonoBehaviour
     {
         string path = Application.persistentDataPath + "/" + GameController.Instance.currentSlotResume.FolderOfSlot +
                       "/Sheen.png";
-       
-            ScreenCapture.CaptureScreenshot(Application.persistentDataPath + "/" + GameController.Instance.currentSlotResume.FolderOfSlot + "/ScreenShot.png");
+        if (!File.Exists(Application.persistentDataPath + "/" + GameController.Instance.currentSlotResume.FolderOfSlot +
+                         "/ScreenShot.png"))
+        {
+            ScreenCapture.CaptureScreenshot(Application.persistentDataPath + "/" +
+                                            GameController.Instance.currentSlotResume.FolderOfSlot + "/ScreenShot.png");
             GameController.Instance.currentSlotResume.ScreenShot = Application.persistentDataPath
-                + "/" + GameController.Instance.currentSlotResume.FolderOfSlot + "/ScreenShot.png";
+                                                                   + "/" + GameController.Instance.currentSlotResume
+                                                                       .FolderOfSlot + "/ScreenShot.png";
             GameController.Save();
-      
+        }
+
     }
     private void OnApplicationQuit()
     {

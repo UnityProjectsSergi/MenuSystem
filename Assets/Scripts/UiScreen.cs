@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
 public enum ScreenType
@@ -34,6 +35,7 @@ public class UiScreen : MonoBehaviour
     {
         canvas.FadeIn(mm, fadeInTime,FadeInOutBlack, timeFromBlack);
         canvas.ActivateCanvasGroup();
+       
     }
 
     public void Reset()

@@ -141,15 +141,16 @@ public class MenuController : MonoBehaviour
 
     public void LoadSceneFromSlot()
     {
-        pauseController.AllowEnterPause = true;
+     
         // if its enable Loading Scene Plugin sergi
         if (IsLoaderSceneWithPligun)
         {
            
                 system.CallSwitchScreen(ScreenLoading, delegate
                 {
-                    
+                    Inputs.Instance.DisableAll();
                     LoadScreencontroller.FloaderScene();
+                    
                 }, true);
          
         }
@@ -163,7 +164,7 @@ public class MenuController : MonoBehaviour
             SaveData.LoadGameSlotData(
                 SaveData.LoadFromFile<GameSlot>(GameController.Instance.currentSlotResume.FileSlot));
             system.CallSwitchScreen(GamePlayScreen);
-        } /// SwitchSreen To GamePlayScreen 
+        } /// SwitchSreen To GamePlayScreen
     }
 
     IEnumerator LoadSceneSync()
@@ -221,7 +222,7 @@ public class MenuController : MonoBehaviour
     {
         // Clear the Slots list
         // a dit q si 
-        Directory.Delete(Application.persistentDataPath + "/" + SaveData.objcts.previousSlotLoaded.FolderOfSlot, true);
+       // Directory.Delete(Application.persistentDataPath + "/" + SaveData.objcts.previousSlotLoaded.FolderOfSlot, true);
         SaveData.objcts.Slots.Clear();
 
         // add New slot to list, SetPevous Slot, Save All Slot, an LoadScen
@@ -285,7 +286,7 @@ public class MenuController : MonoBehaviour
     public void YesLostGameProgressionFromPause()
     {
         //system.ResetListPrevScreens();
-        pauseController.AllowEnterPause = false;
+       
         GameController.Instance.currentSlot = null;
         GameController.Instance.currentSlotResume = null;
         //  mainMenuController.SetMainMenuWithSlots();

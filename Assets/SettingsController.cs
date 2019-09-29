@@ -34,14 +34,14 @@ public class SettingsController : MonoBehaviour
         settingsButtons = GetComponent<SettngsButtons>();
        
         SoundButton.gameObject.SetActive(settingsButtons.isSoundSettingsEnabled);
-        GamplayButton.gameObject.SetActive(settingsButtons.isGamePlaySettingsEnabled);
-        CameraButton.gameObject.SetActive(settingsButtons.isCameraSettingsEnabled);
-        HudConfigButton.gameObject.SetActive(settingsButtons.isHudConfigSettingsEnabled);
-        AssessibilityButton.gameObject.SetActive(settingsButtons.isAccessibilitySettingsEnabled);
-        CameraButton.gameObject.SetActive(settingsButtons.isAccessibilitySettingsEnabled);
-        CreditsButton.gameObject.SetActive(settingsButtons.isCreditsScreenEnabled);
-        LlanguageButton.gameObject.SetActive(settingsButtons.isLlanguageSettingsEnabled);
-        BackButton.gameObject.SetActive(true);
+     //   GamplayButton.gameObject.SetActive(settingsButtons.isGamePlaySettingsEnabled);
+//   CameraButton.gameObject.SetActive(settingsButtons.isCameraSettingsEnabled);
+//        HudConfigButton.gameObject.SetActive(settingsButtons.isHudConfigSettingsEnabled);
+//        AssessibilityButton.gameObject.SetActive(settingsButtons.isAccessibilitySettingsEnabled);
+//        CameraButton.gameObject.SetActive(settingsButtons.isAccessibilitySettingsEnabled);
+//        CreditsButton.gameObject.SetActive(settingsButtons.isCreditsScreenEnabled);
+//        LlanguageButton.gameObject.SetActive(settingsButtons.isLlanguageSettingsEnabled);
+//        BackButton.gameObject.SetActive(true);
     }
 	
     // Update is called once per frame
@@ -53,6 +53,11 @@ public class SettingsController : MonoBehaviour
     public void OpenAudioSettings()
     {
         UiSystem.CallSwitchScreen(UIScreenAudio,null);
+    }
+
+    public void OpenGamePlaySettings()
+    {
+        
     }
     
 }

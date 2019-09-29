@@ -38,13 +38,44 @@ public  class Inputs : MonoBehaviour
     private Controls _inputsControls;
     public Vector2 MoveUi;
 
-    
-    
+    public void GoToGamePlay()
+    {
+        _inputsControls.UI.Disable();
+        _inputsControls.GamePlay.Enable();
+    }
+
+    public void GoToUI()
+    {
+        _inputsControls.UI.Enable();
+        _inputsControls.GamePlay.Disable();   
+    }
+
+    public void DisableAll()
+    {
+        _inputsControls.UI.Disable();
+        _inputsControls.GamePlay.Disable();   
+    }
 //
-//    public bool GetUiBackButton()
-//    {
-//        return _inputsControls.UI.Back.triggered;
-//    }
+    public bool GetGamePlayPauuse()
+    {
+     
+      if(_inputsControls.GamePlay.enabled)
+        return _inputsControls.GamePlay.Pause.triggered;
+      else
+      {
+          return false;
+      }
+    }
+
+    public bool GetUiPause()
+    {
+        if(_inputsControls.UI.enabled)
+            return _inputsControls.UI.Pause.triggered;   
+        else
+        {
+            return false;
+        }
+    }
 //    public bool GetUiConfrmButton()
 //    {
 //        return _inputsControls.UI.Confirm.triggered;

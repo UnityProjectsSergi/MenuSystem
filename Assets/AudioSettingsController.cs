@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Assets.Scripts.SaveSystem1.DataClasses;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioSettingsController : MonoBehaviour
 {
@@ -29,12 +30,12 @@ public class AudioSettingsController : MonoBehaviour
         }
         set { }
     }
-   
 
-    public SoundSliderSlot SoundSliderSlotMaster;
+    public SoundSliderSlot SlotMaster, SlotMusic, SlotSFX, SlotVoices;
+   
     /// <summary>
     /// 
-    // Start is called before the first frame update
+    // Start is called before the first frame update 
     void Start()
     {
         if (GameController.hasLoadedGameData)
@@ -43,6 +44,8 @@ public class AudioSettingsController : MonoBehaviour
             if (GameController.Instance.fileExists)
                 _loadedAudioParameters = SaveData.objcts.Parameters.Sound;
         }
+        SerActionsOnSlots();
+        SetDefaults();
     }
 
     public void SetParametersOnSaveData()
@@ -52,11 +55,53 @@ public class AudioSettingsController : MonoBehaviour
 
     public void SetDefaults()
     {
-        SoundSliderSlotMaster.SetDefaultSlider(Parameters.masterValue);
-    }
-    // Update is called once per frame
-    void Update()
-    {
+        Debug.Log((SlotMusic+""+ Parameters.musicValue));
+        if(SlotMusic!=null)
+         SlotMusic.SetValueSlider(Parameters.musicValue);
+        if(SlotMaster!=null)
+         SlotMaster.SetValueSlider(Parameters.masterValue);
+        if(SlotVoices!=null)
+          SlotVoices.SetValueSlider(Parameters.voicesValue);
+        if(SlotSFX!=null)
+          SlotSFX.SetValueSlider(Parameters.soundFXValue);
         
+    }
+
+    public void SerActionsOnSlots()
+    {
+        if(SlotMaster!=null)
+            SlotMaster.SaveVal += SetMasterVolume;
+        if(SlotMusic!=null)
+            SlotMusic.SaveVal += SetMusicVolume;
+        if(SlotVoices!=null)
+            SlotVoices.SaveVal += SetVoicesVolume;
+        if(SlotSFX!=null)
+            SlotSFX.SaveVal += SetSfxVolume;
+    }
+
+    public void SetMasterVolume(float value)
+    {
+        Parameters.masterValue = value;
+        SaveAudioData();
+    }
+    public void SetMusicVolume(float value)
+    {
+        Parameters.musicValue = value;
+        SaveAudioData();
+    }
+    public void SetVoicesVolume(float value)
+    {
+        Parameters.voicesValue = value;
+        SaveAudioData();
+    }
+    public void SetSfxVolume(float value)
+    {
+        Parameters.soundFXValue = value;
+        SaveAudioData();
+    }
+    private void SaveAudioData()
+    {
+        SetParametersOnSaveData();
+        GameController.Save();
     }
 }

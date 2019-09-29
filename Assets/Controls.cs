@@ -40,6 +40,14 @@ public class Controls : IInputActionCollection
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""52f6b987-2c48-4d32-a84d-e0d7edf332b9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -58,7 +66,7 @@ public class Controls : IInputActionCollection
                     ""name"": """",
                     ""id"": ""2124ade7-58ea-4331-92df-4c819a09343c"",
                     ""path"": ""<DualShockGamepad>/buttonEast"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";PS4"",
                     ""action"": ""Back"",
@@ -80,7 +88,7 @@ public class Controls : IInputActionCollection
                     ""name"": """",
                     ""id"": ""274c7870-ab44-4cf6-8ca6-5ebd219ceffb"",
                     ""path"": ""<DualShockGamepad>/buttonSouth"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";PS4"",
                     ""action"": ""Confirm"",
@@ -196,6 +204,66 @@ public class Controls : IInputActionCollection
                     ""action"": ""Navigate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b5e92fa-8397-4c4e-8b41-946dff2f041e"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KayBoard"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a1faf72f-8277-441c-a59e-15f4b92d9379"",
+                    ""path"": ""<DualShockGamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PS4"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""GamePlay"",
+            ""id"": ""04d8a07f-18d8-4594-9d2e-a223f6733308"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""583b9d13-29b7-47f9-917e-69695542e9c0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d89e84af-f1e0-4070-9e8d-faec6d8b0eaf"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KayBoard"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31ce05f1-f65c-4a7e-b46b-324a1775d23d"",
+                    ""path"": ""<DualShockGamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PS4"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -203,7 +271,6 @@ public class Controls : IInputActionCollection
     ""controlSchemes"": [
         {
             ""name"": ""KayBoard"",
-            ""basedOn"": """",
             ""bindingGroup"": ""KayBoard"",
             ""devices"": [
                 {
@@ -215,7 +282,6 @@ public class Controls : IInputActionCollection
         },
         {
             ""name"": ""PS4"",
-            ""basedOn"": """",
             ""bindingGroup"": ""PS4"",
             ""devices"": [
                 {
@@ -233,10 +299,14 @@ public class Controls : IInputActionCollection
     ]
 }");
         // UI
-        m_UI = asset.GetActionMap("UI");
-        m_UI_Back = m_UI.GetAction("Back");
-        m_UI_Confirm = m_UI.GetAction("Confirm");
-        m_UI_Navigate = m_UI.GetAction("Navigate");
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_Back = m_UI.FindAction("Back", throwIfNotFound: true);
+        m_UI_Confirm = m_UI.FindAction("Confirm", throwIfNotFound: true);
+        m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
+        m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
+        // GamePlay
+        m_GamePlay = asset.FindActionMap("GamePlay", throwIfNotFound: true);
+        m_GamePlay_Pause = m_GamePlay.FindAction("Pause", throwIfNotFound: true);
     }
 
     ~Controls()
@@ -289,6 +359,7 @@ public class Controls : IInputActionCollection
     private readonly InputAction m_UI_Back;
     private readonly InputAction m_UI_Confirm;
     private readonly InputAction m_UI_Navigate;
+    private readonly InputAction m_UI_Pause;
     public struct UIActions
     {
         private Controls m_Wrapper;
@@ -296,6 +367,7 @@ public class Controls : IInputActionCollection
         public InputAction @Back => m_Wrapper.m_UI_Back;
         public InputAction @Confirm => m_Wrapper.m_UI_Confirm;
         public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
+        public InputAction @Pause => m_Wrapper.m_UI_Pause;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -314,6 +386,9 @@ public class Controls : IInputActionCollection
                 Navigate.started -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
                 Navigate.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
                 Navigate.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
+                Pause.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+                Pause.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+                Pause.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -327,16 +402,52 @@ public class Controls : IInputActionCollection
                 Navigate.started += instance.OnNavigate;
                 Navigate.performed += instance.OnNavigate;
                 Navigate.canceled += instance.OnNavigate;
+                Pause.started += instance.OnPause;
+                Pause.performed += instance.OnPause;
+                Pause.canceled += instance.OnPause;
             }
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // GamePlay
+    private readonly InputActionMap m_GamePlay;
+    private IGamePlayActions m_GamePlayActionsCallbackInterface;
+    private readonly InputAction m_GamePlay_Pause;
+    public struct GamePlayActions
+    {
+        private Controls m_Wrapper;
+        public GamePlayActions(Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_GamePlay_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GamePlayActions set) { return set.Get(); }
+        public void SetCallbacks(IGamePlayActions instance)
+        {
+            if (m_Wrapper.m_GamePlayActionsCallbackInterface != null)
+            {
+                Pause.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnPause;
+                Pause.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnPause;
+                Pause.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                Pause.started += instance.OnPause;
+                Pause.performed += instance.OnPause;
+                Pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public GamePlayActions @GamePlay => new GamePlayActions(this);
     private int m_KayBoardSchemeIndex = -1;
     public InputControlScheme KayBoardScheme
     {
         get
         {
-            if (m_KayBoardSchemeIndex == -1) m_KayBoardSchemeIndex = asset.GetControlSchemeIndex("KayBoard");
+            if (m_KayBoardSchemeIndex == -1) m_KayBoardSchemeIndex = asset.FindControlSchemeIndex("KayBoard");
             return asset.controlSchemes[m_KayBoardSchemeIndex];
         }
     }
@@ -345,7 +456,7 @@ public class Controls : IInputActionCollection
     {
         get
         {
-            if (m_PS4SchemeIndex == -1) m_PS4SchemeIndex = asset.GetControlSchemeIndex("PS4");
+            if (m_PS4SchemeIndex == -1) m_PS4SchemeIndex = asset.FindControlSchemeIndex("PS4");
             return asset.controlSchemes[m_PS4SchemeIndex];
         }
     }
@@ -354,5 +465,10 @@ public class Controls : IInputActionCollection
         void OnBack(InputAction.CallbackContext context);
         void OnConfirm(InputAction.CallbackContext context);
         void OnNavigate(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+    }
+    public interface IGamePlayActions
+    {
+        void OnPause(InputAction.CallbackContext context);
     }
 }

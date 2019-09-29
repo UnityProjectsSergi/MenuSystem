@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MainMenuButtons : MonoBehaviour {
@@ -48,6 +49,7 @@ public class MainMenuButtons : MonoBehaviour {
     public void SetPauseMenu()
     {
         text.text = "Pause Menu";
+        EventSystem.current.SetSelectedGameObject(ResumeBtn.gameObject);
         ResumeBtn.gameObject.SetActive(true);
         ExitMainMenuBtn.gameObject.SetActive(true);
         SaveGameBtn.gameObject.SetActive(true);
@@ -58,6 +60,7 @@ public class MainMenuButtons : MonoBehaviour {
     public void SetMainMenu()
     {
         text.text = "Main Menu";
+        EventSystem.current.SetSelectedGameObject(ContinueBtn.gameObject);
         ContinueBtn.gameObject.SetActive(true);
         ResumeBtn.gameObject.SetActive(false);
         ExitMainMenuBtn.gameObject.SetActive(false);

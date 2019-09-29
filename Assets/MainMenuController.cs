@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.SaveSystem1.DataClasses;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.Interactions;
 
 public class MainMenuController : MonoBehaviour
@@ -14,6 +15,7 @@ public class MainMenuController : MonoBehaviour
  
     public UiSystem UiSystem;
     public UiScreen Options;
+    public UiScreen SaveGameScreen;
   
     // Start is called before the first frame update
     void Start()
@@ -113,6 +115,12 @@ public class MainMenuController : MonoBehaviour
     {
         UiSystem.CallSwitchScreen(Options,null,false);
     }
+
+    public void SaveGame()
+    {
+        SaveGameScreen.GetComponent<SaveGameController>().GenerateSlots();
+        UiSystem.CallSwitchScreen(SaveGameScreen);
+    }
     public void SetMainMenuWithSlots()
     {
         // Active Main Menu Buttons
@@ -144,6 +152,7 @@ public class MainMenuController : MonoBehaviour
         }
         if (SaveData.objcts.previousSlotLoaded == null)
         {
+            EventSystem.current.SetSelectedGameObject(MainMenuButtons.NewGameBtn.gameObject);
             MainMenuButtons.ContinueBtn.gameObject.SetActive(false);
         }
     }
