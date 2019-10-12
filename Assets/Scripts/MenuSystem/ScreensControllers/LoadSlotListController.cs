@@ -77,7 +77,7 @@ public class LoadSlotListController : MonoBehaviour
     public void LoadSlot(InfoSlotResume slot)
     {
         Debug.Log("Load Slot");
-        Debug.Log(GameController.Instance.currentSlotResume);
+       
         //if has currentSlot so I'm in pause Menu and select load game 
         if ((bool)GameController.Instance.currentSlotResume)
         {

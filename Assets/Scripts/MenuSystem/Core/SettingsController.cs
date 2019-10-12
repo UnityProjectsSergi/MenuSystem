@@ -9,7 +9,7 @@ public class SettingsController : MonoBehaviour
     [SerializeField]
     private UiSystem UiSystem;
 
-    [SerializeField] private UiScreen UIScreenAudio;
+    [SerializeField] private UiScreen UIScreenAudio,UIScreenGamePlay;
     // Start is called before the first frame update
     #region Variables Public
    
@@ -57,7 +57,7 @@ public class SettingsController : MonoBehaviour
 
     public void OpenGamePlaySettings()
     {
-        
+        UiSystem.CallSwitchScreen(UIScreenGamePlay);
     }
     
 }

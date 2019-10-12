@@ -32,10 +32,6 @@ public class AudioSettingsController : MonoBehaviour
     }
 
     public SoundSliderSlot SlotMaster, SlotMusic, SlotSFX, SlotVoices;
-   
-    /// <summary>
-    /// 
-    // Start is called before the first frame update 
     void Start()
     {
         if (GameController.hasLoadedGameData)
@@ -64,7 +60,7 @@ public class AudioSettingsController : MonoBehaviour
           SlotVoices.SetValueSlider(Parameters.voicesValue);
         if(SlotSFX!=null)
           SlotSFX.SetValueSlider(Parameters.soundFXValue);
-        
+        SaveAudioData();
     }
 
     public void SerActionsOnSlots()

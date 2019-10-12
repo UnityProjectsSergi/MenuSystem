@@ -280,7 +280,7 @@ public class MenuController : MonoBehaviour
         //Set parameters in QuestionScreen
         questionScreen.GetComponent<QuestionSceenController>().OpenModal("Lose current orohgres", "Adv", Yes, No);
         //Switch Screen to question Screen
-        //system.SwitchScreen(questionScreen);
+       system.CallSwitchScreen(questionScreen);
     }
 
     public void YesLostGameProgressionFromPause()

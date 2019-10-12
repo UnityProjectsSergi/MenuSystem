@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.SaveSystem1.DataClasses;
 using UnityEngine;
 using UnityEngine.Events;
@@ -47,7 +48,7 @@ public class SaveGameController : MonoBehaviour
     {
         Debug.Log("GenerateSlotList");
         list.Clear();
-        list = SaveData.objcts.Slots;
+        list = SaveData.objcts.Slots.Where(c=>c.typeSaveSlot==TypeOfSavedGameSlot.Manual_Save_Slot).ToList();
         Debug.Log(SaveData.objcts.Slots.Count);
 
         foreach (InfoSlotResume item in list)
@@ -99,6 +100,7 @@ public class SaveGameController : MonoBehaviour
 
     private void YesOverrideSaveSlot(InfoSlotResume soltSlot)
     {
+        soltSlot.typeSaveSlot = TypeOfSavedGameSlot.Manual_Save_Slot;
         SaveData.SaveSlot(soltSlot.FileSlot, GameController.Instance.currentSlot,
             true);
         system.CallSwitchScreen(GamePlayScreen);
