@@ -16,7 +16,7 @@ public class bl_SceneLoaderSergi : MonoBehaviour
     [Range(0.5f,7)]public float FadeOutSpeed = 2;
     public GameObject UiSystem;
     public GameObject GameplayScrren;
-
+    public GameObject PauseController;
     public bool useTimeScale = false;
     [Header("Background")]
     public bool useBackgrounds = true;
@@ -89,7 +89,7 @@ public class bl_SceneLoaderSergi : MonoBehaviour
         Source.loop = true;
         if (BackgroundAudio != null) { Source.clip = BackgroundAudio; }
 
-        uis = GetComponent<UiSystem>();
+    
         SetupUI();
     }
 
@@ -119,7 +119,6 @@ public class bl_SceneLoaderSergi : MonoBehaviour
         
     }
 
-    private UiSystem uis;
     private bool hasLoad;
 
     /// <summary>
@@ -246,6 +245,8 @@ public class bl_SceneLoaderSergi : MonoBehaviour
     /// </summary>
     public void LoadLevel(string level)
     {
+        FinishLoad = false;
+        lerpValue = 0;
         CurrentLoadLevel = Manager.GetSceneInfo(level);
         if (CurrentLoadLevel == null)
             return;
@@ -504,26 +505,34 @@ public class bl_SceneLoaderSergi : MonoBehaviour
               RootAlpha.blocksRaycasts = false;
               RootUI.SetActive(false);
 
-              StartCoroutine(GameController.Instance.TakeScreenShoot(1f));
+              GameController.Instance.CallTakeScreenShotOnDelay(1f);
               StartCoroutine(CallLoadDataNextEscena(0.15f));
-
-
+                GameController.Instance.CallStartSaveSlotInterval(5f);
+             // StartCoroutine(Altha());
+              PauseController.GetComponent<PauseController>().AllowEnterPause = true;
+              PauseController.GetComponent<PauseController>().isPausedGame = false;
           },true,0.75f);
       
-      float t = 0;
-      float d = 0;
-      while(d < 1)
-      {
-          d -= DeltaTime * FadeInSpeed;
-          t = StartFadeInCurve.Evaluate(d);
-          RootAlpha.alpha = t;
-          yield return null;
-      }
+  
 
-      
+     
+
 
     }
 
+    public IEnumerator Altha()
+    {
+        float t = 0;
+        float d = 0;
+        while(d < 1)
+        {
+            d -= DeltaTime * FadeInSpeed;
+            t = StartFadeInCurve.Evaluate(d);
+            RootAlpha.alpha = t;
+            yield return null;
+        }
+       
+    }
     IEnumerator CallLoadDataNextEscena(float t)
     {
         yield return new WaitForSeconds(t);

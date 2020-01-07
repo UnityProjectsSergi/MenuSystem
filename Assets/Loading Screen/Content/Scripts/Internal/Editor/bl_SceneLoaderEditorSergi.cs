@@ -29,6 +29,7 @@ public class bl_SceneLoaderEditorSergi : Editor
         Script.SceneSmoothLoad = EditorGUILayout.Slider("Progress Smoothing", Script.SceneSmoothLoad, 0.5f, 7);
         Script.FadeInSpeed = EditorGUILayout.Slider("FadeIn Speed", Script.FadeInSpeed, 0.5f, 7);
         Script.FadeOutSpeed = EditorGUILayout.Slider("FadeOut Speed", Script.FadeOutSpeed, 0.5f, 7);
+        Script.PauseController = EditorGUILayout.ObjectField("PauseController", Script.PauseController, typeof(GameObject),true) as GameObject;
         Script.UiSystem = EditorGUILayout.ObjectField("UISystem", Script.UiSystem, typeof(GameObject),true) as GameObject;
         Script.GameplayScrren = EditorGUILayout.ObjectField("Gameplay", Script.GameplayScrren, typeof(GameObject),true) as GameObject;
         Script.useTimeScale = EditorGUILayout.ToggleLeft("Use Time Scale", Script.useTimeScale, EditorStyles.toolbarButton);
