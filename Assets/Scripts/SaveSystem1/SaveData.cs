@@ -109,7 +109,7 @@ public class SaveData
             //{
                 // Read the file and put into string variable
                 string json = File.ReadAllText(path);
-                Debug.Log(json);
+             
                 //Convert it from json string into a T object and return the object T 
              //   return JsonUtility.FromJson<T>(json);
                 return JsonConvert.DeserializeObject<T>(json);

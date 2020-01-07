@@ -83,6 +83,7 @@ public class PauseController : MonoBehaviour {
                        system.CallSwitchScreen(GamePlayScreen);
                         // set false to IsPausedGeme to unpause the game
                         isPausedGame = false;
+                        GameController.Instance.CallStartSaveSlotInterval(5f);
                     }
                 }
                 // if not paused game so i'm in gameplay
@@ -95,6 +96,7 @@ public class PauseController : MonoBehaviour {
                     system.CallSwitchScreen(mainMenuScreen);
                     // set true to isPausedGame to pause the game
                     isPausedGame = true;
+                    GameController.Instance.CallStopSaveSlotInterval();
                     //Inputs.Instance.GoToGamPlay();
                 }
                     timer = Time.time + TimeBetweenPause;

@@ -535,7 +535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeSoundBus: 1
   Slider: {fileID: 2422533497916727822}
-  nameBus: VoicesVolume
+  nameBus: VoicesVolumesss
   text: {fileID: 2422533499478559638}
 --- !u!1 &2422533499319768624
 GameObject:

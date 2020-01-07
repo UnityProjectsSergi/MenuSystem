@@ -51,7 +51,6 @@ public class AudioSettingsController : MonoBehaviour
 
     public void SetDefaults()
     {
-        Debug.Log((SlotMusic+""+ Parameters.musicValue));
         if(SlotMusic!=null)
          SlotMusic.SetValueSlider(Parameters.musicValue);
         if(SlotMaster!=null)

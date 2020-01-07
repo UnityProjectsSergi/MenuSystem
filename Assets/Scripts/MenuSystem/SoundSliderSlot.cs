@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -19,38 +20,53 @@ public  class SoundSliderSlot : MonoBehaviour
     // Start is called before the first frame update
     public void Awake()
     {
-        switch (typeSoundBus)
+        try
         {
-            case TypeSoundBus.Wwise:
-                RtpcWwise=new RTPCWwise(nameBus);
-             
-                break;
-            case TypeSoundBus.Fmod:
-                BusFmod=new SoundBusFMOD(nameBus);
-                break;
-            
+            switch (typeSoundBus)
+            {
+                case TypeSoundBus.Wwise:
+                    RtpcWwise = new RTPCWwise(nameBus);
+
+                    break;
+                case TypeSoundBus.Fmod:
+                    BusFmod = new SoundBusFMOD(nameBus);
+                    break;
+
+            }
+        }
+        catch (ExceptionSound e)
+        {
+            Debug.LogError("Error On Create Obj of Sound "+e.Message);
         }
     }
+    
     public void SetValueSlider(float value)
     {
-        switch (typeSoundBus)
-        {    
-            case TypeSoundBus.Wwise:
-                RtpcWwise.SetValueBus(value);
-                break;
-            case TypeSoundBus.Fmod:
-                BusFmod.SetBusVolume(value);
-                break;
-           
+        try
+        {
+            switch (typeSoundBus)
+            {
+                case TypeSoundBus.Wwise:
+                    RtpcWwise.SetValueBus(value);
+                    break;
+                case TypeSoundBus.Fmod:
+                    BusFmod.SetBusVolume(value);
+                    break;
+
+            }
+            Slider.value = value;
+            text.text = Slider.value.ToString("0%");
+            SaveVal.Invoke(value);
         }
-        Slider.value = value;
-        text.text = Slider.value.ToString("0%");
-        SaveVal.Invoke(value);
+        catch (ExceptionSound e)
+        {
+            Debug.LogError("error on setting the Value Volume on"+ e.Message);
+        }
     }
 
     public float GetValueSlider()
     {
         return Slider.value;
     }
-
+    
 }

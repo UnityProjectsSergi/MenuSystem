@@ -1,0 +1,32 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:Button text="Button">
+        <Style path="Assets/NewUI.uss" />
+    </ui:Button>
+    <uie:IntegerField label="Int Field" value="42">
+        <Style path="Assets/NewUI.uss" />
+    </uie:IntegerField>
+    <uie:ProgressBar title="my-progress" low-value="50" high-value="8,96" name="prog">
+        <Style path="Assets/NewUI.uss" />
+    </uie:ProgressBar>
+    <uie:Vector4Field label="Vec4 Field">
+        <Style path="Assets/NewUI.uss" />
+    </uie:Vector4Field>
+    <uie:Vector3Field label="Vec3 Field">
+        <Style path="Assets/NewUI.uss" />
+    </uie:Vector3Field>
+    <ui:SliderInt picking-mode="Ignore" label="SliderInt" value="-11" high-value="100">
+        <Style path="Assets/NewUI.uss" />
+    </ui:SliderInt>
+    <uie:LayerField label="Layer">
+        <Style path="Assets/NewUI.uss" />
+    </uie:LayerField>
+    <uie:MaskField label="Mask">
+        <Style path="Assets/NewUI.uss" />
+    </uie:MaskField>
+    <uie:PropertyField>
+        <Style path="Assets/NewUI.uss" />
+    </uie:PropertyField>
+    <ui:Foldout text="Foldout" value="true">
+        <Style path="Assets/NewUI.uss" />
+    </ui:Foldout>
+</ui:UXML>

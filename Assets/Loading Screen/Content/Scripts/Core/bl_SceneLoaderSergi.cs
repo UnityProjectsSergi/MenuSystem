@@ -505,9 +505,9 @@ public class bl_SceneLoaderSergi : MonoBehaviour
               RootAlpha.blocksRaycasts = false;
               RootUI.SetActive(false);
 
-              StartCoroutine(GameController.Instance.TakeScreenShoot(1f));
+              GameController.Instance.CallTakeScreenShotOnDelay(1f);
               StartCoroutine(CallLoadDataNextEscena(0.15f));
-         
+                GameController.Instance.CallStartSaveSlotInterval(5f);
              // StartCoroutine(Altha());
               PauseController.GetComponent<PauseController>().AllowEnterPause = true;
               PauseController.GetComponent<PauseController>().isPausedGame = false;

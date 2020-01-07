@@ -1,84 +1,250 @@
 ﻿using Assets.SaveSystem1.DataClasses;
 using System.Collections;
 using System.IO;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public float health;
-    /// <summary>
-    /// Path of the file to save data
+    #region  Variables
+        /// <summary>
+        /// Path of the file to save data
+        /// </summary>
+        public static string datapath = string.Empty;
+        /// <summary>
+        /// Says if The game was loaded or not loaded
+        /// </summary>
+        public static bool hasLoadedGameData = false;
+        /// <summary>
+        /// Current GameSlot Loaded in Game
+        /// </summary>
+        [CanBeNull] public GameSlot currentSlot = null;
+        /// <summary>
+        /// Says if file Esxists
+        /// </summary>
+        public bool fileExists;
+        /// <summary>
+    /// Test Do ad game obj to scene
     /// </summary>
-    public static string datapath = string.Empty;
+        [CanBeNull]public GameObject _prefab;
+        /// <summary>
+        /// Instance Private of Game Controller
+        /// </summary>
+        private static GameController _instance = null;
+        /// <summary>
+        /// Current Slot Resume loaded
+        /// </summary>
+        [CanBeNull] public  InfoSlotResume currentSlotResume=null;
+        /// <summary>
+        /// Instace public of GameConstroller
+        /// </summary>
+        public static GameController Instance
+        {
+            get { return _instance; }
+        }
+        /// <summary>
+        /// Save Interval Coroutine to save slot game on gameplay mode.
+        /// </summary>
+        [CanBeNull] private IEnumerator saveIntervalCoroutine = null;
+    #endregion
+    #region Methods
+         #region UnityMetdods
+              /// <summary>
+            /// Start Unity Me
+            /// </summary>
+              private void Start()
+              {
+                  // set null currentSlotResume property on Start
+                  currentSlotResume = null;
+              }
+              private void Awake()
+            {
+                // Singleton Pattern
+                if (_instance != null && _instance != this)
+                {
+                    Destroy(this.gameObject);
+                }
+                else
+                {
+                    // On first load 
+                    currentSlot = null;
+                    currentSlotResume = null;
+                    _instance = this;
+                    DontDestroyOnLoad(this.gameObject);
+                    datapath = System.IO.Path.Combine(Application.persistentDataPath, "data2.json");
+                    fileExists = File.Exists(datapath);
+                    // Load Data from file
+                    Load();
+                }
+            }
+              private void OnApplicationQuit()
+              {
+                  currentSlotResume = null;
+              }
+              /// <summary>
+              /// Update Metod Unity for Testing
+              /// </summary>
+              private void Update()
+              {
+                  /*if (Input.GetKeyDown(KeyCode.S))
+                  {
+                      Debug.Log("SAVE");
+                      Save();
+                  }
+                  if (Input.GetKeyDown(KeyCode.D))
+                  {
+                      SaveSlotObj(); 
+                  }
+                  if (Input.GetKeyDown(KeyCode.L))
+                  {
+                      Debug.Log("Load");
+                      Load();
+                  }
+                  if(Input.GetKeyDown(KeyCode.K))
+                  {
+                      //SaveData.LoadGameSlotData();
+                  }
+                  if (Input.GetKeyDown(KeyCode.C))
+                  {
+                      Debug.Log("Create");
+                      CreateGameObject(_prefab, new Vector3(2, 5, 0), Quaternion.identity);
+                  }*/
+              }
+        #endregion
+        #region GameObjectsManagmentMetods
+            /// <summary>
+            /// Create GameObject in scene
+            /// </summary>
+            /// <param name="prefab">Prefab </param>
+            /// <param name="position">Position of gameobject</param>
+            /// <param name="rotation">Rotatio of gameobject</param>
+            /// <returns></returns>
+            public static ObjToSave CreateGameObject(GameObject prefab, Vector3 position, Quaternion rotation)
+            {
 
-    /// <summary>
-    /// Says if The game was loaded or not loaded
-    /// </summary>
-    public static bool hasLoadedGameData = false;
-    /// <summary>
-    /// Current GameSlot Loaded in Game
-    /// </summary>
-    public GameSlot currentSlot = null;
+                GameObject go = Instantiate(prefab, position, rotation);
+                ObjToSave obj = go.GetComponent<ObjToSave>();
+                if (obj == null)
+                    go.AddComponent<ObjToSave>();
+                return obj;
+            }
 
-    /// <summary>
-    /// Says if file Esxists
-    /// </summary>
-    public bool fileExists;
+            /// <summary>
+            /// Create Game Object that has been saven on file
+            /// </summary>
+            /// <param name="data">Object Data from file</param>
+            /// <param name="position">Position from file</param>
+            /// <param name="rotation">Rrotation from file</param>
+            /// <returns></returns>
+            public static ObjToSave CreateObjSaved(GameObjectActorData data)
+            {
+                Debug.Log(data.__prefabPath+" "+ Resources.Load<GameObject>(data.__prefabPath));
+                ObjToSave obj = CreateGameObject(Resources.Load<GameObject>(data.__prefabPath), data.position, data.rotationQuaterion);
 
-    public GameObject _prefab;
-    /// <summary>
-    /// Instance Private 
-    /// </summary>
-    private static GameController _instance = null;
-   
-    /// <summary>
-    /// Current Slot Resume loaded
-    /// </summary>
-   
-    public  InfoSlotResume currentSlotResume=null;
-    /// <summary>
-    /// Instace public
-    /// </summary>
-    public static GameController Instance
-    {
-        get { return _instance; }
-    }
+                obj.gameObjSave.data = data;
+                return obj;
+            }
+        #endregion
+        #region Save Load Metdods
 
-    
+            /// <summary>
+            /// Load Function Loads data
+            /// </summary>
+            public static void Load()
+            {
+                if (!hasLoadedGameData)
+                {
+                    hasLoadedGameData = true;
+                    SaveData.Load(datapath);
+                }
+            }
+            /// <summary>
+                /// Save Data to file.
+                /// </summary>
+            public static void Save()
+            {
+                SaveData.SaveToFile<GameDataSaveContainer>(datapath, SaveData.objcts, true);
+            }
+            /// <summary>
+            /// Save data of slot game to file
+            /// </summary>
+            public static void SaveSlotObj()
+            {
+                //TODO make ui to show when is saving slot game.
+                SaveData.SaveSlot<GameSlot>(GameController.Instance.currentSlotResume.FileSlot, GameController.Instance.currentSlot, false);
+            }
+        #endregion
 
-    /// <summary>
-    /// Create GameObject in scene
-    /// </summary>
-    /// <param name="prefab">Prefab </param>
-    /// <param name="position">Position of gameobject</param>
-    /// <param name="rotation">Rotatio of gameobject</param>
-    /// <returns></returns>
-    public static ObjToSave CreateGameObject(GameObject prefab, Vector3 position, Quaternion rotation)
-    {
+        #region  Other Methods
+        /// <summary>
+        /// Take Screen Shoot of Current Screen
+        /// </summary>
+        public void TakeScreenShot()
+        {
+            // get the path of currentSlotResume Folder 
+            string path = Application.persistentDataPath + "/" + GameController.Instance.currentSlotResume.FolderOfSlot +
+                          "/Sheen.png";
+            // If not exists File 
+            if (!File.Exists(Application.persistentDataPath + "/" + GameController.Instance.currentSlotResume.FolderOfSlot +
+                             "/ScreenShot.png"))
+            {
+                // Take ScreenShoot
+                ScreenCapture.CaptureScreenshot(Application.persistentDataPath + "/" +
+                                                GameController.Instance.currentSlotResume.FolderOfSlot + "/ScreenShot.png");
+                // Save Path of ScreenShoot 
+                GameController.Instance.currentSlotResume.ScreenShot = Application.persistentDataPath
+                                                                       + "/" + GameController.Instance.currentSlotResume
+                                                                           .FolderOfSlot + "/ScreenShot.png";
+                GameController.Save();
+            }
 
-        GameObject go = Instantiate(prefab, position, rotation);
-        ObjToSave obj = go.GetComponent<ObjToSave>();
-        if (obj == null)
-            go.AddComponent<ObjToSave>();
-        return obj;
-    }
+        }
 
-    /// <summary>
-    /// Create Game Object that has been saven on file
-    /// </summary>
-    /// <param name="data">Object Data from file</param>
-    /// <param name="position">Position from file</param>
-    /// <param name="rotation">Rrotation from file</param>
-    /// <returns></returns>
-    public static ObjToSave CreateObjSaved(GameObjectActorData data)
-    {
-        Debug.Log(data.__prefabPath+" "+ Resources.Load<GameObject>(data.__prefabPath));
-        ObjToSave obj = CreateGameObject(Resources.Load<GameObject>(data.__prefabPath), data.position, data.rotationQuaterion);
-
-        obj.gameObjSave.data = data;
-        return obj;
-    }
-
+        public void CallTakeScreenShotOnDelay(float time)
+        {
+            StartCoroutine(TakeScreenShoot(time));
+        }
+        /// <summary>
+        /// Coroutine of TakeScreenShoot of Screen in time seconds
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public IEnumerator TakeScreenShoot(float time)
+        {
+               yield return new WaitForSecondsRealtime(time);
+               TakeScreenShot();
+        }
+        /// <summary>
+        /// Call Start Save Slot interval Coroutine
+        /// </summary>
+        /// <param name="num"></param>
+        public void CallStartSaveSlotInterval(float num)
+        {
+            saveIntervalCoroutine = SaveSoltInterval(num);
+            StartCoroutine(saveIntervalCoroutine);
+        }
+        /// <summary>
+        /// Call Stop Save Slot interval Coroutine
+        /// </summary>
+        public void CallStopSaveSlotInterval()
+        {
+            StopCoroutine(saveIntervalCoroutine);
+            saveIntervalCoroutine = null;
+        }
+        /// <summary>
+        /// Start Save Slot interval IEnumerator
+        /// </summary>
+        IEnumerator SaveSoltInterval(float time)
+        {
+            while (true)
+            {
+                    yield return  new WaitForSecondsRealtime(time);
+                    SaveSlotObj();
+             }
+        }
+        #endregion
+    #endregion
+    #region Unused Metdods
     public static T GetOrAddComponent<T>(GameObject obj) where T : Component
     {
         if (obj.GetComponent<T>())
@@ -87,106 +253,6 @@ public class GameController : MonoBehaviour
             return obj.AddComponent<T>() as T;
     }
 
-    /// <summary>
-    /// Load Function Loads data
-    /// </summary>
-    public static void Load()
-    {
-        if (!hasLoadedGameData)
-        {
-            hasLoadedGameData = true;
-            SaveData.Load(datapath);
-        }
-    }
 
-    /// <summary>
-    /// Save Funton calls SaveData.save
-    /// </summary>
-    public static void Save()
-    {
-       // SaveData.objcts.Slots.Clear();
-        SaveData.SaveToFile<GameDataSaveContainer>(datapath, SaveData.objcts, true);
-    }
-    public static void SaveSlotObj()
-    {
-        SaveData.SaveSlot<GameSlot>(GameController.Instance.currentSlotResume.FileSlot, GameController.Instance.currentSlot, false);
-    }
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            currentSlot = null;
-            currentSlotResume = null;
-            _instance = this;
-            DontDestroyOnLoad(this.gameObject);
-            datapath = System.IO.Path.Combine(Application.persistentDataPath, "data2.json");
-            fileExists = File.Exists(datapath);
-           
-            Load();
-            
-        }
-    }
-
-   
-    private void Start()
-    {
-        currentSlotResume = null;
-    }
-    // Update is called once per frame
-    private void Update()
-    {
-//        if (Input.GetKeyDown(KeyCode.S))
-//        {
-//            Debug.Log("SAVE");
-//            Save();
-//        }
-//        if (Input.GetKeyDown(KeyCode.D))
-//        {
-//            SaveSlotObj(); 
-//        }
-//        if (Input.GetKeyDown(KeyCode.L))
-//        {
-//            Debug.Log("Load");
-//            Load();
-//        }
-//        if(Input.GetKeyDown(KeyCode.K))
-//        {
-//            //SaveData.LoadGameSlotData();
-//        }
-//        if (Input.GetKeyDown(KeyCode.C))
-//        {
-//            Debug.Log("Create");
-//            CreateGameObject(_prefab, new Vector3(2, 5, 0), Quaternion.identity);
-//        }
-    }
-    public void TakeScreenShot()
-    {
-        string path = Application.persistentDataPath + "/" + GameController.Instance.currentSlotResume.FolderOfSlot +
-                      "/Sheen.png";
-        if (!File.Exists(Application.persistentDataPath + "/" + GameController.Instance.currentSlotResume.FolderOfSlot +
-                         "/ScreenShot.png"))
-        {
-            ScreenCapture.CaptureScreenshot(Application.persistentDataPath + "/" +
-                                            GameController.Instance.currentSlotResume.FolderOfSlot + "/ScreenShot.png");
-            GameController.Instance.currentSlotResume.ScreenShot = Application.persistentDataPath
-                                                                   + "/" + GameController.Instance.currentSlotResume
-                                                                       .FolderOfSlot + "/ScreenShot.png";
-            GameController.Save();
-        }
-
-    }
-    private void OnApplicationQuit()
-    {
-        currentSlotResume = null;
-    }
-
-    public IEnumerator TakeScreenShoot(float time)
-    {
-           yield return new WaitForSeconds(1f);
-           TakeScreenShot();
-    }
+    #endregion
 }

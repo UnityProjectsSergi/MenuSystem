@@ -99,8 +99,8 @@ public class UiSystem : MonoBehaviour
     void Update()
     {
       // if(canSwitchscreen)
-            
-      //  if (Inputs.Instance.GetUiBackButton()) GoToPreviousScreen();
+//            Debug.Log(Inputs.Instance.InputBack());
+//        if (Inputs.Instance.InputBack()) GoToPreviousScreen();
     }
     /// <summary>
     /// Public SwiychScreen Methodh

@@ -45,7 +45,6 @@ public class LoadSlotListController : MonoBehaviour
     /// </summary>
     public void GenerateSlots()
     {
-        Debug.Log("GenerateSlotList");
         list.Clear();
         list = SaveData.objcts.Slots;
         
@@ -63,7 +62,6 @@ public class LoadSlotListController : MonoBehaviour
                 solt.btnLoadSave.onClick.RemoveAllListeners();
                 solt.btnLoadSave.onClick.AddListener(() => LoadSlot(solt.slot));
                 solt.btnDel.onClick.AddListener(() => AskForDeleteSlot(solt.slot, ObjSlot));
-                Debug.Log(item.folderDone+" "+item.ScreenShot);
                 solt.Init(item);
             }
 
@@ -190,6 +188,7 @@ public class LoadSlotListController : MonoBehaviour
         {
             if (system.CurrentScreen.Equals(GetComponent<UiScreen>()))
             {
+                //if(Inputs.Instance.in)
                 if (e.keyCode == KeyCode.Delete)
                 {
                     DeleteSlot(EventSystem.current.GetComponent<SoltUI>().slot);

@@ -3,25 +3,32 @@
     // puf FMOD Instance
 
 #if FMOD
-        Debug.Log("sssssssssssssssss");
-        if(Utils.NamespaceExists("FMOD")){
+        if(Utils.NamespaceExists("FMOD"))
+        {
             public FMOD.Studio.Bus instanceBus
-         }
+        }
+        else
+        {
+           
+            throw new ExceptionSound("Not has the FMOD Scripts");
+        }
+#else
+   
 #endif
     // Start is called before the first frame update
     public SoundBusFMOD(string nameBus)
     {
 #if FMOD
-        Debug.Log("sssssssssssssssss");
-        if(Utils.NamespaceExists("FMOD")){
-           
-            
+        if(Utils.NamespaceExists("FMODUnity"))
+        {
               instanceBus = FMODUnity.RuntimeManager.GetBus("Bus:/" + nameBus);
         }
         else
         {
-            Debug.LogError("You Define FMOD Symbol but need import FMOD Pakage");
+            throw new ExceptionSound("Not has the FMOD Scripts");
         }
+#else
+        throw new ExceptionSound("Not has the FMOD DEFINED");
 #endif
     }
 
@@ -32,20 +39,28 @@
         if(Utils.NamespaceExists("FMOD")){
             instanceBus.setVolume(num);
         }
+        else
+      throw new ExceptionSound("Not has the FMOD Scripts");
+#else
+        throw new ExceptionSound("Not has the FMOD DEFINED");
 #endif
     }
 
     public float GetBusVolume()
     {
 #if FMOD
-        if(Utils.NamespaceExists("FMOD")){
+        if(Utils.NamespaceExists("FMOD"))
+        {
             return  instanceBus.getVolume();
-
         }
-return 0;
+        else
+         throw new ExceptionSound("Not has the FMOD Scripts");
 #else
-        //Todo Excepcon
-        return 0;
+        
+        throw new ExceptionSound("Not has the FMOD DEFINED");
+        
 #endif
+       // return 0;
+       
     }
 }

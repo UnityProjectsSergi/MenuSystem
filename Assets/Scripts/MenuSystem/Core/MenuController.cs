@@ -66,7 +66,7 @@ public class MenuController : MonoBehaviour
     /// </summary>
     //private MainMenu_KeyboardController keyboardController;
     // Use this for initialization
-    [HideInInspector] private MainMenuController mainMenuController = null;
+    public  MainMenuController mainMenuController = null;
 
     [HideInInspector] public SlotController slotController;
     [HideInInspector] public PauseController pauseController;
@@ -100,6 +100,7 @@ public class MenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
     }
 
     /// <summary>
@@ -264,9 +265,9 @@ public class MenuController : MonoBehaviour
         Yes.AddListener(() => YesLostGameProgressionExitGame());
         No.AddListener(() => NoLostGameProgressionContinueFromPause());
         //Set parameters in QuestionScreen
-        questionScreen.GetComponent<QuestionSceenController>().OpenModal("Lose current orohgres", "Adv", Yes, No);
+        questionScreen.GetComponent<QuestionSceenController>().OpenModal("Lost current progress?", "Are You sure want Exit Game? ", Yes, No);
         //Switch Screen to question Screen
-        // system.SwitchScreen(questionScreen);
+         system.CallSwitchScreen(questionScreen);
     }
 
     public void QuestionLoseGameProgressIfExitGameFromPause()
@@ -278,7 +279,7 @@ public class MenuController : MonoBehaviour
         Yes.AddListener(() => YesLostGameProgressionFromPause());
         No.AddListener(() => NoLostGameProgressionContinueFromPause());
         //Set parameters in QuestionScreen
-        questionScreen.GetComponent<QuestionSceenController>().OpenModal("Lose current orohgres", "Adv", Yes, No);
+        questionScreen.GetComponent<QuestionSceenController>().OpenModal("Lost current progress?", "Are You sure want Main Menu? ", Yes, No);
         //Switch Screen to question Screen
        system.CallSwitchScreen(questionScreen);
     }
@@ -289,20 +290,22 @@ public class MenuController : MonoBehaviour
        
         GameController.Instance.currentSlot = null;
         GameController.Instance.currentSlotResume = null;
-        //  mainMenuController.SetMainMenuWithSlots();
+        mainMenuController.SetMainMenuWithSlots();
         pauseController.isPausedGame = false;
         pauseController.AllowEnterPause = false;
-        SceneManager.LoadScene("Menu");
+      
         system.CallSwitchScreen(mainMenuController.GetComponent<UiScreen>());
     }
 
     public void YesLostGameProgressionExitGame()
     {
+        
         Application.Quit();
     }
 
     public void NoLostGameProgressionContinueFromPause()
     {
+        GameController.Instance.CallStartSaveSlotInterval(5f);
          system.CallSwitchScreen(GamePlayScreen);
     }
 

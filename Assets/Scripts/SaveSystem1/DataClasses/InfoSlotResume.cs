@@ -19,7 +19,6 @@ namespace Assets.SaveSystem1.DataClasses
         }
         public void CrateFolder()
         {
-            Debug.Log("sscrate slor teumfomled");
             if (!folderDone)
             {
                 if (FolderOfSlot == "") FolderOfSlot = Path.GetRandomFileName();
