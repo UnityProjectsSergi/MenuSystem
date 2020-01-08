@@ -6248,29 +6248,29 @@ MonoBehaviour:
   LevelItemPrefab: {fileID: 1201691965437682, guid: 48f56b69809e1ef478a20284346efc33,
     type: 3}
   AllLevelsData:
-  - LevelTitle: Serhi
+  - LevelTitle: Game
     LevelDescription: SSSS
     SceneToLoad: Game1
     LevelSprite: {fileID: 21300000, guid: 3b538efd3ecd6c049bedacc2f9ffd29f, type: 3}
     isLocked: 0
-  - LevelTitle: 555555
+  - LevelTitle: Game
     LevelDescription: 5555555555
-    SceneToLoad: 5
+    SceneToLoad: Game
     LevelSprite: {fileID: 0}
     isLocked: 1
-  - LevelTitle: dddddddd
+  - LevelTitle: Game
     LevelDescription: ddddddd
-    SceneToLoad: dddddddddd
+    SceneToLoad: Game
     LevelSprite: {fileID: 0}
     isLocked: 0
-  - LevelTitle: ddddddd
+  - LevelTitle: Game
     LevelDescription: dddd
-    SceneToLoad: ccccccccc
+    SceneToLoad: Game
     LevelSprite: {fileID: 0}
     isLocked: 0
   - LevelTitle: ffffff
     LevelDescription: ffffffffff
-    SceneToLoad: ffffffffff
+    SceneToLoad: Game
     LevelSprite: {fileID: 0}
     isLocked: 0
   _currentSelectedLevelCount: 0
@@ -11362,6 +11362,7 @@ GameObject:
   - component: {fileID: 1676567852}
   - component: {fileID: 1676567851}
   - component: {fileID: 1676567848}
+  - component: {fileID: 1676567853}
   m_Layer: 0
   m_Name: MenuController
   m_TagString: Untagged
@@ -11415,6 +11416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1520455de4df9d44d83736b5404e6e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settignsMenu: {fileID: 1676567853}
   currentSlot:
     ObjectsToSaveInSlot: []
     health: 1
@@ -11441,10 +11443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c2b0bb492045147a97c9a72932a038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDificultyLevelSelectionScreenEnabled: 1
-  isLevelSelectonScreenEnabled: 1
   GamePlayScreen: {fileID: 1261279899}
-  IsLoaderSceneWithPligun: 1
   questionScreen: {fileID: 1287160860}
   IsLoadingScreen: {fileID: 0}
   slot:
@@ -11471,6 +11470,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSlotsEnabled: 1
   useManySlots: 1
+--- !u!114 &1676567853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676567847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 837f721f765ff5f4cbcbefb0ce3550ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeToTakeScreenShoot: 0
+  IsSaveingSystemEnabled: 0
+  IsSaveingInterval: 0
+  isDificultyLevelSelectionScreenEnabled: 0
+  isLevelSelectonScreenEnabled: 0
+  IsLoaderSceneWithPligun: 0
 --- !u!1 &1680840108
 GameObject:
   m_ObjectHideFlags: 0

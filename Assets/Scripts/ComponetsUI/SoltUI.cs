@@ -1,4 +1,5 @@
-﻿using Assets.SaveSystem1.DataClasses;
+﻿using System;
+using Assets.SaveSystem1.DataClasses;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -31,11 +32,22 @@ public class SoltUI : MonoBehaviour,ISelectHandler {
         slot = _slot;
         Name.text = Utils.MakeString(new string[] { slot.Title, " ", slot._dateTimeCreation.ToLongDateString(), " , ", slot._dateTimeCreation.ToLongTimeString() });
         textTypeSlot.text = slot.typeSaveSlot.ToString();
-        Sprite img= IMG2Sprite.LoadNewSprite(slot.ScreenShot);
-        if (img)
-            Screenshot.sprite = img;
-        else
+        try
+        {
+            Sprite img = IMG2Sprite.LoadNewSprite(slot.ScreenShot);
+            if (img)
+                Screenshot.sprite = img;
+        }
+        catch (NullReferenceException e)
+        {
             Screenshot.sprite = defaultS;
+        }
+        catch (Exception e)
+        {
+            Debug.Log("eRrror on load iage");
+        }
+
+        Screenshot.sprite = defaultS;
     }
 	// Update is called once per frame
 	void Update () {

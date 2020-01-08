@@ -159,6 +159,7 @@ public class LoadSlotListController : MonoBehaviour
     {
         Debug.Log("ssss load override slot");
         GameController.Instance.currentSlotResume = slot;
+        pauseController.isPausedGame = false;
         pauseController.AllowEnterPause = false;
         //Todo Somehow de 
         MenuController.LoadSceneFromSlot();

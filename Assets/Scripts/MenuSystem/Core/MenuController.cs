@@ -13,22 +13,14 @@ public class MenuController : MonoBehaviour
 
     #region Public Varales
 
-    /// <summary>
-    /// Says if is Screen DificultyLevelSelection is Enabled (true) of Desactive (false) 
-    /// </summary>
-    public bool isDificultyLevelSelectionScreenEnabled;
-
-    /// <summary>
-    /// Says if is Screen Level Selection is Enabled (true) of Desactive (false) 
-    /// </summary>
-    public bool isLevelSelectonScreenEnabled;
+   
 
     /// <summary>
     /// Is th Sreen GamePlayScreen
     /// </summary>
     public UiScreen GamePlayScreen;
 
-    public bool IsLoaderSceneWithPligun;
+
 
     #endregion
 
@@ -144,7 +136,7 @@ public class MenuController : MonoBehaviour
     {
      
         // if its enable Loading Scene Plugin sergi
-        if (IsLoaderSceneWithPligun)
+        if (GameController.Instance.settignsMenu.IsLoaderSceneWithPligun)
         {
            
                 system.CallSwitchScreen(ScreenLoading, delegate
@@ -164,7 +156,9 @@ public class MenuController : MonoBehaviour
 
             SaveData.LoadGameSlotData(
                 SaveData.LoadFromFile<GameSlot>(GameController.Instance.currentSlotResume.FileSlot));
+            
             system.CallSwitchScreen(GamePlayScreen);
+            pauseController.AllowEnterPause = true;
         } /// SwitchSreen To GamePlayScreen
     }
 
@@ -172,8 +166,8 @@ public class MenuController : MonoBehaviour
     {
         AsyncOperation async = SceneManager.LoadSceneAsync(GameController.Instance.currentSlotResume.currentLevelPlay);
         yield return async;
-       
-
+        GameController.Instance.CallStartSaveSlotInterval(1f);
+        GameController.Instance.CallTakeScreenShotOnDelay(1f);
         SaveData.LoadGameSlotData(SaveData.LoadFromFile<GameSlot>(GameController.Instance.currentSlotResume.FileSlot));
         // system.SwitchScreen(GamePlayScreen, true, true);
     }
@@ -181,14 +175,14 @@ public class MenuController : MonoBehaviour
     /// <summary>
     ///  Load Scene  
     /// </summary>
+    /*
     public void Loadscene()
     {
         //Set allow EnterPause to true because exit from Main Menu 
         pauseController.AllowEnterPause = true;
         // if its enable Loading Scene Plugin sergi
-        if (IsLoaderSceneWithPligun)
-        {
-            // IsLoadingScreen.GetComponent<LoadingScreenController>().StartLoadScreen(false);
+        if (GameController.Instance.settignsMenu.IsLoaderSceneWithPligun)
+        { IsLoadingScreen.GetComponent<LoadingScreenController>().StartLoadScreen(false);
         }
         else
         {
@@ -197,6 +191,7 @@ public class MenuController : MonoBehaviour
             //  system.SwitchScreen(GamePlayScreen, true,true);
         }
     }
+    */
 
     /// <summary>
     ///  Open Modal Screen for Override Slot If Exists in the using one slot mode

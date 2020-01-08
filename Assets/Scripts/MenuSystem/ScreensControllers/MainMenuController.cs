@@ -53,7 +53,7 @@ public class MainMenuController : MonoBehaviour
         // set new slot to currentSlot
         GameController.Instance.currentSlotResume = slot;
         /// if menu have isLevelSelectonScreenEnabled true 
-        if (MenuController.isLevelSelectonScreenEnabled)
+        if (GameController.Instance.settignsMenu.isLevelSelectonScreenEnabled)
         {
             // Switch screen to levelSelection Screen
             UiSystem.CallSwitchScreen(LevelSelectionScreen);
@@ -62,7 +62,7 @@ public class MainMenuController : MonoBehaviour
         else
         {
             // if menu have isDificultyLevelSelectionScreenEnabled true 
-            if (MenuController.isDificultyLevelSelectionScreenEnabled)
+            if (GameController.Instance.settignsMenu.isDificultyLevelSelectionScreenEnabled)
             {
                 /// if menu have isLevelSelectonScreenEnabled true
                 UiSystem.CallSwitchScreen(DificultSelectionScreen);
