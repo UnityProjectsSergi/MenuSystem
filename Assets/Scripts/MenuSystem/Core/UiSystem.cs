@@ -50,7 +50,7 @@ public class UiSystem : MonoBehaviour
     public bool SavePathOfScreensToGoPrev;
 
     // Start is called before the first frame update
-    public Component[] screens = new Component[0];
+    private Component[] screens = new Component[0];
 
     // Start is called before the first frame update
     public UiScreen startScreen;
@@ -202,4 +202,12 @@ public class UiSystem : MonoBehaviour
             }
         }
     }
-}}
+}
+
+    public void ResetListPrevScreens()
+    {
+        listPrevScreens.Clear();
+        numPrvevScreen = 0;
+
+    }
+}

@@ -13,15 +13,27 @@ public class MenuController : MonoBehaviour
 
     #region Public Varales
 
-   
+    [HideInInspector] public GameSlot slot;
+    /// <summary>
+    /// System UI
+    /// </summary>
+    public UiSystem system;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    //private MainMenu_KeyboardController keyboardController;
+    // Use this for initialization
+    public  MainMenuController mainMenuController = null;
     /// <summary>
     /// Is th Sreen GamePlayScreen
     /// </summary>
     public UiScreen GamePlayScreen;
 
-
-
+    public UiScreen MainMenuScreen;
+    public UiScreen ScreenLoading;
+    public LoadScreenController LoadScreencontroller;
+    public bool isgamePlay;
     #endregion
 
     #region Private Variables
@@ -46,25 +58,13 @@ public class MenuController : MonoBehaviour
     /// <summary>
     /// Delault Game Slot 
     /// </summary>
-    [HideInInspector] public GameSlot slot;
+    
 
-    /// <summary>
-    /// System UI
-    /// </summary>
-    public UiSystem system;
-
-    /// <summary>
-    /// 
-    /// </summary>
-    //private MainMenu_KeyboardController keyboardController;
-    // Use this for initialization
-    public  MainMenuController mainMenuController = null;
+  
 
     [HideInInspector] public SlotController slotController;
     [HideInInspector] public PauseController pauseController;
-    public UiScreen ScreenLoading;
-    public LoadScreenController LoadScreencontroller;
-    public bool isgamePlay;
+  
 
     #endregion
 
@@ -154,8 +154,7 @@ public class MenuController : MonoBehaviour
             //      SceneManager.LoadSceneAsync(GameController.Instance.currentSlotResume.currentLevelPlay);
             // aixo obje el fitxer sel slot selecccionat i fa les eves coses quant la nova l'escen esta carregada
 
-            SaveData.LoadGameSlotData(
-                SaveData.LoadFromFile<GameSlot>(GameController.Instance.currentSlotResume.FileSlot));
+          
             
             system.CallSwitchScreen(GamePlayScreen);
             pauseController.AllowEnterPause = true;
@@ -164,7 +163,7 @@ public class MenuController : MonoBehaviour
 
     IEnumerator LoadSceneSync()
     {
-        AsyncOperation async = SceneManager.LoadSceneAsync(GameController.Instance.currentSlotResume.currentLevelPlay);
+        AsyncOperation async = SceneManager.LoadSceneAsync(GameController.Instance.currentSlotResume.dataInfoSlot.currentLevelPlay);
         yield return async;
         GameController.Instance.CallStartSaveSlotInterval(1f);
         GameController.Instance.CallTakeScreenShotOnDelay(1f);
@@ -281,14 +280,14 @@ public class MenuController : MonoBehaviour
 
     public void YesLostGameProgressionFromPause()
     {
-        //system.ResetListPrevScreens();
+        system.ResetListPrevScreens();
        
         GameController.Instance.currentSlot = null;
         GameController.Instance.currentSlotResume = null;
         mainMenuController.SetMainMenuWithSlots();
         pauseController.isPausedGame = false;
         pauseController.AllowEnterPause = false;
-      
+        GameController.Instance.CallStopSaveSlotInterval();
         system.CallSwitchScreen(mainMenuController.GetComponent<UiScreen>());
     }
 
@@ -301,7 +300,7 @@ public class MenuController : MonoBehaviour
     public void NoLostGameProgressionContinueFromPause()
     {
         GameController.Instance.CallStartSaveSlotInterval(5f);
-         system.CallSwitchScreen(GamePlayScreen);
+         system.CallSwitchScreen(MainMenuScreen );
     }
 
     #endregion

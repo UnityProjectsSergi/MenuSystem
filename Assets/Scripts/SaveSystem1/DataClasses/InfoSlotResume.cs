@@ -14,9 +14,13 @@ namespace Assets.SaveSystem1.DataClasses
         public bool folderDone = false;
         public InfoSlotResume(DateTime dateCreation, string Title = null, GameDifficulty difficulty = GameDifficulty.None,string screenSlot=null )
         {
-            _dateTimeCreation = dateCreation;
+            slotGame=new GameSlot();
+            dataInfoSlot=new DataInfoSlot();
+           dataInfoSlot. _dateTimeCreation = dateCreation;
            
         }
+        [System.NonSerializedAttribute]
+        public GameSlot slotGame;
         public void CrateFolder()
         {
             if (!folderDone)
@@ -27,31 +31,18 @@ namespace Assets.SaveSystem1.DataClasses
                     Directory.CreateDirectory(Application.persistentDataPath + "/" + FolderOfSlot);
                     FileSlot = Utils.MakeString(new string[] { Application.persistentDataPath, "/", FolderOfSlot, "/", "Slot_" + Path.GetRandomFileName() + ".json" });
                     // FileSlot = (System.IO.Path.Combine(Application.persistentDataPath,System.IO.Path.Combine(FolderOfSlot,"Slot_" + Path.GetRandomFileName()+".json")));
-
-                    SaveData.SaveToFile<GameSlot>(FileSlot, new GameSlot(), true);
+                    
+                    SaveData.SaveToFile<GameSlot>(FileSlot, slotGame, true);
                 }
                 folderDone = true;
             }
         }
-        /// <summary>
-        /// datetimeSaved Slot
-        /// </summary>
-        public  DateTime _dateTimeCreation;
+      
         //public string dateTimeSaved;
-        /// <summary>
-        /// datetimeSaved Slot
-        /// </summary>
-        public DateTime _datetimeSaved = DateTime.Now;
-        public string FolderOfSlot="";
-        /// <summary>
-        /// Screen Shot of chekpoint
-        /// </summary>
-        public string ScreenShot=null;
     
-        /// <summary>
-        /// Title of Slot
-        /// </summary>
-        public string Title = "ssss";
+        public string FolderOfSlot="";
+      
+    
 
         /// <summary>
         ///  List of GameObjectActorDataIn Slot
@@ -60,14 +51,7 @@ namespace Assets.SaveSystem1.DataClasses
         //[SerializeField]
         //public int NumObj { get { return ObjectsToSaveInSlot.Count; } set { } }
         //public List<GameObjectActorData> ObjectsToSaveInSlot = new List<GameObjectActorData>();
-        /// <summary>
-        /// Level of dificulty of game
-        /// </summary>
-        public GameDifficulty gameDifficulty=GameDifficulty.Easy;
-        /// <summary>
-        /// typeSaveSlotof slot
-        /// </summary>
-        public TypeOfSavedGameSlot typeSaveSlot=TypeOfSavedGameSlot.Checkpoint;
+        
 
         public static explicit operator bool(InfoSlotResume v)
         {
@@ -76,9 +60,42 @@ namespace Assets.SaveSystem1.DataClasses
         /// <summary>
         /// currentLevelPlay
         /// </summary>
-        public string currentLevelPlay="";
+  
        
         public string FileSlot;
+
+        public DataInfoSlot dataInfoSlot;
+
+
+    }
+    [System.Serializable]
+    public class DataInfoSlot
+    {
+        public string currentLevelPlay="";
         
+        /// <summary>
+        /// Title of Slot
+        /// </summary>
+        public string Title = "ssss";
+        /// <summary>
+        /// Screen Shot of chekpoint
+        /// </summary>
+        public string ScreenShot=null;
+        /// <summary>
+        /// Level of dificulty of game
+        /// </summary>
+        public GameDifficulty gameDifficulty=GameDifficulty.Easy;
+        /// <summary>
+        /// typeSaveSlotof slot
+        /// </summary>
+        public TypeOfSavedGameSlot typeSaveSlot=TypeOfSavedGameSlot.Checkpoint;
+        /// <summary>
+        /// datetimeSaved Slot
+        /// </summary>
+        public  DateTime _dateTimeCreation;
+        /// <summary>
+        /// datetimeSaved Slot
+        /// </summary>
+        public DateTime _datetimeSaved = DateTime.Now;
     }
 }

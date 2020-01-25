@@ -54,7 +54,7 @@ public class SaveData
     /// <param name="deleteIfExistsFile">bool says what to do if exists file 
     ///     if its true the file is deleted 
     ///     if its false the content is added at the end of old content  </param>
-    public static void SaveSlot<T>(string path,T content, bool deleteIfExistsFile) where T:new()
+    public static void SaveSlotData<T>(string path,T content, bool deleteIfExistsFile) where T:new()
     {
         if ((bool)GameController.Instance.currentSlot)
         {

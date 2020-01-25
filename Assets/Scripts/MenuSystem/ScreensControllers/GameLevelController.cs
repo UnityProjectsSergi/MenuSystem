@@ -46,7 +46,7 @@ public class GameLevelController : MonoBehaviour
 
     public static void SaveSlotObj()
     {
-        SaveData.SaveSlot<GameSlot>(GameController.Instance.currentSlotResume.FileSlot, GameController.Instance.currentSlot, true);
+        SaveData.SaveSlotData<GameSlot>(GameController.Instance.currentSlotResume.FileSlot, GameController.Instance.currentSlot, true);
     }
     /// <summary>
     /// Create GameObject in scene

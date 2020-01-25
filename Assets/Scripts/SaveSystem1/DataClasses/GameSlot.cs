@@ -23,5 +23,7 @@ namespace Assets.SaveSystem1.DataClasses
         }
 [Range(0,1)]
         public float health=1;
+
+      
     }
 }

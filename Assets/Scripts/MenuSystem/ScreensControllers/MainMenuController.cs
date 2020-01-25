@@ -1,53 +1,76 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using Assets.SaveSystem1.DataClasses;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.Interactions;
 
 public class MainMenuController : MonoBehaviour
 {
-    public UiScreen LoadSlotListScreen;
-    public SlotController SlotController;
-    public MainMenuButtons MainMenuButtons;
-    public MenuController MenuController;
- 
-    public UiSystem UiSystem;
-    public UiScreen Options;
-    public UiScreen SaveGameScreen;
+    [Header("Screens")]
+    public UiScreen DificultSelectionScreen;
+
+   
+
+    public UiScreen LevelSelectionScreen;
+    public UiScreen GamePlayScreen;
   
+    /// <summary>
+    ///  Screen
+    /// UIScreen Load Slot List
+    /// </summary>
+    public UiScreen LoadSlotListScreen;
+   public UiScreen Options;
+    public UiScreen SaveGameScreen;
+    /// <summary>
+    ///     Script
+    ///     Main Menu Buttons To change from Main menu to Pause Menu
+    /// </summary>
+    public MainMenuButtons MainMenuButtons;
+
+    /// <summary>
+    ///     Controller
+    ///     Menu Controller
+    /// </summary>
+    public MenuController MenuController;
+
+ 
+    private InfoSlotResume slot;
+    public string LevelNameToLoadInDefaults;
+    [Header("Controllers")]
+    /// <summary>
+    /// Controller
+    /// Slot Controller
+    /// </summary>
+    public SlotController SlotController;
+
+    /// <summary>
+    ///     Ui System
+    ///     System For UI
+    /// </summary>
+    public UiSystem UiSystem;
+
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         //Initialize menuController variable
-        if (MenuController == null)
-        {
-            MenuController = MenuController.GetComponent<MenuController>();
-         
-        }
-        if(  SlotController==null)
+        if (MenuController == null) MenuController = MenuController.GetComponent<MenuController>();
+        if (SlotController == null)
             SlotController = MenuController.GetComponent<SlotController>();
         // Initialize UI system variable
-       
+        
         // if has loaded data from file
-        if (GameController.hasLoadedGameData)
-        {
-            SetMainMenuWithSlots();    
-        }
-      
+        if (GameController.hasLoadedGameData) SetMainMenuWithSlots();
     }
 
-    
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
     }
 
     public void NewGame()
     {
+        // create new slot Redume
         slot = new InfoSlotResume(DateTime.Now);
         slot.CrateFolder();
         // set new slot to currentSlot
@@ -70,90 +93,111 @@ public class MainMenuController : MonoBehaviour
             // if menu have isDificultyLevelSelectionScreenEnabled false 
             else
             {
-                GameController.Instance.currentSlotResume.currentLevelPlay = LevelNameToLoadInDefaults;
+                GameController.Instance.currentSlotResume.dataInfoSlot.currentLevelPlay = LevelNameToLoadInDefaults;
                 //Pass to using One or many Slots
 
                 MenuController.IsUsingOneSlot();
             }
         }
     }
-
-    public string LevelNameToLoadInDefaults;
-
-    public UiScreen DificultSelectionScreen;
-
-    public UiScreen LevelSelectionScreen;
-    private InfoSlotResume slot;
+    /// <summary>
+    /// Button Continue on Main Menu
+    /// Only active if has a Savedata.objects.previousSlotLoaded es not null
+    /// </summary>
     public void ContinueClickBtn()
     {
+        // Load the previous Slot Loadded in current Sloy
         GameController.Instance.currentSlotResume = SaveData.objcts.previousSlotLoaded;
+        // laod screeneFrom Slot 
         MenuController.LoadSceneFromSlot();
     }
+    /// <summary>
+    ///  Button Exit to Main Menu From Pause Menu
+    ///  Only Active if Stay in Pause Menu
+    /// </summary>
     public void ExitToMainMenuFromMenuPause()
     {
+        // Open question From Pause Menu Exit Game
         MenuController.QuestionLoseGameProgressIfExitGameFromPause();
     }
+    /// <summary>
+    /// Button Exit Game 
+    /// </summary>
     public void ExitGame()
     {
-        if ((bool)GameController.Instance.currentSlotResume)
+        // if stay in Pause Menu has the currentSlot Resume not null
+        if ((bool) GameController.Instance.currentSlotResume)
+            // Open question LoseGame progess if exit
             MenuController.QuestionLoseGameProgressIfExit();
         else
+            // If estay en Main menu Exit Game
+                 Debug.Log("exit game");
             Application.Quit();
     }
+    /// <summary>
+    /// Button Resume Game
+    /// Only active on Pause Menu
+    /// </summary>
     public void ResumeGame()
     {
-        MenuController.pauseController.isPausedGame  = false;
+        // set is Pause to False
+        
+        MenuController.pauseController.isPausedGame = false;
+        
         UiSystem.CallSwitchScreen(MenuController.GamePlayScreen);
     }
+    /// <summary>
+    /// Button Load Game
+    /// Active on Pause and Main Menu if has slots to load
+    /// </summary>
     public void LoadGame()
     {
-        LoadSlotListScreen.GetComponent<LoadSlotListController>().GenerateSlots();  
+        LoadSlotListScreen.GetComponent<LoadSlotListController>().GenerateSlots();
         UiSystem.CallSwitchScreen(LoadSlotListScreen);
-        
     }
+    /// <summary>
+    /// Button Open Settings
+    ///  Active in Both Menus
+    /// </summary>
     public void OpenSettings()
     {
-        UiSystem.CallSwitchScreen(Options,null,false);
+        UiSystem.CallSwitchScreen(Options);
     }
 
     public void SaveGame()
     {
-        SaveGameScreen.GetComponent<SaveGameController>().GenerateSlots();
-        UiSystem.CallSwitchScreen(SaveGameScreen);
+        if (MenuController.slotController.isSlotsEnabled)
+        {
+            if (MenuController.slotController.useManySlots)
+            {
+                SaveGameScreen.GetComponent<SaveGameController>().GenerateSlots();
+                UiSystem.CallSwitchScreen(SaveGameScreen);
+            }
+            else
+            {
+                GameController.Save();
+            }
+        }
     }
+
     public void SetMainMenuWithSlots()
     {
         // Active Main Menu Buttons
-       
-        MainMenuButtons.SetMainMenu();
+
+        MainMenuButtons.SetMainMenu(MenuController.slotController,SaveData.objcts.Slots.Count);
         // if not have slots in list
-        if (MenuController.slotController.isSlotsEnabled)
-        {
-            // If no has slots count
-            if (SaveData.objcts.Slots.Count == 0)
-            {
-                // No activate LoadGmeBtn and 
-                   MainMenuButtons.LoadGameBtn.gameObject.SetActive(false);
-            }
-            // if have slot or slots in list
-            else if (SaveData.objcts.Slots.Count >= 1)
-            {
-                // use One Only Slot is true
-                if (!MenuController.slotController.useManySlots)
-                {
-                    // No activate LoadGameBtn
-                    MainMenuButtons.LoadGameBtn.gameObject.SetActive(false);
-                }
-            }           
-        }
-        else
-        {
-            MainMenuButtons.LoadGameBtn.gameObject.SetActive(false);
-        }
+    
+
         if (SaveData.objcts.previousSlotLoaded == null)
         {
             EventSystem.current.SetSelectedGameObject(MainMenuButtons.NewGameBtn.gameObject);
             MainMenuButtons.ContinueBtn.gameObject.SetActive(false);
         }
+    }
+
+    public void SetPauseMenuwithSlots()
+    {
+        MainMenuButtons.SetPauseMenu(MenuController.slotController,SaveData.objcts.Slots.Count);
+       
     }
 }

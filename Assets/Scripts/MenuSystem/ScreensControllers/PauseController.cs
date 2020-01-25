@@ -91,7 +91,7 @@ public class PauseController : MonoBehaviour {
                 {
                    
                     //call setpausemenu on mainmenu to set the buttons for pauseMenu
-                  mainMenuController.MainMenuButtons.SetPauseMenu();
+                  mainMenuController.SetPauseMenuwithSlots();
 //                    // switchSreen to Pause Menu Screen
                     system.CallSwitchScreen(mainMenuScreen);
                     // set true to isPausedGame to pause the game

@@ -120,7 +120,7 @@ public  class Inputs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_inputsControls.UI.Pause.triggered);
+     
         //  Debug.Log(InputPauseGame());
         //  Debug.Log(InputEnter());
     }

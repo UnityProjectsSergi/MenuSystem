@@ -30,11 +30,11 @@ public class SoltUI : MonoBehaviour,ISelectHandler {
 	public void Init(InfoSlotResume _slot)
     {
         slot = _slot;
-        Name.text = Utils.MakeString(new string[] { slot.Title, " ", slot._dateTimeCreation.ToLongDateString(), " , ", slot._dateTimeCreation.ToLongTimeString() });
-        textTypeSlot.text = slot.typeSaveSlot.ToString();
+        Name.text = Utils.MakeString(new string[] { slot.dataInfoSlot.Title, " ", slot.dataInfoSlot._dateTimeCreation.ToLongDateString(), " , ", slot.dataInfoSlot._dateTimeCreation.ToLongTimeString() });
+        textTypeSlot.text = slot.dataInfoSlot.typeSaveSlot.ToString();
         try
         {
-            Sprite img = IMG2Sprite.LoadNewSprite(slot.ScreenShot);
+            Sprite img = IMG2Sprite.LoadNewSprite(slot.dataInfoSlot.ScreenShot);
             if (img)
                 Screenshot.sprite = img;
         }

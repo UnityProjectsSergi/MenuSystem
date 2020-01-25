@@ -46,18 +46,20 @@ public class MainMenuButtons : MonoBehaviour {
 	void Update () {
 		
 	}
-    public void SetPauseMenu()
+    public void SetPauseMenu(SlotController slotController,int numSlots)
     {
         text.text = "Pause Menu";
         EventSystem.current.SetSelectedGameObject(ResumeBtn.gameObject);
         ResumeBtn.gameObject.SetActive(true);
         ExitMainMenuBtn.gameObject.SetActive(true);
-        SaveGameBtn.gameObject.SetActive(true);
+		SaveGameBtn.gameObject.SetActive(true);	
         ContinueBtn.gameObject.SetActive(false);
         NewGameBtn.gameObject.SetActive(false);
-        LoadGameBtn.gameObject.SetActive(true);
+        SetButtonaActiveDependSlots(slotController,numSlots);
+        
+		
     }
-    public void SetMainMenu()
+    public void SetMainMenu(SlotController slotController,int numSlots)
     {
         text.text = "Main Menu";
         EventSystem.current.SetSelectedGameObject(ContinueBtn.gameObject);
@@ -66,5 +68,26 @@ public class MainMenuButtons : MonoBehaviour {
         ExitMainMenuBtn.gameObject.SetActive(false);
         SaveGameBtn.gameObject.SetActive(false);
         NewGameBtn.gameObject.SetActive(true);
+        SetButtonaActiveDependSlots(slotController,numSlots);
+    }
+
+    private void SetButtonaActiveDependSlots(SlotController slotController,int numSlots)
+    {
+	    if (slotController.isSlotsEnabled)
+	    {
+		    if (numSlots == 0)
+			    // No activate LoadGmeBtn and 
+			    LoadGameBtn.gameObject.SetActive(false);
+		    else if (SaveData.objcts.Slots.Count >= 1)
+			    // use One Only Slot is true
+			    if (slotController.useManySlots)
+				    // No activate LoadGameBtn
+				    LoadGameBtn.gameObject.SetActive(false);
+	    }
+	    else
+	    {
+		    LoadGameBtn.gameObject.SetActive(false);
+		    SaveGameBtn.gameObject.SetActive(false);
+	    }
     }
 }

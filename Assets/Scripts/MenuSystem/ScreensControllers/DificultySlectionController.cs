@@ -35,7 +35,7 @@ public class DificultySlectionController : MonoBehaviour
     
     public void SelectLevelDificulty(string level) {
         GameDifficulty gameDifficulty = (GameDifficulty)System.Enum.Parse(typeof(GameDifficulty), level);
-        GameController.Instance.currentSlotResume.gameDifficulty = gameDifficulty;
+        GameController.Instance.currentSlotResume.dataInfoSlot.gameDifficulty = gameDifficulty;
         menuController.IsUsingOneSlot();
     }
 }

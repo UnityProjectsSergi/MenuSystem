@@ -18,7 +18,7 @@ public enum VSyncCount { Dont_Sync,Every_V_Blank,Every_Second_V_Blank}
 /// GameSlots Enums
 /// </summary>
 public enum GameDifficulty { None,Easy, Normal, Hard, VeryHard }
-public enum TypeOfSavedGameSlot { Checkpoint, Manual_Save_Slot }
+public enum TypeOfSavedGameSlot { Checkpoint, Manual_Save_Slot ,None}
 #endregion
 
 #region Class EnumsConverter

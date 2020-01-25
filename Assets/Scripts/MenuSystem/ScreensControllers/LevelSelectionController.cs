@@ -135,14 +135,14 @@ public class LevelSelectionController : MonoBehaviour
     /// </summary>
     public void LoadLevel(AllLevelsData level)
     {
-        GameController.Instance.currentSlotResume.currentLevelPlay = level.SceneToLoad;
+        GameController.Instance.currentSlotResume.dataInfoSlot.currentLevelPlay = level.SceneToLoad;
         if (GameController.Instance.settignsMenu.isDificultyLevelSelectionScreenEnabled)
         {
             System.CallSwitchScreen(DificutySelection);
         }
         else
         {
-            GameController.Instance.currentSlotResume.gameDifficulty = GameDifficulty.None;
+            GameController.Instance.currentSlotResume.dataInfoSlot.gameDifficulty = GameDifficulty.None;
             menuController.IsUsingOneSlot();
         }
          }
@@ -176,14 +176,14 @@ public class LevelSelectionController : MonoBehaviour
     /// </summary>
     public void PlayLevel()
     {
-        GameController.Instance.currentSlotResume.currentLevelPlay = _currentSelectedLevelSceneName;
+        GameController.Instance.currentSlotResume.dataInfoSlot.currentLevelPlay = _currentSelectedLevelSceneName;
         if (GameController.Instance.settignsMenu.isDificultyLevelSelectionScreenEnabled)
         {
             System.CallSwitchScreen(DificutySelection,null,false);
         }
         else
         {
-            GameController.Instance.currentSlotResume.gameDifficulty = GameDifficulty.None;
+            GameController.Instance.currentSlotResume.dataInfoSlot.gameDifficulty = GameDifficulty.None;
             menuController.IsUsingOneSlot(); 
         }
     }

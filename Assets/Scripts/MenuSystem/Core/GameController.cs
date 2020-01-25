@@ -175,7 +175,7 @@ public class GameController : MonoBehaviour
             public static void SaveSlotObj()
             {
                 //TODO make ui to show when is saving slot game.
-                SaveData.SaveSlot<GameSlot>(GameController.Instance.currentSlotResume.FileSlot, GameController.Instance.currentSlot, true);
+                SaveData.SaveSlotData<GameSlot>(GameController.Instance.currentSlotResume.FileSlot, GameController.Instance.currentSlot, true);
             }
         #endregion
 
@@ -195,7 +195,7 @@ public class GameController : MonoBehaviour
                 // Take ScreenShoot
                 ScreenCapture.CaptureScreenshot(Application.persistentDataPath + "/" + GameController.Instance.currentSlotResume.FolderOfSlot + "/ScreenShot.png");
                 // Save Path of ScreenShoot 
-                GameController.Instance.currentSlotResume.ScreenShot = Application.persistentDataPath
+                GameController.Instance.currentSlotResume.dataInfoSlot.ScreenShot = Application.persistentDataPath
                                                                        + "/" + GameController.Instance.currentSlotResume
                                                                            .FolderOfSlot + "/ScreenShot.png";
                 GameController.Save();
@@ -226,14 +226,19 @@ public class GameController : MonoBehaviour
             saveIntervalCoroutine = SaveSoltInterval(num);
             StartCoroutine(saveIntervalCoroutine);
         }
+
         /// <summary>
         /// Call Stop Save Slot interval Coroutine
         /// </summary>
         public void CallStopSaveSlotInterval()
         {
-            StopCoroutine(saveIntervalCoroutine);
-            saveIntervalCoroutine = null;
+            if (saveIntervalCoroutine != null)
+            {
+                StopCoroutine(saveIntervalCoroutine);
+                saveIntervalCoroutine = null;
+            }
         }
+
         /// <summary>
         /// Start Save Slot interval IEnumerator
         /// </summary>
