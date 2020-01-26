@@ -9,7 +9,7 @@ public class SettingsController : MonoBehaviour
     [SerializeField]
     private UiSystem UiSystem;
 
-    [SerializeField] private UiScreen UIScreenAudio,UIScreenGamePlay;
+    [SerializeField] private UiScreen UIScreenAudio=null,UIScreenGamePlay=null;
     // Start is called before the first frame update
     #region Variables Public
    

@@ -24,12 +24,9 @@ public class GamePlayController : MonoBehaviour
 
     public void LodGamePlayVars()
     {
-        if (GameController.Instance.currentSlot != null)
+        if (GameController.Instance.hasCurrentSlot)
         {
-            
             Heath = GameController.Instance.currentSlot.health;
-
-
             Health.text = Heath.ToString(CultureInfo.CurrentCulture);
         }
     }

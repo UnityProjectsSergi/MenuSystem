@@ -3,6 +3,7 @@ using System.Collections;
 using System.IO;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameController : MonoBehaviour
 {
@@ -39,6 +40,8 @@ public class GameController : MonoBehaviour
         /// Current Slot Resume loaded
         /// </summary>
         [CanBeNull] public  InfoSlotResume currentSlotResume=null;
+
+        [FormerlySerializedAs("hasCurrentSlotLoaded")] public bool hasCurrentSlot;
         /// <summary>
         /// Instace public of GameConstroller
         /// </summary>
@@ -59,7 +62,8 @@ public class GameController : MonoBehaviour
               private void Start()
               {
                   // set null currentSlotResume property on Start
-                  currentSlotResume = null;
+                  currentSlotResume= null;
+                  Debug.Log("ser curslotrestonull");
               }
               private void Awake()
             {
@@ -79,8 +83,10 @@ public class GameController : MonoBehaviour
                     fileExists = File.Exists(datapath);
                     // Load Data from file
                     Load();
+                    
                 }
             }
+              
               private void OnApplicationQuit()
               {
                   currentSlotResume = null;
@@ -160,6 +166,7 @@ public class GameController : MonoBehaviour
                 {
                     hasLoadedGameData = true;
                     SaveData.Load(datapath);
+                    
                 }
             }
             /// <summary>
@@ -183,7 +190,7 @@ public class GameController : MonoBehaviour
         /// <summary>
         /// Take Screen Shoot of Current Screen
         /// </summary>
-        public void TakeScreenShot()
+        public void TakeScreenShot(bool save)
         {
             // get the path of currentSlotResume Folder 
             string path = Application.persistentDataPath + "/" + GameController.Instance.currentSlotResume.FolderOfSlot +
@@ -198,24 +205,28 @@ public class GameController : MonoBehaviour
                 GameController.Instance.currentSlotResume.dataInfoSlot.ScreenShot = Application.persistentDataPath
                                                                        + "/" + GameController.Instance.currentSlotResume
                                                                            .FolderOfSlot + "/ScreenShot.png";
-                GameController.Save();
+
+                if (save)
+                {
+                    GameController.Save();
+                }
             }
 
         }
 
-        public void CallTakeScreenShotOnDelay(float time)
+        public void CallTakeScreenShotOnDelay(float time,bool saveIt)
         {
-            StartCoroutine(TakeScreenShoot(time));
+            StartCoroutine(TakeScreenShoot(time,saveIt));
         }
         /// <summary>
         /// Coroutine of TakeScreenShoot of Screen in time seconds
         /// </summary>
         /// <param name="time"></param>
         /// <returns></returns>
-        public IEnumerator TakeScreenShoot(float time)
+        public IEnumerator TakeScreenShoot(float time,bool saveIt)
         {
                yield return new WaitForSecondsRealtime(time);
-               TakeScreenShot();
+               TakeScreenShot(saveIt);
         }
         /// <summary>
         /// Call Start Save Slot interval Coroutine

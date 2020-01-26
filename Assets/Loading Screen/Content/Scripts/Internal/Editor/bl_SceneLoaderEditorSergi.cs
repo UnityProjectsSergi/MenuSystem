@@ -33,7 +33,7 @@ public class bl_SceneLoaderEditorSergi : Editor
         Script.UiSystem = EditorGUILayout.ObjectField("UISystem", Script.UiSystem, typeof(GameObject),true) as GameObject;
         Script.GameplayScrren = EditorGUILayout.ObjectField("Gameplay", Script.GameplayScrren, typeof(GameObject),true) as GameObject;
         Script.useTimeScale = EditorGUILayout.ToggleLeft("Use Time Scale", Script.useTimeScale, EditorStyles.toolbarButton);
-      
+        Script.slotController = EditorGUILayout.ObjectField("SlotControllerSaveSystem", Script.slotController, typeof(GameObject),true) as GameObject;
         GUILayout.EndVertical();
 
         GUILayout.BeginVertical("box");
@@ -109,6 +109,7 @@ public class bl_SceneLoaderEditorSergi : Editor
             Script.LoadingCircle = EditorGUILayout.ObjectField("LoadingCircle", Script.LoadingCircle, typeof(RectTransform), true) as RectTransform;
             Script.LoadingCircleCanvas = EditorGUILayout.ObjectField("LoadingCircleCanvas", Script.LoadingCircleCanvas, typeof(CanvasGroup), true) as CanvasGroup;
             Script.FadeImageCanvas = EditorGUILayout.ObjectField("FadeImageCanvas", Script.FadeImageCanvas, typeof(CanvasGroup), true) as CanvasGroup;
+            
         }
         GUILayout.EndVertical();
 

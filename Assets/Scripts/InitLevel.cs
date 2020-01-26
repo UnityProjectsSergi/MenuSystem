@@ -24,7 +24,7 @@ public class InitLevel : MonoBehaviour
     IEnumerator ExecuteAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
-        GameController.Instance.TakeScreenShot();
+        GameController.Instance.TakeScreenShot(true);
         initLevel = true;
 
     }

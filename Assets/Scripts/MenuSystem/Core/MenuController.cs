@@ -108,90 +108,90 @@ public class MenuController : MonoBehaviour
     /// </summary>
     public void IsUsingOneSlot()
     {
-        // if useManySlots is false
-        if (!slotController.useManySlots)
+        if (slotController.isSlotsEnabled)
         {
-            // If has an older slot in list
-            if (SaveData.objcts.Slots.Count >= 1)
+            
+            // if useManySlots is false
+            if (!slotController.useManySlots)
             {
-                // create the UnityEvents
-                Yes = new UnityEvent();
-                No = new UnityEvent();
-                // open modal question 
-                OpenQuestioOverrideSlotIfExists();
+                // If has an older slot in list
+                if (SaveData.objcts.Slots.Count >= 1)
+                {
+                    // create the UnityEvents
+                    Yes = new UnityEvent();
+                    No = new UnityEvent();
+                    // open modal question 
+                    OpenQuestioOverrideSlotIfExists();
+                }
+                else
+                    Add_New_Slot_To_ListsSlots_Set_Previous_Slot_SaveAllSlots_LoadScene();
             }
+            // is are using Many Slots
             else
+            {
+                Debug.Log("ffffff");
+                //Add slot to list, Set Prvoius slot, Save All, Load Scene
                 Add_New_Slot_To_ListsSlots_Set_Previous_Slot_SaveAllSlots_LoadScene();
+            }
         }
-        // is are using Many Slots
         else
         {
-            Debug.Log("ffffff");
-            //Add slot to list, Set Prvoius slot, Save All, Load Scene
-            Add_New_Slot_To_ListsSlots_Set_Previous_Slot_SaveAllSlots_LoadScene();
+            LoadSceneFromSlot();
         }
     }
-
     public void LoadSceneFromSlot()
     {
-     
         // if its enable Loading Scene Plugin sergi
         if (GameController.Instance.settignsMenu.IsLoaderSceneWithPligun)
         {
-           
-                system.CallSwitchScreen(ScreenLoading, delegate
-                {
-                    Inputs.Instance.DisableAll();
-                    LoadScreencontroller.FloaderScene();
-                    
-                }, true);
-         
+            system.CallSwitchScreen(ScreenLoading, delegate
+            {
+                Inputs.Instance.DisableAll();
+                LoadScreencontroller.FloaderScene();
+            }, true);
         }
-
         else
         {
             StartCoroutine(LoadSceneSync());
-            //      SceneManager.LoadSceneAsync(GameController.Instance.currentSlotResume.currentLevelPlay);
-            // aixo obje el fitxer sel slot selecccionat i fa les eves coses quant la nova l'escen esta carregada
-
-          
-            
             system.CallSwitchScreen(GamePlayScreen);
             pauseController.AllowEnterPause = true;
-        } /// SwitchSreen To GamePlayScreen
+            GameController.Instance.hasCurrentSlot = true;
+        } 
     }
-
     IEnumerator LoadSceneSync()
     {
         AsyncOperation async = SceneManager.LoadSceneAsync(GameController.Instance.currentSlotResume.dataInfoSlot.currentLevelPlay);
         yield return async;
-        GameController.Instance.CallStartSaveSlotInterval(1f);
-        GameController.Instance.CallTakeScreenShotOnDelay(1f);
-        SaveData.LoadGameSlotData(SaveData.LoadFromFile<GameSlot>(GameController.Instance.currentSlotResume.FileSlot));
-        // system.SwitchScreen(GamePlayScreen, true, true);
+        GameController.Instance.CallTakeScreenShotOnDelay(1f,slotController.isSlotsEnabled);
+        if (slotController.isSlotsEnabled)
+        {
+            GameController.Instance.CallStartSaveSlotInterval(1f);
+            SaveData.LoadGameSlotData(
+                SaveData.LoadFromFile<GameSlot>(GameController.Instance.currentSlotResume.FileSlot));
+        }
     }
-
     /// <summary>
     ///  Load Scene  
     /// </summary>
-    /*
     public void Loadscene()
     {
         //Set allow EnterPause to true because exit from Main Menu 
-        pauseController.AllowEnterPause = true;
+       
         // if its enable Loading Scene Plugin sergi
         if (GameController.Instance.settignsMenu.IsLoaderSceneWithPligun)
-        { IsLoadingScreen.GetComponent<LoadingScreenController>().StartLoadScreen(false);
+        {   system.CallSwitchScreen(ScreenLoading, delegate
+            {
+                Inputs.Instance.DisableAll();
+                LoadScreencontroller.FloaderScene();
+            }, true);
         }
         else
         {
-            SceneManager.LoadSceneAsync(GameController.Instance.currentSlotResume.currentLevelPlay);
+            SceneManager.LoadSceneAsync(GameController.Instance.currentSlotResume.dataInfoSlot.currentLevelPlay);
             /// SwitchSreen To GamePlayScreen 
             //  system.SwitchScreen(GamePlayScreen, true,true);
         }
     }
-    */
-
     /// <summary>
     ///  Open Modal Screen for Override Slot If Exists in the using one slot mode
     /// </summary>
@@ -209,7 +209,6 @@ public class MenuController : MonoBehaviour
         //Switch Screen to question Screen
         system.CallSwitchScreen(questionScreen);
     }
-
     /// <summary>
     /// if Question OverrideSlotIfExists for mode one only slot is YES
     /// </summary>
@@ -217,19 +216,18 @@ public class MenuController : MonoBehaviour
     {
         // Clear the Slots list
         // a dit q si 
-       // Directory.Delete(Application.persistentDataPath + "/" + SaveData.objcts.previousSlotLoaded.FolderOfSlot, true);
+        // Directory.Delete(Application.persistentDataPath + "/" + SaveData.objcts.previousSlotLoaded.FolderOfSlot, true);
         SaveData.objcts.Slots.Clear();
 
         // add New slot to list, SetPevous Slot, Save All Slot, an LoadScen
         Add_New_Slot_To_ListsSlots_Set_Previous_Slot_SaveAllSlots_LoadScene();
     }
-
     /// <summary>
     /// if Question OverrideSlotIfExists for mode one only slot is NO
     /// </summary>
     public void NotOverrideSlot()
     {
-        Debug.Log("Not overrride slot becase useManySlots is fase and answer is not lload game");
+        
         // go to previous screen 
         system.GoToPreviousScreen();
     }
@@ -261,7 +259,7 @@ public class MenuController : MonoBehaviour
         //Set parameters in QuestionScreen
         questionScreen.GetComponent<QuestionSceenController>().OpenModal("Lost current progress?", "Are You sure want Exit Game? ", Yes, No);
         //Switch Screen to question Screen
-         system.CallSwitchScreen(questionScreen);
+        system.CallSwitchScreen(questionScreen);
     }
 
     public void QuestionLoseGameProgressIfExitGameFromPause()
@@ -275,7 +273,7 @@ public class MenuController : MonoBehaviour
         //Set parameters in QuestionScreen
         questionScreen.GetComponent<QuestionSceenController>().OpenModal("Lost current progress?", "Are You sure want Main Menu? ", Yes, No);
         //Switch Screen to question Screen
-       system.CallSwitchScreen(questionScreen);
+        system.CallSwitchScreen(questionScreen);
     }
 
     public void YesLostGameProgressionFromPause()
@@ -284,6 +282,7 @@ public class MenuController : MonoBehaviour
        
         GameController.Instance.currentSlot = null;
         GameController.Instance.currentSlotResume = null;
+        GameController.Instance.hasCurrentSlot = false;
         mainMenuController.SetMainMenuWithSlots();
         pauseController.isPausedGame = false;
         pauseController.AllowEnterPause = false;
@@ -293,14 +292,15 @@ public class MenuController : MonoBehaviour
 
     public void YesLostGameProgressionExitGame()
     {
-        
+        GameController.Instance.CallStopSaveSlotInterval();
+        GameController.Instance.hasCurrentSlot = false;
         Application.Quit();
     }
 
     public void NoLostGameProgressionContinueFromPause()
     {
         GameController.Instance.CallStartSaveSlotInterval(5f);
-         system.CallSwitchScreen(MainMenuScreen );
+        system.CallSwitchScreen(MainMenuScreen );
     }
 
     #endregion

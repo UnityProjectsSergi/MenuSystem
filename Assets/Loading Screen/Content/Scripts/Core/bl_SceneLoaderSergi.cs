@@ -17,6 +17,7 @@ public class bl_SceneLoaderSergi : MonoBehaviour
     public GameObject UiSystem;
     public GameObject GameplayScrren;
     public GameObject PauseController;
+    public GameObject slotController = null;
     public bool useTimeScale = false;
     [Header("Background")]
     public bool useBackgrounds = true;
@@ -59,6 +60,7 @@ public class bl_SceneLoaderSergi : MonoBehaviour
     public CanvasGroup LoadingCircleCanvas = null;
     public CanvasGroup FadeImageCanvas = null;
 
+ 
     private bl_SceneLoaderManager Manager = null;
     private AsyncOperation async;
     private bool isOperationStarted = false;
@@ -75,6 +77,7 @@ public class bl_SceneLoaderSergi : MonoBehaviour
     private float lerpValue = 0;
     private bool canSkipWithKey = false;
     private bl_SceneLoaderInfo CurrentLoadLevel = null;
+    
     public bool _showReferences = false;
 
     /// <summary>
@@ -498,26 +501,24 @@ public class bl_SceneLoaderSergi : MonoBehaviour
             yield return null;
         }
       UiSystem.GetComponent<UiSystem>().CallSwitchScreen(
-          GameplayScrren.GetComponent<UiScreen>(), delegate { 
+          GameplayScrren.GetComponent<UiScreen>(), delegate
+          {
               async.allowSceneActivation = true;
               hasLoad = false;
               RootAlpha.interactable = false;
               RootAlpha.blocksRaycasts = false;
               RootUI.SetActive(false);
-
-              GameController.Instance.CallTakeScreenShotOnDelay(1f);
-              StartCoroutine(CallLoadDataNextEscena(0.15f));
-                GameController.Instance.CallStartSaveSlotInterval(5f);
+              GameController.Instance.CallTakeScreenShotOnDelay(1f,slotController.GetComponent<SlotController>().isSlotsEnabled);
+              if (slotController.GetComponent<SlotController>().isSlotsEnabled)
+              {
+                  StartCoroutine(CallLoadDataNextEscena(0.15f));
+                     GameController.Instance.CallStartSaveSlotInterval(5f); 
+              }
              // StartCoroutine(Altha());
               PauseController.GetComponent<PauseController>().AllowEnterPause = true;
               PauseController.GetComponent<PauseController>().isPausedGame = false;
+              GameController.Instance.hasCurrentSlot = true;
           },true,0.75f);
-      
-  
-
-     
-
-
     }
 
     public IEnumerator Altha()

@@ -12,6 +12,7 @@ namespace Assets.SaveSystem1.DataClasses
     public class InfoSlotResume
     {
         public bool folderDone = false;
+        
         public InfoSlotResume(DateTime dateCreation, string Title = null, GameDifficulty difficulty = GameDifficulty.None,string screenSlot=null )
         {
             slotGame=new GameSlot();

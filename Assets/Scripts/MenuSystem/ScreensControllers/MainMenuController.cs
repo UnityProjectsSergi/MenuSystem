@@ -52,6 +52,7 @@ public class MainMenuController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+       
         //Initialize menuController variable
         if (MenuController == null) MenuController = MenuController.GetComponent<MenuController>();
         if (SlotController == null)
@@ -66,6 +67,7 @@ public class MainMenuController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+       
     }
 
     public void NewGame()
@@ -75,6 +77,7 @@ public class MainMenuController : MonoBehaviour
         slot.CrateFolder();
         // set new slot to currentSlot
         GameController.Instance.currentSlotResume = slot;
+        GameController.Instance.hasCurrentSlot = true;
         /// if menu have isLevelSelectonScreenEnabled true 
         if (GameController.Instance.settignsMenu.isLevelSelectonScreenEnabled)
         {
@@ -110,6 +113,7 @@ public class MainMenuController : MonoBehaviour
         GameController.Instance.currentSlotResume = SaveData.objcts.previousSlotLoaded;
         // laod screeneFrom Slot 
         MenuController.LoadSceneFromSlot();
+        GameController.Instance.hasCurrentSlot = true;
     }
     /// <summary>
     ///  Button Exit to Main Menu From Pause Menu
@@ -126,7 +130,7 @@ public class MainMenuController : MonoBehaviour
     public void ExitGame()
     {
         // if stay in Pause Menu has the currentSlot Resume not null
-        if ((bool) GameController.Instance.currentSlotResume)
+        if (GameController.Instance.hasCurrentSlot)
             // Open question LoseGame progess if exit
             MenuController.QuestionLoseGameProgressIfExit();
         else

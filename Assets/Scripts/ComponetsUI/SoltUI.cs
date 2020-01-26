@@ -40,11 +40,12 @@ public class SoltUI : MonoBehaviour,ISelectHandler {
         }
         catch (NullReferenceException e)
         {
+            
             Screenshot.sprite = defaultS;
         }
         catch (Exception e)
         {
-            Debug.Log("eRrror on load iage");
+            Debug.Log("eRrror on load iage"+e.Message);
         }
 
         Screenshot.sprite = defaultS;

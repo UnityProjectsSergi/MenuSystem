@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.Interactions;
+
 using UnityEngine.UI;
 
 public class SaveGameController : MonoBehaviour

@@ -17,11 +17,11 @@ public class GameDataSaveContainer {
     ///  List of GameObjectActorData
     /// </summary>
     /// // 
-   // [SerializeField]
+    // [SerializeField]
     //public int NumObj { get { return ObjectsToSave.Count; } set { } }
     //public List<GameObjectActorData> ObjectsToSave = new List<GameObjectActorData>();
 
-    
+    public bool IsCurrentGameLoaded;
     /// <summary>
     /// Index of Slots 
     /// </summary>
