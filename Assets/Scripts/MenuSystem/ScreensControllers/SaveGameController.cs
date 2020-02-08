@@ -115,8 +115,11 @@ public class SaveGameController : MonoBehaviour
          slot = new InfoSlotResume(DateTime.Now);
      
          slot.CrateFolder();
-         slot.dataInfoSlot.typeSaveSlot =TypeOfSavedGameSlot.Manual_Save_Slot;
+         slot = GameController.Instance.currentSlotResume;
+         slot.dataInfoSlot.typeSaveSlot = TypeOfSavedGameSlot.Manual_Save_Slot;
          slot.slotGame = GameController.Instance.currentSlot;
+         
+        
          SaveData.SaveSlotData(slot.FileSlot,slot.slotGame,true);
          slot.dataInfoSlot.Title = GameController.Instance.currentSlotResume.dataInfoSlot.Title;
          
@@ -186,6 +189,9 @@ public class SaveGameController : MonoBehaviour
         
         SaveData.SaveSlotData(soltSlot.FileSlot, GameController.Instance.currentSlot,
             true);
-        system.CallSwitchScreen(GamePlayScreen);
+        system.CallSwitchScreen(GamePlayScreen, delegate
+        {
+            //TODO Show saved game info
+        });
     }
 }

@@ -180,6 +180,10 @@ public class MainMenuController : MonoBehaviour
             else
             {
                 GameController.Save();
+                UiSystem.CallSwitchScreen(GamePlayScreen, delegate
+                {
+                    //Todo Show Info Saved Game
+                });
             }
         }
     }

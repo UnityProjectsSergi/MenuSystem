@@ -33,8 +33,7 @@ public class RTPCWwise
         else
         {
             //Todo Throw exepcion
-            //throw
-            return false;
+            throw new ExceptionSound("");
         }
 #else
         throw new ExceptionSound("Not has the WWISE DEFINED");

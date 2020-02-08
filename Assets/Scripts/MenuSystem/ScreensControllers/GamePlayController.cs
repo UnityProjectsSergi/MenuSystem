@@ -19,12 +19,12 @@ public class GamePlayController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        LodGamePlayVars();
     }
 
     public void LodGamePlayVars()
     {
-        if (GameController.Instance.hasCurrentSlot)
+        if (GameController.Instance.currentSlot!=null)
         {
             Heath = GameController.Instance.currentSlot.health;
             Health.text = Heath.ToString(CultureInfo.CurrentCulture);

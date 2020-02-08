@@ -79,9 +79,11 @@ public class GameController : MonoBehaviour
                     currentSlotResume = null;
                     _instance = this;
                     DontDestroyOnLoad(this.gameObject);
+                    
                     datapath = System.IO.Path.Combine(Application.persistentDataPath, "data2.json");
                     fileExists = File.Exists(datapath);
-                    // Load Data from file
+                    // Load Data from fil
+             
                     Load();
                     
                 }

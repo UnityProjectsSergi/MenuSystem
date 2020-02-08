@@ -75,14 +75,14 @@ public class MainMenuButtons : MonoBehaviour {
     {
 	    if (slotController.isSlotsEnabled)
 	    {
-		    if (numSlots == 0)
+		    if (numSlots == 0 || numSlots==1)
 			    // No activate LoadGmeBtn and 
 			    LoadGameBtn.gameObject.SetActive(false);
-		    else if (SaveData.objcts.Slots.Count >= 1)
+		    else
 			    // use One Only Slot is true
 			    if (slotController.useManySlots)
 				    // No activate LoadGameBtn
-				    LoadGameBtn.gameObject.SetActive(false);
+				    LoadGameBtn.gameObject.SetActive(true);
 	    }
 	    else
 	    {

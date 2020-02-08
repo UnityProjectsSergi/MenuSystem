@@ -5,4 +5,5 @@
         public ExceptionSound(string message) : base(message)
         {
         }
+        
     }
