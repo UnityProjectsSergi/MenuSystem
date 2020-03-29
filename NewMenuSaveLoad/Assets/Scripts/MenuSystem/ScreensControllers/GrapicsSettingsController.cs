@@ -48,6 +48,22 @@ public class GrapicsSettingsController : MonoBehaviour
     private List<Resolution> listResolutions;
     // int num index for default resolution
     private int num=0;
+// TODO make the UI and save data from these data 
+    private List<TextureQuality> listTextQualities;
+    private List<AntiAliasing> listAntialiasing;
+    private List<AnisotropicFiltering> listAnisotropicFilterings;
+    private int pixelLightCount;
+    private ShadowProjection shadowProjection;
+    private int shadowCascades;
+    private float shadowDistance;
+    private ShadowResolution shadowResolution;
+    private ShadowmaskMode shadowmaskMode;
+    private float shadowNearPlaneOffset;
+    private float lodBias;
+    private int masterTextureLimit;
+    private List<ShadowQuality> listShadowQuality; 
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -67,7 +83,9 @@ public class GrapicsSettingsController : MonoBehaviour
         #region Set Dropdown Qualty;
         dropdownQuality.ClearOptions();
         dropdownResolutions.ClearOptions();
+        
         dropdownQuality.AddOptions(QualitySettings.names.ToList());
+        dropdownQuality.value = (int)SaveData.objcts.Parameters.Graphics.currentQualityLevel;
         #endregion
         #region Set Dropdown Reslutions
         List<string> resos = new List<string>();
@@ -107,6 +125,7 @@ public class GrapicsSettingsController : MonoBehaviour
     private void SetDefaults()
     {
         Parameters = DefaultGraphicsParameters;
+        
         SaveGraphicsData();
     }
     public void SetParametersOnSaveData()
@@ -120,14 +139,14 @@ public class GrapicsSettingsController : MonoBehaviour
         GameController.Save();
     }
 
-    public void OnValueChangeResolution(int num)
+    public void OnValueChangeQuality(int num)
     {
         QualitySettings.SetQualityLevel(num);
         Parameters.currentQualityLevel = (GrapicsSettings)num;
         SaveGraphicsData();
     }
 
-    public void OnValueChangeQuality(int num)
+    public void OnValueChangeResolution(int num)
     {
         Resolution res = filterdResoltions[dropdownResolutions.value];
         Screen.SetResolution(res.width,res.height,fullScreen);

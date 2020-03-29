@@ -20,6 +20,10 @@ public class SettignsMenu : MonoBehaviour
     public bool isLevelSelectonScreenEnabled;
     
     public bool IsLoaderSceneWithPligun;
+
+    public bool isLoginRegisterEnabled;
+
+    
     // Start is called before the first frame update
     void Start()
     {

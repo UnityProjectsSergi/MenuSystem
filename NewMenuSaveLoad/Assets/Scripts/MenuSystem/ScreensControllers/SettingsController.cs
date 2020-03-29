@@ -9,7 +9,7 @@ public class SettingsController : MonoBehaviour
     [SerializeField]
     private UiSystem UiSystem;
 
-    [SerializeField] private UiScreen UIScreenAudio=null,UIScreenGamePlay=null;
+    [SerializeField] private UiScreen UIScreenAudio=null,UIScreenGamePlay=null,UiScreenGrapics=null;
     // Start is called before the first frame update
     #region Variables Public
    
@@ -41,7 +41,8 @@ public class SettingsController : MonoBehaviour
 //        CameraButton.gameObject.SetActive(settingsButtons.isAccessibilitySettingsEnabled);
 //        CreditsButton.gameObject.SetActive(settingsButtons.isCreditsScreenEnabled);
 //        LlanguageButton.gameObject.SetActive(settingsButtons.isLlanguageSettingsEnabled);
-//        BackButton.gameObject.SetActive(true);
+            BackButton.gameObject.SetActive(true);
+            
     }
 	
     // Update is called once per frame
@@ -59,5 +60,10 @@ public class SettingsController : MonoBehaviour
     {
         UiSystem.CallSwitchScreen(UIScreenGamePlay);
     }
-    
+
+    public void OpenGrapicsSettings()
+    {
+        UiSystem.CallSwitchScreen(UiScreenGrapics);
+    }
+  
 }
