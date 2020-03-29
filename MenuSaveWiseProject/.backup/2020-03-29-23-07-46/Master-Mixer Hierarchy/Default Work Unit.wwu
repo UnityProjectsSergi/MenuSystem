@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{93E30906-0309-4D4B-8F4A-046C35AE10B0}" SchemaVersion="94">
+	<Busses>
+		<WorkUnit Name="Default Work Unit" ID="{93E30906-0309-4D4B-8F4A-046C35AE10B0}" PersistMode="Standalone">
+			<ChildrenList>
+				<Bus Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<RTPCList>
+								<RTPC Name="" ID="{0BC26DEC-26CF-4CEB-AEA2-4D3F83D0554B}" ShortID="220231003">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="MasterVolume" ID="{13151061-0F6D-44C2-A160-641A008BC804}" WorkUnitID="{9CBF9C0B-6024-435A-ABC2-2E0B7D89088C}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{F25FDC31-544B-4DEF-A23A-3FF2D5BDA878}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="3"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>-200</YPos>
+												<Flags>5</Flags>
+											</Point>
+											<Point>
+												<XPos>1</XPos>
+												<YPos>0</YPos>
+												<Flags>37</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="AudioDevice">
+							<ObjectRef Name="System" ID="{438D6C8C-32D1-4647-B801-74AF3DE6FEA9}" WorkUnitID="{0D78EB77-19F2-41E0-86F9-AF7CC4EA5807}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Bus Name="Music" ID="{3B425A06-1773-4C09-A5D1-C1838E857151}">
+							<PropertyList>
+								<Property Name="OutputBusVolume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{E7462CDF-3BE4-4F61-9877-986C8D79B688}" ShortID="790706515">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="MusicVolume" ID="{F64151ED-AE81-4901-B783-012755D609BD}" WorkUnitID="{9CBF9C0B-6024-435A-ABC2-2E0B7D89088C}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{2F3AAACE-A041-4FAC-AD31-8CEDEFA7A39F}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>1</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+						</Bus>
+						<Bus Name="SoundFX" ID="{962B4017-7B67-4EEB-B6D5-933B14BE6F0B}"/>
+						<Bus Name="Voices" ID="{1DBEE5C2-A811-4C4C-AE36-AE9779F6A902}"/>
+						<Bus Name="BUSTEST" ID="{53B69F70-F783-4BF2-B090-7A0B033798D8}"/>
+					</ChildrenList>
+				</Bus>
+				<Bus Name="Motion Factory Bus" ID="{2AF9B9C6-6EF1-46E9-B5F2-E30C9E602C74}">
+					<ReferenceList>
+						<Reference Name="AudioDevice">
+							<ObjectRef Name="Default_Motion_Device" ID="{FBE2DDB8-003F-41CA-812C-B6E797A46E6F}" WorkUnitID="{0D78EB77-19F2-41E0-86F9-AF7CC4EA5807}"/>
+						</Reference>
+					</ReferenceList>
+				</Bus>
+			</ChildrenList>
+		</WorkUnit>
+	</Busses>
+</WwiseDocument>

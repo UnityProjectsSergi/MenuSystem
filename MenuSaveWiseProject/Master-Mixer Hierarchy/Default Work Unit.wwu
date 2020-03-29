@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{93E30906-0309-4D4B-8F4A-046C35AE10B0}" SchemaVersion="94">
+<WwiseDocument Type="WorkUnit" ID="{93E30906-0309-4D4B-8F4A-046C35AE10B0}" SchemaVersion="97">
 	<Busses>
 		<WorkUnit Name="Default Work Unit" ID="{93E30906-0309-4D4B-8F4A-046C35AE10B0}" PersistMode="Standalone">
 			<ChildrenList>
@@ -74,6 +74,7 @@
 						</Bus>
 						<Bus Name="SoundFX" ID="{962B4017-7B67-4EEB-B6D5-933B14BE6F0B}"/>
 						<Bus Name="Voices" ID="{1DBEE5C2-A811-4C4C-AE36-AE9779F6A902}"/>
+						<Bus Name="BUSTEST" ID="{53B69F70-F783-4BF2-B090-7A0B033798D8}"/>
 					</ChildrenList>
 				</Bus>
 				<Bus Name="Motion Factory Bus" ID="{2AF9B9C6-6EF1-46E9-B5F2-E30C9E602C74}">

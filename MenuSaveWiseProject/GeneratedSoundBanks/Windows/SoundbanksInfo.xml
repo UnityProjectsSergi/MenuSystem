@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="11" SoundbankVersion="134">
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="135">
 	<RootPaths>
-		<ProjectRoot>E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\</ProjectRoot>
-		<SourceFilesRoot>E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\</ProjectRoot>
+		<SourceFilesRoot>E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -16,19 +16,24 @@
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
 			<IncludedEvents>
-				<Event Id="3991942870" Name="Music" ObjectPath="\Events\Default Work Unit\Music" DurationType="Infinite"/>
+				<Event Id="3991942870" Name="Music" ObjectPath="\Events\Default Work Unit\Music" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="590982907" Language="SFX">
+							<ShortName>Purple Planet Music - Creeping Death 2813A3029_01.wav</ShortName>
+							<Path>SFX\Purple Planet Music - Creeping Death 2813A3029_01_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 			</IncludedEvents>
-			<IncludedMemoryFiles>
-				<File Id="590982907" Language="SFX">
-					<ShortName>Purple Planet Music - Creeping Death 2813A3029_01.wav</ShortName>
-					<Path>SFX\Purple Planet Music - Creeping Death 2813A3029_01_D79FB2B7.wem</Path>
-				</File>
-			</IncludedMemoryFiles>
 		</SoundBank>
 		<SoundBank Id="1355168291" Language="SFX">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
+			<GameParameters>
+				<GameParameter Id="2346531308" Name="MusicVolume" ObjectPath="\Game Parameters\Default Work Unit\MusicVolume"/>
+				<GameParameter Id="2918011349" Name="MasterVolume" ObjectPath="\Game Parameters\Default Work Unit\MasterVolume"/>
+			</GameParameters>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>

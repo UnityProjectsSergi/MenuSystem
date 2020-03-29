@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{B3222DBF-A5DF-4BE0-8E82-5C8921D5C672}" SchemaVersion="94">
+<WwiseDocument Type="WorkUnit" ID="{B3222DBF-A5DF-4BE0-8E82-5C8921D5C672}" SchemaVersion="97">
 	<AudioObjects>
 		<WorkUnit Name="Default Work Unit" ID="{B3222DBF-A5DF-4BE0-8E82-5C8921D5C672}" PersistMode="Standalone">
 			<ChildrenList>
@@ -16,9 +16,12 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<AudioFileSource Name="FIRE SOUND EFFECT IN HIGH QUALITY" ID="{638036E2-2E66-449F-96FA-3E6C6553A015}" ShortID="696597627">
+						<AudioFileSource Name="FIRE SOUND EFFECT IN HIGH QUALITY" ID="{638036E2-2E66-449F-96FA-3E6C6553A015}">
 							<Language>SFX</Language>
 							<AudioFile>FIRE SOUND EFFECT IN HIGH QUALITY.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="696597627"/>
+							</MediaIDList>
 						</AudioFileSource>
 					</ChildrenList>
 					<ActiveSourceList>
@@ -39,7 +42,7 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<AudioFileSource Name="funny-voices-daniel_simon" ID="{06A3237B-6DD6-4B51-A877-CF8279C4FE36}" ShortID="123123155">
+						<AudioFileSource Name="funny-voices-daniel_simon" ID="{06A3237B-6DD6-4B51-A877-CF8279C4FE36}">
 							<PropertyList>
 								<Property Name="FadeInDuration" Type="Real64" Value="3.96946703767123"/>
 								<Property Name="FadeOutDuration" Type="Real64" Value="3.86361458333333"/>
@@ -49,6 +52,9 @@
 							</PropertyList>
 							<Language>English(US)</Language>
 							<AudioFile>funny-voices-daniel_simon.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="123123155"/>
+							</MediaIDList>
 						</AudioFileSource>
 					</ChildrenList>
 					<ActiveSourceList>
@@ -68,9 +74,12 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<AudioFileSource Name="Purple Planet Music - Creeping Death 2813A3029_01" ID="{AFAEC3F9-3059-4393-BE02-F098172B007C}" ShortID="590982907">
+						<AudioFileSource Name="Purple Planet Music - Creeping Death 2813A3029_01" ID="{AFAEC3F9-3059-4393-BE02-F098172B007C}">
 							<Language>SFX</Language>
 							<AudioFile>Purple Planet Music - Creeping Death 2813A3029_01.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="590982907"/>
+							</MediaIDList>
 						</AudioFileSource>
 					</ChildrenList>
 					<ActiveSourceList>

@@ -6,8 +6,9 @@
   <CreateWwiseListener>true</CreateWwiseListener>
   <GenerateSoundBanksAsPreBuildStep>false</GenerateSoundBanksAsPreBuildStep>
   <ShowMissingRigidBodyWarning>true</ShowMissingRigidBodyWarning>
+  <ShowSpatialAudioWarningMsg>true</ShowSpatialAudioWarningMsg>
   <SoundbankPath>Audio/GeneratedSoundBanks</SoundbankPath>
   <WwiseInstallationPathMac />
-  <WwiseInstallationPathWindows>E:\Wwise 2019.1.3.7048</WwiseInstallationPathWindows>
+  <WwiseInstallationPathWindows>E:\Wwise 2019.2.0.7216</WwiseInstallationPathWindows>
   <WwiseProjectPath>../../MenuSaveWiseProject/MenuSaveWiseProject.wproj</WwiseProjectPath>
 </WwiseSettings>

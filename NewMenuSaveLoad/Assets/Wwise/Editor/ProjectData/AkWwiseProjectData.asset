@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AcousticTextureWwu:
   - PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
-    ParentPhysicalPath: 
-    guid: de8a2868c512c148ac531a3703c61811
+    ParentPath: 
+    guid: 00000000000000000000000000000000
     GuidInternal: 
-    m_lastTime: -8586334744080235366
+    m_lastTime: -8586160908159876347
     List: []
   - PhysicalPath: Virtual Acoustics\Factory Reflect Acoustic Textures.wwu
-    ParentPhysicalPath: 
-    guid: 6b663d46a83ca54f8b4a5fef12b883f6
+    ParentPath: 
+    guid: 00000000000000000000000000000000
     GuidInternal: 
-    m_lastTime: -8586361843729304624
+    m_lastTime: -8586160908159806335
     List:
     - name: Acoustic_Banner
       guid: f2532d2fccda8e408b8898b1b52a26d6
@@ -181,17 +181,17 @@ MonoBehaviour:
       Path: Factory Reflect Acoustic Textures\Textures\Wood_Deep
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
-    ParentPhysicalPath: 
-    guid: 0609e39309034b4d8f4a046c35ae10b0
+    ParentPath: 
+    guid: 00000000000000000000000000000000
     GuidInternal: 
-    m_lastTime: -8586333782408178857
+    m_lastTime: -8586160908164686348
     List: []
   BankWwu:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
-    ParentPhysicalPath: 
-    guid: a8761f0887461449bae3f976402e52d6
+    ParentPath: 
+    guid: 00000000000000000000000000000000
     GuidInternal: 
-    m_lastTime: -8586333408911941284
+    m_lastTime: -8586160908161926254
     List:
     - name: General
       guid: d3ebc35a3740d9458c86a6dc8aeeebe1
@@ -204,10 +204,10 @@ MonoBehaviour:
       Path: Default Work Unit\General
   EventWwu:
   - PhysicalPath: Events\Default Work Unit.wwu
-    ParentPhysicalPath: 
-    guid: 8dd130024e53f84ea690c592710a0d68
+    ParentPath: 
+    guid: 00000000000000000000000000000000
     GuidInternal: 
-    m_lastTime: -8586333420198904991
+    m_lastTime: -8586160908162356332
     List:
     - name: Music
       guid: 8e927540939dc4428289d71827bf0d59
@@ -223,10 +223,10 @@ MonoBehaviour:
       minDuration: -1
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
-    ParentPhysicalPath: 
-    guid: 0b9cbf9c24605a43abc22e0b7d89088c
+    ParentPath: 
+    guid: 00000000000000000000000000000000
     GuidInternal: 
-    m_lastTime: -8586333912278467722
+    m_lastTime: -8586160908161016349
     List:
     - name: MasterVolume
       guid: 611015136d0fc244a160641a008bc804
@@ -265,10 +265,10 @@ MonoBehaviour:
         ObjectType: 13
       Path: Default Work Unit\VoicesVolume
   - PhysicalPath: Game Parameters\Factory Motion.wwu
-    ParentPhysicalPath: 
-    guid: 225213d7dbd1d042adc0930743567776
+    ParentPath: 
+    guid: 00000000000000000000000000000000
     GuidInternal: 
-    m_lastTime: -8586361843723146083
+    m_lastTime: -8586160908161696330
     List:
     - name: Playback_Rate
       guid: e37e38283ac11643b9c3db5c521624af
@@ -289,10 +289,10 @@ MonoBehaviour:
         ObjectType: 13
       Path: Factory Motion\RPM
   - PhysicalPath: Game Parameters\Factory SoundSeed Air Game Syncs.wwu
-    ParentPhysicalPath: 
-    guid: 5577163b42fb8b4598bf96f557afb3b9
+    ParentPath: 
+    guid: 00000000000000000000000000000000
     GuidInternal: 
-    m_lastTime: -8586361843732987862
+    m_lastTime: -8586160908162116352
     List:
     - name: SS_Air_Fear
       guid: 59062ef746431c4ea1b1dab46a05101e
@@ -386,30 +386,25 @@ MonoBehaviour:
       Path: Factory SoundSeed Air Game Syncs\SS_Air_Turbulence
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
-    ParentPhysicalPath: 
-    guid: 7e20598ba5a5474e9b51d2f8b30e866a
+    ParentPath: 
+    guid: 00000000000000000000000000000000
     GuidInternal: 
-    m_lastTime: -8586334744079445816
+    m_lastTime: -8586160908163316316
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
-    ParentPhysicalPath: 
-    guid: 822607eb9b92904a90f4da02b82158c4
+    ParentPath: 
+    guid: 00000000000000000000000000000000
     GuidInternal: 
-    m_lastTime: -8586334744079525778
+    m_lastTime: -8586160908162056333
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
-    ParentPhysicalPath: 
-    guid: 0db88ba4b1fa82488509b0ec3fe3d9ce
+    ParentPath: 
+    guid: 00000000000000000000000000000000
     GuidInternal: 
-    m_lastTime: -8586334744079915554
+    m_lastTime: -8586160908159166314
     List: []
-  ExpandedItems:
-  - /MenuSaveWiseProject
-  - /MenuSaveWiseProject/Events
-  - /MenuSaveWiseProject/Events/Default Work Unit
-  - /MenuSaveWiseProject/SoundBanks
-  - /MenuSaveWiseProject/SoundBanks/Default Work Unit
+  ExpandedItems: []
   autoPopulateEnabled: 1
   CurrentPluginConfig: 

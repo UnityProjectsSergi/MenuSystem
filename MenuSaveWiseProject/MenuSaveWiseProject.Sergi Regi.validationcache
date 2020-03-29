@@ -1,46 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ValidationCache Version="1" SchemaVersion="94">
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1578394959" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Actor-Mixer Hierarchy\Factory Motion.wwu" DateLow="1568215657" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Actor-Mixer Hierarchy\Factory SoundSeed Air Objects.wwu" DateLow="1565422512" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Actor-Mixer Hierarchy\Factory Synth One.wwu" DateLow="1565422501" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Attenuations\Default Work Unit.wwu" DateLow="1568132477" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Audio Devices\Default Work Unit.wwu" DateLow="1568215657" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Control Surface Sessions\Default Work Unit.wwu" DateLow="1568132477" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Conversion Settings\Default Work Unit.wwu" DateLow="1568132477" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Conversion Settings\Factory Conversion Settings.wwu" DateLow="1565422501" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Dynamic Dialogue\Default Work Unit.wwu" DateLow="1568132477" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Effects\Default Work Unit.wwu" DateLow="1568132477" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Effects\Factory Auro Headphone.wwu" DateLow="1565422696" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Effects\Factory Convolution Reverb Effects Ambisonics.wwu" DateLow="1568228644" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Effects\Factory Convolution Reverb Effects Stereo.wwu" DateLow="1568228644" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Effects\Factory Effects.wwu" DateLow="1565422501" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Effects\Factory iZotope Box Modeler.wwu" DateLow="1565422553" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Effects\Factory iZotope Delay.wwu" DateLow="1565422553" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Effects\Factory iZotope Dynamics.wwu" DateLow="1565422553" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Effects\Factory iZotope Filters.wwu" DateLow="1565422553" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Effects\Factory iZotope Hybrid Reverb Effects.wwu" DateLow="1565422553" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Effects\Factory iZotope Multiband Distortion.wwu" DateLow="1565422553" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Effects\Factory iZotope Singleband Distortion.wwu" DateLow="1565422553" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Effects\Factory McDSP Effects.wwu" DateLow="1565422531" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Events\Default Work Unit.wwu" DateLow="1568264865" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Game Parameters\Default Work Unit.wwu" DateLow="1568215657" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Game Parameters\Factory Motion.wwu" DateLow="1565422513" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Game Parameters\Factory SoundSeed Air Game Syncs.wwu" DateLow="1565422512" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Interactive Music Hierarchy\Default Work Unit.wwu" DateLow="1568132477" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1568228644" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\MenuSaveWiseProject.Sergi Regi.wsettings" DateLow="1580035291" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\MenuSaveWiseProject.wproj" DateLow="1568228562" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Mixing Sessions\Default Work Unit.wwu" DateLow="1568132477" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Modulators\Default Work Unit.wwu" DateLow="1568132477" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Presets\Default Work Unit.wwu" DateLow="1568132477" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Queries\Default Work Unit.wwu" DateLow="1568132477" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Queries\Factory Queries.wwu" DateLow="1565422501" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\SoundBanks\Default Work Unit.wwu" DateLow="1568265994" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Soundcaster Sessions\Default Work Unit.wwu" DateLow="1568132477" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\States\Default Work Unit.wwu" DateLow="1568132477" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Switches\Default Work Unit.wwu" DateLow="1568132477" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Triggers\Default Work Unit.wwu" DateLow="1568132477" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Virtual Acoustics\Default Work Unit.wwu" DateLow="1568132477" DateHigh="0"/>
-	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\MenuSaveWiseProject\Virtual Acoustics\Factory Reflect Acoustic Textures.wwu" DateLow="1565422512" DateHigh="0"/>
+<ValidationCache Version="1" SchemaVersion="97">
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Virtual Acoustics\Factory Reflect Acoustic Textures.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Virtual Acoustics\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Triggers\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Switches\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\States\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Soundcaster Sessions\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\SoundBanks\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Queries\Factory Queries.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Queries\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Presets\Factory Spatial Audio.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Presets\Factory Reflect.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Presets\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Modulators\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Mixing Sessions\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\MenuSaveWiseProject.wproj" DateLow="1585516068" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\MenuSaveWiseProject.Sergi Regi.wsettings" DateLow="1585516105" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Interactive Music Hierarchy\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Game Parameters\Factory SoundSeed Air Game Syncs.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Game Parameters\Factory Motion.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Game Parameters\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Events\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Effects\Factory Reflect.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Effects\Factory McDSP Effects.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Effects\Factory iZotope Singleband Distortion.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Effects\Factory iZotope Multiband Distortion.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Effects\Factory iZotope Hybrid Reverb Effects.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Effects\Factory iZotope Filters.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Effects\Factory iZotope Dynamics.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Effects\Factory iZotope Delay.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Effects\Factory iZotope Box Modeler.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Effects\Factory Effects.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Effects\Factory Convolution Reverb Effects Stereo.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Effects\Factory Convolution Reverb Effects Ambisonics.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Effects\Factory Auro Headphone.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Effects\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Dynamic Dialogue\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Conversion Settings\Factory Conversion Settings.wwu" DateLow="1585516068" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Conversion Settings\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Control Surface Sessions\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Audio Devices\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Attenuations\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Actor-Mixer Hierarchy\Factory Synth One.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Actor-Mixer Hierarchy\Factory SoundSeed Air Objects.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Actor-Mixer Hierarchy\Factory Motion.wwu" DateLow="1585516069" DateHigh="0"/>
+	<ValidationCacheItem File="E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1585516069" DateHigh="0"/>
 </ValidationCache>

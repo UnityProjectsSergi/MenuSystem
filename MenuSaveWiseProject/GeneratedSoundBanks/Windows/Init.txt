@@ -18,6 +18,7 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	985987111	Motion Factory Bus			\Default Work Unit\Motion Factory Bus	
+	1160802153	BUSTEST			\Default Work Unit\Master Audio Bus\BUSTEST	
 	2810670744	SoundFX			\Default Work Unit\Master Audio Bus\SoundFX	
 	3313685232	Voices			\Default Work Unit\Master Audio Bus\Voices	
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	

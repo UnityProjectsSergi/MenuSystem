@@ -1,1 +1,5 @@
 *.bnk,*.wav filter=lfs diff=lfs merge=lfs -text
+.chm filter=lfs diff=lfs merge=lfs -text
+.dll filter=lfs diff=lfs merge=lfs -text
+*.dll filter=lfs diff=lfs merge=lfs -text
+*.chm filter=lfs diff=lfs merge=lfs -text
