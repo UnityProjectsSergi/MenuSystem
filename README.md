@@ -10,10 +10,11 @@ Menu of game in unity with features of load and save: gameplay data, info of set
 
 
 # Audio System
-Has two audios only.
+
 Wwise project version 2019.2.0.7216
+Has two audios only.
 
 # Future Implementations
-- add more audios and Effects.
+- Add more audios and Effects in Wwise.
 - Put in a server lamb local with docker 
 - And create a login, register, reset password form on web site and inside unity.
