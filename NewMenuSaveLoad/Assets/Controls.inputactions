@@ -73,7 +73,31 @@
                     "name": "Point",
                     "type": "Button",
                     "id": "6d7c9301-66b7-4b0f-a57d-43aaa63f62ec",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ScrollWheel",
+                    "type": "PassThrough",
+                    "id": "a946000a-6aea-4e5e-98b6-474c4de0de58",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TrackedDeviceOrientation",
+                    "type": "PassThrough",
+                    "id": "c061de3d-12a3-433e-bb8d-8b3c87c37828",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TrackedDevicePosition",
+                    "type": "PassThrough",
+                    "id": "77460fd0-113f-44f1-9985-5b8f259230fe",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": ""
                 }
@@ -85,7 +109,7 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "Press",
                     "processors": "",
-                    "groups": "KayBoard;Mouse",
+                    "groups": "KayBoard&Mopuse;Mouse",
                     "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -107,7 +131,7 @@
                     "path": "<Keyboard>/enter",
                     "interactions": "Press",
                     "processors": "",
-                    "groups": ";KayBoard",
+                    "groups": ";KayBoard&Mopuse",
                     "action": "Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -129,7 +153,7 @@
                     "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KayBoard",
+                    "groups": "KayBoard&Mopuse",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -283,7 +307,7 @@
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KayBoard",
+                    "groups": "KayBoard&Mopuse",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -294,7 +318,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KayBoard",
+                    "groups": "KayBoard&Mopuse",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -305,7 +329,7 @@
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KayBoard",
+                    "groups": "KayBoard&Mopuse",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -316,7 +340,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KayBoard",
+                    "groups": "KayBoard&Mopuse",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -327,7 +351,7 @@
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KayBoard",
+                    "groups": "KayBoard&Mopuse",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -338,7 +362,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KayBoard",
+                    "groups": "KayBoard&Mopuse",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -349,7 +373,7 @@
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KayBoard",
+                    "groups": "KayBoard&Mopuse",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -360,7 +384,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KayBoard",
+                    "groups": "KayBoard&Mopuse",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -371,7 +395,7 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "Press",
                     "processors": "",
-                    "groups": ";KayBoard",
+                    "groups": ";KayBoard&Mopuse",
                     "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -393,7 +417,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse;Mouse;KayBoard",
+                    "groups": "Keyboard&Mouse;Mouse;KayBoard&Mopuse",
                     "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -404,7 +428,7 @@
                     "path": "<Mouse>/middleButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse;Mouse;KayBoard",
+                    "groups": "Keyboard&Mouse;Mouse;KayBoard&Mopuse",
                     "action": "Middle",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -415,7 +439,7 @@
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse;KayBoard",
+                    "groups": "Mouse;KayBoard&Mopuse",
                     "action": "Right",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -426,8 +450,41 @@
                     "path": "<Pointer>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse;KayBoard",
+                    "groups": "KayBoard&Mopuse",
                     "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d6602d4-74c9-428e-b0e9-660999266ddf",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "ScrollWheel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "458c1992-9e48-49b3-bd74-fe48deba28dc",
+                    "path": "<XRController>/devicePosition",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XR",
+                    "action": "TrackedDevicePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c9b84f1-d6c5-4061-b2d3-203467fc8266",
+                    "path": "<XRController>/deviceRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XR",
+                    "action": "TrackedDeviceOrientation",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -453,7 +510,7 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KayBoard",
+                    "groups": "KayBoard&Mopuse",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -474,11 +531,16 @@
     ],
     "controlSchemes": [
         {
-            "name": "KayBoard",
-            "bindingGroup": "KayBoard",
+            "name": "KayBoard&Mopuse",
+            "bindingGroup": "KayBoard&Mopuse",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
                     "isOptional": false,
                     "isOR": false
                 }
