@@ -66,10 +66,9 @@ public class GameController : MonoBehaviour
               {
                   // set null currentSlotResume property on Start
                   currentSlotResume= null;
-                  Debug.Log("ser curslotrestonull");
               }
               private void Awake()
-            {
+                {
                 // Singleton Pattern
                 if (_instance != null && _instance != this)
                 {
@@ -85,10 +84,10 @@ public class GameController : MonoBehaviour
                     
                     datapath = System.IO.Path.Combine(Application.persistentDataPath, "data2.json");
                     fileExists = File.Exists(datapath);
-                    // Load Data from fil
-             
-                    Load(false);
                     pauseController = GetComponent<PauseController>();
+                    // Load Data from Anywhere
+                    Load(false);
+                    
 
                 }
             }

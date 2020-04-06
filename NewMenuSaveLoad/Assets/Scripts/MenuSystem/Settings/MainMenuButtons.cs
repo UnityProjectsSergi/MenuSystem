@@ -50,6 +50,7 @@ public class MainMenuButtons : MonoBehaviour {
     {
         text.text = "Pause Menu";
         EventSystem.current.SetSelectedGameObject(ResumeBtn.gameObject);
+        
         ResumeBtn.gameObject.SetActive(true);
         ExitMainMenuBtn.gameObject.SetActive(true);
 		SaveGameBtn.gameObject.SetActive(true);	
@@ -57,6 +58,16 @@ public class MainMenuButtons : MonoBehaviour {
         NewGameBtn.gameObject.SetActive(false);
 		SetButtonaActiveDependSlots(slotController,numSlots);
 		
+    }
+
+    public Navigation SetNavigation(Selectable up, Selectable down, Selectable left, Selectable right)
+    {
+	    Navigation nav=new Navigation();
+	    nav.selectOnDown = down;
+	    nav.selectOnUp = up;
+	    nav.selectOnLeft = left;
+	    nav.selectOnRight = right;
+	    return nav;
     }
     public void SetMainMenu(SlotController slotController,int numSlots)
     {
@@ -67,7 +78,7 @@ public class MainMenuButtons : MonoBehaviour {
         ExitMainMenuBtn.gameObject.SetActive(false);
         SaveGameBtn.gameObject.SetActive(false);
         NewGameBtn.gameObject.SetActive(true);
-      SetButtonaActiveDependSlots(slotController,numSlots);
+		SetButtonaActiveDependSlots(slotController,numSlots);
     }
 
     private void SetButtonaActiveDependSlots(SlotController slotController, int numSlots)

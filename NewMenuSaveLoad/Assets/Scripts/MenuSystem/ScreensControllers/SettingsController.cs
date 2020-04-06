@@ -35,7 +35,7 @@ public class SettingsController : MonoBehaviour
        
         SoundButton.gameObject.SetActive(settingsButtons.isSoundSettingsEnabled);
         GamplayButton.gameObject.SetActive(settingsButtons.isGamePlaySettingsEnabled);
-//   CameraButton.gameObject.SetActive(settingsButtons.isCameraSettingsEnabled);
+//          CameraButton.gameObject.SetActive(settingsButtons.isCameraSettingsEnabled);
 //        HudConfigButton.gameObject.SetActive(settingsButtons.isHudConfigSettingsEnabled);
 //        AssessibilityButton.gameObject.SetActive(settingsButtons.isAccessibilitySettingsEnabled);
 //        CameraButton.gameObject.SetActive(settingsButtons.isAccessibilitySettingsEnabled);

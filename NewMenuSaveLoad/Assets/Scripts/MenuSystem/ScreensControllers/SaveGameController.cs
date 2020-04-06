@@ -33,7 +33,6 @@ public class SaveGameController : MonoBehaviour
             list = new List<InfoSlotResume>();
 
 
-        passat = true;
     }
 
 
@@ -45,7 +44,7 @@ public class SaveGameController : MonoBehaviour
     {
     }
 
-    bool passat;
+    
     List<InfoSlotResume> lost = new List<InfoSlotResume>();
 
     /// <summary>

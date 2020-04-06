@@ -11,7 +11,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
 
-public class SoltUI : MonoBehaviour,ISelectHandler {
+public class SoltUI : MonoBehaviour,ISelectHandler,IDeselectHandler {
     public Text Name;
     public Image Screenshot;
     public InfoSlotResume slot;
@@ -40,7 +40,7 @@ public class SoltUI : MonoBehaviour,ISelectHandler {
         }
         catch (NullReferenceException e)
         {
-            
+            Debug.Log("ScreenShot is null "+e.Message+" Set Default Image ");
             Screenshot.sprite = defaultS;
         }
         catch (Exception e)
@@ -58,5 +58,10 @@ public class SoltUI : MonoBehaviour,ISelectHandler {
     public void OnSelect(BaseEventData eventData)
     {
         Debug.Log("sss");
+    }
+
+    public void OnDeselect(BaseEventData eventData)
+    {
+       Debug.Log("ssssssssssssssc");
     }
 }

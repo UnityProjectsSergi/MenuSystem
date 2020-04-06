@@ -24,7 +24,12 @@ public class SaveData
     {
         //Load From file 
         objcts = null;
+        if(GameController.Instance.settignsMenu.typeSave==SaveSystem.LocalFileJSON)
         objcts = LoadFromFile<GameDataSaveContainer>(Path);
+        else
+        {
+           // objcts = LoadFromWeb();
+        }
     }
     /// <summary>
     /// Load Game FromSlot Obj 
@@ -63,13 +68,27 @@ public class SaveData
             if (num.Length != 0)
             {
                 OnBeforeSave();
-                SaveToFile<T>(path, content, deleteIfExistsFile);
+                if (GameController.Instance.settignsMenu.typeSave == SaveSystem.LocalFileJSON){
+                  
+                     SaveToFile<T>(path, content, deleteIfExistsFile);
+                }
+                else
+                {
+                 //   SaveToWEbSlots<T>();
+                }
                 ClearGameObjectsListSlot();
             }
             else
             {
                 ClearGameObjectsListSlot();
-                SaveToFile<T>(path, content, deleteIfExistsFile);
+                if (GameController.Instance.settignsMenu.typeSave == SaveSystem.LocalFileJSON)
+                {
+                    SaveToFile<T>(path, content, deleteIfExistsFile);
+                }
+                else
+                {
+                    //   SaveToWEbSlots<T>();
+                }
             }
         }
     }
@@ -101,6 +120,7 @@ public class SaveData
     /// <returns></returns>
     public static T LoadFromFile<T>(string path) where T : new()
     {
+        
         if (File.Exists(path))
         {
             //if (NamespaceExists("Sirenix.Serialization")) {
@@ -118,7 +138,7 @@ public class SaveData
         }
         else
         {
-            Debug.Log("ileNotExists");
+            Debug.Log("FileNotExists");
             return new T();
         }
     }

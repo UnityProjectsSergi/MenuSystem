@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.PlayerLoop;
 
 public class UiSystem : MonoBehaviour
 {
-
+    
     #region Variables In GameMenu
 
     
@@ -35,6 +37,7 @@ public class UiSystem : MonoBehaviour
     
     public static bool CanOpenNextScreen = true;
     public bool canSwitchscreen;
+    public PlayerInput PlayerInput;
 
     [SerializeField]
     /// <summary>
@@ -80,6 +83,7 @@ public class UiSystem : MonoBehaviour
         if (SavePathOfScreensToGoPrev)
             listPrevScreens = new List<UiScreen>();
         InitiaizeScreens();
+        
         if (!isd && startScreen  )
         {
             isd = true;
@@ -92,15 +96,21 @@ public class UiSystem : MonoBehaviour
         foreach (UiScreen screen in screens)
         {
             screen.Reset();
+            screen.EnableDisableUiElements(false);
         }
     }
-
+    
     // Update is called once per frame
     void Update()
     {
-      // if(canSwitchscreen)
-//            Debug.Log(Inputs.Instance.InputBack());
-//        if (Inputs.Instance.InputBack()) GoToPreviousScreen();
+        
+        // if (numPrvevScreen > 1)
+        // {
+        //     if (Inputs.Instance.Cancel)
+        //     {
+        //         GoToPreviousScreen();
+        //     }
+        // }
     }
     /// <summary>
     /// Public SwiychScreen Methodh
@@ -116,7 +126,7 @@ public class UiSystem : MonoBehaviour
         if (canSwitchscreen)
             StartCoroutine(SwitchScreen(newScreen, Action, fadeToBlack,timeInFadeBlack));
     }
-
+    
     private IEnumerator SwitchScreen(UiScreen newScreen, UnityAction Action = null, bool fadeInOutBlack = false,
         float timeInFadeBlack=0.0f)
     {
@@ -132,7 +142,7 @@ public class UiSystem : MonoBehaviour
             if (currentScreen)
             {
                 currentScreen.CloseScreen(fadeInOutBlack);
-
+                
                 if (!SavePathOfScreensToGoPrev)
                     previousScreen = currentScreen;
 
@@ -202,6 +212,8 @@ public class UiSystem : MonoBehaviour
             }
         }
     }
+
+       
 }
 
     public void ResetListPrevScreens()
@@ -210,4 +222,5 @@ public class UiSystem : MonoBehaviour
         numPrvevScreen = 0;
 
     }
+    
 }

@@ -1,5 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using UnityEditor;
 using UnityEngine;
 
 [System.Serializable]
@@ -15,4 +19,5 @@ public class GameObjectActorData
     public LayerMask LayerMask;
     public string tag;
     public bool isStatic;
+   
 }

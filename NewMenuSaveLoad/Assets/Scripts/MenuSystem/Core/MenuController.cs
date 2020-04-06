@@ -147,9 +147,12 @@ public class MenuController : MonoBehaviour
         {
             system.CallSwitchScreen(ScreenLoading, delegate
             {
-                Inputs.Instance.DisableAll();
+                
                 LoadScreencontroller.FloaderScene();
+              
             }, true);
+            
+            
         }
         else
         {
@@ -158,6 +161,7 @@ public class MenuController : MonoBehaviour
             pauseController.AllowEnterPause = true;
             GameController.Instance.hasCurrentSlot = true;
         } 
+       Inputs.Instance.SwitchActionMap("Player");
     }
     IEnumerator LoadSceneSync()
     {
@@ -182,8 +186,8 @@ public class MenuController : MonoBehaviour
         if (GameController.Instance.settignsMenu.IsLoaderSceneWithPligun)
         {   system.CallSwitchScreen(ScreenLoading, delegate
             {
-                Inputs.Instance.DisableAll();
-                LoadScreencontroller.FloaderScene();
+             
+              
             }, true);
         }
         else
@@ -192,6 +196,7 @@ public class MenuController : MonoBehaviour
             /// SwitchSreen To GamePlayScreen 
             //  system.SwitchScreen(GamePlayScreen, true,true);
         }
+        Inputs.Instance.SwitchActionMap("Player");
     }
     /// <summary>
     ///  Open Modal Screen for Override Slot If Exists in the using one slot mode
@@ -286,7 +291,7 @@ public class MenuController : MonoBehaviour
     public void YesLostGameProgressionFromPause()
     {
         system.ResetListPrevScreens();
-       
+        Inputs.Instance.SwitchActionMap("UI");
         GameController.Instance.currentSlot = null;
         GameController.Instance.currentSlotResume = null;
         GameController.Instance.hasCurrentSlot = false;

@@ -45,6 +45,7 @@ public class LoadSlotListController : MonoBehaviour
     /// </summary>
     public void GenerateSlots()
     {
+        
         GameController.LoadForce();
         list.Clear();
         list = SaveData.objcts.Slots;
@@ -55,7 +56,8 @@ public class LoadSlotListController : MonoBehaviour
         {
             Debug.Log(item.FileSlot+"num");
             GameObject ObjSlot = Instantiate(SlotPrefab, new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), transform.localRotation);
-            ObjSlot.GetComponent<RectTransform>().sizeDelta=new Vector2(1300,100);
+         ///   ObjSlot.GetComponent<RectTransform>().anchoredPosition=new Vector2(0.5f,0.5f);
+          //  ObjSlot.GetComponent<RectTransform>().sizeDelta=new Vector2(1030,100);
             ObjSlot.transform.SetParent(parentOflist.transform, true);
             SoltUI solt = ObjSlot.GetComponent<SoltUI>();
             if (solt != null)

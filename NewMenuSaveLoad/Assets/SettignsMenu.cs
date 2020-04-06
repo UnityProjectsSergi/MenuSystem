@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
+public enum SaveSystem{ LocalFileJSON,LocalWebJSON}
 public class SettignsMenu : MonoBehaviour
 {
     public float TimeToTakeScreenShoot;
     public bool IsSaveingSystemEnabled;
     public bool IsSaveingInterval;
-
+    public SaveSystem typeSave;
     public float SaveIntervalSeconds=2f;
     /// <summary>
     /// Says if is Screen DificultyLevelSelection is Enabled (true) of Desactive (false) 

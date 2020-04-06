@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 #region class GameObjectActor
@@ -104,6 +105,8 @@ public class GameObjectActor
         gameObj.layer = data.LayerMask;
         gameObj.tag = data.tag;
         gameObj.isStatic = data.isStatic;
+        
+        
      
     }
     #endregion

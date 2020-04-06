@@ -58,9 +58,12 @@ public class UiFader : MonoBehaviour
 
     public void Reset()
     {
-        uiElement.alpha = 0;
-        uiElement.blocksRaycasts = false;
-        uiElement.interactable = false;
+        if (uiElement != null)
+        {
+            uiElement.alpha = 0;
+            uiElement.blocksRaycasts = false;
+            uiElement.interactable = false;
+        }
     }
 
     public void ActivateCanvasGroup()

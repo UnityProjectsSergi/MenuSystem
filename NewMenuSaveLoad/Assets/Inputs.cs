@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
+using System.Security.Cryptography.X509Certificates;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,12 +14,16 @@ public  class Inputs : MonoBehaviour
     private static Inputs _instance;
     [SerializeField]
     [HideInInspector]
-    public InputAction BackBtnM;
+    public InputAction PauseGamePlayAction,BackAction,ExtPaseAction;
+
+    public bool Cancel;
+    public bool Pause,ExitPause;
+    public PlayerInput playerInput;
     public static Inputs Instance 
     { 
         get { return _instance; } 
     } 
-
+   
     private void Awake() 
     { 
         
@@ -29,83 +34,31 @@ public  class Inputs : MonoBehaviour
         }
 
         _instance = this;
-        DontDestroyOnLoad(this.gameObject);
-        _inputsControls=new Controls();
-       // Input.instance.PauseGAME quanpasi x ki vols k activi un explica b
-       // saber kincodi o kin tipus 
-       // _inputsControls.UI.MoveSelection.started += ctx => MoveUISelection(ctx);
-       //_inputsControls.UI.Pause.started += ctx=>  PauseGame(ctx);
-    }
 
-    public bool InputPauseGame()
+        if (playerInput == null)
+        {
+            playerInput = GetComponent<PlayerInput>();
+            
+            BackAction = playerInput.actions["Cancel"];
+            PauseGamePlayAction = playerInput.actions["Pause"];
+            ExtPaseAction = playerInput.actions["ExitPause"];
+        }
+
+        
+    }
+    
+    public void SwitchActionMap(string map)
     {
-        return _inputsControls.UI.Pause.triggered;
+      //  playerInput.currentActionMap.Disable();
+        // TODO see if when change from to pause to main can change the module inputs
+        playerInput.SwitchCurrentActionMap(map);
+  //      playerInput.currentActionMap.Enable();
     }
 
-//    public bool InputEnter()
-//    {
-//        return _inputsControls.UI.Confirm.triggered;
-//    }
-//    public bool InputBack()
-//    {
-//        return _inputsControls.UI.Back.triggered;
-//    }
 
-    private Controls _inputsControls;
     public Vector2 MoveUi;
 
-    public void GoToGamePlay()
-    {
-        _inputsControls.UI.Disable();
-        _inputsControls.GamePlay.Enable();
-    }
-
-    public void GoToUI()
-    {
-        _inputsControls.UI.Enable();
-        _inputsControls.GamePlay.Disable();   
-    }
-
-    public void DisableAll()
-    {
-        _inputsControls.UI.Disable();
-        _inputsControls.GamePlay.Disable();   
-    }
-//
-    public bool GetGamePlayPause()
-    {
-     
-      if(_inputsControls.GamePlay.enabled)
-        return _inputsControls.GamePlay.Pause.triggered;
-      else
-      {
-          return false;
-      }
-    }
-
-    public bool GetUiPause()
-    {
-        if(_inputsControls.UI.enabled)
-            return _inputsControls.UI.Pause.triggered;   
-        else
-        {
-            return false;
-        }
-    }
-//    public bool GetUiConfrmButton()
-//    {
-//        return _inputsControls.UI.Confirm.triggered;
-//    }
-
-//    public Vector2 GetmoveSelection()
-//    {
-//        if(_inputsControls.UI.MoveSelection.triggered)
-//        return _inputsControls.UI.MoveSelection.ReadValue<Vector2>();
-//        else
-//        {
-//            return Vector2.zero;
-//        }
-//    }
+   
 
    
 
@@ -120,7 +73,11 @@ public  class Inputs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     
+      
+        Cancel = BackAction.triggered;
+        ExitPause = ExtPaseAction.triggered;
+        Pause = PauseGamePlayAction.triggered;
+            Debug.Log(playerInput.currentActionMap.name+"Actua swith action map");
         //  Debug.Log(InputPauseGame());
         //  Debug.Log(InputEnter());
     }

@@ -38,7 +38,7 @@ public class SettngsButtons : MonoBehaviour {
     /// </summary>
     public bool isCreditsScreenEnabled;
     #endregion
-
+	
     // Use this for initialization
     void Start () {
 		

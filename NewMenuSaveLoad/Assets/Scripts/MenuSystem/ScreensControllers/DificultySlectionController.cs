@@ -24,8 +24,11 @@ public class DificultySlectionController : MonoBehaviour
                 GameObject go = Instantiate(buttonPrfab, transform.position, transform.rotation);
 
                 go.transform.SetParent(ParntOb.transform);
-            
+                
                 go.GetComponentInChildren<Text>().text = item;
+                
+                
+                
                 go.GetComponent<Button>().onClick.AddListener(() => SelectLevelDificulty(item));
             }
         }

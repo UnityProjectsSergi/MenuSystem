@@ -40,17 +40,11 @@ public class PauseController : MonoBehaviour {
     }
     private void Start()
     {
-
-        //mainMenuController = GetComponent<MainMenuController>();
-//        system = GetComponent<UISystem>();
         isPausedGame = false;
-       
     }
     
     // Update is called once per frame
-    void Update () {
-		
-	}
+    
     /// <summary>
     /// Detect Keys Downof keyboard
     /// </summary>
@@ -61,35 +55,40 @@ public class PauseController : MonoBehaviour {
         {
             
             Event e = Event.current;
-      
+            if (isPausedGame && Inputs.Instance.Cancel)
+            {
+                if (!system.CurrentScreen.Equals(mainMenuController.GetComponent<UiScreen>()))
+                {
+                    // go to previuos screen inside pause menu
+                    system.GoToPreviousScreen();
+                }
+            }
             // if Event.current is Key and the keycode is backKeyInMenuAndPauseUnpause and Event Type is KeyDown
-            if (Time.time >= timer && e.keyCode == backKeyInMenuAndPauseUnpause && e.type == EventType.KeyDown)
-         //   if (Time.time >= timer && Inputs.Instance.GetUiPauuse())
+       //     if (Time.time >= timer && e.keyCode == backKeyInMenuAndPauseUnpause && e.type == EventType.KeyDown)
+            if (Time.time >= timer && Inputs.Instance.Pause ||Time.time >= timer && Inputs.Instance.ExitPause)
             {
                 // if game is Paused
                 if (isPausedGame)
                 {
+                   
                     // if current Screen is not Pause Menu 
-                    if (!system.CurrentScreen.Equals(mainMenuController.GetComponent<UiScreen>()))
-                    {
-                        // go to previuos screen inside pause menu
-                        system.GoToPreviousScreen();
-                    }
+                    
                     // if current Screen is Pause Menu
-                    else
-                    {
+                    
                         //   Inputs.Instance.GoToGamPlay();
+                        
                         // switch screen to GamePlay Screen
                        system.CallSwitchScreen(GamePlayScreen);
                         // set false to IsPausedGeme to unpause the game
                         isPausedGame = false;
                         GameController.Instance.CallStartSaveSlotInterval(GameController.Instance.settignsMenu.SaveIntervalSeconds);
-                    }
+                        Inputs.Instance.SwitchActionMap("Player");
+                    
                 }
                 // if not paused game so i'm in gameplay
                 else
                 {
-                   
+                
                     //call setpausemenu on mainmenu to set the buttons for pauseMenu
                   mainMenuController.SetPauseMenuwithSlots();
 //                    // switchSreen to Pause Menu Screen
@@ -97,9 +96,20 @@ public class PauseController : MonoBehaviour {
                     // set true to isPausedGame to pause the game
                     isPausedGame = true;
                     GameController.Instance.CallStopSaveSlotInterval();
+                    Inputs.Instance.SwitchActionMap("UI");
                     //Inputs.Instance.GoToGamPlay();
                 }
                     timer = Time.time + TimeBetweenPause;
+            }
+        }
+        else
+        {
+            if (!GameController.Instance.hasCurrentSlot)
+            {
+                if (system.numPrvevScreen > 1 && Inputs.Instance.Cancel)
+                {
+                    system.GoToPreviousScreen();
+                }
             }
         }
     }
