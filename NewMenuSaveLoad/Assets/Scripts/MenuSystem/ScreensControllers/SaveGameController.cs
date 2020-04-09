@@ -105,7 +105,7 @@ public class SaveGameController : MonoBehaviour
             GameController.Instance.currentSlot = slot.slotGame;
         }
 
-      //  GameController.Instance.CallTakeScreenShotOnDelay(1f,slotController.GetComponent<SlotController>().isSlotsEnabled);
+        GameController.Instance.CallTakeScreenShotOnDelay(1f,true);
         SaveData.objcts.Slots.Add(slot);
         SaveData.SaveSlotData(slot.FileSlot, slot.slotGame, true);
 
@@ -153,6 +153,7 @@ public class SaveGameController : MonoBehaviour
     private void YesOverrideSaveSlot(InfoSlotResume soltSlot)
     {
         GameController.Instance.currentSlotResume.dataInfoSlot.datetimeSaved = DateTime.Now;
+        SaveData.objcts.previousSlotLoaded = soltSlot;
         GameController.Save();
         SaveData.SaveSlotData(soltSlot.FileSlot, GameController.Instance.currentSlot,
             true);
@@ -160,4 +161,5 @@ public class SaveGameController : MonoBehaviour
         system.CallSwitchScreen(GamePlayScreen,
             delegate { GamePlayScreen.GetComponent<GamePlayController>().ShowImageSavedGame(); });
     }
+    
 }

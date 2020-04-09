@@ -52,6 +52,8 @@ public class LoadSlotListController : MonoBehaviour
         foreach (Transform child in parentOflist.transform) {
             GameObject.Destroy(child.gameObject);
         }
+
+        int i = 0;
         foreach (InfoSlotResume item in list)
         {
             Debug.Log(item.FileSlot+"num");
@@ -59,6 +61,8 @@ public class LoadSlotListController : MonoBehaviour
          ///   ObjSlot.GetComponent<RectTransform>().anchoredPosition=new Vector2(0.5f,0.5f);
           //  ObjSlot.GetComponent<RectTransform>().sizeDelta=new Vector2(1030,100);
             ObjSlot.transform.SetParent(parentOflist.transform, true);
+            ObjSlot.GetComponent<Selectable>().Select();
+            ObjSlot.name += i;
             SoltUI solt = ObjSlot.GetComponent<SoltUI>();
             if (solt != null)
             {
@@ -68,7 +72,7 @@ public class LoadSlotListController : MonoBehaviour
                 solt.btnDel.onClick.AddListener(() => AskForDeleteSlot(solt.slot, ObjSlot));
                 solt.Init(item);
             }
-
+            i++;
         }
 
     }

@@ -923,8 +923,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetSelected: {fileID: 0}
   canvas: {fileID: 79081121}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
   IUElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
@@ -940,9 +940,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 79081122}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &79081122
@@ -1218,8 +1215,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetSelected: {fileID: 0}
   canvas: {fileID: 112157001}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
   IUElements:
   - {fileID: 804982807}
   - {fileID: 1007831607}
@@ -1238,9 +1235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 112157002}
   uiFaderBlack: {fileID: 0}
 --- !u!225 &112157002
@@ -1566,8 +1560,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetSelected: {fileID: 0}
   canvas: {fileID: 213562117}
-  fadeInTime: 1
-  fadeOutTime: 1
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
   IUElements: []
   timeFromBlack: 1
   timeToBlack: 1
@@ -1583,9 +1577,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 213562118}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &213562118
@@ -1740,8 +1731,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetSelected: {fileID: 0}
   canvas: {fileID: 217578940}
-  fadeInTime: 1
-  fadeOutTime: 1
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
   IUElements: []
   timeFromBlack: 1
   timeToBlack: 1
@@ -1757,9 +1748,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 217578941}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &217578941
@@ -1909,9 +1897,34 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
+  SaveAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  LoadAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  SaveSlotAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
   Cancel: 0
   Pause: 0
   ExitPause: 0
+  SaveTrigg: 0
   playerInput: {fileID: 0}
   MoveUi: {x: 0, y: 0}
 --- !u!114 &220505700
@@ -1939,7 +1952,55 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d07981dd-4d82-46e7-b7cc-156657f79d6f
+    m_ActionName: Player/Pause[/Keyboard/p]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c95b2375-e6d9-4b88-9c4c-c5e76515df4b
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7607c7b6-cd76-4816-beef-bd0341cfe950
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 15cef263-9014-4fd5-94d9-4e4a6234a6ef
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 32b35790-4ed0-4e9a-aa41-69ac6d629449
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3c7022bf-7922-4f7c-a998-c437916075ad
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0489e84a-4833-4c40-bfae-cea84b696689
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dad70c86-b58c-4b17-88ad-f5e53adf419e
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 44b200b1-1557-4083-816c-b22cbdf77ddf
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 24908448-c609-4bc3-a128-ea258674378a
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
+    m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2f5b2aa5-6a8f-42f6-8604-7f7189445194
+    m_ActionName: UI/ExitPause[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: UI
@@ -5063,9 +5124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 626737780}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!114 &626737779
@@ -5082,8 +5140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetSelected: {fileID: 1045201039}
   canvas: {fileID: 626737778}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
   IUElements:
   - {fileID: 1045201039}
   - {fileID: 1382708068}
@@ -6607,8 +6665,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetSelected: {fileID: 0}
   canvas: {fileID: 784361528}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
   IUElements:
   - {fileID: 1680840108}
   - {fileID: 1234319157}
@@ -6632,9 +6690,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 784361529}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &784361529
@@ -7270,8 +7325,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetSelected: {fileID: 1847422469}
   canvas: {fileID: 874335547}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
   IUElements:
   - {fileID: 382000861}
   - {fileID: 1636531342}
@@ -7290,9 +7345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 874335548}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &874335548
@@ -8434,6 +8486,66 @@ PrefabInstance:
       propertyPath: slotController
       value: 
       objectReference: {fileID: 1676567847}
+    - target: {fileID: 7732768864872198803, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864872198803, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864872198803, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864872198803, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864872198803, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864872198803, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864872202315, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864872224351, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.719
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864872224351, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864872263223, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.719
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864872263223, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.719
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864872263223, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7732768864872424599, guid: 276aee3954ee80146bbb62062ad4fb76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8544,9 +8656,85 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7732768864874850063, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864874853749, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.77254903
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864874853749, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.078097194
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864874853749, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.078097194
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864874853749, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.254717
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864874855009, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.20115392
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864874855009, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.13286997
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864874855009, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.645
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864874855009, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.8235294
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864874861223, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.31001535
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864874861223, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.22917409
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864874861223, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.4716981
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864874869577, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 90f42daabc551494eae07b434d71dfdb, type: 3}
     - target: {fileID: 7732768864874878993, guid: 276aee3954ee80146bbb62062ad4fb76,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864874887975, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a5b9887d6afe49348a5b5b084b823eaf,
+        type: 3}
+    - target: {fileID: 7732768864886093919, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7732768864886294961, guid: 276aee3954ee80146bbb62062ad4fb76,
@@ -8558,6 +8746,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864886313913, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 276aee3954ee80146bbb62062ad4fb76, type: 3}
@@ -8648,7 +8841,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 214118811}
   m_HandleRect: {fileID: 214118810}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -10333,8 +10526,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetSelected: {fileID: 0}
   canvas: {fileID: 1251716496}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
   IUElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
@@ -10350,9 +10543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 1251716497}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &1251716497
@@ -10423,11 +10613,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetSelected: {fileID: 0}
   canvas: {fileID: 1261279900}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
   IUElements: []
-  timeFromBlack: 0.5
-  timeToBlack: 0.5
+  timeFromBlack: 1
+  timeToBlack: 2
 --- !u!114 &1261279900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10440,9 +10630,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 1261279901}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &1261279901
@@ -10564,8 +10751,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetSelected: {fileID: 1349604561}
   canvas: {fileID: 1287160861}
-  fadeInTime: 0.25
-  fadeOutTime: 0.25
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
   IUElements:
   - {fileID: 1916570777}
   - {fileID: 1349604561}
@@ -10584,9 +10771,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 1287160862}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &1287160862
@@ -11178,8 +11362,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetSelected: {fileID: 0}
   canvas: {fileID: 1381093845}
-  fadeInTime: 0
-  fadeOutTime: 0
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
   IUElements: []
   timeFromBlack: 0
   timeToBlack: 0
@@ -11195,9 +11379,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 1381093846}
   uiFaderBlack: {fileID: 0}
 --- !u!225 &1381093846
@@ -11462,8 +11643,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetSelected: {fileID: 0}
   canvas: {fileID: 1414367517}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
   IUElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
@@ -11479,9 +11660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 1414367518}
   uiFaderBlack: {fileID: 0}
 --- !u!225 &1414367518
@@ -12442,7 +12620,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 8.532227}
+  m_AnchoredPosition: {x: 0, y: 8.707428}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1551410044
@@ -13590,7 +13768,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 66069204}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99791306
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -13846,7 +14024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 837f721f765ff5f4cbcbefb0ce3550ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToTakeScreenShoot: 0
+  TimeToTakeScreenShoot: 1
   IsSaveingSystemEnabled: 0
   IsSaveingInterval: 0
   typeSave: 0
@@ -14179,11 +14357,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetSelected: {fileID: 0}
   canvas: {fileID: 1686490372}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
   IUElements: []
-  timeFromBlack: 0.5
-  timeToBlack: 0.5
+  timeFromBlack: 2
+  timeToBlack: 1
 --- !u!114 &1686490372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14196,9 +14374,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 1686490373}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &1686490373
@@ -15464,8 +15639,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetSelected: {fileID: 0}
   canvas: {fileID: 1828755993}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
   IUElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
@@ -15481,9 +15656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 1828755994}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &1828755994
@@ -15494,7 +15666,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1828755989}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -15532,7 +15704,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.8}
-  m_AnchoredPosition: {x: 0, y: 48.31041}
+  m_AnchoredPosition: {x: 0, y: 49.302383}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1840788940
@@ -16471,8 +16643,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetSelected: {fileID: 0}
   canvas: {fileID: 1933942485}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
   IUElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
@@ -16488,9 +16660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 1933942486}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &1933942486
@@ -16763,8 +16932,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetSelected: {fileID: 551209535}
   canvas: {fileID: 1958659011}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
   IUElements:
   - {fileID: 1623719279}
   - {fileID: 1790183521}
@@ -16786,9 +16955,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 1958659012}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &1958659012
@@ -17508,7 +17674,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6755604}
   m_HandleRect: {fileID: 6755603}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -17809,9 +17975,34 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
+  SaveAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  LoadAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  SaveSlotAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
   Cancel: 0
   Pause: 0
   ExitPause: 0
+  SaveTrigg: 0
   playerInput: {fileID: 0}
   MoveUi: {x: 0, y: 0}
 --- !u!4 &2113862845

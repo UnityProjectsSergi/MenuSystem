@@ -52,10 +52,10 @@ public class GameController : MonoBehaviour
         /// <summary>
         /// Save Interval Coroutine to save slot game on gameplay mode.
         /// </summary>
-        [CanBeNull] private IEnumerator saveIntervalCoroutine = null;
-
-[HideInInspector]
+        [CanBeNull] private IEnumerator _saveIntervalCoroutine = null;
+        [HideInInspector]
         public PauseController pauseController;
+        public UiScreen gamePlayScreen;
     #endregion
     #region Methods
          #region UnityMetdods
@@ -67,6 +67,9 @@ public class GameController : MonoBehaviour
                   // set null currentSlotResume property on Start
                   currentSlotResume= null;
               }
+              /// <summary>
+              /// Awakw Unity Method
+              /// </summary>
               private void Awake()
                 {
                 // Singleton Pattern
@@ -91,7 +94,9 @@ public class GameController : MonoBehaviour
 
                 }
             }
-              
+              /// <summary>
+              /// On app qut
+              /// </summary>
               private void OnApplicationQuit()
               {
                   currentSlotResume = null;
@@ -126,6 +131,7 @@ public class GameController : MonoBehaviour
                   }*/
               }
         #endregion
+        
         #region GameObjectsManagmentMetods
             /// <summary>
             /// Create GameObject in scene
@@ -136,10 +142,13 @@ public class GameController : MonoBehaviour
             /// <returns></returns>
             public static ObjToSave CreateGameObject(GameObject prefab, Vector3 position, Quaternion rotation)
             {
-
+                // instanciate the object
                 GameObject go = Instantiate(prefab, position, rotation);
+                // get Component ObjToSave
                 ObjToSave obj = go.GetComponent<ObjToSave>();
+                // if obj is null
                 if (obj == null)
+                    // Add ObjToSaveComponent
                     go.AddComponent<ObjToSave>();
                 return obj;
             }
@@ -153,7 +162,6 @@ public class GameController : MonoBehaviour
             /// <returns></returns>
             public static ObjToSave CreateObjSaved(GameObjectActorData data)
             {
-                Debug.Log(data.__prefabPath+" "+ Resources.Load<GameObject>(data.__prefabPath));
                 ObjToSave obj = CreateGameObject(Resources.Load<GameObject>(data.__prefabPath), data.position, data.rotationQuaterion);
 
                 obj.gameObjSave.data = data;
@@ -161,26 +169,31 @@ public class GameController : MonoBehaviour
             }
         #endregion
         #region Save Load Metdods
-
+        /// <summary>
+        /// Forces the load data
+        /// </summary>
         public static void LoadForce()
         {
             SaveData.Load(datapath);
         }
         /// <summary>
-        /// Load Function Loads data
+        /// Load Function Loads data if hasLoaded dataes false at init
         /// </summary>
         public static void Load(bool force)
         {
+            // if hasLoadedGameData is false
             if (!hasLoadedGameData)
             {
+                // set HasLoadedGameData true
                 hasLoadedGameData = true;
+                // load data
                 SaveData.Load(datapath);
                 
             }
         }
         /// <summary>
-            /// Save Data to file.
-            /// </summary>
+        /// Save Data to file.
+        /// </summary>
         public static void Save()
         {
            SaveData.SaveToFile<GameDataSaveContainer>(datapath, SaveData.objcts, true);
@@ -190,7 +203,7 @@ public class GameController : MonoBehaviour
         /// </summary>
         public static void SaveSlotObj()
         {
-            //TODO make ui to show when is saving slot game.
+            // save slot data from current slot data
             SaveData.SaveSlotData<GameSlot>(GameController.Instance.currentSlotResume.FileSlot, GameController.Instance.currentSlot, true);
         }
         #endregion
@@ -214,15 +227,20 @@ public class GameController : MonoBehaviour
                 GameController.Instance.currentSlotResume.dataInfoSlot.ScreenShot = Application.persistentDataPath
                                                                        + "/" + GameController.Instance.currentSlotResume
                                                                            .FolderOfSlot + "/ScreenShot.png";
-
+                // is save data
                 if (save)
                 {
+                    // save 
                     GameController.Save();
                 }
             }
 
         }
-
+        /// <summary>
+        /// call take screenshot with delay
+        /// </summary>
+        /// <param name="time">Time to wait to take screen shot</param>
+        /// <param name="saveIt"> Say if needs to save it immediately</param>
         public void CallTakeScreenShotOnDelay(float time,bool saveIt)
         {
             StartCoroutine(TakeScreenShoot(time,saveIt));
@@ -231,20 +249,24 @@ public class GameController : MonoBehaviour
         /// Coroutine of TakeScreenShoot of Screen in time seconds
         /// </summary>
         /// <param name="time"></param>
-        /// <returns></returns>
+        /// <returns>IEnuperator Coroutine</returns>
         public IEnumerator TakeScreenShoot(float time,bool saveIt)
         {
+                // wait for time
                yield return new WaitForSecondsRealtime(time);
+               // take screenshot 
                TakeScreenShot(saveIt);
         }
         /// <summary>
         /// Call Start Save Slot interval Coroutine
         /// </summary>
-        /// <param name="num"></param>
-        public void CallStartSaveSlotInterval(float num)
+        /// <param name="intervalOfTime"></param>
+        public void CallStartSaveSlotInterval(float intervalOfTime)
         {
-            saveIntervalCoroutine = SaveSoltInterval(num);
-            StartCoroutine(saveIntervalCoroutine);
+            // get Coroutine
+            _saveIntervalCoroutine = SaveSoltInterval(intervalOfTime);
+            // start Coroutine
+            StartCoroutine(_saveIntervalCoroutine);
         }
 
         /// <summary>
@@ -252,10 +274,13 @@ public class GameController : MonoBehaviour
         /// </summary>
         public void CallStopSaveSlotInterval()
         {
-            if (saveIntervalCoroutine != null)
+            /// check if is set 
+            if (_saveIntervalCoroutine != null)
             {
-                StopCoroutine(saveIntervalCoroutine);
-                saveIntervalCoroutine = null;
+                // stop doing the couroitne save interval
+                StopCoroutine(_saveIntervalCoroutine);
+                // set corotine null
+                _saveIntervalCoroutine = null;
             }
         }
 
@@ -264,11 +289,16 @@ public class GameController : MonoBehaviour
         /// </summary>
         IEnumerator SaveSoltInterval(float time)
         {
+            // infitint
             while (true)
             {
+                // wait for time
                     yield return  new WaitForSecondsRealtime(time);
+                    //save slot data
                     SaveSlotObj();
-             }
+                    // show iu element for saved data
+                    gamePlayScreen.GetComponent<GamePlayController>().ShowImageSavedGame();
+            }
         }
         #endregion
     #endregion
@@ -284,3 +314,5 @@ public class GameController : MonoBehaviour
 
     #endregion
 }
+
+

@@ -36,8 +36,8 @@ public class UiSystem : MonoBehaviour
     private Canvas previousCanvas;
     
     public static bool CanOpenNextScreen = true;
-    public bool canSwitchscreen;
-    public PlayerInput PlayerInput;
+    public bool canSwitchScreenPreventMultipleCalls;
+    
 
     [SerializeField]
     /// <summary>
@@ -75,27 +75,38 @@ public class UiSystem : MonoBehaviour
         get { return currentScreen; }
     }
 
-    public bool isd;
+    public bool isFirstEnter;
+    // Start methodth
     void Start()
     {
+        // set number of Previous Screen index to 0
         numPrvevScreen = 0;
+        // get Child UiScreens components 
         screens = GetComponentsInChildren<UiScreen>(true);
+        // if SavePath of screens to go previous screens 
         if (SavePathOfScreensToGoPrev)
             listPrevScreens = new List<UiScreen>();
+        // initialize screens
         InitiaizeScreens();
-        
-        if (!isd && startScreen  )
+        // if isFirstEnter es false and startScreen es setted
+        if (!isFirstEnter && startScreen  )
         {
-            isd = true;
+            isFirstEnter = true;
+            // call SwitchScreen Coroutine
             StartCoroutine(SwitchScreen(startScreen));
         }
     }
-
+    /// <summary>
+    /// Initialize screens
+    /// </summary>
     private void InitiaizeScreens()
     {
+        //loop all screens 
         foreach (UiScreen screen in screens)
         {
+            // Reset the canvas Group components alfa raycast and interactuable
             screen.Reset();
+            // set buttons of screens to disable for selection feature
             screen.EnableDisableUiElements(false);
         }
     }
@@ -104,97 +115,110 @@ public class UiSystem : MonoBehaviour
     void Update()
     {
         
-        // if (numPrvevScreen > 1)
-        // {
-        //     if (Inputs.Instance.Cancel)
-        //     {
-        //         GoToPreviousScreen();
-        //     }
-        // }
+       
     }
     /// <summary>
     /// Public SwiychScreen Methodh
     /// </summary>
     /// <param name="newScreen">New Screen to Open</param>
-    /// <param name="Action"></param>
-    /// <param name="fadeToBlack"></param>
-    /// <param name="timeInFadeBlack"></param>
+    /// <param name="Action">Action to do inside of switch screen</param>
+    /// <param name="fadeToBlack">say if needs to fade to black screen</param>
+    /// <param name="timeInFadeBlack">Time of </param>
+    /// 
     public void CallSwitchScreen(UiScreen newScreen, UnityAction Action = null, bool fadeToBlack = false,
         float timeInFadeBlack=0.0f)
     
     {
-        if (canSwitchscreen)
+        //  check if canSwitch Screen es true  to prevent the multiple calls of switch screen
+        if (canSwitchScreenPreventMultipleCalls)
             StartCoroutine(SwitchScreen(newScreen, Action, fadeToBlack,timeInFadeBlack));
     }
-    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="newScreen"></param>
+    /// <param name="Action"></param>
+    /// <param name="fadeInOutBlack"></param>
+    /// <param name="timeToWaitSwitchScreen"></param>
+    /// <returns></returns>
     private IEnumerator SwitchScreen(UiScreen newScreen, UnityAction Action = null, bool fadeInOutBlack = false,
-        float timeInFadeBlack=0.0f)
+        float timeToWaitSwitchScreen=0.0f)
     {
+        // if there new screen
         if (newScreen)
         {
-            canSwitchscreen = false;
+            // desable the can SwitchScreenPreventMultiple calls
+            canSwitchScreenPreventMultipleCalls = false;
+            //if SavePathofScreensToGoPrev is true
             if (SavePathOfScreensToGoPrev)
             {
+                // ad newScreen in list of PreviousScreens
                 listPrevScreens.Add(newScreen);
                 numPrvevScreen++;
             }
-
+            // if has value currentScreens
             if (currentScreen)
             {
+                // close currecntScreens
                 currentScreen.CloseScreen(fadeInOutBlack);
-                
+                //if SavePathofScreensToGoPrev is false
                 if (!SavePathOfScreensToGoPrev)
+                    // set the previuosScreen with currentScreen
                     previousScreen = currentScreen;
-
-
-               
             }
-            yield return new WaitForSeconds(timeInFadeBlack);
-
+            // wat for timeToWaitSwitchScreen
+            yield return new WaitForSeconds(timeToWaitSwitchScreen);
+            // set currentScreen with newScreen
             currentScreen = newScreen;
-
+            // open current screen
             currentScreen.OpenScreen(Action, fadeInOutBlack);
-            canSwitchscreen = true;
+            // enable the can SwitchScreenPreventMultiple calls
+            canSwitchScreenPreventMultipleCalls = true;
         }
     }
-
-    public IEnumerator SwitchScreenPrev(UiScreen aScreen, UnityAction nae = null, bool fadeToBlack = false)
+    /// <summary>
+    ///  Switch screen to go previous screen
+    /// </summary>
+    /// <param name="aScreen"></param>
+    /// <param name="nae"></param>
+    /// <param name="fadeToBlack"></param>
+    /// <returns>IEnumerator Coroutine</returns>
+    public IEnumerator SwitchScreenPrev(UiScreen aScreen, UnityAction nae = null, bool fadeToBlack = false,float timeToWaitSwitchScreen=0.0f)
     {
         //if pass an screen
         if (aScreen)
         {
-            canSwitchscreen = false;
+            // desable the can SwitchScreenPreventMultiple calls
+            canSwitchScreenPreventMultipleCalls = false;
             // if current screen is set
             if (currentScreen)
             {
-                //if IsINGameMenu is true
-
-
-                // Close current canvas
+               // Close current canvas
                 currentScreen.CloseScreen(fadeToBlack);
                 // set previousScreen with currentScreen
             }
 
-            yield return new WaitForSeconds(currentScreen.fadeOutTime);
+            yield return new WaitForSeconds(timeToWaitSwitchScreen);
             //set currentScreen with newScren
             currentScreen = aScreen;
-            // set active true current screenn
-            currentScreen.gameObject.SetActive(true);
-
+            //Open currentScreen
             currentScreen.OpenScreen(nae, fadeToBlack);
-            canSwitchscreen = true;
+            // enable the can SwitchScreenPreventMultiple calls
+            canSwitchScreenPreventMultipleCalls = true;
         }
     }
 
     public void GoToPreviousScreen()
     {
-        if(canSwitchscreen){
-        // if theres a prevous screen
+        // desable the can SwitchScreenPreventMultiple calls
+        if(canSwitchScreenPreventMultipleCalls){
+            //if SavePathofScreensToGoPrev is true
         if (SavePathOfScreensToGoPrev)
         {
-            // reduce num od PrevSceen
+            //if number Of Screens Previous is major than1
             if (numPrvevScreen > 1)
             {
+                // reduce the number of Prev Screens
                 numPrvevScreen--;
                 // get prevoius screen from list
                 previousScreen = listPrevScreens[numPrvevScreen - 1];
@@ -206,8 +230,10 @@ public class UiSystem : MonoBehaviour
         }
         else
         {
+            // is has previous Screen set
             if (previousScreen)
             {
+                // call SwitchScreenPrev  Corourtine
                 StartCoroutine(SwitchScreenPrev(previousScreen));
             }
         }

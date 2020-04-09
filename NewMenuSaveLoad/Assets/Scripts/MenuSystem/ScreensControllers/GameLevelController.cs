@@ -17,29 +17,29 @@ public class GameLevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // if (Input.GetKeyDown(KeyCode.S))
-        //{
+        if (Input.GetKeyDown(KeyCode.S) || Inputs.Instance.SaveTrigg)
+       {
             Debug.Log("SAVE");
-          //  GameController.Save();
-        //}
-       // if (Input.GetKeyDown(KeyCode.D))
-        //{
-           // SaveSlotObj(); 
-       // }
-        // if (Input.GetKeyDown(KeyCode.L))
-        // {
-        //     Debug.Log("Load");
-        //     GameController.LoadForce();
-        // }
-        // if(Input.GetKeyDown(KeyCode.K))
-        // {
-        //     //SaveData.LoadGameSlotData();
-        // }
-        // if (Input.GetKeyDown(KeyCode.C))
-        // {
-        //     Debug.Log("Create");
-        //     CreateGameObject(_prefab, new Vector3(2, 5, 0), Quaternion.identity);
-        // }
+         GameController.Save();
+       }
+        if (Input.GetKeyDown(KeyCode.D))
+       {
+            SaveSlotObj(); 
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log("Load");
+            GameController.LoadForce();
+        }
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            //SaveData.LoadGameSlotData();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log("Create");
+            CreateGameObject(_prefab, new Vector3(2, 5, 0), Quaternion.identity);
+        }
     }
 
     public GameObject _prefab ;
