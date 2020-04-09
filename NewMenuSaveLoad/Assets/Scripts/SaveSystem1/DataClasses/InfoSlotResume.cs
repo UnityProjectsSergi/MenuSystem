@@ -61,6 +61,7 @@ namespace Assets.SaveSystem1.DataClasses
     [System.Serializable]
     public class DataInfoSlot
     {
+        
         public string currentLevelPlay="";
         
         /// <summary>

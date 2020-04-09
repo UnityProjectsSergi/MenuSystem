@@ -11,109 +11,154 @@ using UnityEngine.EventSystems;
 
 public class LoadSlotListController : MonoBehaviour
 {
+    /// <summary>
+    /// Reference to MainMenu
+    /// </summary>
     public UiScreen MainMenu;
-    public GameObject SlotPrefab;
+    /// <summary>
+    /// Load UI Prefab Slot
+    /// </summary>
+    public GameObject loadSlotUIPrefab;
+    /// <summary>
+    /// Content GameObject of list of slots
+    /// </summary>
     public GameObject parentOflist;
-    [HideInInspector]
-    public InfoSlotResume previouSlotResume;
-    private MenuController menuController;
+    /// <summary>
+    /// Save Previous slot resume for not override when save data
+    /// </summary>
+    [HideInInspector] public InfoSlotResume previouSlotResume;
+    /// <summary>
+    /// Reference to UI System Script 
+    /// </summary>
     public UiSystem system;
+    /// <summary>
+    /// Reference to question Screen 
+    /// </summary>
     public UiScreen quetionScreen;
+    List<InfoSlotResume> slotList;
+    /// <summary>
+    /// Unity Events Yes no And Cancel
+    /// </summary>
     private UnityEvent Yes, No, Cancel;
+    /// <summary>
+    /// Reference to evenySystem
+    /// </summary>
     private EventSystem eventSystem;
-
+    /// <summary>
+    /// Reference to Menu Controller Script
+    /// </summary>
     public MenuController MenuController;
     // Use this for initialization
     void Start()
     {
-        
+        // initialize Unity Events and list of Slots  
         Yes = new UnityEvent();
         No = new UnityEvent();
         Cancel = new UnityEvent();
-        if (list == null)
-            list = new List<InfoSlotResume>();
+        if (slotList == null)
+            slotList = new List<InfoSlotResume>();
 
     }
-    List<InfoSlotResume> list;
+  
     // Update is called once per frame
     void Update()
     {
 
     }
     /// <summary>
-    /// 
+    /// Generate slots list methos 
     /// </summary>
     public void GenerateSlots()
     {
-        
+        // foce load data
         GameController.LoadForce();
-        list.Clear();
-        list = SaveData.objcts.Slots;
-        foreach (Transform child in parentOflist.transform) {
+        // slotList clear items
+        slotList.Clear();
+        // get list from data
+        slotList = SaveData.objcts.Slots;
+        // loop the children Transform of parentOfList to Delete children of content gameobject to reset the view of slots
+        foreach (Transform child in parentOflist.transform) 
             GameObject.Destroy(child.gameObject);
-        }
+        
 
         int i = 0;
-        foreach (InfoSlotResume item in list)
+        foreach (InfoSlotResume item in slotList)
         {
             Debug.Log(item.FileSlot+"num");
-            GameObject ObjSlot = Instantiate(SlotPrefab, new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), transform.localRotation);
-         ///   ObjSlot.GetComponent<RectTransform>().anchoredPosition=new Vector2(0.5f,0.5f);
-          //  ObjSlot.GetComponent<RectTransform>().sizeDelta=new Vector2(1030,100);
+            // Instanciate loadSlotUIpreafb
+            GameObject ObjSlot = Instantiate(loadSlotUIPrefab, new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), transform.localRotation);
+           // set parent of parentOfList
             ObjSlot.transform.SetParent(parentOflist.transform, true);
+            // set select the objSlot
             ObjSlot.GetComponent<Selectable>().Select();
             ObjSlot.name += i;
-            SoltUI solt = ObjSlot.GetComponent<SoltUI>();
-            if (solt != null)
+            // get Script SlotUI from objSlot
+            SoltUI soltUi = ObjSlot.GetComponent<SoltUI>();
+            // if slot is sett
+            if (soltUi != null)
             {
-                solt.btnDel.onClick.RemoveAllListeners();
-                solt.btnLoadSave.onClick.RemoveAllListeners();
-                solt.btnLoadSave.onClick.AddListener(() => LoadSlot(solt.slot));
-                solt.btnDel.onClick.AddListener(() => AskForDeleteSlot(solt.slot, ObjSlot));
-                solt.Init(item);
+                // remove and load butons the Delete Listener
+                soltUi.btnDel.onClick.RemoveAllListeners();
+                soltUi.btnLoadSave.onClick.RemoveAllListeners();
+                // Add new listener to LoadBtn and Del btn
+                soltUi.btnLoadSave.onClick.AddListener(() => LoadSlot(soltUi.slot));
+                soltUi.btnDel.onClick.AddListener(() => AskForDeleteSlot(soltUi.slot, ObjSlot));
+                // Init UI of slottUI
+                soltUi.Init(item);
             }
             i++;
         }
 
     }
     /// <summary>
-    /// 
+    /// On Click of load slot button fires
     /// </summary>
     /// <param name="slot"></param>
     public void LoadSlot(InfoSlotResume slot)
     {
-        Debug.Log("Load Slot");
-       
         //if has currentSlot so I'm in pause Menu and select load game 
         if ((bool)GameController.Instance.currentSlotResume)
         {
+            // save the curretslotresume at previousSlotResume
             previouSlotResume = GameController.Instance.currentSlotResume;
+            // ask if ovrrive cuurent slot
             AskForOverridecurrentSlot(slot);
             
         }
         else
         {
-            Debug.Log("No has Curect Slot in Instace");
+            // set slot in currentSlot instace
             GameController.Instance.currentSlotResume = slot;
+            // set slot in previu slot loaded in save data
             SaveData.objcts.previousSlotLoaded = slot;
+            // Save data
             GameController.Save();
             Debug.Log("Enter Load from slot");
+            // load from slot scene
             MenuController.LoadSceneFromSlot();
         }
     }
+    /// <summary>
+    /// Resolves the open modal for ask is override Current slot
+    /// </summary>
+    /// <param name="slot"></param>
     public void AskForOverridecurrentSlot(InfoSlotResume slot)
     {
+        // remoe the llisteners of No,Yes,Cancel buttons
         No.RemoveAllListeners();
         Yes.RemoveAllListeners();
         Cancel.RemoveAllListeners();
+        // add listeners of yes,no,cancel
         Yes.AddListener(() => LoadYesOverrideSlot(slot));
         No.AddListener(() => LoadSlotNoOverrideSlot());
         Cancel.AddListener(() => LoadSlotCanelOverrideSlot());
+        // set modal screen data with open modal
         quetionScreen.GetComponent<QuestionSceenController>().OpenModal("Ovveride the slot current", "You Sure Override?", Yes, No, Cancel);
+        // SwitchScreen to questionScreen
        system.CallSwitchScreen(quetionScreen);
     }
     /// <summary>
-    /// 
+    /// Resolves the open modal screen to ask for sure delete slot 
     /// </summary>
     /// <param name="slot"></param>
     /// <param name="gameObject"></param>
@@ -127,15 +172,15 @@ public class LoadSlotListController : MonoBehaviour
         system.CallSwitchScreen(quetionScreen);
     }
     /// <summary>
-    /// 
+    /// Executes de Yes action llistenen for the ask delete slot modal
     /// </summary>
     /// <param name="slot"></param>
     /// <param name="gameObject"></param>
     public void DeleteSlot(InfoSlotResume slot, GameObject gameObject)
     {
-        
+        // deletedirectory of slot
         Directory.Delete(Application.persistentDataPath + "/" +slot.FolderOfSlot, true);
-        
+        // remove slot fron data slots
         SaveData.objcts.Slots.Remove(slot);
    
            

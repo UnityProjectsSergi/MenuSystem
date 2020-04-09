@@ -1,4 +1,5 @@
-﻿using Assets.SaveSystem1.DataClasses;
+﻿using System;
+using Assets.SaveSystem1.DataClasses;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -59,8 +60,8 @@ public class MenuController : MonoBehaviour
     /// <summary>
     /// Delault Game Slot 
     /// </summary>
-    
 
+    public InfoSlotResume defaultSlot;
   
 
     [HideInInspector] public SlotController slotController;
@@ -222,6 +223,7 @@ public class MenuController : MonoBehaviour
     {
         // Clear the Slots list
         // a dit q si 
+        if(SaveData.objcts.previousSlotLoaded!=null)
         Directory.Delete(Application.persistentDataPath + "/" + SaveData.objcts.previousSlotLoaded.FolderOfSlot, true);
         
         SaveData.objcts.previousSlotLoaded=null;
@@ -249,6 +251,9 @@ public class MenuController : MonoBehaviour
     /// </summary>
     public void Add_New_Slot_To_ListsSlots_Set_Previous_Slot_SaveAllSlots_LoadScene()
     {
+        
+        defaultSlot.CrateFolder();
+        GameController.Instance.currentSlotResume = defaultSlot;
         // add temp slot into list of data 
         SaveData.objcts.Slots.Add(GameController.Instance.currentSlotResume);
         //Set previuos SlotLoaaded in data for Conitune button in main menu 

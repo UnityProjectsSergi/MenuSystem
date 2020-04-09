@@ -11,63 +11,78 @@ using UnityEngine.UI;
 
 public class SaveGameController : MonoBehaviour
 {
-    [SerializeField] public InfoSlotResume Default;
-    public GameObject SlotPrefab;
+    /// <summary>
+    /// Save UI Prefab Slot
+    /// </summary>
+    public GameObject SaveUISlotPrefab;
+    /// <summary>
+    /// Content GameObject of list of slots
+    /// </summary>
     public GameObject parentOflist;
+    /// <summary>
+    /// Save Previous slot resume for not override when save data
+    /// </summary>
     [HideInInspector] public InfoSlotResume previouSlotResume;
-    private MenuController menuController;
+    /// <summary>
+    /// Reference to UI System Script 
+    /// </summary>
     public UiSystem system;
+    /// <summary>
+    /// Reference to question Screen and GamePlayScreen
+    /// </summary>
     public UiScreen quetionScreen, GamePlayScreen;
+    /// <summary>
+    /// list Of Slots
+    /// </summary>
+    public List<InfoSlotResume> listSlots;
+    /// <summary>
+    /// Unity Events Yes no And Cancel
+    /// </summary>
     private UnityEvent Yes, No, Cancel;
+    /// <summary>
+    /// Reference to evenySystem
+    /// </summary>
     private EventSystem eventSystem;
-
-    public MenuController MenuController;
+    /// <summary>
+    /// Reference to Menu Controller Script
+    /// </summary>
+    private MenuController menuController;
 
     // Use this for initialization
     void Start()
     {
+        // initialize Unity Events and list of Slots
         Yes = new UnityEvent();
         No = new UnityEvent();
         Cancel = new UnityEvent();
-        if (list == null)
-            list = new List<InfoSlotResume>();
+        if (listSlots == null)
+            listSlots = new List<InfoSlotResume>();
 
 
     }
-
-
-    public List<InfoSlotResume> list;
-
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    
-    List<InfoSlotResume> lost = new List<InfoSlotResume>();
-
     /// <summary>
-    /// 
+    /// Generate slots list methos 
     /// </summary>
     public void GenerateSlots()
     {
+        // force load Data
         GameController.LoadForce();
-
-        list = SaveData.objcts.Slots;
-        list = list.Where(m => m.dataInfoSlot.typeSaveSlot == TypeOfSavedGameSlot.Manual_Save_Slot).ToList();
+        // get list slots
+        listSlots = SaveData.objcts.Slots;
+        // filter list slots for Manual save slots
+        listSlots = listSlots.Where(m => m.dataInfoSlot.typeSaveSlot == TypeOfSavedGameSlot.Manual_Save_Slot).ToList();
+        // loop the children Transform of parentOfList to Delete children of content gameobject to reset the view of slots
         foreach (Transform child in parentOflist.transform)
-        {
             GameObject.Destroy(child.gameObject);
-        }
-
-
-        foreach (InfoSlotResume item in list)
+        // loop the list slots
+        foreach (InfoSlotResume item in listSlots)
         {
-            GameObject ObjSlot = Instantiate(SlotPrefab,
+            /// instanciate objSlot 
+            GameObject ObjSlot = Instantiate(SaveUISlotPrefab,
                 new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z),
                 transform.localRotation);
-            ObjSlot.GetComponent<RectTransform>().sizeDelta = new Vector2(1300, 100);
+            // 
+          
             ObjSlot.GetComponentInChildren<Text>().text = ObjSlot.name;
 
             ObjSlot.transform.SetParent(parentOflist.transform, true);
