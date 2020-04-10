@@ -132,7 +132,6 @@ public class MenuController : MonoBehaviour
             else
             {
                 //Add slot to list, Set Prvoius slot, Save All, Load Scene
-                
                 Add_New_Slot_To_ListsSlots_Set_Previous_Slot_SaveAllSlots_LoadScene();
             }
         }
@@ -148,12 +147,8 @@ public class MenuController : MonoBehaviour
         {
             system.CallSwitchScreen(ScreenLoading, delegate
             {
-                
                 LoadScreencontroller.FloaderScene();
-              
             }, true);
-            
-            
         }
         else
         {
@@ -162,7 +157,7 @@ public class MenuController : MonoBehaviour
             pauseController.AllowEnterPause = true;
             GameController.Instance.hasCurrentSlot = true;
         } 
-       Inputs.Instance.SwitchActionMap("Player");
+        Inputs.Instance.SwitchActionMap("Player");
     }
     IEnumerator LoadSceneSync()
     {
@@ -221,18 +216,15 @@ public class MenuController : MonoBehaviour
     /// </summary>
     public void OverrideSlot()
     {
-        // Clear the Slots list
-        // a dit q si 
+        
         if(SaveData.objcts.previousSlotLoaded!=null)
         Directory.Delete(Application.persistentDataPath + "/" + SaveData.objcts.previousSlotLoaded.FolderOfSlot, true);
-        
         SaveData.objcts.previousSlotLoaded=null;
-        GameController.Instance.currentSlotResume = null;
-        GameController.Instance.currentSlot = null;
-        GameController.Instance.hasCurrentSlot = false;
         SaveData.objcts.Slots.Clear();
         GameController.Save();
         
+        
+        //GameController.Instance.hasCurrentSlot = true;
         // add New slot to list, SetPevous Slot, Save All Slot, an LoadScen
         Add_New_Slot_To_ListsSlots_Set_Previous_Slot_SaveAllSlots_LoadScene();
     }
@@ -241,7 +233,7 @@ public class MenuController : MonoBehaviour
     /// </summary>
     public void NotOverrideSlot()
     {
-        
+        //TODO see if we need to change to main screen menu or not? becuse if we are on one slot or many slots game
         // go to previous screen 
         system.GoToPreviousScreen();
     }
@@ -251,14 +243,10 @@ public class MenuController : MonoBehaviour
     /// </summary>
     public void Add_New_Slot_To_ListsSlots_Set_Previous_Slot_SaveAllSlots_LoadScene()
     {
-        
-        defaultSlot.CrateFolder();
-        GameController.Instance.currentSlotResume = defaultSlot;
         // add temp slot into list of data 
         SaveData.objcts.Slots.Add(GameController.Instance.currentSlotResume);
         //Set previuos SlotLoaaded in data for Conitune button in main menu 
         SaveData.objcts.previousSlotLoaded = GameController.Instance.currentSlotResume;
-
         // Save Change in dsk
         GameController.Save();
         //load scene
