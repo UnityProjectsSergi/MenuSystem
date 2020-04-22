@@ -22,7 +22,7 @@ public class SettingsController : MonoBehaviour
     public Button AssessibilityButton;
 
     public Button VideoButton;
-    public Button BackButton;
+
     #endregion
     #region Variables Private
     
@@ -41,7 +41,7 @@ public class SettingsController : MonoBehaviour
 //        CameraButton.gameObject.SetActive(settingsButtons.isAccessibilitySettingsEnabled);
 //        CreditsButton.gameObject.SetActive(settingsButtons.isCreditsScreenEnabled);
 //        LlanguageButton.gameObject.SetActive(settingsButtons.isLlanguageSettingsEnabled);
-            BackButton.gameObject.SetActive(true);
+          //  BackButton.gameObject.SetActive(true);
             
     }
 	

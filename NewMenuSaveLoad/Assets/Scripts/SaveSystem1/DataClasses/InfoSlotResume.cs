@@ -19,8 +19,11 @@ namespace Assets.SaveSystem1.DataClasses
         public string FileSlot;
 
         public DataInfoSlot dataInfoSlot;
-        
-        
+
+        public InfoSlotResume()
+        {
+            
+        }
         public InfoSlotResume(DateTime dateCreation, string Title = null, GameDifficulty difficulty = GameDifficulty.None,string screenSlot=null )
         {
             slotGame=new GameSlot();
@@ -95,7 +98,8 @@ namespace Assets.SaveSystem1.DataClasses
             dateTimeCreation = data.dateTimeCreation;
             gameDifficulty = data.gameDifficulty;
             Title = data.Title;
-            
+            ScreenShot = data.ScreenShot;
+
         }
     }
 }

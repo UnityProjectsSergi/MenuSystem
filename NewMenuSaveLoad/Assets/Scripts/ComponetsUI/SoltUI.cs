@@ -10,27 +10,63 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
+public enum TypeSlotUI
+{
+    SaveSlot,LoadSlot
+}
 
 public class SoltUI : MonoBehaviour,ISelectHandler,IDeselectHandler {
+    /// <summary>
+    /// Name UI Text
+    /// </summary>
     public Text Name;
+    /// <summary>
+    /// Screenshot UI Image
+    /// </summary>
     public Image Screenshot;
+    /// <summary>
+    /// Data from infoSlotResume on UI
+    /// </summary>
     public InfoSlotResume slot;
 
-  
+    public TypeSlotUI typeSlot;
     public Button btnDel;
     public Button btnLoadSave;
     public Text textTypeSlot;
     public Sprite defaultS;
-   
-  
-    // Use this for initialization
-    void Start () {
-       
+    
+    public EventTrigger onClickLoadEvent;
+    public EventTrigger onClickDelEvent;
+    [HideInInspector]
+   public EventTrigger.Entry entryDel = new EventTrigger.Entry( );
+   [HideInInspector]
+    public EventTrigger.Entry entryLoadEvent= new EventTrigger.Entry( );
+    [HideInInspector]
+    public EventTrigger.Entry entryLoadConfirm= new EventTrigger.Entry( );
+
+    public bool isGenEvent;
+    public void Awake()
+    {
+        if (typeSlot == TypeSlotUI.LoadSlot)
+        {
+            onClickLoadEvent = onClickLoadEvent.gameObject.GetComponent<EventTrigger>();
+            entryLoadEvent.eventID = EventTriggerType.PointerClick;
+            onClickDelEvent = onClickDelEvent.gameObject.GetComponent<EventTrigger>();
+            entryDel.eventID = EventTriggerType.PointerClick;
+            
+        }
+        else
+        {
+            onClickLoadEvent = GetComponent<EventTrigger>();
+            entryLoadEvent.eventID = EventTriggerType.PointerClick;
+        }
+        entryLoadConfirm.eventID = EventTriggerType.Submit;
     }
-	public void Init(InfoSlotResume _slot)
+    // Use this for initialization
+    public void Init(InfoSlotResume _slot)
     {
         slot = _slot;
-        Name.text = slot.FileSlot;// Utils.MakeString(new string[] { slot.dataInfoSlot.Title, " ", slot.dataInfoSlot.dateTimeCreation.ToLongDateString(), " , ", slot.dataInfoSlot.dateTimeCreation.ToLongTimeString() });
+        Name.text = Utils.MakeString(new string[] { slot.dataInfoSlot.Title, " ", slot.dataInfoSlot.dateTimeCreation.ToLongDateString(), " , ", slot.dataInfoSlot.dateTimeCreation.ToLongTimeString() });
         textTypeSlot.text = slot.dataInfoSlot.typeSaveSlot.ToString();
         try
         {
@@ -41,13 +77,11 @@ public class SoltUI : MonoBehaviour,ISelectHandler,IDeselectHandler {
         catch (NullReferenceException e)
         {
             Debug.Log("ScreenShot is null "+e.Message+" Set Default Image ");
-            Screenshot.sprite = defaultS;
         }
         catch (Exception e)
         {
-            Debug.Log("eRrror on load iage"+e.Message);
+            Debug.Log("eRrror on load image"+e.Message+"Set default image");
         }
-
         Screenshot.sprite = defaultS;
     }
 	// Update is called once per frame

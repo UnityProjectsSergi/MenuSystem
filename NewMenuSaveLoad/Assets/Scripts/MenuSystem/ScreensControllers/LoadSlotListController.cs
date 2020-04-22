@@ -48,6 +48,8 @@ public class LoadSlotListController : MonoBehaviour
     /// Reference to Menu Controller Script
     /// </summary>
     public MenuController MenuController;
+
+    private UiScreen ownScreen;
     // Use this for initialization
     void Start()
     {
@@ -57,7 +59,7 @@ public class LoadSlotListController : MonoBehaviour
         Cancel = new UnityEvent();
         if (slotList == null)
             slotList = new List<InfoSlotResume>();
-
+        ownScreen = GetComponent<UiScreen>();
     }
   
     // Update is called once per frame
@@ -84,13 +86,14 @@ public class LoadSlotListController : MonoBehaviour
         int i = 0;
         foreach (InfoSlotResume item in slotList)
         {
+            
             Debug.Log(item.FileSlot+"num");
             // Instanciate loadSlotUIpreafb
             GameObject ObjSlot = Instantiate(loadSlotUIPrefab, new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), transform.localRotation);
            // set parent of parentOfList
             ObjSlot.transform.SetParent(parentOflist.transform, true);
             // set select the objSlot
-            ObjSlot.GetComponent<Selectable>().Select();
+            ownScreen.UiElements.Add(ObjSlot);
             ObjSlot.name += i;
             // get Script SlotUI from objSlot
             SoltUI soltUi = ObjSlot.GetComponent<SoltUI>();
@@ -98,13 +101,28 @@ public class LoadSlotListController : MonoBehaviour
             if (soltUi != null)
             {
                 // remove and load butons the Delete Listener
-                soltUi.btnDel.onClick.RemoveAllListeners();
-                soltUi.btnLoadSave.onClick.RemoveAllListeners();
+                
+              //  soltUi.btnDel.onClick.RemoveAllListeners();
+               // soltUi.btnLoadSave.onClick.RemoveAllListeners();
                 // Add new listener to LoadBtn and Del btn
-                soltUi.btnLoadSave.onClick.AddListener(() => LoadSlot(soltUi.slot));
-                soltUi.btnDel.onClick.AddListener(() => AskForDeleteSlot(soltUi.slot, ObjSlot));
-                // Init UI of slottUI
+               
+                //soltUi.btnLoadSave.onClick.AddListener();
+              //  soltUi.btnDel.onClick.AddListener(() => AskForDeleteSlot(soltUi.slot, ObjSlot));
+              soltUi.entryLoadEvent.callback.AddListener((data) => LoadSlot(soltUi.slot));
+              soltUi.entryLoadConfirm.callback.AddListener((data) => LoadSlot(soltUi.slot));
+              soltUi.onClickLoadEvent.triggers.Add(soltUi.entryLoadEvent);
+              soltUi.onClickLoadEvent.triggers.Add(soltUi.entryLoadConfirm);
+           
+              soltUi.entryDel.callback.AddListener((data) =>AskForDeleteSlot(soltUi.slot,ObjSlot));
+              soltUi.onClickDelEvent.triggers.Add(soltUi.entryDel);
+              // Init UI of slottUI
+                
                 soltUi.Init(item);
+            }
+            if (i == 0)
+            {
+                ownScreen.defaultSelected = ObjSlot;
+                ObjSlot.GetComponent<Selectable>().Select();
             }
             i++;
         }
@@ -185,41 +203,39 @@ public class LoadSlotListController : MonoBehaviour
    
            
         
-     ///TODO Veure si el jugador ha eliminat l'unic slot si es joc un slot
-     /// Si es unic slot
-      
-     if (GameController.Instance.hasCurrentSlot)
-     {
-         if (SaveData.objcts.Slots.Count >=1)
+         ///TODO Veure si el jugador ha eliminat l'unic slot si es joc un slot
+         /// Si es unic slot
+          
+         if (GameController.Instance.hasCurrentSlot)
          {
-             Debug.Log("Encara cquenen slors");
-             if (slot.Equals(SaveData.objcts.previousSlotLoaded))
+             if (SaveData.objcts.Slots.Count >=1)
              {
-                 Debug.Log("estic elimnt slot pev load");
+                 Debug.Log("Encara cquenen slors");
+                 if (slot.Equals(SaveData.objcts.previousSlotLoaded))
+                 {
+                     Debug.Log("estic elimnt slot pev load");
+                 }
+                 
              }
-             
+             else
+             {
+                 Debug.Log("Exitc eliminat utilm slot");
+                 SaveData.objcts.previousSlotLoaded = null;
+                 GameController.Instance.hasCurrentSlot = false;
+                 GameController.Instance.currentSlotResume = null;
+                 GameController.Instance.currentSlot = null;
+             }
          }
-         else
-         {
-             Debug.Log("Exitc eliminat utilm slot");
-             SaveData.objcts.previousSlotLoaded = null;
-             GameController.Instance.hasCurrentSlot = false;
-             GameController.Instance.currentSlotResume = null;
-             GameController.Instance.currentSlot = null;
-         }
-     }
-     GameController.Save();
-       
-        Destroy(gameObject);
-        GenerateSlots();
-       // IF HAS CURRENT SLOT SO IS IN PAUSE MENU
-        if(GameController.Instance.hasCurrentSlot)
-              MenuController.mainMenuController.SetPauseMenuwithSlots();
-        else
-            MenuController.mainMenuController.SetMainMenuWithSlots();
-        
 
-        system.CallSwitchScreen(MainMenu);    
+         GameController.Save();
+         Destroy(gameObject);
+            GenerateSlots();
+            // IF HAS CURRENT SLOT SO IS IN PAUSE MENU
+            if(GameController.Instance.hasCurrentSlot)
+                  MenuController.mainMenuController.SetPauseMenuwithSlots();
+            else
+                MenuController.mainMenuController.SetMainMenuWithSlots();
+            system.CallSwitchScreen(MainMenu);    
     }
     /// <summary>
     /// 
@@ -282,7 +298,7 @@ public class LoadSlotListController : MonoBehaviour
     {
 
         Event e = Event.current;
-        if (e.isKey && e.type == EventType.KeyDown)
+        /*if (e.isKey && e.type == EventType.KeyDown)
         {
             if (system.CurrentScreen.Equals(GetComponent<UiScreen>()))
             {
@@ -296,7 +312,7 @@ public class LoadSlotListController : MonoBehaviour
                     LoadSlot(EventSystem.current.GetComponent<SoltUI>().slot);
                 }
             }
-        }
+        }*/
 
     }
 }

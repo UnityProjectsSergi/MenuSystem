@@ -84,7 +84,7 @@ public class MainMenuController : MonoBehaviour
         GameController.Instance.currentSlotResume = slot;
         GameController.Instance.hasCurrentSlot = true;
         /// if menu have isLevelSelectonScreenEnabled true 
-        if (GameController.Instance.settignsMenu.isLevelSelectonScreenEnabled)
+        if (GameController.Instance.globalSettignsMenu.isLevelSelectonScreenEnabled)
         {
             // Switch screen to levelSelection Screen
             UiSystem.CallSwitchScreen(LevelSelectionScreen);
@@ -93,7 +93,7 @@ public class MainMenuController : MonoBehaviour
         else
         {
             // if menu have isDificultyLevelSelectionScreenEnabled true 
-            if (GameController.Instance.settignsMenu.isDificultyLevelSelectionScreenEnabled)
+            if (GameController.Instance.globalSettignsMenu.isDificultyLevelSelectionScreenEnabled)
             {
                 /// if menu have isLevelSelectonScreenEnabled true
                 UiSystem.CallSwitchScreen(DificultSelectionScreen);
@@ -101,9 +101,9 @@ public class MainMenuController : MonoBehaviour
             // if menu have isDificultyLevelSelectionScreenEnabled false 
             else
             {
+                
                 GameController.Instance.currentSlotResume.dataInfoSlot.currentLevelPlay = LevelNameToLoadInDefaults;
                 //Pass to using One or many Slots
-
                 MenuController.IsUsingOneSlot();
             }
         }

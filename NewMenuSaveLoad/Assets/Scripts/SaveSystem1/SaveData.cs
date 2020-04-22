@@ -10,9 +10,10 @@ using System.Linq;
 
 public class SaveData
 {
-    
     public static GameDataSaveContainer objcts = new GameDataSaveContainer();
+
     public delegate void SerializeAction();
+
     public static event SerializeAction OnLoaded;
     public static event SerializeAction OnBeforeSave;
 
@@ -24,33 +25,36 @@ public class SaveData
     {
         //Load From file 
         objcts = null;
-        if(GameController.Instance.settignsMenu.typeSave==SaveSystem.LocalFileJSON)
-        objcts = LoadFromFile<GameDataSaveContainer>(Path);
+        if (GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Local)
+            objcts = LoadFromFile<GameDataSaveContainer>(Path);
         else
         {
-           // objcts = LoadFromWeb();
+            // objcts = LoadFromWeb();
         }
     }
+
     /// <summary>
     /// Load Game FromSlot Obj 
     /// </summary>
     /// <param name="currentSlot"></param>
     public static void LoadGameSlotData(GameSlot currentSlot)
     {
-   
         if (currentSlot.ObjectsToSaveInSlot.Count > 0)
         {
             foreach (var item in currentSlot.ObjectsToSaveInSlot.ToArray())
             {
                 currentSlot.NumObj++;
-              
-               GameLevelController.CreateObjSaved(item);
+
+                GameLevelController.CreateObjSaved(item);
             }
+
             OnLoaded();
             ClearGameObjectsListSlot();
         }
+
         GameController.Instance.currentSlot = currentSlot;
     }
+
     /// <summary>
     /// 
     /// </summary>
@@ -60,28 +64,29 @@ public class SaveData
     /// <param name="deleteIfExistsFile">bool says what to do if exists file 
     ///     if its true the file is deleted 
     ///     if its false the content is added at the end of old content  </param>
-    public static void SaveSlotData<T>(string path,T content, bool deleteIfExistsFile) where T:new()
+    public static void SaveSlotData<T>(string path, T content, bool deleteIfExistsFile) where T : new()
     {
-        if ((bool)GameController.Instance.currentSlot)
+        if ((bool) GameController.Instance.currentSlot)
         {
             ObjToSave[] num = GameObject.FindObjectsOfType<ObjToSave>();
             if (num.Length != 0)
             {
                 OnBeforeSave();
-                if (GameController.Instance.settignsMenu.typeSave == SaveSystem.LocalFileJSON){
-                  
-                     SaveToFile<T>(path, content, deleteIfExistsFile);
+                if (GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Local)
+                {
+                    SaveToFile<T>(path, content, deleteIfExistsFile);
                 }
                 else
                 {
-                 //   SaveToWEbSlots<T>();
+                    //   SaveToWEbSlots<T>();
                 }
+
                 ClearGameObjectsListSlot();
             }
             else
             {
                 ClearGameObjectsListSlot();
-                if (GameController.Instance.settignsMenu.typeSave == SaveSystem.LocalFileJSON)
+                if (GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Local)
                 {
                     SaveToFile<T>(path, content, deleteIfExistsFile);
                 }
@@ -92,26 +97,29 @@ public class SaveData
             }
         }
     }
+
     /// <summary>
     /// Add GameObject data to the list of GameObjects Data
     /// </summary>
     /// <param name="data"></param>    
     public static void AddGameObjectData(GameObjectActorData data)
     {
-        if ((bool)GameController.Instance.currentSlot)
+        if ((bool) GameController.Instance.currentSlot)
         {
             GameController.Instance.currentSlot.NumObj++;
             GameController.Instance.currentSlot.ObjectsToSaveInSlot.Add(data);
         }
     }
+
     /// <summary>
     /// Clear the GameObjects List of Data
     /// </summary>
-    public static void ClearGameObjectsListSlot(GameSlot currentSlot=null)
+    public static void ClearGameObjectsListSlot(GameSlot currentSlot = null)
     {
-        if((bool) GameController.Instance.currentSlot)
-        GameController.Instance.currentSlot.ObjectsToSaveInSlot.Clear();
+        if ((bool) GameController.Instance.currentSlot)
+            GameController.Instance.currentSlot.ObjectsToSaveInSlot.Clear();
     }
+
     /// <summary>
     /// 
     /// </summary>
@@ -120,21 +128,22 @@ public class SaveData
     /// <returns></returns>
     public static T LoadFromFile<T>(string path) where T : new()
     {
-        
         if (File.Exists(path))
         {
-            //if (NamespaceExists("Sirenix.Serialization")) {
-            //   // return  Sirenix.Serialization.SerializationUtility.DeserializeValue<T>(File.ReadAllBytes(path), Sirenix.Serialization.DataFormat.JSON);
-            //}
-            //else
-            //{
-                // Read the file and put into string variable
-                string json = File.ReadAllText(path);
-             
-                //Convert it from json string into a T object and return the object T 
-             //   return JsonUtility.FromJson<T>(json);
+            T obj=new T();
+            string json = File.ReadAllText(path);
+            if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.JSON)
+            {
                 return JsonConvert.DeserializeObject<T>(json);
-         //   }
+            }
+            else if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Xml)
+            {
+                System.Xml.Serialization.XmlSerializer serializer =
+                    new System.Xml.Serialization.XmlSerializer(typeof(T));
+                StringReader reader = new StringReader(json);
+                return (T) serializer.Deserialize(reader);
+            }
+            return obj;
         }
         else
         {
@@ -142,6 +151,8 @@ public class SaveData
             return new T();
         }
     }
+
+
     /// <summary>
     /// Save Game Objects and 
     /// </summary>
@@ -157,51 +168,82 @@ public class SaveData
             {
                 //delete file and create wen
                 File.Delete(path);
-//          
-                        // File.WriteAllText(path, JsonUtility.ToJson(content));
-                File.WriteAllText(path, JsonConvert.SerializeObject(content, Formatting.Indented, 
-                    new JsonSerializerSettings { 
-                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                    }));
+                // 
+                if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.JSON)
+                {
+                    // File.WriteAllText(path, JsonUtility.ToJson(content));
+                    File.WriteAllText(path, JsonConvert.SerializeObject(content, Formatting.Indented,
+                        new JsonSerializerSettings
+                        {
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        }));
+                }
+                else if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Xml)
+                {
+                    var stringwriter = new System.IO.StringWriter();
+                    var serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
+                    serializer.Serialize(stringwriter, content);
+                    File.WriteAllText(path, stringwriter.ToString());
+                }
             }
             // if exist and not delete
             else
             {
-           
-                    
+                if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.JSON)
+                {
                     // read the file and apped extra information
                     string json = File.ReadAllText(path);
                     //File.WriteAllText(path,json+ JsonUtility.ToJson(content));
-                    Append(path, json + JsonConvert.SerializeObject(content, Formatting.Indented, 
-                                     new JsonSerializerSettings { 
-                                         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                                     }));
-              //  }
+                    Append(path, json + JsonConvert.SerializeObject(content, Formatting.Indented,
+                        new JsonSerializerSettings
+                        {
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        }));
+                }
+                else if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Xml)
+                {
+                    string xml = File.ReadAllText(path);
+                    var stringwriter = new System.IO.StringWriter();
+                    var serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
+                    serializer.Serialize(stringwriter, content);
+                    Append(path, xml + stringwriter.ToString());
+                }
             }
         }
         else
         {
-            //if not exits wirte
-            //  File.WriteAllText(path, JsonUtility.ToJson(content));
-            File.WriteAllText(path, JsonConvert.SerializeObject(content, Formatting.Indented, 
-                new JsonSerializerSettings { 
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                }));
+            if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.JSON)
+            {
+                //if not exits wirte
+                File.WriteAllText(path, JsonConvert.SerializeObject(content, Formatting.Indented,
+                    new JsonSerializerSettings
+                    {
+                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                    }));
+            }
+            else if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Xml)
+            {
+                var stringwriter = new System.IO.StringWriter();
+                var serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
+                serializer.Serialize(stringwriter, content);
+                File.WriteAllText(path, stringwriter.ToString());
+            }
         }
-      
     }
+
     private static void Append(string path, string contents)
     {
         File.WriteAllText(path, contents);
     }
+
     public static void AddOBjectInScene(ObjToSave[] array)
     {
         foreach (var item in array)
         {
             GameController.Instance.currentSlot.ObjectsToSaveInSlot.Add(item.gameObjSave.data);
         }
-        
     }
+
     private bool HasType(string typeName)
     {
         foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
@@ -215,6 +257,7 @@ public class SaveData
 
         return false;
     }
+
     public static bool NamespaceExists(string desiredNamespace)
     {
         foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
@@ -225,8 +268,10 @@ public class SaveData
                     return true;
             }
         }
+
         return false;
     }
+
     public static T[] ConcatArrays<T>(params T[][] list)
     {
         var result = new T[list.Sum(a => a.Length)];
@@ -236,6 +281,7 @@ public class SaveData
             list[x].CopyTo(result, offset);
             offset += list[x].Length;
         }
+
         return result;
     }
 }

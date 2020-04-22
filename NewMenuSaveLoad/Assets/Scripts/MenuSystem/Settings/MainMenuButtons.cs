@@ -79,6 +79,7 @@ public class MainMenuButtons : MonoBehaviour {
         SaveGameBtn.gameObject.SetActive(false);
         NewGameBtn.gameObject.SetActive(true);
 		SetButtonaActiveDependSlots(slotController,numSlots);
+		EventSystem.current.SetSelectedGameObject(ContinueBtn.gameObject);
     }
 
     private void SetButtonaActiveDependSlots(SlotController slotController, int numSlots)

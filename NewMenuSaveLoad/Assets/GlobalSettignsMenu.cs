@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
-public enum SaveSystem{ LocalFileJSON,LocalWebJSON}
-public class SettignsMenu : MonoBehaviour
+public enum SaveSystemFormat{ JSON,Xml}
+public enum SaveSystemSourceData{ Remote,Local}
+public class GlobalSettignsMenu : MonoBehaviour
 {
     public float TimeToTakeScreenShoot;
     public bool IsSaveingSystemEnabled;
     public bool IsSaveingInterval;
-    public SaveSystem typeSave;
+    public SaveSystemSourceData saveSourceData;
+    public SaveSystemFormat typeSaveFormat;
     public float SaveIntervalSeconds=2f;
     /// <summary>
     /// Says if is Screen DificultyLevelSelection is Enabled (true) of Desactive (false) 
@@ -23,7 +25,7 @@ public class SettignsMenu : MonoBehaviour
     public bool IsLoaderSceneWithPligun;
 
     public bool isLoginRegisterEnabled;
-
+    public string fileGlobalSlotsSaveData="data";
     
     // Start is called before the first frame update
     void Start()

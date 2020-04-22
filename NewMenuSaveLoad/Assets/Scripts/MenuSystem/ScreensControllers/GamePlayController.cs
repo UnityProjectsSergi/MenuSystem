@@ -29,7 +29,7 @@ public class GamePlayController : MonoBehaviour
         if (GameController.Instance.currentSlot!=null)
         {
             Heath = GameController.Instance.currentSlot.health;
-            Health.text = Heath.ToString(CultureInfo.CurrentCulture);
+           // Health.text = Heath.ToString(CultureInfo.CurrentCulture);
         }
 
    

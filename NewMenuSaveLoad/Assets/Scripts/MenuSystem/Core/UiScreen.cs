@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Win32;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -42,7 +43,7 @@ public class UiScreen : MonoBehaviour
     /// <summary>
     /// List of ui elements selectables
     /// </summary>
-    public List<GameObject> IUElements;
+    public List<GameObject> UiElements;
     /// <summary>
     /// 
     /// </summary>
@@ -51,7 +52,7 @@ public class UiScreen : MonoBehaviour
     private void Awake()
     {
         canvas = GetComponent<UiFader>();
-        IUElements=new List<GameObject>();
+      UiElements=new List<GameObject>();
         
     }
     /// <summary>
@@ -60,9 +61,10 @@ public class UiScreen : MonoBehaviour
     /// <param name="flag"> Set ture or false </param>
     public void EnableDisableUiElements(bool flag)
     {
-        if(IUElements.Count>0)
-        foreach (GameObject Item in IUElements)
+        if(UiElements.Count>0)
+        foreach (GameObject Item in UiElements)
         {
+            if(Item.GetComponent<Selectable>()!=null)
             Item.GetComponent<Selectable>().interactable = flag;
         }
     }
@@ -84,6 +86,13 @@ public class UiScreen : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(defaultSelected);
         
     }
+
+    public void Update()
+    {
+        Debug.Log(Selection.gameObjects.Length);
+        
+    }
+
     /// <summary>
     /// Reset valables of canvas
     /// </summary>

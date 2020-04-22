@@ -1,6 +1,7 @@
 ﻿using Assets.SaveSystem1.DataClasses;
 using System.Collections;
 using System.IO;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -11,7 +12,7 @@ public class GameController : MonoBehaviour
     /// <summary>
     /// SettignsMenu 
     /// </summary>
-        public SettignsMenu settignsMenu;
+        public GlobalSettignsMenu globalSettignsMenu;
         /// <summary>
         /// Path of the file to save data
         /// </summary>
@@ -84,14 +85,15 @@ public class GameController : MonoBehaviour
                     currentSlotResume = null;
                     _instance = this;
                     DontDestroyOnLoad(this.gameObject);
-                    
-                    datapath = System.IO.Path.Combine(Application.persistentDataPath, "data2.json");
+                    if (globalSettignsMenu.typeSaveFormat == SaveSystemFormat.JSON)
+                        globalSettignsMenu.fileGlobalSlotsSaveData+=".json";
+                    else if (globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Xml)
+                        globalSettignsMenu.fileGlobalSlotsSaveData += ".xml";
+                    datapath = System.IO.Path.Combine(Application.persistentDataPath, globalSettignsMenu.fileGlobalSlotsSaveData);
                     fileExists = File.Exists(datapath);
                     pauseController = GetComponent<PauseController>();
                     // Load Data from Anywhere
                     Load(false);
-                    
-
                 }
             }
               /// <summary>
@@ -196,7 +198,7 @@ public class GameController : MonoBehaviour
         /// </summary>
         public static void Save()
         {
-           SaveData.SaveToFile<GameDataSaveContainer>(datapath, SaveData.objcts, true);
+            SaveData.SaveToFile(datapath, SaveData.objcts, true);
         }
         /// <summary>
         /// Save data of slot game to file

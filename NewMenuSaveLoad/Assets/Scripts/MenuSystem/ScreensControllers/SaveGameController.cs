@@ -35,6 +35,11 @@ public class SaveGameController : MonoBehaviour
     /// list Of Slots
     /// </summary>
     public List<InfoSlotResume> listSlots;
+    [Tooltip("On save Manual if True goto GamePlay and if false return to SaveGame")]
+    /// <summary>
+    /// bool is is true return to gameplay or is false return to menu savegame
+    /// </summary>
+    public bool returnToMenuOrGameplay;
     /// <summary>
     /// Unity Events Yes no And Cancel
     /// </summary>
@@ -81,71 +86,74 @@ public class SaveGameController : MonoBehaviour
             GameObject ObjSlot = Instantiate(SaveUISlotPrefab,
                 new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z),
                 transform.localRotation);
-            // 
-          
+            // Set text in ui Text
             ObjSlot.GetComponentInChildren<Text>().text = ObjSlot.name;
-
+            // set objSlot child of parentOfList Content
             ObjSlot.transform.SetParent(parentOflist.transform, true);
+            // get GetComponent SlotUI in objSlot
             SoltUI solt = ObjSlot.GetComponent<SoltUI>();
             if (solt != null)
             {
-                //  solt.btnDel.onClick.RemoveAllListeners();
+                // Remove all Llisteners
                 solt.btnLoadSave.onClick.RemoveAllListeners();
+                // add listener 
                 solt.btnLoadSave.onClick.AddListener(() => OverrideSaveSlot(solt.slot));
-                // solt.btnDel.onClick.AddListener(() => AskForSaveSlot(solt.slot, ObjSlot));
-
+                // Slot initiate
                 solt.Init(item);
             }
         }
     }
-
+    
     GameObject NewSlot;
     private InfoSlotResume slot;
-
+    /// <summary>
+    /// Generate New Slot in list
+    /// </summary>
     public void GenerateNewSlot()
     {
+        // create new slot
         slot = new InfoSlotResume(DateTime.Now);
-
+        // create folder
         slot.CrateFolder();
-       
-        if (GameController.Instance.hasCurrentSlot)
+        // Copy from current slot
+        slot.CopySlotResume(GameController.Instance.currentSlotResume);
+        // set slot typeSave to manual
+        slot.dataInfoSlot.typeSaveSlot = TypeOfSavedGameSlot.Manual_Save_Slot;
+        slot.dataInfoSlot.datetimeSaved=DateTime.Now;
+        // add slot to listSlots
+        SaveData.objcts.Slots.Add(slot);
+        // save slotdata
+        SaveData.SaveSlotData(slot.FileSlot, slot.slotGame, true);
+        // Save list slot data
+        GameController.Save();
+        // if returnToaGamepley is true
+        if (returnToMenuOrGameplay)
         {
-            slot.CopySlotResume(GameController.Instance.currentSlotResume);
-            slot.dataInfoSlot.typeSaveSlot = TypeOfSavedGameSlot.Manual_Save_Slot;
+            // set is paused game flag to false
+            GameController.Instance.pauseController.isPausedGame = false;
+            // 
            
+            system.CallSwitchScreen(GamePlayScreen,
+                delegate { GamePlayScreen.GetComponent<GamePlayController>().ShowImageSavedGame(); });
         }
+        // return to menu SaveGame
         else
         {
-            GameController.Instance.currentSlotResume = slot;
-            GameController.Instance.currentSlot = slot.slotGame;
+            GenerateSlots();    
         }
-
-        GameController.Instance.CallTakeScreenShotOnDelay(1f,true);
-        SaveData.objcts.Slots.Add(slot);
-        SaveData.SaveSlotData(slot.FileSlot, slot.slotGame, true);
-
-        
-        GameController.Save();
-        GenerateSlots();
     }
-
-    public void SaveNewSlot(InfoSlotResume soltSlot)
-    {
-        Debug.Log("save slot");
-
-        SaveData.objcts.Slots.Add(soltSlot);
-        GameController.Save();
-
-        // GenerateNewSlot();
-
-        //
-    }
-
+    /// <summary>
+    /// Call Event override save slot
+    /// </summary>
+    /// <param name="soltSlot">Slot of </param>
     private void OverrideSaveSlot(InfoSlotResume soltSlot)
     {
         AskForOverrideSaveSlot(soltSlot);
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="soltSlot"></param>
     private void AskForOverrideSaveSlot(InfoSlotResume soltSlot)
     {
         Yes.RemoveAllListeners();
@@ -165,16 +173,22 @@ public class SaveGameController : MonoBehaviour
         system.GoToPreviousScreen();
     }
 
-    private void YesOverrideSaveSlot(InfoSlotResume soltSlot)
+    private void YesOverrideSaveSlot(InfoSlotResume slot)
     {
+        
         GameController.Instance.currentSlotResume.dataInfoSlot.datetimeSaved = DateTime.Now;
-        SaveData.objcts.previousSlotLoaded = soltSlot;
         GameController.Save();
-        SaveData.SaveSlotData(soltSlot.FileSlot, GameController.Instance.currentSlot,
+        SaveData.SaveSlotData(slot.FileSlot, GameController.Instance.currentSlot,
             true);
         GameController.Instance.pauseController.isPausedGame = false;
-        system.CallSwitchScreen(GamePlayScreen,
-            delegate { GamePlayScreen.GetComponent<GamePlayController>().ShowImageSavedGame(); });
+        if (returnToMenuOrGameplay)
+        {
+            system.CallSwitchScreen(GamePlayScreen,
+                delegate { GamePlayScreen.GetComponent<GamePlayController>().ShowImageSavedGame(); });
+        }
+        else
+        {
+            system.GoToPreviousScreen();
+        }
     }
-    
 }

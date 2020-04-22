@@ -75,7 +75,7 @@ public class LevelSelectionController : MonoBehaviour
     void Start()
     {
         // Get Component MenuController
-        menuController = menuController.GetComponent<MenuController>();
+       
         // if isListGenerated is false
         if (!IsListGenerated)
         {
@@ -136,7 +136,7 @@ public class LevelSelectionController : MonoBehaviour
     public void LoadLevel(AllLevelsData level)
     {
         GameController.Instance.currentSlotResume.dataInfoSlot.currentLevelPlay = level.SceneToLoad;
-        if (GameController.Instance.settignsMenu.isDificultyLevelSelectionScreenEnabled)
+        if (GameController.Instance.globalSettignsMenu.isDificultyLevelSelectionScreenEnabled)
         {
             System.CallSwitchScreen(DificutySelection);
         }
@@ -177,7 +177,7 @@ public class LevelSelectionController : MonoBehaviour
     public void PlayLevel()
     {
         GameController.Instance.currentSlotResume.dataInfoSlot.currentLevelPlay = _currentSelectedLevelSceneName;
-        if (GameController.Instance.settignsMenu.isDificultyLevelSelectionScreenEnabled)
+        if (GameController.Instance.globalSettignsMenu.isDificultyLevelSelectionScreenEnabled)
         {
             System.CallSwitchScreen(DificutySelection,null,false);
         }

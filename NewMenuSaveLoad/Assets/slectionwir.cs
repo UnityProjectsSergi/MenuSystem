@@ -15,6 +15,10 @@ public class slectionwir : MonoBehaviour,ISelectHandler,IDeselectHandler
     void Update()
     {
         Debug.Log(EventSystem.current);
+        if (EventSystem.current == null)
+        {
+            Debug.Log("ssss");
+        }
     }
 
     public void OnSelect(BaseEventData eventData)

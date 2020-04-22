@@ -81,7 +81,7 @@ public class PauseController : MonoBehaviour {
                        system.CallSwitchScreen(GamePlayScreen);
                         // set false to IsPausedGeme to unpause the game
                         isPausedGame = false;
-                        GameController.Instance.CallStartSaveSlotInterval(GameController.Instance.settignsMenu.SaveIntervalSeconds);
+                        GameController.Instance.CallStartSaveSlotInterval(GameController.Instance.globalSettignsMenu.SaveIntervalSeconds);
                         Inputs.Instance.SwitchActionMap("Player");
                     
                 }

@@ -12,15 +12,11 @@ using UnityEngine.UI;
 public class MenuController : MonoBehaviour
 {
     #region Variables
-
     #region Public Varales
-
-    [HideInInspector] public GameSlot slot;
     /// <summary>
     /// System UI
     /// </summary>
     public UiSystem system;
-
     /// <summary>
     /// 
     /// </summary>
@@ -28,91 +24,66 @@ public class MenuController : MonoBehaviour
     // Use this for initialization
     public  MainMenuController mainMenuController = null;
     /// <summary>
-    /// Is th Sreen GamePlayScreen
+    /// Is the Screen GamePlayScreen
     /// </summary>
     public UiScreen GamePlayScreen;
-
+    /// <summary>
+    /// Screen MainMenuScreen
+    /// </summary>
     public UiScreen MainMenuScreen;
+    /// <summary>
+    /// Screen Loading scene
+    /// </summary>
     public UiScreen ScreenLoading;
+    /// <summary>
+    /// LoaderScreen Controller
+    /// </summary>
     public LoadScreenController LoadScreencontroller;
-    public bool isgamePlay;
     #endregion
-
     #region Private Variables
-
-    [SerializeField]
     /// <summary>
     /// Is The quesyion Modal Screen
     /// </summary>
-    private UiScreen questionScreen;
-
-    [SerializeField]
+    public UiScreen questionScreen;
     /// <summary>
     /// Is The Pause Menu Screen same GameObject as Main Menu Screen 
     /// </summary>
-    private UiScreen IsLoadingScreen;
-
+    public UiScreen IsLoadingScreen;
     /// <summary>
     /// Unity Events to answer the Modal Question Screen
     /// </summary>
     private UnityEvent Yes, No;
-
     /// <summary>
     /// Delault Game Slot 
     /// </summary>
-
-    public InfoSlotResume defaultSlot;
-  
-
     [HideInInspector] public SlotController slotController;
     [HideInInspector] public PauseController pauseController;
-  
-
     #endregion
-
     #endregion
-
     #region Unity Methods
-
     /// <summary>
     /// Iniitialize GameController
     /// </summary>
     void Awake()
     {
         pauseController = GetComponent<PauseController>();
-        //Get Component UI_System
         slotController = GetComponent<SlotController>();
-        //  mainMenuController = PauseMenuScreen.GetComponent<MainMenuController>();
-        // system = GetComponent<UiSystem>();
-        // set variable isPaus
-
-        // for have Menu Object in all scenes except if has menu in game
-//        if (!system.IsInGameMenu)
-//            DontDestroyOnLoad(gameObject);
     }
-
     // Update is called once per frame
     void Update()
     {
         
     }
-
-    /// <summary>
-    /// Detect Keys Downof keyboard
-    /// </summary>
-
     #endregion
-
     #region Helper Methods
-
     /// <summary>
     /// Metodh who Makes questuon Of override Current Slot if is one slot Game or if is multipleSlots Add slot to list, Set Prvoius slot, Save All, Load Scene
     /// </summary>
     public void IsUsingOneSlot()
     {
+        // if isSlotsEnabled
         if (slotController.isSlotsEnabled)
         {
-            
             // if useManySlots is false
             if (!slotController.useManySlots)
             {
@@ -126,6 +97,7 @@ public class MenuController : MonoBehaviour
                     OpenQuestioOverrideSlotIfExists();
                 }
                 else
+                // Add new slot to listSlots Set PrevoisSlot Save all and LoadScene
                     Add_New_Slot_To_ListsSlots_Set_Previous_Slot_SaveAllSlots_LoadScene();
             }
             // is are using Many Slots
@@ -137,14 +109,16 @@ public class MenuController : MonoBehaviour
         }
         else
         {
+            // load scene form slot
             LoadSceneFromSlot();
         }
     }
     public void LoadSceneFromSlot()
     {
         // if its enable Loading Scene Plugin sergi
-        if (GameController.Instance.settignsMenu.IsLoaderSceneWithPligun)
+        if (GameController.Instance.globalSettignsMenu.IsLoaderSceneWithPligun)
         {
+            // call switch screen to Screenloading
             system.CallSwitchScreen(ScreenLoading, delegate
             {
                 LoadScreencontroller.FloaderScene();
@@ -152,8 +126,10 @@ public class MenuController : MonoBehaviour
         }
         else
         {
+            // Call LoadSceneSync from normal SceeManager
             StartCoroutine(LoadSceneSync());
-            system.CallSwitchScreen(GamePlayScreen);
+            // call switch screen to 
+            system.CallSwitchScreen(GamePlayScreen,null,true);
             pauseController.AllowEnterPause = true;
             GameController.Instance.hasCurrentSlot = true;
         } 
@@ -166,7 +142,7 @@ public class MenuController : MonoBehaviour
         GameController.Instance.CallTakeScreenShotOnDelay(1f,slotController.isSlotsEnabled);
         if (slotController.isSlotsEnabled)
         {
-            GameController.Instance.CallStartSaveSlotInterval(GameController.Instance.settignsMenu.SaveIntervalSeconds);
+            GameController.Instance.CallStartSaveSlotInterval(GameController.Instance.globalSettignsMenu.SaveIntervalSeconds);
             SaveData.LoadGameSlotData(
                 SaveData.LoadFromFile<GameSlot>(GameController.Instance.currentSlotResume.FileSlot));
         }
@@ -179,7 +155,7 @@ public class MenuController : MonoBehaviour
         //Set allow EnterPause to true because exit from Main Menu 
        
         // if its enable Loading Scene Plugin sergi
-        if (GameController.Instance.settignsMenu.IsLoaderSceneWithPligun)
+        if (GameController.Instance.globalSettignsMenu.IsLoaderSceneWithPligun)
         {   system.CallSwitchScreen(ScreenLoading, delegate
             {
              
@@ -304,7 +280,7 @@ public class MenuController : MonoBehaviour
 
     public void NoLostGameProgressionContinueFromPause()
     {
-        GameController.Instance.CallStartSaveSlotInterval(GameController.Instance.settignsMenu.SaveIntervalSeconds);
+        GameController.Instance.CallStartSaveSlotInterval(GameController.Instance.globalSettignsMenu.SaveIntervalSeconds);
         system.CallSwitchScreen(MainMenuScreen );
     }
 
