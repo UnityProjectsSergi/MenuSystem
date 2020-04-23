@@ -113,7 +113,10 @@ public class LevelSelectionController : MonoBehaviour
             GameObject ObjLevel = Instantiate(LevelItemPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
             // Set the parameters of Each Level to Components Name  to Text Name, Description to Text Descripton
             ObjLevel.GetComponentInChildren<Text>().text = ObjLevel.name;
-           
+            ObjLevel.GetComponent<RectTransform>().offsetMax=new Vector2(4,5);
+            ObjLevel.GetComponent<RectTransform>().offsetMin=new Vector2(40,50);
+            ObjLevel.GetComponent<RectTransform>().sizeDelta=new Vector2(800,150);
+            
             //Set Child of Container the ObjLevel 
             ObjLevel.transform.SetParent(levelItemsContainer.transform, false);
             // Get Script From 

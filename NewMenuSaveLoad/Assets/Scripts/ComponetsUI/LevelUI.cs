@@ -24,7 +24,7 @@ public class LevelUI : MonoBehaviour {
         if(isLocked)
         {
             isLockedImg.gameObject.SetActive(true);
-            btnLoadLevel.gameObject.SetActive(false);
+            btnLoadLevel.gameObject.GetComponent<Button>().interactable = false;
         }
     }
 	// Update is called once per frame
