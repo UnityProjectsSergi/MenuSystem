@@ -26,6 +26,8 @@ public class GlobalSettignsMenu : MonoBehaviour
 
     public bool isLoginRegisterEnabled;
     public string fileGlobalSlotsSaveData="data";
+
+    public List<string> listsOfDificulties;
     
     // Start is called before the first frame update
     void Start()

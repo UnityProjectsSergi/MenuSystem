@@ -7,7 +7,9 @@ public class DificultySlectionController : MonoBehaviour
 {
     [Header("The list ")]
     
+    
     public string[] str;
+    
     public GameObject ParntOb;
     public GameObject buttonPrfab;
     public MenuController menuController;
@@ -18,13 +20,16 @@ public class DificultySlectionController : MonoBehaviour
     {
         OwnScreen = GetComponent < UiScreen>();
         str = EnumConverter.ToNameArray<GameDifficulty>();
-        foreach (var item in str)
+        foreach (var item in GameController.Instance.globalSettignsMenu.listsOfDificulties)
         {
             if (item != "None")
             {
                 GameObject go = Instantiate(buttonPrfab, transform.position, transform.rotation);
                 go.transform.SetParent(ParntOb.transform);
                 go.GetComponentInChildren<Text>().text = item;
+                go.GetComponent<RectTransform>().offsetMax=new Vector2(4,5);
+                go.GetComponent<RectTransform>().offsetMin=new Vector2(20,25);
+                go.GetComponent<RectTransform>().sizeDelta=new Vector2(200,40);
                 go.GetComponent<Button>().onClick.AddListener(() => SelectLevelDificulty(item));
                 OwnScreen.UiElements.Add(go);
             }
