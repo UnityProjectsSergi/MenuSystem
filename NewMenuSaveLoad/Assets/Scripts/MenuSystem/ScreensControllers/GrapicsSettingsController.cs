@@ -65,6 +65,7 @@ public class GrapicsSettingsController : MonoBehaviour
     
     
     // Start is called before the first frame update
+    void Start()
     {
         if (GameController.hasLoadedGameData)
         {
@@ -81,7 +82,7 @@ public class GrapicsSettingsController : MonoBehaviour
         // set dropdowns
         #region Set Dropdown Qualty;
 
-    void Start()        dropdownQuality.ClearOptions();
+            dropdownQuality.ClearOptions();
         dropdownResolutions.ClearOptions();
         
         dropdownQuality.AddOptions(QualitySettings.names.ToList());
