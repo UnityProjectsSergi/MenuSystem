@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
@@ -26,9 +27,14 @@ public class GlobalSettignsMenu : MonoBehaviour
 
     public bool isLoginRegisterEnabled;
     public string fileGlobalSlotsSaveData="data";
-
+    private Dictionary<int, string> dificulties;
     public List<string> listsOfDificulties;
-    
+
+    private void Awake()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {

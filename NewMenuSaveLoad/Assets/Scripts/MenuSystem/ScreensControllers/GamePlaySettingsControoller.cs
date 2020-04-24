@@ -7,9 +7,13 @@ using UnityEngine.Rendering;
 
 public class GamePlaySettingsControoller : MonoBehaviour
 {
+    // TODO GameDificulty
+    
     // Start is called before the first frame update
     void Start()
     {
+        // game dificulty 
+        
         //TextureQuality
           //AntiAliasing
             //VSyncCount

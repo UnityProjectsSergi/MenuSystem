@@ -49,8 +49,8 @@ public class LevelSelectionController : MonoBehaviour
     /// 
     /// </summary>
     public GameObject LevelItemPrefab;
-    
 
+    public UiScreen ownScreen;
     
     [HideInInspector]
     /// <summary>
@@ -75,7 +75,7 @@ public class LevelSelectionController : MonoBehaviour
     void Start()
     {
         // Get Component MenuController
-       
+        ownScreen = GetComponent<UiScreen>();
         // if isListGenerated is false
         if (!IsListGenerated)
         {
@@ -89,6 +89,7 @@ public class LevelSelectionController : MonoBehaviour
 
             //init
             ChangeLevel();
+          
         }
         // if isListGenerated istrue
         else
@@ -120,6 +121,7 @@ public class LevelSelectionController : MonoBehaviour
             //Set Child of Container the ObjLevel 
             ObjLevel.transform.SetParent(levelItemsContainer.transform, false);
             // Get Script From 
+            
             LevelUI level = ObjLevel.GetComponent<LevelUI>();
 
             if (level != null)
@@ -131,6 +133,8 @@ public class LevelSelectionController : MonoBehaviour
                     level.btnLoadLevel.onClick.AddListener(() => LoadLevel(item));
                 }
             }
+            ownScreen.UiElements.Add(level.btnLoadLevel.gameObject);
+            
         }
     }
     /// <summary>

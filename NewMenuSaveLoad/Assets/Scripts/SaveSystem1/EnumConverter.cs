@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ComponentModel;        
+using System.Reflection;
 
 #region Menu Enums
 
@@ -17,10 +19,21 @@ public enum VSyncCount { Dont_Sync,Every_V_Blank,Every_Second_V_Blank}
 /// <summary>
 /// GameSlots Enums
 /// </summary>
-public enum GameDifficulty { None,Easy, Normal, Hard, VeryHard }
+public enum GameDifficulty {None=0, 
+    Easy=1, 
+    Normal=2, 
+    Hard=3, 
+    VeryHard=4, 
+    Extreme=5 }
 public enum TypeOfSavedGameSlot { Checkpoint, Manual_Save_Slot ,None}
 #endregion
 
+
+
+public class GameDifficultyEnum : GenericEnum<GameDifficultyEnum, int>
+{
+    public static readonly string Easy = "Easy";
+}
 #region Class EnumsConverter
 /// <summary>
 /// Static class for Convert enum keys and values to NameArray,ValueArray, ListOfValues, ToEumerable 
@@ -65,7 +78,54 @@ public static class EnumConverter
     {
         return (T[])Enum.GetValues(typeof(T));
     }
-    
+  
     
 }
+[AttributeUsage(AttributeTargets.Field)]
+public class ExtensionTest : Attribute
+{
+    private string m_name;
+    public ExtensionTest(string name)
+    {
+        this.m_name = name;
+    }
+    public static string Set(Type tp, string name)
+    {
+        MemberInfo[] mi = tp.GetMember(name);
+        if (mi != null && mi.Length > 0)
+        {
+            ExtensionTest attr = Attribute.GetCustomAttribute(mi[0],
+                typeof(ExtensionTest)) as ExtensionTest;
+            if (attr != null)
+            {
+                return attr.m_name;
+            }
+        }
+        return null;
+    }
+    public static string Get(object enm)
+    {
+        if (enm != null)
+        {
+            MemberInfo[] mi = enm.GetType().GetMember(enm.ToString());
+            if (mi != null && mi.Length > 0)
+            {
+                ExtensionTest attr = Attribute.GetCustomAttribute(mi[0],
+                    typeof(ExtensionTest)) as ExtensionTest;
+                if (attr != null)
+                {
+                    return attr.m_name;
+                }
+            }
+        }
+        return null;
+    }
+}
+public enum EnumTest
+{
+    None,
+    [ExtensionTest("(")] Left,
+    [ExtensionTest(")")] Right,
+}
+
 #endregion

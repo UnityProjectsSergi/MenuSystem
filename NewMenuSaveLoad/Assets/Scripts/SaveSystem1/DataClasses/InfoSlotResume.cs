@@ -79,6 +79,8 @@ namespace Assets.SaveSystem1.DataClasses
         /// Level of dificulty of game
         /// </summary>
         public GameDifficulty gameDifficulty=GameDifficulty.Easy;
+
+        public string game2dif;
         /// <summary>
         /// typeSaveSlotof slot
         /// </summary>
