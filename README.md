@@ -1,4 +1,4 @@
-# MenuSystem made in Unity2019.3
+### MenuSystem made in Unity2019.3
 
 Menu of game in unity with features of load and save: gameplay data and gameobjects of unity with prefabs, info of settings, and others in json.
 
@@ -8,8 +8,7 @@ Menu of game in unity with features of load and save: gameplay data and gameobje
 - Has the posibility to load scene with no loader or with loader.
 - Has many screens each with many features
 - Screens List
-## Main Menu screens
-   -- The main has
+# Main Menu screens
    - Possibility of continue last loaded game if has previous loaded game.
    - Possibility of load game slot from list.
    - Possibility of create new slot game wit select level of game on not.
@@ -29,6 +28,8 @@ Menu of game in unity with features of load and save: gameplay data and gameobje
 - From Level Selection 
 # Dificulty select Screen
   - Possibility to select levels  of dificulty with custom names from Inspector. 
+  
+  
     
     
     
