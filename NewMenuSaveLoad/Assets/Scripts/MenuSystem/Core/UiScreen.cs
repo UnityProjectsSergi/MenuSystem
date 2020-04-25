@@ -84,13 +84,12 @@ public class UiScreen : MonoBehaviour
         // set setlected the default selection
         if(defaultSelected)
         EventSystem.current.SetSelectedGameObject(defaultSelected);
-        
     }
-
     public void Update()
     {
-        Debug.Log(Selection.gameObjects.Length);
-        
+        if(defaultSelected)
+        if (EventSystem.current.currentSelectedGameObject == null)
+            EventSystem.current.SetSelectedGameObject(defaultSelected);
     }
 
     /// <summary>

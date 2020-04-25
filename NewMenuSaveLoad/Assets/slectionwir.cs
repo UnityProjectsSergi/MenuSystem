@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class slectionwir : MonoBehaviour,ISelectHandler,IDeselectHandler
 {
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -14,11 +15,8 @@ public class slectionwir : MonoBehaviour,ISelectHandler,IDeselectHandler
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(EventSystem.current);
-        if (EventSystem.current == null)
-        {
-            Debug.Log("ssss");
-        }
+        Debug.Log(EventSystem.current.currentSelectedGameObject);
+        
     }
 
     public void OnSelect(BaseEventData eventData)

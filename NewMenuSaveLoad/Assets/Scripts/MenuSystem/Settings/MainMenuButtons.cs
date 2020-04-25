@@ -49,7 +49,7 @@ public class MainMenuButtons : MonoBehaviour {
     public void SetPauseMenu(SlotController slotController,int numSlots)
     {
         text.text = "Pause Menu";
-        EventSystem.current.SetSelectedGameObject(ResumeBtn.gameObject);
+    //    EventSystem.current.SetSelectedGameObject(ResumeBtn.gameObject);
         
         ResumeBtn.gameObject.SetActive(true);
         ExitMainMenuBtn.gameObject.SetActive(true);
@@ -72,14 +72,14 @@ public class MainMenuButtons : MonoBehaviour {
     public void SetMainMenu(SlotController slotController,int numSlots)
     {
         text.text = "Main Menu";
-        EventSystem.current.SetSelectedGameObject(ContinueBtn.gameObject);
+       // EventSystem.current.SetSelectedGameObject(ContinueBtn.gameObject);
         ContinueBtn.gameObject.SetActive(true);
         ResumeBtn.gameObject.SetActive(false);
         ExitMainMenuBtn.gameObject.SetActive(false);
         SaveGameBtn.gameObject.SetActive(false);
         NewGameBtn.gameObject.SetActive(true);
 		SetButtonaActiveDependSlots(slotController,numSlots);
-		EventSystem.current.SetSelectedGameObject(ContinueBtn.gameObject);
+		//EventSystem.current.SetSelectedGameObject(ContinueBtn.gameObject);
     }
 
     private void SetButtonaActiveDependSlots(SlotController slotController, int numSlots)

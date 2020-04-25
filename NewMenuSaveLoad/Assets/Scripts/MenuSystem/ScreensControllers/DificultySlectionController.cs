@@ -27,7 +27,6 @@ public class DificultySlectionController : MonoBehaviour
                 GameObject go = Instantiate(buttonPrfab, transform.position, transform.rotation);
                 go.transform.SetParent(ParntOb.transform);
                 GameDifficulty gameDifficulty = (GameDifficulty)System.Enum.Parse(typeof(GameDifficulty), item);
-                Debug.Log(gameDifficulty);
                 go.GetComponentInChildren<Text>().text = GameController.Instance.globalSettignsMenu.listsOfDificulties[(int)gameDifficulty];
                 go.GetComponent<RectTransform>().offsetMax=new Vector2(4,5);
                 go.GetComponent<RectTransform>().offsetMin=new Vector2(40,50);

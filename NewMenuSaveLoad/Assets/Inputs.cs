@@ -106,7 +106,7 @@ public  class Inputs : MonoBehaviour
   
     private static void OnActionChange(object actionOrMap, InputActionChange change)
     {
-        Debug.Log("ssssscooo input");
+       // Debug.Log("ssssscooo input");
         switch (change)
         {
             case InputActionChange.ActionEnabled:

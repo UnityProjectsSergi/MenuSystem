@@ -11,7 +11,7 @@ public class MainMenuController : MonoBehaviour
     
     public UiScreen DificultSelectionScreen;
 
-   
+    public UiScreen OwnScreen;
     /// <summary>
     /// 
     /// </summary>
@@ -57,7 +57,7 @@ public class MainMenuController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-       
+        OwnScreen = GetComponent<UiScreen>();
         //Initialize menuController variable
         if (MenuController == null) MenuController = MenuController.GetComponent<MenuController>();
         if (SlotController == null)
@@ -211,22 +211,28 @@ public class MainMenuController : MonoBehaviour
 
     public void SetMainMenuWithSlots()
     {
+        
         // Active Main Menu Buttons
-
         MainMenuButtons.SetMainMenu(MenuController.slotController,SaveData.objcts.Slots.Count);
         // if not have slots in list
-    
-
         if (SaveData.objcts.previousSlotLoaded == null)
         {
+            // Set selected the New Game Button 
             EventSystem.current.SetSelectedGameObject(MainMenuButtons.NewGameBtn.gameObject);
             MainMenuButtons.ContinueBtn.gameObject.SetActive(false);
+            OwnScreen.defaultSelected = MainMenuButtons.NewGameBtn.gameObject;
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(MainMenuButtons.ContinueBtn.gameObject);
+            OwnScreen.defaultSelected = MainMenuButtons.ContinueBtn.gameObject;
         }
     }
 
     public void SetPauseMenuwithSlots()
     {
+        EventSystem.current.SetSelectedGameObject(MainMenuButtons.ResumeBtn.gameObject);
         MainMenuButtons.SetPauseMenu(MenuController.slotController,SaveData.objcts.Slots.Count);
-       
+        OwnScreen.defaultSelected = MainMenuButtons.ResumeBtn.gameObject;
     }
 }
