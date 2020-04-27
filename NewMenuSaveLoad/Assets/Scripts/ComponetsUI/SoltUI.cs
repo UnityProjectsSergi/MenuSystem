@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Assets.Scripts.Utils;
+using TMPro;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
@@ -19,7 +20,7 @@ public class SoltUI : MonoBehaviour,ISelectHandler,IDeselectHandler {
     /// <summary>
     /// Name UI Text
     /// </summary>
-    public Text Name;
+    public TextMeshProUGUI namePro;
     /// <summary>
     /// Screenshot UI Image
     /// </summary>
@@ -32,7 +33,7 @@ public class SoltUI : MonoBehaviour,ISelectHandler,IDeselectHandler {
     public TypeSlotUI typeSlot;
     public Button btnDel;
     public Button btnLoadSave;
-    public Text textTypeSlot;
+    public TextMeshProUGUI textTypeSlotPro;
     public Sprite defaultS;
     
     public EventTrigger onClickLoadEvent;
@@ -66,8 +67,12 @@ public class SoltUI : MonoBehaviour,ISelectHandler,IDeselectHandler {
     public void Init(InfoSlotResume _slot)
     {
         slot = _slot;
-        Name.text = Utils.MakeString(new string[] { slot.dataInfoSlot.Title, " ", slot.dataInfoSlot.dateTimeCreation.ToLongDateString(), " , ", slot.dataInfoSlot.dateTimeCreation.ToLongTimeString() });
-        textTypeSlot.text = slot.dataInfoSlot.typeSaveSlot.ToString();
+      
+       
+        namePro.text=Utils.MakeString(new string[] { slot.dataInfoSlot.Title, " ", slot.dataInfoSlot.dateTimeCreation.ToLongDateString(), " , ", slot.dataInfoSlot.dateTimeCreation.ToLongTimeString() });
+       
+            textTypeSlotPro.text =slot.dataInfoSlot.typeSaveSlot.ToString();
+        
         try
         {
             Sprite img = IMG2Sprite.LoadNewSprite(slot.dataInfoSlot.ScreenShot);

@@ -85,11 +85,14 @@ public class UiScreen : MonoBehaviour
         if(defaultSelected)
         EventSystem.current.SetSelectedGameObject(defaultSelected);
     }
+    public bool genbut;
     public void Update()
     {
-        if(defaultSelected)
-        if (EventSystem.current.currentSelectedGameObject == null)
-            EventSystem.current.SetSelectedGameObject(defaultSelected);
+        if (defaultSelected!=null)
+        { 
+            //if (EventSystem.current.currentSelectedGameObject == null)
+                //EventSystem.current.SetSelectedGameObject(defaultSelected);
+        }
     }
 
     /// <summary>

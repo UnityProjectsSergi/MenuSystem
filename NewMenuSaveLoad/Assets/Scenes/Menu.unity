@@ -1007,6 +1007,7 @@ MonoBehaviour:
   UiElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &79081121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1899,6 +1900,7 @@ MonoBehaviour:
   UiElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &112157001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2790,6 +2792,7 @@ MonoBehaviour:
   UiElements: []
   timeFromBlack: 1
   timeToBlack: 1
+  genbut: 0
 --- !u!114 &213562117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2888,6 +2891,7 @@ MonoBehaviour:
   UiElements: []
   timeFromBlack: 1
   timeToBlack: 1
+  genbut: 0
 --- !u!114 &217578940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7684,6 +7688,7 @@ MonoBehaviour:
   - {fileID: 708781640}
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!225 &626737780
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9580,6 +9585,7 @@ MonoBehaviour:
   - {fileID: 1135618127}
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &784361528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10829,6 +10835,7 @@ MonoBehaviour:
   - {fileID: 1636531342}
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &874335547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16189,6 +16196,7 @@ MonoBehaviour:
   - {fileID: 1681396533}
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &1251716496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16433,6 +16441,7 @@ MonoBehaviour:
   UiElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &1261279900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16610,6 +16619,7 @@ MonoBehaviour:
   - {fileID: 1916570777}
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &1287160861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17242,6 +17252,7 @@ MonoBehaviour:
   UiElements: []
   timeFromBlack: 0
   timeToBlack: 0
+  genbut: 0
 --- !u!114 &1381093845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17552,6 +17563,7 @@ MonoBehaviour:
   UiElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &1414367517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20244,6 +20256,7 @@ MonoBehaviour:
   UiElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &1686490372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21959,6 +21972,7 @@ MonoBehaviour:
   - {fileID: 1237722200}
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 1
 --- !u!114 &1828755993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23776,6 +23790,7 @@ MonoBehaviour:
   - {fileID: 2098671945}
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &1933942485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24386,6 +24401,7 @@ MonoBehaviour:
   - {fileID: 679221077}
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &1958659011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27070,6 +27086,31 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1251716494}
+    - target: {fileID: 7565813889210098079, guid: 0b4f80be2761a474cba42d2896dd84d5,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565813889210098079, guid: 0b4f80be2761a474cba42d2896dd84d5,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565813889210098079, guid: 0b4f80be2761a474cba42d2896dd84d5,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565813889210098079, guid: 0b4f80be2761a474cba42d2896dd84d5,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565813889210098079, guid: 0b4f80be2761a474cba42d2896dd84d5,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9072362563998802124, guid: 0b4f80be2761a474cba42d2896dd84d5,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
