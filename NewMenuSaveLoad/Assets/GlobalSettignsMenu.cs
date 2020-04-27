@@ -2,11 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 [System.Serializable]
 public enum SaveSystemFormat{ JSON,Xml}
 public enum SaveSystemSourceData{ Remote,Local}
 public class GlobalSettignsMenu : MonoBehaviour
 {
+    public GlobalSettings gb;
     public float TimeToTakeScreenShoot;
     public bool IsSaveingSystemEnabled;
     public bool IsSaveingInterval;

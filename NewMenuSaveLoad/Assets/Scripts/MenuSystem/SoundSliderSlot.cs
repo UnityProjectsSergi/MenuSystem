@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -17,6 +17,8 @@ public  class SoundSliderSlot : MonoBehaviour
     public RTPCWwise RtpcWwise;
     public SoundBusFMOD BusFmod;
     public Text text;
+
+    public TextMeshProUGUI textPro;
     // Start is called before the first frame update
     public void Awake()
     {
@@ -55,7 +57,12 @@ public  class SoundSliderSlot : MonoBehaviour
 
             }
             Slider.value = value;
+            if(text!=null)
             text.text = Slider.value.ToString("0%");
+            else
+            {
+                textPro.text= Slider.value.ToString("0%");
+            }
             SaveVal.Invoke(value);
         }
         catch (ExceptionSound e)

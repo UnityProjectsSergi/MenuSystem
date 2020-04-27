@@ -93,7 +93,7 @@ public class LoadSlotListController : MonoBehaviour
            // set parent of parentOfList
             ObjSlot.GetComponent<RectTransform>().offsetMax=new Vector2(20,50);
            ObjSlot.GetComponent<RectTransform>().offsetMin=new Vector2(200,200);
-            ObjSlot.GetComponent<RectTransform>().sizeDelta=new Vector2(400,50);
+            ObjSlot.GetComponent<RectTransform>().sizeDelta=new Vector2(800,75);
             ObjSlot.transform.SetParent(parentOflist.transform, true);
             // set select the objSlot
             ownScreen.UiElements.Add(ObjSlot);

@@ -333,7 +333,7 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: New  vvvvvvvvvvvv vvvvvvvvvvvvvvv
@@ -476,11 +476,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 600
+  m_MinWidth: 800
   m_MinHeight: 400
-  m_PreferredWidth: 600
+  m_PreferredWidth: 800
   m_PreferredHeight: 400
-  m_FlexibleWidth: 600
+  m_FlexibleWidth: 800
   m_FlexibleHeight: 400
   m_LayoutPriority: 1
 --- !u!114 &7307480740399990024
@@ -670,7 +670,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: New Text
 --- !u!1 &976312712362995612
