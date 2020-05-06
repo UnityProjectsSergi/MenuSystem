@@ -52,13 +52,13 @@ public class AudioSettingsController : MonoBehaviour
     public void SetDefaults()
     {
         if(SlotMusic!=null)
-         SlotMusic.SetValueSlider(Parameters.musicValue);
+         SlotMusic.SetValueSlider(DefaultAudioParameters.musicValue);
         if(SlotMaster!=null)
-         SlotMaster.SetValueSlider(Parameters.masterValue);
+         SlotMaster.SetValueSlider(DefaultAudioParameters.masterValue);
         if(SlotVoices!=null)
-          SlotVoices.SetValueSlider(Parameters.voicesValue);
+          SlotVoices.SetValueSlider(DefaultAudioParameters.voicesValue);
         if(SlotSFX!=null)
-          SlotSFX.SetValueSlider(Parameters.soundFXValue);
+          SlotSFX.SetValueSlider(DefaultAudioParameters.soundFXValue);
         SaveAudioData();
     }
 

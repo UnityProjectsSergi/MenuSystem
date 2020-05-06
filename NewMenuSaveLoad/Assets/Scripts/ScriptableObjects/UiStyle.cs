@@ -1,10 +1,23 @@
-﻿using UnityEngine;
+﻿using UnityEditor.Experimental.GraphView;
+using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
-namespace UnityEngine.UI
-{
+public enum TypeUI{Color, Sprite,Animation}
     [CreateAssetMenu(fileName = "UiStyle", menuName = "UIStyle", order = 0)]
     public class UiStyle : ScriptableObject
     {
+        public TypeUI typeUi;
+        public Color TitleBoxBGColor;
+        public Color ContentBoxBGColor;
+        public Color ButtonBGColor;
+        [FormerlySerializedAs("colors")]
+        [SerializeField]
+        public Selectable selectable;
         
+        public Color TextColor;
+
+
     }
-}
+

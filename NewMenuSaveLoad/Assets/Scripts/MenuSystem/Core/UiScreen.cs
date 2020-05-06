@@ -48,11 +48,14 @@ public class UiScreen : MonoBehaviour
     /// 
     /// </summary>
     public float timeFromBlack, timeToBlack;
+    
+    
     // Awke Unity Funtion
     private void Awake()
     {
         canvas = GetComponent<UiFader>();
       UiElements=new List<GameObject>();
+      
         
     }
     /// <summary>
@@ -64,8 +67,12 @@ public class UiScreen : MonoBehaviour
         if(UiElements.Count>0)
         foreach (GameObject Item in UiElements)
         {
-            if(Item.GetComponent<Selectable>()!=null)
-            Item.GetComponent<Selectable>().interactable = flag;
+            
+            if (Item && Item.activeInHierarchy)
+            {
+                if (Item.GetComponent<Selectable>() != null)
+                    Item.GetComponent<Selectable>().interactable = flag;
+            }
         }
     }
     /// <summary>
@@ -90,8 +97,8 @@ public class UiScreen : MonoBehaviour
     {
         if (defaultSelected!=null)
         { 
-            //if (EventSystem.current.currentSelectedGameObject == null)
-                //EventSystem.current.SetSelectedGameObject(defaultSelected);
+            if (EventSystem.current.currentSelectedGameObject == null)
+                EventSystem.current.SetSelectedGameObject(defaultSelected);
         }
     }
 

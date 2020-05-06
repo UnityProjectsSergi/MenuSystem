@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.SaveSystem1.DataClasses;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GrapicsSettingsController : MonoBehaviour
 {
     public Toggle TogglefullScreen;
+    public TMP_Dropdown DropdownResolution, DropdownQuality;
     public Dropdown dropdownResolutions,dropdownQuality;
     private GraphicsSettingsData _loadedGraphicsParameters = null;
     /// <summary>
@@ -84,9 +86,12 @@ public class GrapicsSettingsController : MonoBehaviour
 
             dropdownQuality.ClearOptions();
         dropdownResolutions.ClearOptions();
-        
+        DropdownQuality.ClearOptions();
+        DropdownResolution.ClearOptions();
         dropdownQuality.AddOptions(QualitySettings.names.ToList());
+        DropdownQuality.AddOptions(QualitySettings.names.ToList());
         dropdownQuality.value = (int)SaveData.objcts.Parameters.Graphics.currentQualityLevel;
+        DropdownQuality.value=(int)SaveData.objcts.Parameters.Graphics.currentQualityLevel;
         #endregion
         #region Set Dropdown Reslutions
         List<string> resos = new List<string>();
@@ -114,12 +119,16 @@ public class GrapicsSettingsController : MonoBehaviour
             
         }
         dropdownResolutions.ClearOptions();
+        DropdownResolution.ClearOptions();
+        
         dropdownResolutions.AddOptions(resos);
+        DropdownResolution.AddOptions(resos);
         dropdownResolutions.value = currentResIndex;
+        DropdownResolution.value = currentResIndex;
         Screen.SetResolution( SaveData.objcts.Parameters.Graphics.width, SaveData.objcts.Parameters.Graphics.height, SaveData.objcts.Parameters.Graphics.isFullScreen);
         #endregion
         // SetDefaults
-        SetDefaults();
+//        SetDefaults();
        
     }
 
@@ -149,7 +158,7 @@ public class GrapicsSettingsController : MonoBehaviour
 
     public void OnValueChangeResolution(int num)
     {
-        Resolution res = filterdResoltions[dropdownResolutions.value];
+        Resolution res = filterdResoltions[DropdownResolution.value];
         Screen.SetResolution(res.width,res.height,fullScreen);
         Parameters.height = res.height;
         Parameters.width = res.width;

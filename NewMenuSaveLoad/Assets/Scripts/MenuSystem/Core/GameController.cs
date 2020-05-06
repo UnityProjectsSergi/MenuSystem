@@ -41,7 +41,8 @@ public class GameController : MonoBehaviour
         /// Current Slot Resume loaded
         /// </summary>
         [CanBeNull] public  InfoSlotResume currentSlotResume=null;
-
+        [CanBeNull] public User currentUser;
+        [CanBeNull] public string token;
         [FormerlySerializedAs("hasCurrentSlotLoaded")] public bool hasCurrentSlot;
         /// <summary>
         /// Instace public of GameConstroller

@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 public class SaveGameController : MonoBehaviour
 {
@@ -87,7 +88,10 @@ public class SaveGameController : MonoBehaviour
                 new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z),
                 transform.localRotation);
             // Set text in ui Text
-            ObjSlot.GetComponentInChildren<Text>().text = ObjSlot.name;
+            ObjSlot.GetComponent<RectTransform>().offsetMax=new Vector2(20,50);
+            ObjSlot.GetComponent<RectTransform>().offsetMin=new Vector2(200,50);
+            ObjSlot.GetComponent<RectTransform>().sizeDelta=new Vector2(800,75);
+            ObjSlot.GetComponentInChildren<TextMeshProUGUI>().text = ObjSlot.name;
             // set objSlot child of parentOfList Content
             ObjSlot.transform.SetParent(parentOflist.transform, true);
             // get GetComponent SlotUI in objSlot

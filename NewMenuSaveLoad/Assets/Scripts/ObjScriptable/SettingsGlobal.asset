@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fab27db364ca0d740a58cdf0128cfd82, type: 3}
   m_Name: SettingsGlobal
   m_EditorClassIdentifier: 
-  UiStyle: {fileID: 0}
+  UiStyle: {fileID: 11400000, guid: f65ea0ed2402a964bbabe3a040e72c66, type: 2}
