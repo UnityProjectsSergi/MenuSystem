@@ -40,10 +40,10 @@ namespace Assets.SaveSystem1.DataClasses
                 if (!File.Exists(Application.persistentDataPath + "/" + FolderOfSlot))
                 {
                     Directory.CreateDirectory(Application.persistentDataPath + "/" + FolderOfSlot);
-                    FileSlot = Utils.MakeString(new string[] { Application.persistentDataPath, "/", FolderOfSlot, "/", "Slot_" + Path.GetRandomFileName() + ".json" });
+                    FileSlot = Utils.MakeString(new string[] { Application.persistentDataPath, "/", FolderOfSlot, "/", "Slot_" + Path.GetRandomFileName() + GameController.Instance.globalSettignsMenu.currentExtFile });
                
                     
-                    SaveData.SaveToFile<GameSlot>(FileSlot, slotGame, true);
+                    SaveData.SaveSlotData<GameSlot>(FileSlot, slotGame, true);
                 }
                 folderDone = true;
             }

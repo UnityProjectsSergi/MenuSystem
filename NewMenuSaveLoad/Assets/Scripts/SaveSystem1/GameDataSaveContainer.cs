@@ -32,6 +32,6 @@ public class GameDataSaveContainer {
     public GameParameters Parameters = new GameParameters();
     // Use this for initialization
     public InfoSlotResume previousSlotLoaded=null;
-    public InfoSlotResume previousSlotSaved=null;
-    public User prevUser;
+ 
+    
 }

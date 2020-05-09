@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
         /// Current Slot Resume loaded
         /// </summary>
         [CanBeNull] public  InfoSlotResume currentSlotResume=null;
-        [CanBeNull] public User currentUser;
+        [CanBeNull] public User currentUser=null;
         [CanBeNull] public string token;
         [FormerlySerializedAs("hasCurrentSlotLoaded")] public bool hasCurrentSlot;
         /// <summary>
@@ -87,14 +87,17 @@ public class GameController : MonoBehaviour
                     _instance = this;
                     DontDestroyOnLoad(this.gameObject);
                     if (globalSettignsMenu.typeSaveFormat == SaveSystemFormat.JSON)
-                        globalSettignsMenu.fileGlobalSlotsSaveData+=".json";
+                        globalSettignsMenu.currentExtFile = globalSettignsMenu.jsonExt;
                     else if (globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Xml)
-                        globalSettignsMenu.fileGlobalSlotsSaveData += ".xml";
-                    datapath = System.IO.Path.Combine(Application.persistentDataPath, globalSettignsMenu.fileGlobalSlotsSaveData);
+                        globalSettignsMenu.currentExtFile = globalSettignsMenu.xmlExt;
+
+                    globalSettignsMenu.fileGlobalSlotsSaveData += globalSettignsMenu.currentExtFile;
+                    datapath = System.IO.Path.Combine(Application.persistentDataPath,
+                        globalSettignsMenu.fileGlobalSlotsSaveData);
                     fileExists = File.Exists(datapath);
                     pauseController = GetComponent<PauseController>();
                     // Load Data from Anywhere
-                    Load(false);
+                    LoadData();
                 }
             }
               /// <summary>
@@ -177,12 +180,12 @@ public class GameController : MonoBehaviour
         /// </summary>
         public static void LoadForce()
         {
-            SaveData.Load(datapath);
+            SaveData.Load();
         }
         /// <summary>
         /// Load Function Loads data if hasLoaded dataes false at init
         /// </summary>
-        public static void Load(bool force)
+        public static void LoadData()
         {
             // if hasLoadedGameData is false
             if (!hasLoadedGameData)
@@ -190,8 +193,7 @@ public class GameController : MonoBehaviour
                 // set HasLoadedGameData true
                 hasLoadedGameData = true;
                 // load data
-                SaveData.Load(datapath);
-                
+                SaveData.Load();
             }
         }
         /// <summary>
@@ -199,6 +201,7 @@ public class GameController : MonoBehaviour
         /// </summary>
         public static void Save()
         {
+            SaveData.Save();
             SaveData.SaveToFile(datapath, SaveData.objcts, true);
         }
         /// <summary>

@@ -7,30 +7,54 @@ using Assets.SaveSystem1.DataClasses;
 using System.Reflection;
 using System;
 using System.Linq;
+using SaveSystem1.DataClasses;
+using UnityEngine.PlayerLoop;
 
 public class SaveData
 {
     public static GameDataSaveContainer objcts = new GameDataSaveContainer();
-
+    public static UsersContinerData usersList=new UsersContinerData();
     public delegate void SerializeAction();
 
     public static event SerializeAction OnLoaded;
     public static event SerializeAction OnBeforeSave;
 
+    public static void LoadFromUser()
+    {
+        
+    }
+
+    public static void SaveToUser()
+    {
+        
+    }
     /// <summary>
     /// Load File data into memory And create the objects saved in file. 
     /// </summary>
     /// <param name="Path">Path of the file to load</param>
-    public static void Load(string Path)
+    public static void Load()
     {
         //Load From file 
         objcts = null;
         if (GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Local)
-            objcts = LoadFromFile<GameDataSaveContainer>(Path);
-        else
+            if (GameController.Instance.globalSettignsMenu.HasUserLoginRegisterActive)
+            {
+                usersList = LoadFromFile<UsersContinerData>(GameController.Instance.globalSettignsMenu.fileListUsers);
+            }
+            else
+            {
+                objcts = LoadFromFile<GameDataSaveContainer>(GameController.Instance.globalSettignsMenu.fileGlobalSlotsSaveData);
+            }
+        else if(GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Remote)
         {
-            // objcts = LoadFromWeb();
+            if (!GameController.Instance.globalSettignsMenu.HasUserLoginRegisterActive)
+                objcts = LoadFromWeb<GameDataSaveContainer>();
         }
+    }
+
+    private static T LoadFromWeb<T>()where T : new()
+    {
+        return new T();
     }
 
     /// <summary>
@@ -51,10 +75,24 @@ public class SaveData
             OnLoaded();
             ClearGameObjectsListSlot();
         }
-
         GameController.Instance.currentSlot = currentSlot;
     }
 
+    public static void Save()
+    {
+        
+    }
+    public void SaveGameFile<T>(string path_url,T content,bool deleteIfExistsFile)where T : new()
+    {
+        if (GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Local)
+        {
+            SaveToFile<T>(path_url, content, deleteIfExistsFile);
+        }
+        else
+        {
+            //SaveToWebSlots<>();
+        }
+    }
     /// <summary>
     /// 
     /// </summary>
@@ -74,11 +112,12 @@ public class SaveData
                 OnBeforeSave();
                 if (GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Local)
                 {
+                    
                     SaveToFile<T>(path, content, deleteIfExistsFile);
                 }
                 else
                 {
-                    //   SaveToWEbSlots<T>();
+                    SaveToWebSlots<T>();
                 }
 
                 ClearGameObjectsListSlot();
@@ -92,10 +131,15 @@ public class SaveData
                 }
                 else
                 {
-                    //   SaveToWEbSlots<T>();
+                       SaveToWebSlots<T>();
                 }
             }
         }
+    }
+
+    private static void SaveToWebSlots<T>() where T : new()
+    {
+        // update 
     }
 
     /// <summary>
@@ -147,7 +191,6 @@ public class SaveData
         }
         else
         {
-            Debug.Log("FileNotExists");
             return new T();
         }
     }
@@ -161,6 +204,7 @@ public class SaveData
     /// <param name="deleteIfExists"></param>
     public static void SaveToFile<T>(string path, T content, bool deleteIfExistsFile) where T : new()
     {
+        // if file exists
         if (File.Exists(path))
         {
             // is exists deleted?
@@ -168,18 +212,20 @@ public class SaveData
             {
                 //delete file and create wen
                 File.Delete(path);
-                // 
+                // if file type format is json
                 if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.JSON)
                 {
-                    // File.WriteAllText(path, JsonUtility.ToJson(content));
+                    //write to file
                     File.WriteAllText(path, JsonConvert.SerializeObject(content, Formatting.Indented,
                         new JsonSerializerSettings
                         {
                             ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                         }));
                 }
+                // if file type format is xml
                 else if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Xml)
                 {
+                    // write on xml
                     var stringwriter = new System.IO.StringWriter();
                     var serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
                     serializer.Serialize(stringwriter, content);
@@ -189,6 +235,7 @@ public class SaveData
             // if exist and not delete
             else
             {
+                // if file type format is json
                 if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.JSON)
                 {
                     // read the file and apped extra information
@@ -200,8 +247,10 @@ public class SaveData
                             ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                         }));
                 }
+                // if file type format is xml
                 else if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Xml)
                 {
+                    // write on xml file
                     string xml = File.ReadAllText(path);
                     var stringwriter = new System.IO.StringWriter();
                     var serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
@@ -211,16 +260,18 @@ public class SaveData
             }
         }
         else
+        // if not exists create and write file
         {
+            // if file type format is json
             if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.JSON)
             {
-                //if not exits wirte
                 File.WriteAllText(path, JsonConvert.SerializeObject(content, Formatting.Indented,
                     new JsonSerializerSettings
                     {
                         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                     }));
             }
+            // if file type format is xml
             else if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Xml)
             {
                 var stringwriter = new System.IO.StringWriter();
@@ -230,7 +281,6 @@ public class SaveData
             }
         }
     }
-
     private static void Append(string path, string contents)
     {
         File.WriteAllText(path, contents);

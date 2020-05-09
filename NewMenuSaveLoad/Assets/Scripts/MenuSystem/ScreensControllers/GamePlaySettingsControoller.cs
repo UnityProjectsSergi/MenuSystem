@@ -19,7 +19,7 @@ public class GamePlaySettingsControoller : MonoBehaviour
             //VSyncCount
             //  Skin
            /// Sha
-           TierSettings d =new TierSettings();
+          // TierSettings d =new TierSettings();
        //    GraphicsTier.Tier1.
            GraphicsTier m = GraphicsTier.Tier2;
            Graphics.activeTier = m;

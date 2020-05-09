@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -75,10 +76,26 @@ public class UiSystem : MonoBehaviour
         get { return currentScreen; }
     }
 
+    public UiScreen LoginScreen;
     public bool isFirstEnter;
     // Start methodth
+    private void Awake()
+    {
+        
+        
+    }
+
+    private void OnEnable()
+    {
+        
+    }
+
     void Start()
     {
+        if (GameController.Instance.globalSettignsMenu.isLoginRegisterEnabled)
+        {
+            startScreen = LoginScreen;
+        }
         // set number of Previous Screen index to 0
         numPrvevScreen = 0;
         // get Child UiScreens components 
@@ -92,6 +109,7 @@ public class UiSystem : MonoBehaviour
         if (!isFirstEnter && startScreen  )
         {
             isFirstEnter = true;
+            
             // call SwitchScreen Coroutine
             StartCoroutine(SwitchScreen(startScreen));
         }

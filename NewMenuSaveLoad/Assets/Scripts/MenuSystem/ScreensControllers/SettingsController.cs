@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SettingsController : MonoBehaviour
 {
     [SerializeField]
-    private UiSystem UiSystem;
+    private UiSystem uiSystem;
 
     [SerializeField] private UiScreen UIScreenAudio=null,UIScreenGamePlay=null,UiScreenGrapics=null;
     // Start is called before the first frame update
@@ -53,17 +53,17 @@ public class SettingsController : MonoBehaviour
 
     public void OpenAudioSettings()
     {
-        UiSystem.CallSwitchScreen(UIScreenAudio,null);
+        uiSystem.CallSwitchScreen(UIScreenAudio,null);
     }
 
     public void OpenGamePlaySettings()
     {
-        UiSystem.CallSwitchScreen(UIScreenGamePlay);
+        uiSystem.CallSwitchScreen(UIScreenGamePlay);
     }
 
     public void OpenGrapicsSettings()
     {
-        UiSystem.CallSwitchScreen(UiScreenGrapics);
+        uiSystem.CallSwitchScreen(UiScreenGrapics);
     }
   
 }

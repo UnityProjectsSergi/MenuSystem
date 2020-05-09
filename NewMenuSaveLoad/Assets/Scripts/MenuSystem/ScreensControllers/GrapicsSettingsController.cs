@@ -49,7 +49,7 @@ public class GrapicsSettingsController : MonoBehaviour
     // list of full resolutions
     private List<Resolution> listResolutions;
     // int num index for default resolution
-    private int num=0;
+    
 // TODO make the UI and save data from these data 
     private List<TextureQuality> listTextQualities;
     private List<AntiAliasing> listAntialiasing;

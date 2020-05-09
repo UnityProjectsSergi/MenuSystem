@@ -248,15 +248,12 @@ public class LoadSlotListController : MonoBehaviour
     /// <param name="gameObject"></param>
     public void DeleteSlot(InfoSlotResume slot)
     {
-      
-        Debug.Log("sssssssssssss Del");
         SaveData.objcts.Slots.Remove(slot);
         Directory.Delete(Application.persistentDataPath + "/" +slot.FolderOfSlot, true);
         if (SaveData.objcts.Slots.Count == 0)
             SaveData.objcts.previousSlotLoaded = null;
         else
         {
-            Debug.Log(slot);
             if (slot == SaveData.objcts.previousSlotLoaded)
             {
                 SaveData.objcts.previousSlotLoaded=SaveData.objcts.Slots[0];

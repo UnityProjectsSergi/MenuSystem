@@ -83,7 +83,7 @@ public  class Inputs : MonoBehaviour
         ExitPause = ExtPaseAction.triggered;
         Pause = PauseGamePlayAction.triggered;
         SaveTrigg = SaveAction.triggered;
-            Debug.Log(Pause);
+       
         //  Debug.Log(InputPauseGame());
         //  Debug.Log(InputEnter());
     }
