@@ -39,50 +39,45 @@ public class SaveData
         if (GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Local)
             if (GameController.Instance.globalSettignsMenu.HasUserLoginRegisterActive)
             {
-                usersList = LoadFromFile<UsersContinerData>(GameController.Instance.globalSettignsMenu.fileListUsers);
+                usersList = LoadFromFile<UsersContinerData>(GameController.datapath);
             }
             else
             {
-                objcts = LoadFromFile<GameDataSaveContainer>(GameController.Instance.globalSettignsMenu.fileGlobalSlotsSaveData);
+                objcts = LoadFromFile<GameDataSaveContainer>(GameController.datapath);
             }
         else if(GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Remote)
         {
             if (!GameController.Instance.globalSettignsMenu.HasUserLoginRegisterActive)
-                objcts = LoadFromWeb<GameDataSaveContainer>();
+                 LoadFromWeb();
         }
     }
-
-    private static T LoadFromWeb<T>()where T : new()
+    private static void LoadFromWeb()
     {
-        return new T();
+        SaveController.Instance.GetGame();
     }
-
+    
     /// <summary>
     /// Load Game FromSlot Obj 
     /// </summary>
     /// <param name="currentSlot"></param>
-    public static void LoadGameSlotData(GameSlot currentSlot)
+    public static void LoadGameSlotDataToScene(GameSlot currentSlot)
     {
         if (currentSlot.ObjectsToSaveInSlot.Count > 0)
         {
             foreach (var item in currentSlot.ObjectsToSaveInSlot.ToArray())
             {
                 currentSlot.NumObj++;
-
                 GameLevelController.CreateObjSaved(item);
             }
-
+            // crido l'event aqut 
             OnLoaded();
             ClearGameObjectsListSlot();
         }
         GameController.Instance.currentSlot = currentSlot;
     }
 
-    public static void Save()
-    {
-        
-    }
-    public void SaveGameFile<T>(string path_url,T content,bool deleteIfExistsFile)where T : new()
+    
+    public void SaveGame<T>(string path_url,T content,bool deleteIfExistsFile)where T : new()
     {
         if (GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Local)
         {
@@ -102,9 +97,10 @@ public class SaveData
     /// <param name="deleteIfExistsFile">bool says what to do if exists file 
     ///     if its true the file is deleted 
     ///     if its false the content is added at the end of old content  </param>
+    /// 
     public static void SaveSlotData<T>(string path, T content, bool deleteIfExistsFile) where T : new()
     {
-        if ((bool) GameController.Instance.currentSlot)
+        if ((bool) GameController.Instance.hasCurrentSlot)
         {
             ObjToSave[] num = GameObject.FindObjectsOfType<ObjToSave>();
             if (num.Length != 0)
@@ -112,14 +108,12 @@ public class SaveData
                 OnBeforeSave();
                 if (GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Local)
                 {
-                    
                     SaveToFile<T>(path, content, deleteIfExistsFile);
                 }
                 else
                 {
-                    SaveToWebSlots<T>();
+                    SaveToWebSlots(content);
                 }
-
                 ClearGameObjectsListSlot();
             }
             else
@@ -131,17 +125,16 @@ public class SaveData
                 }
                 else
                 {
-                       SaveToWebSlots<T>();
+                    SaveToWebSlots(content);
                 }
             }
         }
     }
-
-    private static void SaveToWebSlots<T>() where T : new()
+    private static void SaveToWebSlots<T>(T content) 
     {
-        // update 
+        
+        SaveController.Instance.SaveGameSlot(content);
     }
-
     /// <summary>
     /// Add GameObject data to the list of GameObjects Data
     /// </summary>
@@ -170,6 +163,24 @@ public class SaveData
     /// <typeparam name="T">Type of GameObject To Load</typeparam>
     /// <param name="path">Path and filename of the data to load</param>
     /// <returns></returns>
+    public static GameSlot LoadFromSource<T>(string path)
+    {
+        GameSlot aux;
+        if (GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Remote)
+        {
+             SaveController.Instance.LoadSaveSlotWeb();
+             return GameController.Instance.currentSlot;
+        }
+        else if(GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Local)
+        {
+            return LoadFromFile<GameSlot>(GameController.Instance.currentSlotResume.FileSlot);
+        }
+        else
+        {
+            return null;
+        }
+        
+    }
     public static T LoadFromFile<T>(string path) where T : new()
     {
         if (File.Exists(path))

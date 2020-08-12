@@ -37,7 +37,8 @@ public class AudioSettingsController : MonoBehaviour
         if (GameController.hasLoadedGameData)
         {
             //get Instances from Unity or FMOD or WWISE call SoundSliderSlot.IniBus
-            if (GameController.Instance.fileExists)
+            
+            if (GameController.Instance.dataExists)
                 _loadedAudioParameters = SaveData.objcts.Parameters.Sound;
         }
         SerActionsOnSlots();
@@ -97,6 +98,6 @@ public class AudioSettingsController : MonoBehaviour
     private void SaveAudioData()
     {
         SetParametersOnSaveData();
-        GameController.Save();
+        GameController.SaveGame();
     }
 }

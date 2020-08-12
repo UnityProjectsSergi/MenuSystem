@@ -96,7 +96,7 @@ public class SoltUI : MonoBehaviour,ISelectHandler,IDeselectHandler {
 
     public void OnSelect(BaseEventData eventData)
     {
-        Debug.Log("sss");
+       
     }
 
     public void OnDeselect(BaseEventData eventData)

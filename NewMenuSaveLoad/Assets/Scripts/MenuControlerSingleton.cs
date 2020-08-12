@@ -5,16 +5,19 @@ using UnityEngine;
 public class MenuControlerSingleton : MonoBehaviour
 {
 
-    private MenuControlerSingleton _instance;
+    
     // Start is called before the first frame update
  
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
+    public static MenuControlerSingleton instance;
+ 
+    void Awake(){
+        if (instance == null)  
+            instance = this;
+        else 
+            DestroyImmediate(this.gameObject);
     }
+ 
+    void Start () {DontDestroyOnLoad (this.gameObject);}
+    
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

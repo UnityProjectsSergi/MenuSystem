@@ -27,7 +27,7 @@ public class UiScreen : MonoBehaviour
     /// <summary>
     ///  Object to select when screen opens
     /// </summary>
-    public GameObject defaultSelected;
+    public GameObject defaultUiElementSelected;
     /// <summary>
     ///  Canvas and reference to UIFader script
     /// </summary>
@@ -79,26 +79,26 @@ public class UiScreen : MonoBehaviour
     /// Opens the screen
     /// </summary>
     /// <param name="ActionEvent">Event of Unity to invoke</param>
-    /// <param name="FadeInOutBlack">say if need the fade to black</param>
-    public void OpenScreen(UnityAction ActionEvent = null, bool FadeInOutBlack = false)
+    /// <param name="HasToFadeToBlackOnChangeScreen">say if need the fade to black</param>
+    public void OpenScreen(UnityAction ActionEvent = null, bool hasToFadeToBlackOnChangeScreen = false)
     {
         // Enable the Selectable Ui Elements
         EnableDisableUiElements(true);
         /// make the fade in 
-        canvas.FadeIn(ActionEvent, openScreenFadeInTime,FadeInOutBlack, timeFromBlack);
+        canvas.FadeIn(ActionEvent, openScreenFadeInTime,hasToFadeToBlackOnChangeScreen, timeFromBlack);
         // Activate canvas varibales
         canvas.ActivateCanvasGroup();
         // set setlected the default selection
-        if(defaultSelected)
-        EventSystem.current.SetSelectedGameObject(defaultSelected);
+        if(defaultUiElementSelected)
+        EventSystem.current.SetSelectedGameObject(defaultUiElementSelected);
     }
     public bool genbut;
     public void Update()
     {
-        if (defaultSelected!=null)
+        if (defaultUiElementSelected!=null)
         { 
             if (EventSystem.current.currentSelectedGameObject == null)
-                EventSystem.current.SetSelectedGameObject(defaultSelected);
+                EventSystem.current.SetSelectedGameObject(defaultUiElementSelected);
         }
     }
 
@@ -113,11 +113,11 @@ public class UiScreen : MonoBehaviour
     /// <summary>
     /// Close the screen 
     /// </summary>
-    /// <param name="fadeInOutBlack"></param>
-    public void CloseScreen(bool fadeInOutBlack)
+    /// <param name="HasToFadeToBlackOnChangeScreen"></param>
+    public void CloseScreen(bool hasToFadeToBlackOnChangeScreen)
     {
         // CALL fade out 
-        canvas.FadeOut(closeScreenFadeOutTime,fadeInOutBlack,timeToBlack);
+        canvas.FadeOut(closeScreenFadeOutTime,hasToFadeToBlackOnChangeScreen,timeToBlack);
         // Desactivate canvas varibales
         canvas.DeactivateCanvasGroup();
         // Disble Ui Elements of canvas

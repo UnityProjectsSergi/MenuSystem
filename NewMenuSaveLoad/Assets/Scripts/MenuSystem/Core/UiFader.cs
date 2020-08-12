@@ -29,13 +29,12 @@ public class UiFader : MonoBehaviour
     /// </summary>
     /// <param name="unity"> Action to take inside of fade In</param>
     /// <param name="timeFadeIn"> Time of duration of fade IN in seconds </param>
-    /// <param name="isOnFadeInOutToBlack"> if is true  Need to make the fade iN to black if ist false no needs</param>
+    /// <param name="HasToFadeToBlackOnChangeScreen"> if is true  Need to make the fade iN to black if ist false no needs</param>
     /// <param name="timeFadeFromBack"> Time of duration of fade IN to black in seconds</param>
-    public void FadeIn(UnityAction unity = null, float timeFadeIn = 1, bool isOnFadeInOutToBlack = false,
+    public void FadeIn(UnityAction unity = null, float timeFadeIn = 1, bool hasToFadeToBlackOnChangeScreen = false,
         float timeFadeFromBack = 0.0f)
     {
-        
-        if (!isOnFadeInOutToBlack)
+        if (!hasToFadeToBlackOnChangeScreen)
             StartCoroutine(FadeEffect.FadeCanvas(uiElement, uiElement.alpha, 1, timeFadeIn, unity));
         else
             StartCoroutine(FadeInBlack(timeFadeIn, timeFadeFromBack, unity));
@@ -44,11 +43,11 @@ public class UiFader : MonoBehaviour
     /// FadeOut allows the fadeOut of canvas group uiElement
     /// </summary>
     /// <param name="timeFadeOut">Time of duration of fade out In seconds</param>
-    /// <param name="IsBlackFadeAoutInfloat">if is true  Need to make the fade Out to black if ist false no needs</param>
+    /// <param name="HasToFadeToBlackOnChangeScreen">if is true  Need to make the fade Out to black if ist false no needs</param>
     /// <param name="timeFadeToBlack">Time of duration of fade Out to black in seconds</param>
-    public void FadeOut(float timeFadeOut = 1, bool IsBlackFadeAoutInfloat = false, float timeFadeToBlack = 0.0f)
+    public void FadeOut(float timeFadeOut = 1, bool hasToFadeToBlackOnChangeScreen = false, float timeFadeToBlack = 0.0f)
     {
-        if (!IsBlackFadeAoutInfloat)
+        if (!hasToFadeToBlackOnChangeScreen)
             StartCoroutine(FadeEffect.FadeCanvas(uiElement, uiElement.alpha, 0, timeFadeOut));
         else
             StartCoroutine(FadeOutBlack(timeFadeOut, timeFadeToBlack));

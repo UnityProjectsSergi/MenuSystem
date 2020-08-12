@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -8,8 +9,8 @@ public class QuestionSceenController : MonoBehaviour {
     public Button yesBtn;
     public Button noBtn;
     public Button cancelBtn;
-    public Text questionText;
-    public Text titleText;
+    public TMP_Text questionText;
+    public TMP_Text titleText;
     public KeyCode YesKey;
     public KeyCode NoKey;
     public KeyCode CancelKey;

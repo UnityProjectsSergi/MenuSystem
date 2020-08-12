@@ -3,7 +3,6 @@ using Assets.SaveSystem1.DataClasses;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -58,6 +57,8 @@ public class MenuController : MonoBehaviour
     /// </summary>
     [HideInInspector] public SlotController slotController;
     [HideInInspector] public PauseController pauseController;
+    private MenuController _instance;
+
     #endregion
     #endregion
     #region Unity Methods
@@ -66,8 +67,22 @@ public class MenuController : MonoBehaviour
     /// </summary>
     void Awake()
     {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
         pauseController = GetComponent<PauseController>();
         slotController = GetComponent<SlotController>();
+        DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    void Start()
+    {
+        DontDestroyOnLoad(gameObject);
     }
     // Update is called once per frame
     void Update()
@@ -134,6 +149,8 @@ public class MenuController : MonoBehaviour
             GameController.Instance.hasCurrentSlot = true;
         } 
         Inputs.Instance.SwitchActionMap("Player");
+      
+        
     }
     IEnumerator LoadSceneSync()
     {
@@ -143,8 +160,7 @@ public class MenuController : MonoBehaviour
         if (slotController.isSlotsEnabled)
         {
             GameController.Instance.CallStartSaveSlotInterval(GameController.Instance.globalSettignsMenu.SaveIntervalSeconds);
-            SaveData.LoadGameSlotData(
-                SaveData.LoadFromFile<GameSlot>(GameController.Instance.currentSlotResume.FileSlot));
+            SaveData.LoadGameSlotDataToScene(SaveData.LoadFromSource<GameSlot>(GameController.Instance.currentSlotResume.FileSlot));
         }
     }
     /// <summary>
@@ -166,7 +182,7 @@ public class MenuController : MonoBehaviour
         {
             SceneManager.LoadSceneAsync(GameController.Instance.currentSlotResume.dataInfoSlot.currentLevelPlay);
             /// SwitchSreen To GamePlayScreen 
-            //  system.SwitchScreen(GamePlayScreen, true,true);
+             // system.SwitchScreen(GamePlayScreen, true,true);
         }
         Inputs.Instance.SwitchActionMap("Player");
     }
@@ -197,7 +213,7 @@ public class MenuController : MonoBehaviour
         Directory.Delete(Application.persistentDataPath + "/" + SaveData.objcts.previousSlotLoaded.FolderOfSlot, true);
         SaveData.objcts.previousSlotLoaded=null;
         SaveData.objcts.Slots.Clear();
-        GameController.Save();
+        GameController.SaveGame();
         
         
         //GameController.Instance.hasCurrentSlot = true;
@@ -223,8 +239,11 @@ public class MenuController : MonoBehaviour
         SaveData.objcts.Slots.Add(GameController.Instance.currentSlotResume);
         //Set previuos SlotLoaaded in data for Conitune button in main menu 
         SaveData.objcts.previousSlotLoaded = GameController.Instance.currentSlotResume;
+        
+        //SaveData.SaveSlotData(GameController.Instance.);
         // Save Change in dsk
-        GameController.Save();
+        GameController.SaveGame();
+        GameController.SaveSlotObj();
         //load scene
         LoadSceneFromSlot();
     }
@@ -268,7 +287,8 @@ public class MenuController : MonoBehaviour
         pauseController.isPausedGame = false;
         pauseController.AllowEnterPause = false;
         GameController.Instance.CallStopSaveSlotInterval();
-        system.CallSwitchScreen(mainMenuController.GetComponent<UiScreen>());
+        
+        system.CallSwitchScreen(mainMenuController.GetComponent<UiScreen>(), () => { SceneManager.LoadScene("Menu"); });
     }
 
     public void YesLostGameProgressionExitGame()

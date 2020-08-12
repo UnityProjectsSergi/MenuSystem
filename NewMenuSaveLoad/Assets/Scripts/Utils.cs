@@ -168,6 +168,18 @@ namespace Assets.Scripts.Utils
             list[oldItemIndex] = newItem;
         }
     }
+    /*public static bool ParseStringToEnum<T>(string s, out T enumValue) where T: struct, IComparable, IFormattable, IConvertible {
+    foreach (T enumCandidate in System.Enum.GetValues(typeof(T))) {
+        if (s == enumCandidate.ToString()) {
+            enumValue = enumCandidate;
+            return true;
+        }
+    }
+     
+    enumValue = default(T);
+     
+    return false;
+    }*/
 
 }
 namespace System.Collections.Generic

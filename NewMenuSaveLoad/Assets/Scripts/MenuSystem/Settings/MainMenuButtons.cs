@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -36,7 +37,7 @@ public class MainMenuButtons : MonoBehaviour {
     /// ExitMainMenu Game Button  
     /// </summary>
     public Button ExitMainMenuBtn;
-    public Text text;
+    public TMP_Text text;
     // Use this for initialization
     void Start () {
 		

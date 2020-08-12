@@ -41,9 +41,7 @@ namespace Assets.SaveSystem1.DataClasses
                 {
                     Directory.CreateDirectory(Application.persistentDataPath + "/" + FolderOfSlot);
                     FileSlot = Utils.MakeString(new string[] { Application.persistentDataPath, "/", FolderOfSlot, "/", "Slot_" + Path.GetRandomFileName() + GameController.Instance.globalSettignsMenu.currentExtFile });
-               
-                    
-                    SaveData.SaveSlotData<GameSlot>(FileSlot, slotGame, true);
+                   
                 }
                 folderDone = true;
             }
@@ -58,6 +56,8 @@ namespace Assets.SaveSystem1.DataClasses
         public void CopySlotResume(InfoSlotResume data)
         {
             this.dataInfoSlot.copyDataInfoSlot(data.dataInfoSlot);
+            this . dataInfoSlot.ScreenShot = Application.persistentDataPath + "/" + FolderOfSlot + "/Screenshot.png";
+            File.Copy(data.dataInfoSlot.ScreenShot,Application.persistentDataPath+"/"+FolderOfSlot+"/Screenshot.png");
         }
 
     }
@@ -100,8 +100,6 @@ namespace Assets.SaveSystem1.DataClasses
             dateTimeCreation = data.dateTimeCreation;
             gameDifficulty = data.gameDifficulty;
             Title = data.Title;
-            ScreenShot = data.ScreenShot;
-
         }
     }
 }

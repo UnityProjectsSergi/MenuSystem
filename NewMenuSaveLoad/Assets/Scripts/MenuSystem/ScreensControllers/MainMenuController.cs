@@ -57,6 +57,7 @@ public class MainMenuController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+       
         OwnScreen = GetComponent<UiScreen>();
         //Initialize menuController variable
         if (MenuController == null) MenuController = MenuController.GetComponent<MenuController>();
@@ -82,6 +83,7 @@ public class MainMenuController : MonoBehaviour
         slot.CrateFolder();
         // set new slot to currentSlot
         GameController.Instance.currentSlotResume = slot;
+        GameController.Instance.currentSlot=new GameSlot();
         GameController.Instance.hasCurrentSlot = true;
         /// if menu have isLevelSelectonScreenEnabled true 
         if (GameController.Instance.globalSettignsMenu.isLevelSelectonScreenEnabled)
@@ -118,6 +120,7 @@ public class MainMenuController : MonoBehaviour
         GameController.Instance.currentSlotResume = SaveData.objcts.previousSlotLoaded;
         // laod screeneFrom Slot 
         MenuController.LoadSceneFromSlot();
+      
         GameController.Instance.hasCurrentSlot = true;
     }
     /// <summary>
@@ -201,7 +204,7 @@ public class MainMenuController : MonoBehaviour
 
                 GameController.SaveSlotObj();
                 // Save Change in dsk
-                GameController.Save();
+                GameController.SaveGame();
                 GameController.Instance.pauseController.isPausedGame = false;
                 UiSystem.CallSwitchScreen(GamePlayScreen, delegate { GamePlayScreen.GetComponent<GamePlayController>().ShowImageSavedGame(); });
            
@@ -220,12 +223,12 @@ public class MainMenuController : MonoBehaviour
             // Set selected the New Game Button 
             EventSystem.current.SetSelectedGameObject(MainMenuButtons.NewGameBtn.gameObject);
             MainMenuButtons.ContinueBtn.gameObject.SetActive(false);
-            OwnScreen.defaultSelected = MainMenuButtons.NewGameBtn.gameObject;
+            OwnScreen.defaultUiElementSelected = MainMenuButtons.NewGameBtn.gameObject;
         }
         else
         {
             EventSystem.current.SetSelectedGameObject(MainMenuButtons.ContinueBtn.gameObject);
-            OwnScreen.defaultSelected = MainMenuButtons.ContinueBtn.gameObject;
+            OwnScreen.defaultUiElementSelected = MainMenuButtons.ContinueBtn.gameObject;
         }
     }
 
@@ -233,6 +236,6 @@ public class MainMenuController : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(MainMenuButtons.ResumeBtn.gameObject);
         MainMenuButtons.SetPauseMenu(MenuController.slotController,SaveData.objcts.Slots.Count);
-        OwnScreen.defaultSelected = MainMenuButtons.ResumeBtn.gameObject;
+        OwnScreen.defaultUiElementSelected = MainMenuButtons.ResumeBtn.gameObject;
     }
 }

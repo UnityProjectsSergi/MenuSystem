@@ -36,16 +36,17 @@ namespace SaveSystem1.DataClasses
             {
                 if (FolderOfGameData == "")
                     FolderOfGameData = Path.GetRandomFileName()+Username;
+                FileOfGameData = Utils.MakeString(new string[]
+                {
+                    Application.persistentDataPath, "/", FolderOfGameData, "/",
+                    "GameData_" + Path.GetRandomFileName() +Username+
+                    GameController.Instance.globalSettignsMenu.currentExtFile
+                });
                 if (!File.Exists(Application.persistentDataPath + "/" + FolderOfGameData))
                 {
                     if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.JSON)
                         Directory.CreateDirectory(Application.persistentDataPath + "/" + FolderOfGameData);
-                    FileOfGameData = Utils.MakeString(new string[]
-                    {
-                        Application.persistentDataPath, "/", FolderOfGameData, "/",
-                        "GameData_" + Path.GetRandomFileName() +Username+
-                        GameController.Instance.globalSettignsMenu.currentExtFile
-                    });
+                  
                 }
 
                 folderDone = true;

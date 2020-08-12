@@ -3,6 +3,7 @@ using System.Collections;
 using System.IO;
 using System.Linq;
 using JetBrains.Annotations;
+using RestClient.Scripts.Core.Models;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -28,7 +29,7 @@ public class GameController : MonoBehaviour
         /// <summary>
         /// Says if file Esxists
         /// </summary>
-        public bool fileExists;
+        public bool dataExists=false;
         /// <summary>
     /// Test Do ad game obj to scene
     /// </summary>
@@ -67,7 +68,7 @@ public class GameController : MonoBehaviour
               private void Start()
               {
                   // set null currentSlotResume property on Start
-                  currentSlotResume= null;
+                  //currentSlotResume= null;
               }
               /// <summary>
               /// Awakw Unity Method
@@ -86,18 +87,28 @@ public class GameController : MonoBehaviour
                     currentSlotResume = null;
                     _instance = this;
                     DontDestroyOnLoad(this.gameObject);
-                    if (globalSettignsMenu.typeSaveFormat == SaveSystemFormat.JSON)
-                        globalSettignsMenu.currentExtFile = globalSettignsMenu.jsonExt;
-                    else if (globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Xml)
-                        globalSettignsMenu.currentExtFile = globalSettignsMenu.xmlExt;
-
-                    globalSettignsMenu.fileGlobalSlotsSaveData += globalSettignsMenu.currentExtFile;
-                    datapath = System.IO.Path.Combine(Application.persistentDataPath,
-                        globalSettignsMenu.fileGlobalSlotsSaveData);
-                    fileExists = File.Exists(datapath);
                     pauseController = GetComponent<PauseController>();
-                    // Load Data from Anywhere
+                    if (globalSettignsMenu.saveSourceData == SaveSystemSourceData.Local)
+                    {
+                        if (globalSettignsMenu.typeSaveFormat == SaveSystemFormat.JSON)
+                            globalSettignsMenu.currentExtFile = globalSettignsMenu.jsonExt;
+                        else if (globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Xml)
+                            globalSettignsMenu.currentExtFile = globalSettignsMenu.xmlExt;
+
+                        globalSettignsMenu.fileGlobalSlotsSaveData += globalSettignsMenu.currentExtFile;
+                        datapath = System.IO.Path.Combine(Application.persistentDataPath,
+                            globalSettignsMenu.fileGlobalSlotsSaveData);
+                        dataExists = File.Exists(datapath);
+                       
+                    }
+                    else if(globalSettignsMenu.saveSourceData == SaveSystemSourceData.Remote)
+                    {
+                       SaveController.Instance.CheckConnection(this);
+                      
+                    }
                     LoadData();
+                    // Load Data from Anywhere
+                   ///
                 }
             }
               /// <summary>
@@ -112,10 +123,10 @@ public class GameController : MonoBehaviour
               /// </summary>
               private void Update()
               {
-                  /*if (Input.GetKeyDown(KeyCode.S))
+                  if (Input.GetKeyDown(KeyCode.S))
                   {
                       Debug.Log("SAVE");
-                      Save();
+                      SaveGame();
                   }
                   if (Input.GetKeyDown(KeyCode.D))
                   {
@@ -124,7 +135,7 @@ public class GameController : MonoBehaviour
                   if (Input.GetKeyDown(KeyCode.L))
                   {
                       Debug.Log("Load");
-                      Load();
+                     // Load();
                   }
                   if(Input.GetKeyDown(KeyCode.K))
                   {
@@ -134,7 +145,7 @@ public class GameController : MonoBehaviour
                   {
                       Debug.Log("Create");
                       CreateGameObject(_prefab, new Vector3(2, 5, 0), Quaternion.identity);
-                  }*/
+                  }
               }
         #endregion
         
@@ -199,10 +210,17 @@ public class GameController : MonoBehaviour
         /// <summary>
         /// Save Data to file.
         /// </summary>
-        public static void Save()
+        public static void SaveGame()
         {
-            SaveData.Save();
-            SaveData.SaveToFile(datapath, SaveData.objcts, true);
+            if (GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Remote)
+            {
+               // SaveController.Instance.
+            }
+            else
+            {
+                SaveData.SaveToFile(datapath, SaveData.objcts, true);
+            }
+           
         }
         /// <summary>
         /// Save data of slot game to file
@@ -211,6 +229,14 @@ public class GameController : MonoBehaviour
         {
             // save slot data from current slot data
             SaveData.SaveSlotData<GameSlot>(GameController.Instance.currentSlotResume.FileSlot, GameController.Instance.currentSlot, true);
+        }
+        /// <summary>
+        /// Save data of slot game to file
+        /// </summary>
+        public static void SaveSlotObj(GameSlot slot,string file)
+        {
+            // save slot data from current slot data
+            SaveData.SaveSlotData<GameSlot>(file, slot, true);
         }
         #endregion
 
@@ -237,7 +263,7 @@ public class GameController : MonoBehaviour
                 if (save)
                 {
                     // save 
-                    GameController.Save();
+                    GameController.SaveGame();
                 }
             }
 

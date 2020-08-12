@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+
+
 public enum TypeSoundBus {Unity,Wwise,Fmod }
 
 public  class SoundSliderSlot : MonoBehaviour
@@ -16,9 +18,9 @@ public  class SoundSliderSlot : MonoBehaviour
     public string nameBus;
     public RTPCWwise RtpcWwise;
     public SoundBusFMOD BusFmod;
-    public Text text;
+   
 
-    public TextMeshProUGUI textPro;
+    public TMP_Text textPro;
     // Start is called before the first frame update
     public void Awake()
     {
@@ -57,12 +59,9 @@ public  class SoundSliderSlot : MonoBehaviour
 
             }
             Slider.value = value;
-            if(text!=null)
-            text.text = Slider.value.ToString("0%");
-            else
-            {
+          
                 textPro.text= Slider.value.ToString("0%");
-            }
+            
             SaveVal.Invoke(value);
         }
         catch (ExceptionSound e)

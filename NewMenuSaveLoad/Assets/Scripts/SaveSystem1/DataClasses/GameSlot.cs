@@ -9,7 +9,11 @@ namespace Assets.SaveSystem1.DataClasses
     [System.Serializable]
     public class GameSlot
     {
-       
+        [Newtonsoft.Json.JsonConstructor]
+        public GameSlot()
+        {
+        }
+
         /// <summary>
         ///  List of GameObjectActorDataIn Slot
         /// </summary>
@@ -24,6 +28,8 @@ namespace Assets.SaveSystem1.DataClasses
 [Range(0,1)]
         public float health=1;
 
-      
+        public int id;
+
+
     }
 }

@@ -90,10 +90,10 @@ public class SaveGameController : MonoBehaviour
             // Set text in ui Text
             ObjSlot.GetComponent<RectTransform>().offsetMax=new Vector2(20,50);
             ObjSlot.GetComponent<RectTransform>().offsetMin=new Vector2(200,50);
-            ObjSlot.GetComponent<RectTransform>().sizeDelta=new Vector2(800,75);
+            ObjSlot.GetComponent<RectTransform>().sizeDelta=new Vector2(1200,150);
             ObjSlot.GetComponentInChildren<TextMeshProUGUI>().text = ObjSlot.name;
             // set objSlot child of parentOfList Content
-            ObjSlot.transform.SetParent(parentOflist.transform, true);
+            ObjSlot.transform.SetParent(parentOflist.transform, false);
             // get GetComponent SlotUI in objSlot
             SoltUI solt = ObjSlot.GetComponent<SoltUI>();
             if (solt != null)
@@ -124,12 +124,14 @@ public class SaveGameController : MonoBehaviour
         // set slot typeSave to manual
         slot.dataInfoSlot.typeSaveSlot = TypeOfSavedGameSlot.Manual_Save_Slot;
         slot.dataInfoSlot.datetimeSaved=DateTime.Now;
+        
         // add slot to listSlots
         SaveData.objcts.Slots.Add(slot);
         // save slotdata
-        SaveData.SaveSlotData(slot.FileSlot, slot.slotGame, true);
+        
         // Save list slot data
-        GameController.Save();
+        GameController.SaveGame();
+        GameController.SaveSlotObj(GameController.Instance.currentSlot,slot.FileSlot);
         // if returnToaGamepley is true
         if (returnToMenuOrGameplay)
         {
@@ -181,7 +183,7 @@ public class SaveGameController : MonoBehaviour
     {
         
         GameController.Instance.currentSlotResume.dataInfoSlot.datetimeSaved = DateTime.Now;
-        GameController.Save();
+        GameController.SaveGame();
         SaveData.SaveSlotData(slot.FileSlot, GameController.Instance.currentSlot,
             true);
         GameController.Instance.pauseController.isPausedGame = false;

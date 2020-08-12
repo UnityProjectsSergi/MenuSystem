@@ -9,7 +9,11 @@ using UnityEngine;
 [System.Serializable]
 public class GameObjectActorData
 {
-   
+    [Newtonsoft.Json.JsonConstructor]
+    public GameObjectActorData()
+    {
+        
+    }
     public string name;
     public string __prefabPath;
     public Vector3 position;
@@ -19,5 +23,7 @@ public class GameObjectActorData
     public LayerMask LayerMask;
     public string tag;
     public bool isStatic;
-   
+    #if UNITY_EDITOR
+    public StaticEditorFlags staticFlag;
+    #endif
 }

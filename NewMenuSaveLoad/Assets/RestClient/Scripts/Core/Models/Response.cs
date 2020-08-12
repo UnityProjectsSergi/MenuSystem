@@ -9,6 +9,8 @@ namespace RestClient.Scripts.Core.Models
         public string Error { get; set; }
 
         public string Data { get; set; }
+        public object Dataobj { get; set; }
+        public bool hasData { get; set; }
 
         public Dictionary<string, string> Headers { get; set; }
     }

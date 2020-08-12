@@ -512,6 +512,7 @@ public class bl_SceneLoaderSergi : MonoBehaviour
               PauseController.GetComponent<PauseController>().AllowEnterPause = true;
               PauseController.GetComponent<PauseController>().isPausedGame = false;
               GameController.Instance.hasCurrentSlot = true;
+              StartCoroutine(CallLoadDataNextEscena(0));
           },true,0.75f);
     }
 
@@ -531,7 +532,7 @@ public class bl_SceneLoaderSergi : MonoBehaviour
     IEnumerator CallLoadDataNextEscena(float t)
     {
         yield return new WaitForSeconds(t);
-        SaveData.LoadGameSlotData(SaveData.LoadFromFile<GameSlot>(GameController.Instance.currentSlotResume.FileSlot));
+        SaveData.LoadGameSlotDataToScene(SaveData.LoadFromSource<GameSlot>(GameController.Instance.currentSlotResume.FileSlot));
         GameplayScrren.GetComponent<GamePlayController>().LodGamePlayVars();
     }
     

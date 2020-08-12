@@ -20,7 +20,7 @@ public class GameLevelController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S) || Inputs.Instance.SaveTrigg)
        {
             Debug.Log("SAVE");
-         GameController.Save();
+         GameController.SaveGame();
        }
         if (Input.GetKeyDown(KeyCode.D))
        {
@@ -60,8 +60,8 @@ public class GameLevelController : MonoBehaviour
         if (prefab != null)
         {
             GameObject go = Instantiate(prefab, position, rotation);
-            SceneManager.MoveGameObjectToScene(go, SceneManager.GetSceneByName("Game"));
-            Debug.Log("ddddddddddddddddd"+go);
+            SceneManager.MoveGameObjectToScene(go,
+                SceneManager.GetSceneByName(GameController.Instance.currentSlotResume.dataInfoSlot.currentLevelPlay));
             ObjToSave obj = go.GetComponent<ObjToSave>();
             if (obj == null)
                 go.AddComponent<ObjToSave>();
@@ -85,7 +85,6 @@ public class GameLevelController : MonoBehaviour
     {
 //        Debug.Log(data.__prefabPath+"\\"+data.name.Remove(data.name.Length-7)+" vvvv"+ Resources.Load<GameObject>(data.__prefabPath+"/"+data.name.Remove(data.name.Length-7)));
         ObjToSave obj = CreateGameObject(Resources.Load<GameObject>(data.__prefabPath+Path.DirectorySeparatorChar+data.name.Remove(data.name.Length-7)), data.position, data.rotationQuaterion);
-        Debug.Log(obj);
         obj.gameObjSave.data = data;
         return obj;
     }

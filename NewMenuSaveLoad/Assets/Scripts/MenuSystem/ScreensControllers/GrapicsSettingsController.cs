@@ -72,64 +72,74 @@ public class GrapicsSettingsController : MonoBehaviour
         if (GameController.hasLoadedGameData)
         {
             //get Instances from Unity or FMOD or WWISE call SoundSliderSlot.IniBus
-            if (GameController.Instance.fileExists)
+            if (GameController.Instance.dataExists)
                 _loadedGraphicsParameters = SaveData.objcts.Parameters.Graphics;
+
         }
 
-    
-          filterdResoltions = new List<Resolution>();
-  //      GrapicsGameSettings Settings = GrapicsGameSettings.Instance;
-        // set defaut options of instance with default options of component script
-       
-        // set dropdowns
-        #region Set Dropdown Qualty;
+        filterdResoltions = new List<Resolution>();
+            //      GrapicsGameSettings Settings = GrapicsGameSettings.Instance;
+            // set defaut options of instance with default options of component script
+
+            // set dropdowns
+
+            #region Set Dropdown Qualty;
 
             dropdownQuality.ClearOptions();
-        dropdownResolutions.ClearOptions();
-        DropdownQuality.ClearOptions();
-        DropdownResolution.ClearOptions();
-        dropdownQuality.AddOptions(QualitySettings.names.ToList());
-        DropdownQuality.AddOptions(QualitySettings.names.ToList());
-        dropdownQuality.value = (int)SaveData.objcts.Parameters.Graphics.currentQualityLevel;
-        DropdownQuality.value=(int)SaveData.objcts.Parameters.Graphics.currentQualityLevel;
-        #endregion
-        #region Set Dropdown Reslutions
-        List<string> resos = new List<string>();
-        int lw = -1;
-        int lh = -1;
-        int index = 0;
-        int currentResIndex=-1;
-        foreach(var resolution in Screen.resolutions)
-        {
-            if (lw != resolution.width || lh != resolution.height)
+            dropdownResolutions.ClearOptions();
+            DropdownQuality.ClearOptions();
+            DropdownResolution.ClearOptions();
+            dropdownQuality.AddOptions(QualitySettings.names.ToList());
+            DropdownQuality.AddOptions(QualitySettings.names.ToList());
+            dropdownQuality.value = (int) SaveData.objcts.Parameters.Graphics.currentQualityLevel;
+            DropdownQuality.value = (int) SaveData.objcts.Parameters.Graphics.currentQualityLevel;
+
+            #endregion
+
+            #region Set Dropdown Reslutions
+
+            List<string> resos = new List<string>();
+            int lw = -1;
+            int lh = -1;
+            int index = 0;
+            int currentResIndex = -1;
+            foreach (var resolution in Screen.resolutions)
             {
-                // add the filter resolution to the list
-                filterdResoltions.Add(resolution);
-                // create a neatly formated string to add to the dropdown 
-                string fmt = string.Format(" {0} x {1} ", resolution.width, resolution.height);
-                resos.Add(fmt);
-               
-                lw = resolution.width;
-                lh = resolution.height;
-                //figured out if this is the users's current resolution
-                if (lw == SaveData.objcts.Parameters.Graphics.width && lh == SaveData.objcts.Parameters.Graphics.height)
-                    currentResIndex = index;
-                index++;
+                if (lw != resolution.width || lh != resolution.height)
+                {
+                    // add the filter resolution to the list
+                    filterdResoltions.Add(resolution);
+                    // create a neatly formated string to add to the dropdown 
+                    string fmt = string.Format(" {0} x {1} ", resolution.width, resolution.height);
+                    resos.Add(fmt);
+
+                    lw = resolution.width;
+                    lh = resolution.height;
+                    //figured out if this is the users's current resolution
+                    if (lw == SaveData.objcts.Parameters.Graphics.width &&
+                        lh == SaveData.objcts.Parameters.Graphics.height)
+                        currentResIndex = index;
+                    index++;
+                }
+
             }
-            
-        }
-        dropdownResolutions.ClearOptions();
-        DropdownResolution.ClearOptions();
+
+            dropdownResolutions.ClearOptions();
+            DropdownResolution.ClearOptions();
+
+            dropdownResolutions.AddOptions(resos);
+            DropdownResolution.AddOptions(resos);
+            dropdownResolutions.value = currentResIndex;
+            DropdownResolution.value = currentResIndex;
+            Screen.SetResolution(SaveData.objcts.Parameters.Graphics.width, SaveData.objcts.Parameters.Graphics.height,
+                SaveData.objcts.Parameters.Graphics.isFullScreen);
+
+            #endregion
+
+            // SetDefaults
+//        SetDefaults();}
         
-        dropdownResolutions.AddOptions(resos);
-        DropdownResolution.AddOptions(resos);
-        dropdownResolutions.value = currentResIndex;
-        DropdownResolution.value = currentResIndex;
-        Screen.SetResolution( SaveData.objcts.Parameters.Graphics.width, SaveData.objcts.Parameters.Graphics.height, SaveData.objcts.Parameters.Graphics.isFullScreen);
-        #endregion
-        // SetDefaults
-//        SetDefaults();
-       
+
     }
 
     private void SetDefaults()
@@ -146,7 +156,7 @@ public class GrapicsSettingsController : MonoBehaviour
     private void SaveGraphicsData()
     {
         SetParametersOnSaveData();
-        GameController.Save();
+        GameController.SaveGame();
     }
 
     public void OnValueChangeQuality(int num)

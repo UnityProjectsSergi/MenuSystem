@@ -10,6 +10,7 @@ namespace RestClient.Core
     public class RestWebClient : Singleton<RestWebClient>
     {
         private const string defaultContentType = "application/json";
+        
         public IEnumerator HttpGet(string url, System.Action<Response> callback)
         {
             using(UnityWebRequest webRequest = UnityWebRequest.Get(url))
@@ -17,21 +18,25 @@ namespace RestClient.Core
                 yield return webRequest.SendWebRequest();
                 
                 if(webRequest.isNetworkError){
-                    callback(new Response {
+                    callback.Invoke(new Response {
                         StatusCode = webRequest.responseCode,
                         Error = webRequest.error,
                     });
                 }
-                
+                /// unity
+                ///  srvix 
                 if(webRequest.isDone)
                 {
                     string data = System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
-                    Debug.Log("Data: " + data);
-                    callback(new Response {
+                    string DATA = webRequest.downloadHandler.text;
+                    callback.Invoke(new Response {
                         StatusCode = webRequest.responseCode,
                         Error = webRequest.error,
-                        Data = data
+                        Data = DATA,
+                        
+                        
                     });
+                    
                 }
             }
         }
@@ -90,6 +95,8 @@ namespace RestClient.Core
                         StatusCode = webRequest.responseCode,
                         Error = webRequest.error,
                         Data = data
+                       ,
+                       Dataobj=data
                     });
                 }
             }
