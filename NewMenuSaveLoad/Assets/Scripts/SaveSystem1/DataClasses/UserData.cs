@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace SaveSystem1.DataClasses
 {
+    [System.Serializable]
     public class UserData
     {
         private int id;
@@ -14,11 +15,15 @@ namespace SaveSystem1.DataClasses
         public string Username;
         public string password;
         public string email;
-        public string FileOfGameData;
+        public string FilePathOfGameData;
         public string FolderOfGameData;
         public GameDataSaveContainer GameDataSaveContainer;
         bool folderDone;
 
+        public UserData()
+        {
+            
+        }
         public UserData(string _firstName,string _lastName,string _username,string _password,string _email)
         {
             id = 2;
@@ -36,7 +41,7 @@ namespace SaveSystem1.DataClasses
             {
                 if (FolderOfGameData == "")
                     FolderOfGameData = Path.GetRandomFileName()+Username;
-                FileOfGameData = Utils.MakeString(new string[]
+                FilePathOfGameData = Utils.MakeString(new string[]
                 {
                     Application.persistentDataPath, "/", FolderOfGameData, "/",
                     "GameData_" + Path.GetRandomFileName() +Username+
@@ -54,15 +59,5 @@ namespace SaveSystem1.DataClasses
         }
     }
 
-    public class CheckUserData
-    {
-        public string identifier;
-        public string password;
-
-        public CheckUserData(string _password, string _username)
-        {
-            password = _password;
-            identifier = _username;
-        }
-    }
+ 
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class LoginController : MonoBehaviour
 {
+    public static string message;
     public TMP_InputField userName;
 
     public TMP_InputField password;
@@ -38,16 +39,21 @@ public class LoginController : MonoBehaviour
         if (ValidateForm())
         {
             CheckUserData userCheck = new CheckUserData(password.text, userName.text);
-            
+            UserData user=userCheck.CheckIfUserIsRegister();
+            Login(user);
         }
     }
 
     public bool ValidateForm()
     {
+        if (userName.text.Equals(""))
+            return false;
+        
         return true;
     }
     public void Login(UserData user)
     {
+        GameController.Instance.currentUser = user;
         system.CallSwitchScreen(MainMenuScreen);
     }
 

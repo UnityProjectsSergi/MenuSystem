@@ -9,6 +9,6 @@
   <ShowSpatialAudioWarningMsg>true</ShowSpatialAudioWarningMsg>
   <SoundbankPath>Audio/GeneratedSoundBanks</SoundbankPath>
   <WwiseInstallationPathMac />
-  <WwiseInstallationPathWindows>E:\Wwise 2019.2.0.7216</WwiseInstallationPathWindows>
+  <WwiseInstallationPathWindows>E:\Wwise 2019.2.4.7329</WwiseInstallationPathWindows>
   <WwiseProjectPath>../../MenuSaveWiseProject/MenuSaveWiseProject.wproj</WwiseProjectPath>
 </WwiseSettings>

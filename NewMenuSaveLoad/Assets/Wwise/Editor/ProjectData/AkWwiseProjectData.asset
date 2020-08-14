@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AcousticTextureWwu:
   - PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
-    ParentPath: 
-    guid: 00000000000000000000000000000000
+    ParentPath: Default Work Unit
+    guid: de8a2868c512c148ac531a3703c61811
     GuidInternal: 
     m_lastTime: -8586160908159876347
     List: []
   - PhysicalPath: Virtual Acoustics\Factory Reflect Acoustic Textures.wwu
-    ParentPath: 
-    guid: 00000000000000000000000000000000
+    ParentPath: Factory Reflect Acoustic Textures
+    guid: 6b663d46a83ca54f8b4a5fef12b883f6
     GuidInternal: 
     m_lastTime: -8586160908159806335
     List:
@@ -135,6 +135,15 @@ MonoBehaviour:
       - ElementName: Mountain
         ObjectType: 15
       Path: Factory Reflect Acoustic Textures\Textures\Mountain
+    - name: Textures
+      guid: a3121e7828e3df4a8bba5fb89c74031d
+      id: 1276632493
+      PathAndIcons:
+      - ElementName: Factory Reflect Acoustic Textures
+        ObjectType: 12
+      - ElementName: Textures
+        ObjectType: 4
+      Path: Factory Reflect Acoustic Textures\Textures
     - name: Tile
       guid: c4da82a82a13b747ba9db9907ba29cc0
       id: 2637588553
@@ -181,15 +190,77 @@ MonoBehaviour:
       Path: Factory Reflect Acoustic Textures\Textures\Wood_Deep
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
-    ParentPath: 
-    guid: 00000000000000000000000000000000
+    ParentPath: Default Work Unit
+    guid: 0609e39309034b4d8f4a046c35ae10b0
     GuidInternal: 
     m_lastTime: -8586160908164686348
-    List: []
+    List:
+    - name: BUSTEST
+      guid: 709fb65383f7f24bb0907a0b033798d8
+      id: 1160802153
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+      - ElementName: BUSTEST
+        ObjectType: 2
+      Path: Default Work Unit\Master Audio Bus\BUSTEST
+    - name: Master Audio Bus
+      guid: d8a41415a61d2a41a17e75ca0c2149f3
+      id: 3803692087
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+      Path: Default Work Unit\Master Audio Bus
+    - name: Motion Factory Bus
+      guid: c6b9f92af16ee946b5f2e30c9e602c74
+      id: 985987111
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Motion Factory Bus
+        ObjectType: 2
+      Path: Default Work Unit\Motion Factory Bus
+    - name: Music
+      guid: 065a423b7317094ca5d1c1838e857151
+      id: 3991942870
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+      - ElementName: Music
+        ObjectType: 2
+      Path: Default Work Unit\Master Audio Bus\Music
+    - name: SoundFX
+      guid: 17402b96677beb4eb6d5933b14be6f0b
+      id: 2810670744
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+      - ElementName: SoundFX
+        ObjectType: 2
+      Path: Default Work Unit\Master Audio Bus\SoundFX
+    - name: Voices
+      guid: c2e5be1d11a84c4cae36ae9779f6a902
+      id: 3313685232
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+      - ElementName: Voices
+        ObjectType: 2
+      Path: Default Work Unit\Master Audio Bus\Voices
   BankWwu:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
-    ParentPath: 
-    guid: 00000000000000000000000000000000
+    ParentPath: Default Work Unit
+    guid: a8761f0887461449bae3f976402e52d6
     GuidInternal: 
     m_lastTime: -8586160908161926254
     List:
@@ -204,8 +275,8 @@ MonoBehaviour:
       Path: Default Work Unit\General
   EventWwu:
   - PhysicalPath: Events\Default Work Unit.wwu
-    ParentPath: 
-    guid: 00000000000000000000000000000000
+    ParentPath: Default Work Unit
+    guid: 8dd130024e53f84ea690c592710a0d68
     GuidInternal: 
     m_lastTime: -8586160908162356332
     List:
@@ -223,8 +294,8 @@ MonoBehaviour:
       minDuration: -1
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
-    ParentPath: 
-    guid: 00000000000000000000000000000000
+    ParentPath: Default Work Unit
+    guid: 0b9cbf9c24605a43abc22e0b7d89088c
     GuidInternal: 
     m_lastTime: -8586160908161016349
     List:
@@ -265,8 +336,8 @@ MonoBehaviour:
         ObjectType: 13
       Path: Default Work Unit\VoicesVolume
   - PhysicalPath: Game Parameters\Factory Motion.wwu
-    ParentPath: 
-    guid: 00000000000000000000000000000000
+    ParentPath: Factory Motion
+    guid: 225213d7dbd1d042adc0930743567776
     GuidInternal: 
     m_lastTime: -8586160908161696330
     List:
@@ -289,8 +360,8 @@ MonoBehaviour:
         ObjectType: 13
       Path: Factory Motion\RPM
   - PhysicalPath: Game Parameters\Factory SoundSeed Air Game Syncs.wwu
-    ParentPath: 
-    guid: 00000000000000000000000000000000
+    ParentPath: Factory SoundSeed Air Game Syncs
+    guid: 5577163b42fb8b4598bf96f557afb3b9
     GuidInternal: 
     m_lastTime: -8586160908162116352
     List:
@@ -386,25 +457,26 @@ MonoBehaviour:
       Path: Factory SoundSeed Air Game Syncs\SS_Air_Turbulence
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
-    ParentPath: 
-    guid: 00000000000000000000000000000000
+    ParentPath: Default Work Unit
+    guid: 7e20598ba5a5474e9b51d2f8b30e866a
     GuidInternal: 
     m_lastTime: -8586160908163316316
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
-    ParentPath: 
-    guid: 00000000000000000000000000000000
+    ParentPath: Default Work Unit
+    guid: 822607eb9b92904a90f4da02b82158c4
     GuidInternal: 
     m_lastTime: -8586160908162056333
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
-    ParentPath: 
-    guid: 00000000000000000000000000000000
+    ParentPath: Default Work Unit
+    guid: 0db88ba4b1fa82488509b0ec3fe3d9ce
     GuidInternal: 
     m_lastTime: -8586160908159166314
     List: []
-  ExpandedItems: []
+  ExpandedItems:
+  - /MenuSaveWiseProject
   autoPopulateEnabled: 1
   CurrentPluginConfig: 

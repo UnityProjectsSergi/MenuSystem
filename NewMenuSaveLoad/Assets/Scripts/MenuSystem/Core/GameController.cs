@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using JetBrains.Annotations;
 using RestClient.Scripts.Core.Models;
+using SaveSystem1.DataClasses;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -41,8 +42,8 @@ public class GameController : MonoBehaviour
         /// <summary>
         /// Current Slot Resume loaded
         /// </summary>
-        [CanBeNull] public  InfoSlotResume currentSlotResume=null;
-        [CanBeNull] public User currentUser=null;
+        [CanBeNull] public InfoSlotResume currentSlotResume=null;
+        [CanBeNull] public UserData currentUser=null;
         [CanBeNull] public string token;
         [FormerlySerializedAs("hasCurrentSlotLoaded")] public bool hasCurrentSlot;
         /// <summary>
