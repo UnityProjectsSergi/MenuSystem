@@ -63,13 +63,11 @@ public class GrapicsSettingsController : MonoBehaviour
     private float shadowNearPlaneOffset;
     private float lodBias;
     private int masterTextureLimit;
-    private List<ShadowQuality> listShadowQuality; 
-    
-    
-    // Start is called before the first frame update
-    void Start()
+    private List<ShadowQuality> listShadowQuality;
+
+    public void InitDataGraphicsSetting()
     {
-        if (GameController.hasLoadedGameData)
+          if (GameController.hasLoadedGameData)
         {
             //get Instances from Unity or FMOD or WWISE call SoundSliderSlot.IniBus
             if (GameController.Instance.dataExists)
@@ -133,8 +131,17 @@ public class GrapicsSettingsController : MonoBehaviour
             DropdownResolution.value = currentResIndex;
             Screen.SetResolution(SaveData.objcts.Parameters.Graphics.width, SaveData.objcts.Parameters.Graphics.height,
                 SaveData.objcts.Parameters.Graphics.isFullScreen);
-
             #endregion
+    }
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        if (!GameController.Instance.globalSettignsMenu.isUserLoginRegisterActive)
+        {
+            InitDataGraphicsSetting();
+        }
+     
 
             // SetDefaults
 //        SetDefaults();}

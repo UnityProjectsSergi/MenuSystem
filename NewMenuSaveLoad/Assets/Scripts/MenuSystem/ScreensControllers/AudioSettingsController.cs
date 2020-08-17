@@ -32,7 +32,8 @@ public class AudioSettingsController : MonoBehaviour
     }
 
     public SoundSliderSlot SlotMaster, SlotMusic, SlotSFX, SlotVoices;
-    void Start()
+
+    public void InitDataAudioSettings()
     {
         if (GameController.hasLoadedGameData)
         {
@@ -43,6 +44,13 @@ public class AudioSettingsController : MonoBehaviour
         }
         SerActionsOnSlots();
         SetDefaults();
+    }
+    void Start()
+    {
+        if (!GameController.Instance.globalSettignsMenu.isUserLoginRegisterActive)
+        {
+            InitDataAudioSettings();
+        }
     }
 
     public void SetParametersOnSaveData()

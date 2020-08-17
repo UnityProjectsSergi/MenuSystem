@@ -9,7 +9,7 @@ public class DificultySlectionController : MonoBehaviour
     [Header("The list ")]
     
     
-    public string[] ListDificulties;
+ 
     
     public GameObject ParntOb;
     public GameObject buttonPrfab;
@@ -19,15 +19,16 @@ public class DificultySlectionController : MonoBehaviour
     void Start()
     {
         OwnScreen = GetComponent < UiScreen>();
-        ListDificulties = EnumConverter.ToNameArray<GameDifficulty>();
-        foreach (var item in ListDificulties)
+        int i = 0;
+        foreach (var item in GameController.Instance.globalSettignsMenu.listsOfDificulties)
         {
             if (item != "None")
             {
                 GameObject go = Instantiate(buttonPrfab, transform.position, transform.rotation);
                 go.transform.SetParent(ParntOb.transform);
-                GameDifficulty gameDifficulty = (GameDifficulty)System.Enum.Parse(typeof(GameDifficulty), item);
-                go.GetComponentInChildren<TMP_Text>().text = GameController.Instance.globalSettignsMenu.listsOfDificulties[(int)gameDifficulty];
+             
+                go.GetComponentInChildren<TMP_Text>().text = GameController.Instance.globalSettignsMenu.listsOfDificulties[i];
+                i++;
                 go.GetComponent<RectTransform>().offsetMax=new Vector2(4,5);
                 go.GetComponent<RectTransform>().offsetMin=new Vector2(40,50);
                 go.GetComponent<RectTransform>().sizeDelta=new Vector2(200,40);

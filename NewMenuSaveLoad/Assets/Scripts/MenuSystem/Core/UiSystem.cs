@@ -75,8 +75,8 @@ public class UiSystem : MonoBehaviour
     {
         get { return currentScreen; }
     }
-
-    public UiScreen LoginScreen;
+    [Tooltip("If has Settings Global active the register and login on start go to this screen")]
+    public UiScreen OnStartScreenOnLoginRegisterActive;
     public bool isFirstEnter;
     // Start methodth
     private void Awake()
@@ -92,9 +92,9 @@ public class UiSystem : MonoBehaviour
 
     void Start()
     {
-        if (GameController.Instance.globalSettignsMenu.isLoginRegisterEnabled)
+        if (GameController.Instance.globalSettignsMenu.isUserLoginRegisterActive)
         {
-            startScreen = LoginScreen;
+            startScreen = OnStartScreenOnLoginRegisterActive;
         }
         // set number of Previous Screen index to 0
         numPrvevScreen = 0;

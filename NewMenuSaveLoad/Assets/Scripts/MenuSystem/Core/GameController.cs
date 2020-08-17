@@ -60,7 +60,9 @@ public class GameController : MonoBehaviour
         [HideInInspector]
         public PauseController pauseController;
         public UiScreen gamePlayScreen;
-    #endregion
+        private string datapathListUsers;
+
+        #endregion
     #region Methods
          #region UnityMetdods
               /// <summary>
@@ -100,7 +102,11 @@ public class GameController : MonoBehaviour
                         datapath = System.IO.Path.Combine(Application.persistentDataPath,
                             globalSettignsMenu.fileGlobalSlotsSaveData);
                         dataExists = File.Exists(datapath);
-                       
+
+                        globalSettignsMenu.fileListUsers += globalSettignsMenu.currentExtFile;
+                        datapathListUsers = System.IO.Path.Combine(Application.persistentDataPath,
+                            globalSettignsMenu.fileListUsers);
+
                     }
                     else if(globalSettignsMenu.saveSourceData == SaveSystemSourceData.Remote)
                     {

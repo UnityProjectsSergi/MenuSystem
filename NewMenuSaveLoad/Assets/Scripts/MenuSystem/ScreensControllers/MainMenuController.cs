@@ -53,11 +53,8 @@ public class MainMenuController : MonoBehaviour
     /// </summary>
     public UiSystem UiSystem;
 
-
-    // Start is called before the first frame update
-    private void Start()
+    public void InirMainMenuData()
     {
-       
         OwnScreen = GetComponent<UiScreen>();
         //Initialize menuController variable
         if (MenuController == null) MenuController = MenuController.GetComponent<MenuController>();
@@ -66,7 +63,15 @@ public class MainMenuController : MonoBehaviour
         // Initialize UI system variable
         
         // if has loaded data from file
-        if (GameController.hasLoadedGameData) SetMainMenuWithSlots();
+        if (GameController.hasLoadedGameData) SetMainMenuWithSlots();   
+    }
+    
+    // Start is called before the first frame update
+    private void Start()
+    {
+       if(!GameController.Instance.globalSettignsMenu.isUserLoginRegisterActive)
+           InirMainMenuData();
+    
     }
 
 

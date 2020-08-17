@@ -13,7 +13,7 @@ public class GlobalSettignsMenu : MonoBehaviour
     public float TimeToTakeScreenShoot;
     public bool IsSaveingSystemEnabled;
     public bool IsSaveingInterval;
-    public bool HasUserLoginRegisterActive,AutoLoginOnRegister;
+    public bool isUserLoginRegisterActive,AutoLoginOnRegister;
     public SaveSystemSourceData saveSourceData;
     public SaveSystemFormat typeSaveFormat;
     public float SaveIntervalSeconds=2f;
@@ -29,7 +29,7 @@ public class GlobalSettignsMenu : MonoBehaviour
     
     public bool IsLoaderSceneWithPligun;
 
-    public bool isLoginRegisterEnabled;
+ 
     public string fileGlobalSlotsSaveData = "data", fileListUsers="listUsers";
     [HideInInspector]
     public string xmlExt=".xml",jsonExt=".json";

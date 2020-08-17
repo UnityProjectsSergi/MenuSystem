@@ -37,7 +37,7 @@ public class SaveData
         //Load From file 
         objcts = null;
         if (GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Local)
-            if (GameController.Instance.globalSettignsMenu.HasUserLoginRegisterActive)
+            if (GameController.Instance.globalSettignsMenu.isUserLoginRegisterActive)
             {
                 usersList = LoadFromFile<UsersContinerData>(GameController.datapath);
             }
@@ -47,7 +47,7 @@ public class SaveData
             }
         else if(GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Remote)
         {
-            if (!GameController.Instance.globalSettignsMenu.HasUserLoginRegisterActive)
+            if (!GameController.Instance.globalSettignsMenu.isUserLoginRegisterActive)
                  LoadFromWeb();
         }
     }
