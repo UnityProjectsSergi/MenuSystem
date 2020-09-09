@@ -3,8 +3,15 @@
 	<UserProjectSettingsInfo>
 		<UserProjectSettings Name="" ID="{7B7415C9-673F-4E4F-9D84-8F59D353D8F9}">
 			<PropertyList>
-				<Property Name="AudioFilesImporter\Path" Type="string" Value="E:\Users\Sergi Regi\Music"/>
+				<Property Name="AudioFilesImporter\Path" Type="string" Value="E:\Users\Sergi Regi\Music\fx viod\"/>
 				<Property Name="Event Action List\{4075928E-9D93-42C4-8289-D71827BF0D59}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{455EF4E2-0463-4DFC-BA94-071DAE87EA25}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{63B54300-28EF-4D90-AEE5-A056FE5B40F0}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{66769C70-F0AA-4D6D-B850-05D2C9074AF3}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{79510026-0999-4489-A9C3-A861DDE399A0}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{BE61CE43-771E-47A4-9F4B-5ABD1CEC5B08}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{C7AA9EC0-7542-4032-B90E-41E6291A9CA7}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{F43F6739-BA0D-4A60-B4A3-FFDE85E27F13}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="EventView\FilterMode1" Type="int32" Value="2"/>
 				<Property Name="ExternalSourcesInputPath" Type="string">
 					<ValueList>
@@ -20,11 +27,12 @@
 				<Property Name="General\LatestLanguage" Type="int32" Value="684519430"/>
 				<Property Name="General\LatestPlatform" Type="string" Value="Windows"/>
 				<Property Name="General\SourceControlPluginID" Type="string" Value="{C403A906-0C19-4ED5-808E-748707065301}"/>
-				<Property Name="GenerateSoundBanks\ListMode" Type="string" Value="Tree"/>
+				<Property Name="GenerateSoundBanks\ListMode" Type="string" Value="Flat"/>
 				<Property Name="GenerateSoundBanks\x64_SelectedLanguages" Type="string" Value="BvDMKA=="/>
 				<Property Name="GenerateSoundBanks\x64_SelectedPlatforms" Type="string" Value="2xqtCbTXikCO6ocHA7plzg=="/>
 				<Property Name="GenerateSoundBanks\x64_SelectedSoundBanks" Type="string" Value="0+vDWjdA2UWMhqbciu7r4Q=="/>
 				<Property Name="HardwareController\CurrentSession" Type="string" Value="{00000000-0000-0000-0000-000000000000}"/>
+				<Property Name="Interactive Music\x64_{E28B89CD-6F5B-4937-A2D5-4A158074E22C} - SegmentEditorZoomInfo" Type="string" Value="AAAAAAAA8D8AAAAAAADwPwAAAAAAkGxAAAAAAAAA8D8AAAAAAAAAAAAAAAAAAAAA"/>
 				<Property Name="MeterView\LastObject1" Type="string" Value="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}"/>
 				<Property Name="MeterView\MeterMode1" Type="int32" Value="1"/>
 				<Property Name="MeterView\MeterMode1Viewpoint0" Type="int32" Value="1"/>
@@ -37,6 +45,7 @@
 				<Property Name="MonitoringManager\WatchMgr\WatchesVersion" Type="int32" Value="7"/>
 				<Property Name="MonitoringManager\WatchMgr\x64_GameSyncWatches" Type="string" Value=""/>
 				<Property Name="MonitoringManager\WatchMgr\x64_Watches" Type="string" Value=""/>
+				<Property Name="Music Transition List\{87D17837-4BA1-4753-AF17-0C45B9CDBAF5}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\FirstVisible_10_1" Type="string" Value="{4C96B38B-3DB4-40C7-91C9-665510E38993}"/>
 				<Property Name="ProjectExplorer\FirstVisible_11_1" Type="string" Value="{23EC2DE3-3ED8-4B82-AC99-92E25F2E4C6B}"/>
 				<Property Name="ProjectExplorer\FirstVisible_1_1" Type="string" Value="{2388DAEA-9775-46C6-A2ED-C5222A397756}"/>
@@ -80,8 +89,10 @@
 				<Property Name="RTPC\GameParameterSimValue\{EDA87B19-73AA-40A0-9F19-2073606DB710}" Type="Real64" Value="6"/>
 				<Property Name="RTPC\GameParameterSimValue\{F64151ED-AE81-4901-B783-012755D609BD}" Type="Real64" Value="1"/>
 				<Property Name="RTPC\GameParameterSimValue\{F72E0659-4346-4E1C-A1B1-DAB46A05101E}" Type="Real64" Value="50"/>
+				<Property Name="SettingsUserOverride" Type="bool" Value="True"/>
 				<Property Name="SoundBank Manager\x64_Expand States" Type="string" Value="qHYfCIdGFEm64/l2QC5S1g=="/>
-				<Property Name="SoundBankHeaderFilePath" Type="string" Value="GeneratedSoundBanks\"/>
+				<Property Name="SoundBankHeaderFilePath" Type="string" Value="GeneratedSoundBanks"/>
+				<Property Name="SoundBankPathUserOverride" Type="bool" Value="True"/>
 				<Property Name="SoundBankPaths" Type="string">
 					<ValueList>
 						<Value Platform="Windows">..\NewMenuSaveLoad\Assets\StreamingAssets\Audio\GeneratedSoundBanks\Windows\</Value>

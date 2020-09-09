@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="135">
+	<RootPaths>
+		<ProjectRoot>E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\</ProjectRoot>
+		<SourceFilesRoot>E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\NewMenuSaveLoad\Assets\StreamingAssets\Audio\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<SoundBanks>
+		<SoundBank Id="133642231" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
+			<ShortName>General</ShortName>
+			<Path>General.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3991942870" Name="Music" ObjectPath="\Events\Default Work Unit\Music">
+					<IncludedMemoryFiles>
+						<File Id="246553294" Language="SFX">
+							<ShortName>Wardruna - Lyfjaberg (Healing-mountain).wav</ShortName>
+							<Path>SFX\Wardruna - Lyfjaberg (Healing-mountain)_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2003955220" Name="SFXClickUI" ObjectPath="\Events\Default Work Unit\SFXClickUI">
+					<IncludedMemoryFiles>
+						<File Id="399493292" Language="SFX">
+							<ShortName>Mouse Click - Sound Effect (HD).wav</ShortName>
+							<Path>SFX\Mouse Click - Sound Effect (HD)_CFF82CDC.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1959145450" Name="SFXFire" ObjectPath="\Events\Default Work Unit\SFXFire">
+					<IncludedMemoryFiles>
+						<File Id="518623069" Language="SFX">
+							<ShortName>Realistic Fire Simulation With Sound Effects.wav</ShortName>
+							<Path>SFX\Realistic Fire Simulation With Sound Effects_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

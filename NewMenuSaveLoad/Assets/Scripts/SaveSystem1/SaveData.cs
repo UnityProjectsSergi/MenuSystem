@@ -7,6 +7,8 @@ using Assets.SaveSystem1.DataClasses;
 using System.Reflection;
 using System;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using SaveSystem1.DataClasses;
 using UnityEngine.PlayerLoop;
 
@@ -198,6 +200,32 @@ public class SaveData
                 StringReader reader = new StringReader(json);
                 return (T) serializer.Deserialize(reader);
             }
+            else if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Binnary)
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                // Open up a filestream, combining the path and object key
+                FileStream fileStream = new FileStream(path , FileMode.Open);
+                // Initialize a variable with the default value of whatever type we're using
+                T returnValue = new T();
+                /* 
+                 * Try/Catch/Finally block that will attempt to deserialize the data
+                 * If we fail to successfully deserialize the data, we'll just return the default value for Type
+                 */
+                try
+                {
+                    returnValue = (T)formatter.Deserialize(fileStream);
+                }
+                catch (SerializationException exception)
+                {
+                    Debug.Log("Load failed. Error: " + exception.Message);
+                }
+                finally
+                {
+                    fileStream.Close();
+                }
+
+                return returnValue;
+            }
             return obj;
         }
         else
@@ -242,6 +270,14 @@ public class SaveData
                     serializer.Serialize(stringwriter, content);
                     File.WriteAllText(path, stringwriter.ToString());
                 }
+                else if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Binnary)
+                {
+                    BinaryFormatter bf = new BinaryFormatter();
+                    FileStream file = File.Open(path ,FileMode.OpenOrCreate);
+                   
+                    bf.Serialize(file, content);
+                    file.Close();
+                }
             }
             // if exist and not delete
             else
@@ -268,6 +304,15 @@ public class SaveData
                     serializer.Serialize(stringwriter, content);
                     Append(path, xml + stringwriter.ToString());
                 }
+                else if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Binnary)
+                {
+                    BinaryFormatter bf = new BinaryFormatter();
+                    FileStream file = File.Open(path ,FileMode.OpenOrCreate);
+                    
+                    bf.Serialize(file, content);
+                    file.Close();
+                }
+                
             }
         }
         else
@@ -289,6 +334,14 @@ public class SaveData
                 var serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
                 serializer.Serialize(stringwriter, content);
                 File.WriteAllText(path, stringwriter.ToString());
+            }
+            else if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Binnary)
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Open(path ,FileMode.OpenOrCreate);
+                
+                bf.Serialize(file, content);
+                file.Close();
             }
         }
     }

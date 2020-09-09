@@ -10,7 +10,7 @@ public class GameSlotObjectsContainer
         return (v != null);
     }
 }
-
+[System.Serializable]
 public class GameDataSaveContainer {
     // fer una classe Data difrenprefab 
     /// <summary>

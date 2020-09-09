@@ -3,10 +3,29 @@
 	<AudioObjects>
 		<WorkUnit Name="Default Work Unit" ID="{B3222DBF-A5DF-4BE0-8E82-5C8921D5C672}" PersistMode="Standalone">
 			<ChildrenList>
-				<Sound Name="TestSound" ID="{B06B5A55-AE66-4749-9613-3A83B5A26B20}" ShortID="675930237">
-					<PropertyList>
-						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-					</PropertyList>
+				<Sound Name="Music" ID="{38B75562-FD4C-4E43-AD2B-A6DAF5D17D38}" ShortID="526424258">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{4E0537F1-66F8-48F8-9A74-E6DB5FDD5FB3}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{93E30906-0309-4D4B-8F4A-046C35AE10B0}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Wardruna - Lyfjaberg (Healing-mountain)" ID="{1DF0D7BE-EBBD-4657-AF52-12BF47EB35D4}">
+							<Language>SFX</Language>
+							<AudioFile>Wardruna - Lyfjaberg (Healing-mountain).wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="73197493"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Wardruna - Lyfjaberg (Healing-mountain)" ID="{1DF0D7BE-EBBD-4657-AF52-12BF47EB35D4}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="SFX" ID="{B4C2D815-4418-4983-89D5-0C7AB00935CE}" ShortID="177805092">
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{4E0537F1-66F8-48F8-9A74-E6DB5FDD5FB3}"/>
@@ -16,74 +35,49 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<AudioFileSource Name="FIRE SOUND EFFECT IN HIGH QUALITY" ID="{638036E2-2E66-449F-96FA-3E6C6553A015}">
+						<AudioFileSource Name="Realistic Fire Simulation With Sound Effects" ID="{069D825A-1562-4363-9DA6-506469FFCCCB}">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{4E0537F1-66F8-48F8-9A74-E6DB5FDD5FB3}"/>
+								</Reference>
+							</ReferenceList>
 							<Language>SFX</Language>
-							<AudioFile>FIRE SOUND EFFECT IN HIGH QUALITY.wav</AudioFile>
+							<AudioFile>Realistic Fire Simulation With Sound Effects.wav</AudioFile>
 							<MediaIDList>
-								<MediaID ID="696597627"/>
+								<MediaID ID="518623069"/>
 							</MediaIDList>
 						</AudioFileSource>
 					</ChildrenList>
 					<ActiveSourceList>
-						<ActiveSource Name="FIRE SOUND EFFECT IN HIGH QUALITY" ID="{638036E2-2E66-449F-96FA-3E6C6553A015}" Platform="Linked"/>
+						<ActiveSource Name="Realistic Fire Simulation With Sound Effects" ID="{069D825A-1562-4363-9DA6-506469FFCCCB}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
-				<Sound Name="Voice" ID="{F3CE1F1E-391F-4D69-B0F6-694E5CBA7A1A}" ShortID="290629430">
-					<PropertyList>
-						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-						<Property Name="IsVoice" Type="bool" Value="True"/>
-					</PropertyList>
+				<Sound Name="Mouse Click - Sound Effect (HD)" ID="{A6C85284-9995-4B50-AE87-B329E43A7794}" ShortID="288043537">
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{4E0537F1-66F8-48F8-9A74-E6DB5FDD5FB3}"/>
 						</Reference>
 						<Reference Name="OutputBus">
-							<ObjectRef Name="Voices" ID="{1DBEE5C2-A811-4C4C-AE36-AE9779F6A902}" WorkUnitID="{93E30906-0309-4D4B-8F4A-046C35AE10B0}"/>
+							<ObjectRef Name="SoundFX" ID="{962B4017-7B67-4EEB-B6D5-933B14BE6F0B}" WorkUnitID="{93E30906-0309-4D4B-8F4A-046C35AE10B0}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<AudioFileSource Name="funny-voices-daniel_simon" ID="{06A3237B-6DD6-4B51-A877-CF8279C4FE36}">
+						<AudioFileSource Name="Mouse Click - Sound Effect (HD)" ID="{A96183BA-4CFA-4614-9557-6AFAD597A5E4}">
+							<Comment>Mouse Click UI Buton</Comment>
 							<PropertyList>
-								<Property Name="FadeInDuration" Type="Real64" Value="3.96946703767123"/>
-								<Property Name="FadeOutDuration" Type="Real64" Value="3.86361458333333"/>
-								<Property Name="LoopBegin" Type="Real64" Value="0.715114726027399"/>
-								<Property Name="LoopEnd" Type="Real64" Value="12.7558314069635"/>
 								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+								<Property Name="TrimBegin" Type="Real64" Value="0.971506849315069"/>
+								<Property Name="TrimEnd" Type="Real64" Value="1.16653993104091"/>
 							</PropertyList>
-							<Language>English(US)</Language>
-							<AudioFile>funny-voices-daniel_simon.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="123123155"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ActiveSourceList>
-						<ActiveSource Name="funny-voices-daniel_simon" ID="{06A3237B-6DD6-4B51-A877-CF8279C4FE36}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-				<Sound Name="Music" ID="{06B5D978-ACF4-4568-8A07-E7518C597E52}" ShortID="85144385">
-					<PropertyList>
-						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-					</PropertyList>
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{4E0537F1-66F8-48F8-9A74-E6DB5FDD5FB3}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="Music" ID="{3B425A06-1773-4C09-A5D1-C1838E857151}" WorkUnitID="{93E30906-0309-4D4B-8F4A-046C35AE10B0}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="Purple Planet Music - Creeping Death 2813A3029_01" ID="{AFAEC3F9-3059-4393-BE02-F098172B007C}">
 							<Language>SFX</Language>
-							<AudioFile>Purple Planet Music - Creeping Death 2813A3029_01.wav</AudioFile>
+							<AudioFile>Mouse Click - Sound Effect (HD).wav</AudioFile>
 							<MediaIDList>
-								<MediaID ID="590982907"/>
+								<MediaID ID="399493292"/>
 							</MediaIDList>
 						</AudioFileSource>
 					</ChildrenList>
 					<ActiveSourceList>
-						<ActiveSource Name="Purple Planet Music - Creeping Death 2813A3029_01" ID="{AFAEC3F9-3059-4393-BE02-F098172B007C}" Platform="Linked"/>
+						<ActiveSource Name="Mouse Click - Sound Effect (HD)" ID="{A96183BA-4CFA-4614-9557-6AFAD597A5E4}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
 			</ChildrenList>

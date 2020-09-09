@@ -16,11 +16,27 @@
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
 			<IncludedEvents>
-				<Event Id="3991942870" Name="Music" ObjectPath="\Events\Default Work Unit\Music" DurationType="Infinite">
+				<Event Id="1584507803" Name="Click" ObjectPath="\Events\Default Work Unit\Click" DurationType="OneShot" DurationMin="0.195033" DurationMax="0.195033">
 					<IncludedMemoryFiles>
-						<File Id="590982907" Language="SFX">
-							<ShortName>Purple Planet Music - Creeping Death 2813A3029_01.wav</ShortName>
-							<Path>SFX\Purple Planet Music - Creeping Death 2813A3029_01_D79FB2B7.wem</Path>
+						<File Id="399493292" Language="SFX">
+							<ShortName>Mouse Click - Sound Effect (HD).wav</ShortName>
+							<Path>SFX\Mouse Click - Sound Effect (HD)_A0707936.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3991942870" Name="Music" ObjectPath="\Events\Default Work Unit\Music" DurationType="OneShot" DurationMin="507.646820" DurationMax="507.646820">
+					<IncludedMemoryFiles>
+						<File Id="246553294" Language="SFX">
+							<ShortName>Wardruna - Lyfjaberg (Healing-mountain).wav</ShortName>
+							<Path>SFX\Wardruna - Lyfjaberg (Healing-mountain)_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1959145450" Name="SFXFire" ObjectPath="\Events\Default Work Unit\SFXFire" DurationType="OneShot" DurationMin="14.140952" DurationMax="14.140952">
+					<IncludedMemoryFiles>
+						<File Id="518623069" Language="SFX">
+							<ShortName>Realistic Fire Simulation With Sound Effects.wav</ShortName>
+							<Path>SFX\Realistic Fire Simulation With Sound Effects_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -31,7 +47,9 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<GameParameters>
+				<GameParameter Id="988953028" Name="SFXVolume" ObjectPath="\Game Parameters\Default Work Unit\SFXVolume"/>
 				<GameParameter Id="2346531308" Name="MusicVolume" ObjectPath="\Game Parameters\Default Work Unit\MusicVolume"/>
+				<GameParameter Id="2893115286" Name="VoicesVolume" ObjectPath="\Game Parameters\Default Work Unit\VoicesVolume"/>
 				<GameParameter Id="2918011349" Name="MasterVolume" ObjectPath="\Game Parameters\Default Work Unit\MasterVolume"/>
 			</GameParameters>
 		</SoundBank>

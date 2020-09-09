@@ -49,8 +49,7 @@ namespace SaveSystem1.DataClasses
                 });
                 if (!File.Exists(Application.persistentDataPath + "/" + FolderOfGameData))
                 {
-                    if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.JSON)
-                        Directory.CreateDirectory(Application.persistentDataPath + "/" + FolderOfGameData);
+                    Directory.CreateDirectory(Application.persistentDataPath + "/" + FolderOfGameData);
                   
                 }
 

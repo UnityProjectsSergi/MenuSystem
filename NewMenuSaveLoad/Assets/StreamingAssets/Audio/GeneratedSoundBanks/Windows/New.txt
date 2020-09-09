@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	3991942870	Music			\Default Work Unit\Music	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	590982907	Music	E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\.cache\Windows\SFX\Purple Planet Music - Creeping Death 2813A3029_01_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Music		15948352
+

@@ -1108,12 +1108,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97a332e6ad54cdfbd27d1fceeb4aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetSelected: {fileID: 0}
+  defaultUiElementSelected: {fileID: 0}
   canvas: {fileID: 79081121}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
+  UiElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &79081121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1126,9 +1128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 79081122}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &79081122
@@ -1403,12 +1402,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97a332e6ad54cdfbd27d1fceeb4aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetSelected: {fileID: 0}
+  defaultUiElementSelected: {fileID: 0}
   canvas: {fileID: 112157001}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
+  UiElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &112157001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1421,9 +1422,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 112157002}
   uiFaderBlack: {fileID: 0}
 --- !u!225 &112157002
@@ -1451,6 +1449,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TogglefullScreen: {fileID: 804982809}
+  DropdownResolution: {fileID: 0}
+  DropdownQuality: {fileID: 0}
   dropdownResolutions: {fileID: 1616633267}
   dropdownQuality: {fileID: 1007831609}
   DefaultGraphicsParameters:
@@ -1651,7 +1651,7 @@ MonoBehaviour:
   IsInGameMenu: 0
   LerpMovimentCaamera: 0
   mainCamera: {fileID: 0}
-  canSwitchscreen: 0
+  canSwitchScreenPreventMultipleCalls: 0
   currentScreen: {fileID: 0}
   listPrevCanvas: []
   listPrevScreens: []
@@ -1659,7 +1659,8 @@ MonoBehaviour:
   BGScreensColor: {r: 0, g: 0, b: 0, a: 0}
   SavePathOfScreensToGoPrev: 1
   startScreen: {fileID: 784361527}
-  isd: 0
+  OnStartScreenOnLoginRegisterActive: {fileID: 0}
+  isFirstEnter: 0
 --- !u!114 &147397873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1897,12 +1898,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97a332e6ad54cdfbd27d1fceeb4aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetSelected: {fileID: 0}
+  defaultUiElementSelected: {fileID: 0}
   canvas: {fileID: 213562117}
-  fadeInTime: 1
-  fadeOutTime: 1
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
+  UiElements: []
   timeFromBlack: 1
   timeToBlack: 1
+  genbut: 0
 --- !u!114 &213562117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1915,9 +1918,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 213562118}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &213562118
@@ -2070,12 +2070,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97a332e6ad54cdfbd27d1fceeb4aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetSelected: {fileID: 0}
+  defaultUiElementSelected: {fileID: 0}
   canvas: {fileID: 217578940}
-  fadeInTime: 1
-  fadeOutTime: 1
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
+  UiElements: []
   timeFromBlack: 1
   timeToBlack: 1
+  genbut: 0
 --- !u!114 &217578940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2088,9 +2090,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 217578941}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &217578941
@@ -3112,7 +3111,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 8618450258815736358}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551209535}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
@@ -4761,12 +4760,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542465382}
   m_CullTransparentMesh: 0
---- !u!1 &551209535 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2353222426112125852, guid: 151fff05b2d1bb44b8ab0414ff657f1e,
-    type: 3}
-  m_PrefabInstance: {fileID: 8618450258815736358}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &551569598
 GameObject:
   m_ObjectHideFlags: 0
@@ -5202,7 +5195,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -5425,9 +5418,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 626737780}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!114 &626737779
@@ -5442,12 +5432,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97a332e6ad54cdfbd27d1fceeb4aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetSelected: {fileID: 1045201039}
+  defaultUiElementSelected: {fileID: 0}
   canvas: {fileID: 626737778}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
+  UiElements: []
   timeFromBlack: 2
   timeToBlack: 2
+  genbut: 0
 --- !u!225 &626737780
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5508,7 +5500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d89dc528e24a7d24fbfbefc6a17797eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UiSystem: {fileID: 147397872}
+  uiSystem: {fileID: 0}
   UIScreenAudio: {fileID: 1958659010}
   UIScreenGamePlay: {fileID: 213562116}
   UiScreenGrapics: {fileID: 112157000}
@@ -5520,7 +5512,6 @@ MonoBehaviour:
   CameraButton: {fileID: 0}
   AssessibilityButton: {fileID: 0}
   VideoButton: {fileID: 825416071}
-  BackButton: {fileID: 612450917}
 --- !u!114 &626737784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7208,12 +7199,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97a332e6ad54cdfbd27d1fceeb4aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetSelected: {fileID: 0}
+  defaultUiElementSelected: {fileID: 0}
   canvas: {fileID: 784361528}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
+  UiElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &784361528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7226,9 +7219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 0}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &784361529
@@ -7297,7 +7287,7 @@ MonoBehaviour:
   ContinueBtn: {fileID: 1234319159}
   LoadGameBtn: {fileID: 257340921}
   ExitMainMenuBtn: {fileID: 1135618129}
-  text: {fileID: 2136579956}
+  text: {fileID: 0}
 --- !u!114 &784361533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7311,6 +7301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DificultSelectionScreen: {fileID: 1933942484}
+  OwnScreen: {fileID: 0}
   LevelSelectionScreen: {fileID: 874335546}
   GamePlayScreen: {fileID: 1261279899}
   LoadSlotListScreen: {fileID: 1828755992}
@@ -8118,12 +8109,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97a332e6ad54cdfbd27d1fceeb4aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetSelected: {fileID: 1847422469}
+  defaultUiElementSelected: {fileID: 0}
   canvas: {fileID: 874335547}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
+  UiElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &874335547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8136,9 +8129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 874335548}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &874335548
@@ -8177,6 +8167,7 @@ MonoBehaviour:
   levelItemsContainer: {fileID: 1551410043}
   LevelItemPrefab: {fileID: 1201691965437682, guid: 48f56b69809e1ef478a20284346efc33,
     type: 3}
+  ownScreen: {fileID: 0}
   AllLevelsData:
   - LevelTitle: Game
     LevelDescription: SSSS
@@ -9599,6 +9590,16 @@ PrefabInstance:
       propertyPath: slotController
       value: 
       objectReference: {fileID: 1676567847}
+    - target: {fileID: 7732768864872224351, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732768864872224351, guid: 276aee3954ee80146bbb62062ad4fb76,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7732768864872424599, guid: 276aee3954ee80146bbb62062ad4fb76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11584,17 +11585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fb696bdefaeac46899f1e3cef04c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Default:
-    folderDone: 0
-    FolderOfSlot: 
-    FileSlot: 
-    dataInfoSlot:
-      currentLevelPlay: 
-      Title: ssss
-      ScreenShot: 
-      gameDifficulty: 1
-      typeSaveSlot: 0
-  SlotPrefab: {fileID: 1573193938273284, guid: 8e9b4d0df502d8b4f9be7c5a7173b730, type: 3}
+  SaveUISlotPrefab: {fileID: 0}
   parentOflist: {fileID: 1840788938}
   previouSlotResume:
     folderDone: 0
@@ -11604,13 +11595,15 @@ MonoBehaviour:
       currentLevelPlay: 
       Title: ssss
       ScreenShot: 
+      gameDifficultyStr: None
       gameDifficulty: 1
+      game2dif: 
       typeSaveSlot: 0
   system: {fileID: 147397872}
   quetionScreen: {fileID: 1287160860}
   GamePlayScreen: {fileID: 1261279899}
-  MenuController: {fileID: 1676567851}
-  list: []
+  listSlots: []
+  returnToMenuOrGameplay: 0
 --- !u!114 &1251716495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11623,12 +11616,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97a332e6ad54cdfbd27d1fceeb4aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetSelected: {fileID: 0}
+  defaultUiElementSelected: {fileID: 0}
   canvas: {fileID: 1251716496}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
+  UiElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &1251716496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11641,9 +11636,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 1251716497}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &1251716497
@@ -11712,12 +11704,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97a332e6ad54cdfbd27d1fceeb4aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetSelected: {fileID: 0}
+  defaultUiElementSelected: {fileID: 0}
   canvas: {fileID: 1261279900}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
+  UiElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &1261279900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11730,9 +11724,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 1261279901}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &1261279901
@@ -11852,12 +11843,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97a332e6ad54cdfbd27d1fceeb4aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetSelected: {fileID: 1349604561}
+  defaultUiElementSelected: {fileID: 0}
   canvas: {fileID: 1287160861}
-  fadeInTime: 0.25
-  fadeOutTime: 0.25
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
+  UiElements: []
   timeFromBlack: 0
   timeToBlack: 0
+  genbut: 0
 --- !u!114 &1287160861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11870,9 +11863,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 1287160862}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &1287160862
@@ -11902,8 +11892,8 @@ MonoBehaviour:
   yesBtn: {fileID: 1916570779}
   noBtn: {fileID: 1349604563}
   cancelBtn: {fileID: 1518403654}
-  questionText: {fileID: 2026353329}
-  titleText: {fileID: 676988147}
+  questionText: {fileID: 0}
+  titleText: {fileID: 0}
   YesKey: 121
   NoKey: 110
   CancelKey: 99
@@ -11942,7 +11932,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05, y: 0.05}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -25.5, y: -19}
+  m_AnchoredPosition: {x: -25.49997, y: -19}
   m_SizeDelta: {x: 51, y: 38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1289207046
@@ -12462,12 +12452,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97a332e6ad54cdfbd27d1fceeb4aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetSelected: {fileID: 0}
+  defaultUiElementSelected: {fileID: 0}
   canvas: {fileID: 1381093845}
-  fadeInTime: 0
-  fadeOutTime: 0
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
+  UiElements: []
   timeFromBlack: 0
   timeToBlack: 0
+  genbut: 0
 --- !u!114 &1381093845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12480,9 +12472,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 1381093846}
   uiFaderBlack: {fileID: 0}
 --- !u!225 &1381093846
@@ -12745,12 +12734,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97a332e6ad54cdfbd27d1fceeb4aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetSelected: {fileID: 0}
+  defaultUiElementSelected: {fileID: 0}
   canvas: {fileID: 1414367517}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
+  UiElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &1414367517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12763,9 +12754,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 1414367518}
   uiFaderBlack: {fileID: 0}
 --- !u!225 &1414367518
@@ -13932,7 +13920,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 6.4398193}
+  m_AnchoredPosition: {x: 0, y: 6.944092}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1551410044
@@ -15267,7 +15255,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 66069205}
   m_HandleRect: {fileID: 66069204}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -15454,11 +15442,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1520455de4df9d44d83736b5404e6e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settignsMenu: {fileID: 1676567853}
+  globalSettignsMenu: {fileID: 0}
   currentSlot:
     ObjectsToSaveInSlot: []
     health: 1
-  fileExists: 0
+    id: 0
+  dataExists: 0
   _prefab: {fileID: 0}
   currentSlotResume:
     folderDone: 0
@@ -15468,10 +15457,22 @@ MonoBehaviour:
       currentLevelPlay: 
       Title: ssss
       ScreenShot: 
+      gameDifficultyStr: None
       gameDifficulty: 1
+      game2dif: 
       typeSaveSlot: 0
+  currentUser:
+    Firstnam: 
+    LastName: 
+    Username: 
+    password: 
+    email: 
+    FilePathOfGameData: 
+    FolderOfGameData: 
+  token: 
   hasCurrentSlot: 0
   pauseController: {fileID: 0}
+  gamePlayScreen: {fileID: 0}
 --- !u!114 &1676567851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15484,16 +15485,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c2b0bb492045147a97c9a72932a038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slot:
-    ObjectsToSaveInSlot: []
-    health: 1
   system: {fileID: 147397872}
   mainMenuController: {fileID: 784361533}
   GamePlayScreen: {fileID: 1261279899}
   MainMenuScreen: {fileID: 784361527}
   ScreenLoading: {fileID: 1686490371}
   LoadScreencontroller: {fileID: 1686490374}
-  isgamePlay: 0
   questionScreen: {fileID: 1287160860}
   IsLoadingScreen: {fileID: 0}
   slotController: {fileID: 0}
@@ -15855,12 +15852,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97a332e6ad54cdfbd27d1fceeb4aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetSelected: {fileID: 0}
+  defaultUiElementSelected: {fileID: 0}
   canvas: {fileID: 1686490372}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
+  UiElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &1686490372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15873,9 +15872,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 0}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &1686490373
@@ -16685,12 +16681,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97a332e6ad54cdfbd27d1fceeb4aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetSelected: {fileID: 0}
+  defaultUiElementSelected: {fileID: 0}
   canvas: {fileID: 1786983541}
-  fadeInTime: 0
-  fadeOutTime: 0
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
+  UiElements: []
   timeFromBlack: 0
   timeToBlack: 0
+  genbut: 0
 --- !u!114 &1786983541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16703,9 +16701,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 0}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &1786983542
@@ -16733,6 +16728,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TogglefullScreen: {fileID: 515316920}
+  DropdownResolution: {fileID: 0}
+  DropdownQuality: {fileID: 0}
   dropdownResolutions: {fileID: 2006059244}
   dropdownQuality: {fileID: 1815101771}
   DefaultGraphicsParameters:
@@ -17529,7 +17526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainMenu: {fileID: 784361527}
-  SlotPrefab: {fileID: 1573193938273284, guid: 67aea6b258376b5468245efe4512d30b, type: 3}
+  loadSlotUIPrefab: {fileID: 0}
   parentOflist: {fileID: 1236392278}
   previouSlotResume:
     folderDone: 0
@@ -17539,7 +17536,9 @@ MonoBehaviour:
       currentLevelPlay: 
       Title: ssss
       ScreenShot: 
+      gameDifficultyStr: None
       gameDifficulty: 1
+      game2dif: 
       typeSaveSlot: 0
   system: {fileID: 147397872}
   quetionScreen: {fileID: 1287160860}
@@ -17557,12 +17556,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97a332e6ad54cdfbd27d1fceeb4aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetSelected: {fileID: 0}
+  defaultUiElementSelected: {fileID: 0}
   canvas: {fileID: 1828755993}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
+  UiElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &1828755993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17575,9 +17576,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 1828755994}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &1828755994
@@ -17664,7 +17662,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.8}
-  m_AnchoredPosition: {x: 0, y: 36.462967}
+  m_AnchoredPosition: {x: 0, y: 39.318207}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1840788940
@@ -18869,12 +18867,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97a332e6ad54cdfbd27d1fceeb4aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetSelected: {fileID: 0}
+  defaultUiElementSelected: {fileID: 0}
   canvas: {fileID: 1933942485}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
+  UiElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &1933942485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18887,9 +18887,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 1933942486}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &1933942486
@@ -18916,7 +18913,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a377d5a5a97d6949bf5a14f673a67c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  str: []
   ParntOb: {fileID: 1790246668}
   buttonPrfab: {fileID: 1935401123817266, guid: d7a18159e61bea94eb40e888e0092186,
     type: 3}
@@ -19160,12 +19156,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97a332e6ad54cdfbd27d1fceeb4aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetSelected: {fileID: 551209535}
+  defaultUiElementSelected: {fileID: 0}
   canvas: {fileID: 1958659011}
-  fadeInTime: 0.5
-  fadeOutTime: 0.5
+  openScreenFadeInTime: 0
+  closeScreenFadeOutTime: 0
+  UiElements: []
   timeFromBlack: 0.5
   timeToBlack: 0.5
+  genbut: 0
 --- !u!114 &1958659011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19178,9 +19176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2a9af8cd5f42d4a50b2228e748bafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanOpenNextScreen: 0
-  FadeFromBlack: 0
-  FadeToBlack: 0
   uiElement: {fileID: 1958659012}
   uiFaderBlack: {fileID: 1638239658}
 --- !u!225 &1958659012
@@ -20360,7 +20355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468bd5d6bc55d454686182f92de96b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackBtnM:
+  PauseGamePlayAction:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
@@ -20368,6 +20363,51 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
+  BackAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  ExtPaseAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  SaveAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  LoadAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  SaveSlotAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  Cancel: 0
+  Pause: 0
+  ExitPause: 0
+  SaveTrigg: 0
+  playerInput: {fileID: 0}
   MoveUi: {x: 0, y: 0}
 --- !u!4 &2113862845
 Transform:

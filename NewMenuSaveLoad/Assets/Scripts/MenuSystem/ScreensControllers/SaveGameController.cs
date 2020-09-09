@@ -140,7 +140,7 @@ public class SaveGameController : MonoBehaviour
             // 
            
             system.CallSwitchScreen(GamePlayScreen,
-                delegate { GamePlayScreen.GetComponent<GamePlayController>().ShowImageSavedGame(); });
+                delegate { GamePlayScreen.GetComponent<GamePlayScreenController>().ShowImageSavedGame(); });
         }
         // return to menu SaveGame
         else
@@ -190,7 +190,7 @@ public class SaveGameController : MonoBehaviour
         if (returnToMenuOrGameplay)
         {
             system.CallSwitchScreen(GamePlayScreen,
-                delegate { GamePlayScreen.GetComponent<GamePlayController>().ShowImageSavedGame(); });
+                delegate { GamePlayScreen.GetComponent<GamePlayScreenController>().ShowImageSavedGame(); });
         }
         else
         {

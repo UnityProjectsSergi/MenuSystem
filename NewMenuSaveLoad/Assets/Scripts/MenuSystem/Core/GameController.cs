@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour
         /// <summary>
         /// Save Interval Coroutine to save slot game on gameplay mode.
         /// </summary>
-        [CanBeNull] private IEnumerator _saveIntervalCoroutine = null;
+        [CanBeNull] public IEnumerator _saveIntervalCoroutine = null;
         [HideInInspector]
         public PauseController pauseController;
         public UiScreen gamePlayScreen;
@@ -97,7 +97,8 @@ public class GameController : MonoBehaviour
                             globalSettignsMenu.currentExtFile = globalSettignsMenu.jsonExt;
                         else if (globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Xml)
                             globalSettignsMenu.currentExtFile = globalSettignsMenu.xmlExt;
-
+                        else if (globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Binnary)
+                            globalSettignsMenu.currentExtFile = globalSettignsMenu.BinExt;
                         globalSettignsMenu.fileGlobalSlotsSaveData += globalSettignsMenu.currentExtFile;
                         datapath = System.IO.Path.Combine(Application.persistentDataPath,
                             globalSettignsMenu.fileGlobalSlotsSaveData);
@@ -336,7 +337,7 @@ public class GameController : MonoBehaviour
                     //save slot data
                     SaveSlotObj();
                     // show iu element for saved data
-                    gamePlayScreen.GetComponent<GamePlayController>().ShowImageSavedGame();
+                    gamePlayScreen.GetComponent<GamePlayScreenController>().ShowImageSavedGame();
             }
         }
         #endregion

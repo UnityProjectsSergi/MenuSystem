@@ -211,7 +211,7 @@ public class MainMenuController : MonoBehaviour
                 // Save Change in dsk
                 GameController.SaveGame();
                 GameController.Instance.pauseController.isPausedGame = false;
-                UiSystem.CallSwitchScreen(GamePlayScreen, delegate { GamePlayScreen.GetComponent<GamePlayController>().ShowImageSavedGame(); });
+                UiSystem.CallSwitchScreen(GamePlayScreen, delegate { GamePlayScreen.GetComponent<GamePlayScreenController>().ShowImageSavedGame(); });
            
             }
         }

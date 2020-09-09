@@ -78,7 +78,9 @@ namespace Assets.SaveSystem1.DataClasses
         /// <summary>
         /// Level of dificulty of game
         /// </summary>
-        public GameDifficulty gameDifficulty=GameDifficulty.Easy;
+        public string gameDifficultyStr="None";
+
+        public GameDifficulty gameDifficulty=GameDifficulty.None;
 
         public string game2dif;
         /// <summary>

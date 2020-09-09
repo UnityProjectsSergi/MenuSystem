@@ -191,6 +191,7 @@ public class LevelSelectionController : MonoBehaviour
         else
         {
             GameController.Instance.currentSlotResume.dataInfoSlot.gameDifficulty = GameDifficulty.None;
+            GameController.Instance.currentSlotResume.dataInfoSlot.gameDifficultyStr = "None";
             menuController.IsUsingOneSlot(); 
         }
     }

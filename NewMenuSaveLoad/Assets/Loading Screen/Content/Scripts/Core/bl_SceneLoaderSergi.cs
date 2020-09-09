@@ -533,7 +533,8 @@ public class bl_SceneLoaderSergi : MonoBehaviour
     {
         yield return new WaitForSeconds(t);
         SaveData.LoadGameSlotDataToScene(SaveData.LoadFromSource<GameSlot>(GameController.Instance.currentSlotResume.FileSlot));
-        GameplayScrren.GetComponent<GamePlayController>().LodGamePlayVars();
+        GameController.Instance.CallStartSaveSlotInterval(GameController.Instance.globalSettignsMenu.SaveIntervalSeconds);
+        GameplayScrren.GetComponent<GamePlayScreenController>().LodGamePlayVars();
     }
     
     /// <summary>

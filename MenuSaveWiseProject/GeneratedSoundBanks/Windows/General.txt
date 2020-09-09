@@ -1,6 +1,10 @@
 Event	ID	Name			Wwise Object Path	Notes
+	1584507803	Click			\Default Work Unit\Click	
+	1959145450	SFXFire			\Default Work Unit\SFXFire	
 	3991942870	Music			\Default Work Unit\Music	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	590982907	Music	E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\.cache\Windows\SFX\Purple Planet Music - Creeping Death 2813A3029_01_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Music		15948352
+	246553294	Wardruna - Lyfjaberg (Healing-mountain)	E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\.cache\Windows\SFX\Wardruna - Lyfjaberg (Healing-mountain)_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\Wardruna - Lyfjaberg (Healing-mountain)		89530432
+	399493292	Mouse Click - Sound Effect (HD)	E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\.cache\Windows\SFX\Mouse Click - Sound Effect (HD)_A0707936.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mouse Click - Sound Effect (HD)		34468
+	518623069	SFX	E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\.cache\Windows\SFX\Realistic Fire Simulation With Sound Effects_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX		2494528
 

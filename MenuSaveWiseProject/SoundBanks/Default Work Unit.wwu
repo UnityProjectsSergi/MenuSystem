@@ -5,9 +5,13 @@
 			<ChildrenList>
 				<SoundBank Name="General" ID="{5AC3EBD3-4037-45D9-8C86-A6DC8AEEEBE1}">
 					<ObjectInclusionList>
-						<ObjectRef Name="Music" ID="{4075928E-9D93-42C4-8289-D71827BF0D59}" WorkUnitID="{0230D18D-534E-4EF8-A690-C592710A0D68}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Music" ID="{C7AA9EC0-7542-4032-B90E-41E6291A9CA7}" WorkUnitID="{0230D18D-534E-4EF8-A690-C592710A0D68}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Click" ID="{F43F6739-BA0D-4A60-B4A3-FFDE85E27F13}" WorkUnitID="{0230D18D-534E-4EF8-A690-C592710A0D68}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="SFXFire" ID="{66769C70-F0AA-4D6D-B850-05D2C9074AF3}" WorkUnitID="{0230D18D-534E-4EF8-A690-C592710A0D68}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
-					<ObjectExclusionList/>
+					<ObjectExclusionList>
+						<ObjectRef Name="Purple Planet Music - Creeping Death 2813A3029_01" ID="{AFAEC3F9-3059-4393-BE02-F098172B007C}"/>
+					</ObjectExclusionList>
 					<GameSyncExclusionList/>
 				</SoundBank>
 			</ChildrenList>

@@ -1,0 +1,10 @@
+Event	ID	Name			Wwise Object Path	Notes
+	3170124113	voice			\Default Work Unit\voice	
+	3991942870	Music			\Default Work Unit\Music	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	246553294	Wardruna - Lyfjaberg (Healing-mountain)	E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\.cache\Windows\SFX\Wardruna - Lyfjaberg (Healing-mountain)_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music\Wardruna - Lyfjaberg (Healing-mountain)		89530432
+
+Streamed Audio	ID	Name	Audio source file	Generated audio file	Wwise Object Path	Notes
+	123123155	Voice	E:\Users\Sergi Regi\Documents\UnityTest\ImportantProj\MenuSaveWiseProject\.cache\Windows\Voices\English(US)\funny-voices-daniel_simon_F29A36E9.wem	123123155.wem	\Actor-Mixer Hierarchy\Default Work Unit\Voice	
+

@@ -1,22 +1,35 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Reflection.Emit;
 using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public enum SaveSystemFormat{ JSON,Xml}
+public enum SaveSystemFormat{ JSON,Xml,Binnary}
 public enum SaveSystemSourceData{ Remote,Local}
 public class GlobalSettignsMenu : MonoBehaviour
 {
     public GlobalSettings gb;
+    
+    [Header("Save system options")]
     public float TimeToTakeScreenShoot;
     public bool IsSaveingSystemEnabled;
     public bool IsSaveingInterval;
-    public bool isUserLoginRegisterActive,AutoLoginOnRegister;
     public SaveSystemSourceData saveSourceData;
     public SaveSystemFormat typeSaveFormat;
     public float SaveIntervalSeconds=2f;
+    [HideInInspector]
+    public string currentExtFile;
+    public string fileGlobalSlotsSaveData = "data", fileListUsers="listUsers";
+    [HideInInspector]
+    public string xmlExt=".xml",jsonExt=".json";
+
+    [Header("Login Register Settings")] public bool isUserLoginRegisterActive;
+   public bool AutoLoginOnRegister;
+    
+    [Header("Screens settings")]
     /// <summary>
     /// Says if is Screen DificultyLevelSelection is Enabled (true) of Desactive (false) 
     /// </summary>
@@ -28,16 +41,12 @@ public class GlobalSettignsMenu : MonoBehaviour
     public bool isLevelSelectonScreenEnabled;
     
     public bool IsLoaderSceneWithPligun;
-
- 
-    public string fileGlobalSlotsSaveData = "data", fileListUsers="listUsers";
-    [HideInInspector]
-    public string xmlExt=".xml",jsonExt=".json";
-
-    public string currentExtFile;
     
     private Dictionary<int, string> dificulties;
     public List<string> listsOfDificulties;
+    public string BinExt {
+        get { return ".bin"; }
+    }
 
     private void Awake()
     {
@@ -47,8 +56,9 @@ public class GlobalSettignsMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
+
+    private Type DificyultiesEnum;
 
     // Update is called once per frame
     void Update()

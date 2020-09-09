@@ -1,6 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{8555CDC5-7CDC-4DC9-9A69-3F23615BB0B3}" SchemaVersion="97">
 	<InteractiveMusic>
-		<WorkUnit Name="Default Work Unit" ID="{8555CDC5-7CDC-4DC9-9A69-3F23615BB0B3}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{8555CDC5-7CDC-4DC9-9A69-3F23615BB0B3}" PersistMode="Standalone">
+			<ChildrenList>
+				<MusicSegment Name="Music" ID="{E28B89CD-6F5B-4937-A2D5-4A158074E22C}" ShortID="712747548">
+					<PropertyList>
+						<Property Name="EndPosition" Type="Real64" Value="507646.80153024"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{4E0537F1-66F8-48F8-9A74-E6DB5FDD5FB3}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Music" ID="{3B425A06-1773-4C09-A5D1-C1838E857151}" WorkUnitID="{93E30906-0309-4D4B-8F4A-046C35AE10B0}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicTrack Name="Wardruna - Lyfjaberg (Healing-mountain)" ID="{C7CB7A55-333A-411B-8CB1-5A20B2E89170}" ShortID="894849161">
+							<ReferenceList>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{93E30906-0309-4D4B-8F4A-046C35AE10B0}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Wardruna - Lyfjaberg (Healing-mountain)" ID="{28D9071F-5486-45D2-8752-CAD13979AE76}">
+									<Language>SFX</Language>
+									<AudioFile>Wardruna - Lyfjaberg (Healing-mountain).wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="246553294"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<TransitionList>
+								<MusicTransition Name="Root" ID="{DDE1C020-075E-4FBE-986A-EEF0D5F7E38D}">
+									<PropertyList>
+										<Property Name="IsFolder" Type="bool" Value="True"/>
+									</PropertyList>
+									<TransitionInfo/>
+								</MusicTransition>
+							</TransitionList>
+							<SequenceList>
+								<MusicTrackSequence Name="" ID="{7B27E89B-AA13-473D-9F20-97716CECC0E5}">
+									<ClipList>
+										<MusicClip Name="Wardruna - Lyfjaberg (Healing-mountain)" ID="{7A923103-F25C-452B-B479-D50CCF329D6E}">
+											<PropertyList>
+												<Property Name="EndTrimOffset" Type="Real64" Value="507541.768707483"/>
+												<Property Name="FadeInDuration" Type="Real64" Value="105.032822757112"/>
+												<Property Name="FadeOutMode" Type="int16" Value="0"/>
+												<Property Name="PlayAt" Type="Real64" Value="105.032822757112"/>
+											</PropertyList>
+											<AudioSourceRef Name="Wardruna - Lyfjaberg (Healing-mountain)" ID="{28D9071F-5486-45D2-8752-CAD13979AE76}"/>
+										</MusicClip>
+									</ClipList>
+								</MusicTrackSequence>
+							</SequenceList>
+						</MusicTrack>
+					</ChildrenList>
+					<CueList>
+						<MusicCue Name="Entry Cue" ID="{D7D2AAF5-BC7D-4FC8-8503-2A638FC0CB83}">
+							<PropertyList>
+								<Property Name="TimeMs" Type="Real64" Value="105.032822757112"/>
+							</PropertyList>
+						</MusicCue>
+						<MusicCue Name="Exit Cue" ID="{B559D2C9-7F1F-440A-9E34-4B156FA23493}">
+							<PropertyList>
+								<Property Name="CueType" Type="int16" Value="1"/>
+								<Property Name="TimeMs" Type="Real64" Value="1105.03282275711"/>
+							</PropertyList>
+						</MusicCue>
+					</CueList>
+				</MusicSegment>
+			</ChildrenList>
+		</WorkUnit>
 	</InteractiveMusic>
 </WwiseDocument>

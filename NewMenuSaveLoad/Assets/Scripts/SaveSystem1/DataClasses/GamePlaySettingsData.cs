@@ -5,6 +5,7 @@ using System.Text;
 using UnityEngine;
 namespace Assets.Scripts.SaveSystem1.DataClasses
 {
+    [System.Serializable]
     public class GamePlaySettingsData
     {
         /// <summary>
