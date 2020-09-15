@@ -20,7 +20,8 @@ public class GameObjectActorData
     public Quaternion rotationQuaterion;
     public Vector3 scale;
     public bool isActive;
-    public LayerMask LayerMask;
+    public int LayerMask;
+    
     public string tag;
     public bool isStatic;
     #if UNITY_EDITOR

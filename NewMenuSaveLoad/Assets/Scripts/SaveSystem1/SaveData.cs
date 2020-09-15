@@ -202,6 +202,7 @@ public class SaveData
             }
             else if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Binnary)
             {
+               return  BinarySerializer.Load<T>(path);
                 BinaryFormatter formatter = new BinaryFormatter();
                 // Open up a filestream, combining the path and object key
                 FileStream fileStream = new FileStream(path , FileMode.Open);
@@ -272,11 +273,15 @@ public class SaveData
                 }
                 else if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Binnary)
                 {
+                    
+                    BinarySerializer.Save(content,path);
+                    
+                    /*
                     BinaryFormatter bf = new BinaryFormatter();
                     FileStream file = File.Open(path ,FileMode.OpenOrCreate);
                    
                     bf.Serialize(file, content);
-                    file.Close();
+                    file.Close();*/
                 }
             }
             // if exist and not delete
@@ -306,11 +311,14 @@ public class SaveData
                 }
                 else if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Binnary)
                 {
+                    BinarySerializer.Save(content,path);
+                    
+                    /*
                     BinaryFormatter bf = new BinaryFormatter();
                     FileStream file = File.Open(path ,FileMode.OpenOrCreate);
-                    
+                   
                     bf.Serialize(file, content);
-                    file.Close();
+                    file.Close();*/
                 }
                 
             }
@@ -337,11 +345,14 @@ public class SaveData
             }
             else if (GameController.Instance.globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Binnary)
             {
+                BinarySerializer.Save(content,path);
+                    
+                /*
                 BinaryFormatter bf = new BinaryFormatter();
                 FileStream file = File.Open(path ,FileMode.OpenOrCreate);
-                
+               
                 bf.Serialize(file, content);
-                file.Close();
+                file.Close();*/
             }
         }
     }

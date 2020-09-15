@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c7fb0ebc9c1d2468606f77975e5ef5, type: 3}
   m_Name: F43F6739-BA0D-4A60-B4A3-FFDE85E27F13
   m_EditorClassIdentifier: 
-  objectName: Click
-  id: 1584507803
+  objectName: SFXClickUI
+  id: 2003955220
   guid: F43F6739-BA0D-4A60-B4A3-FFDE85E27F13
