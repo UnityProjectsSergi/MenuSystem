@@ -13,8 +13,8 @@ namespace AK
 {
     namespace EVENTS
     {
-        static const AkUniqueID CLICK = 1584507803U;
         static const AkUniqueID MUSIC = 3991942870U;
+        static const AkUniqueID SFXCLICKUI = 2003955220U;
         static const AkUniqueID SFXFIRE = 1959145450U;
     } // namespace EVENTS
 

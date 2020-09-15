@@ -7,6 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UIElements;
 
 public  class Inputs : MonoBehaviour
@@ -44,7 +45,7 @@ public  class Inputs : MonoBehaviour
             ExtPaseAction = playerInput.actions["ExitPause"];
             SaveAction = playerInput.actions["Save"];
             
-            InputSystem.onActionChange += OnActionChange;
+            //InputSystem.onActionChange += OnActionChange;
         }
 
         
@@ -83,7 +84,7 @@ public  class Inputs : MonoBehaviour
         ExitPause = ExtPaseAction.triggered;
         Pause = PauseGamePlayAction.triggered;
         SaveTrigg = SaveAction.triggered;
-       
+       Debug.Log(Pause);
         //  Debug.Log(InputPauseGame());
         //  Debug.Log(InputEnter());
     }

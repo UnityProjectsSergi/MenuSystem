@@ -16,19 +16,19 @@
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
 			<IncludedEvents>
-				<Event Id="1584507803" Name="Click" ObjectPath="\Events\Default Work Unit\Click" DurationType="OneShot" DurationMin="0.195033" DurationMax="0.195033">
-					<IncludedMemoryFiles>
-						<File Id="399493292" Language="SFX">
-							<ShortName>Mouse Click - Sound Effect (HD).wav</ShortName>
-							<Path>SFX\Mouse Click - Sound Effect (HD)_A0707936.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
 				<Event Id="3991942870" Name="Music" ObjectPath="\Events\Default Work Unit\Music" DurationType="OneShot" DurationMin="507.646820" DurationMax="507.646820">
 					<IncludedMemoryFiles>
 						<File Id="246553294" Language="SFX">
 							<ShortName>Wardruna - Lyfjaberg (Healing-mountain).wav</ShortName>
 							<Path>SFX\Wardruna - Lyfjaberg (Healing-mountain)_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2003955220" Name="SFXClickUI" ObjectPath="\Events\Default Work Unit\SFXClickUI" DurationType="OneShot" DurationMin="0.195033" DurationMax="0.195033">
+					<IncludedMemoryFiles>
+						<File Id="399493292" Language="SFX">
+							<ShortName>Mouse Click - Sound Effect (HD).wav</ShortName>
+							<Path>SFX\Mouse Click - Sound Effect (HD)_A0707936.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

@@ -262,7 +262,7 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: a8761f0887461449bae3f976402e52d6
     GuidInternal: 
-    m_lastTime: -8586021270160559329
+    m_lastTime: -8586018882916692317
     List:
     - name: General
       guid: d3ebc35a3740d9458c86a6dc8aeeebe1
@@ -278,20 +278,8 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: 8dd130024e53f84ea690c592710a0d68
     GuidInternal: 
-    m_lastTime: -8586021270160935434
+    m_lastTime: -8586018882934823405
     List:
-    - name: Click
-      guid: 39673ff40dba604ab4a3ffde85e27f13
-      id: 1584507803
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Click
-        ObjectType: 3
-      Path: Default Work Unit\Click
-      maxAttenuation: 0
-      maxDuration: 195033
-      minDuration: 195033
     - name: Music
       guid: c09eaac742753240b90e41e6291a9ca7
       id: 3991942870
@@ -304,6 +292,18 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 507646820
       minDuration: 507646820
+    - name: SFXClickUI
+      guid: 39673ff40dba604ab4a3ffde85e27f13
+      id: 2003955220
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXClickUI
+        ObjectType: 3
+      Path: Default Work Unit\SFXClickUI
+      maxAttenuation: 0
+      maxDuration: 195033
+      minDuration: 195033
     - name: SFXFire
       guid: 709c7666aaf06d4db85005d2c9074af3
       id: 1959145450

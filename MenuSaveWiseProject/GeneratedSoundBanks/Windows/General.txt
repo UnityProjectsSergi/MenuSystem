@@ -1,6 +1,6 @@
 Event	ID	Name			Wwise Object Path	Notes
-	1584507803	Click			\Default Work Unit\Click	
 	1959145450	SFXFire			\Default Work Unit\SFXFire	
+	2003955220	SFXClickUI			\Default Work Unit\SFXClickUI	
 	3991942870	Music			\Default Work Unit\Music	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size

@@ -8,7 +8,7 @@ public class SoundFX : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        AkSoundEngine.PostEvent("Music", gameObject);
     }
 
 
