@@ -18577,7 +18577,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 959279827}
   m_HandleRect: {fileID: 959279826}
   m_Direction: 3
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -25001,9 +25001,9 @@ MonoBehaviour:
   jsonExt: .json
   isUserLoginRegisterActive: 0
   AutoLoginOnRegister: 0
-  isDificultyLevelSelectionScreenEnabled: 0
-  isLevelSelectonScreenEnabled: 0
-  IsLoaderSceneWithPligun: 0
+  isDificultyLevelSelectionScreenEnabled: 1
+  isLevelSelectonScreenEnabled: 1
+  IsLoaderSceneWithPligun: 1
   listsOfDificulties:
   - None
   - Easy
@@ -31626,7 +31626,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1082431876}
   m_HandleRect: {fileID: 1082431875}
   m_Direction: 3
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
