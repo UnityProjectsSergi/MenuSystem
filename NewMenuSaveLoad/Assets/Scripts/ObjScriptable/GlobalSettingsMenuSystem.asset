@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20081879f728f204cb5e39c4af80d6fd, type: 3}
+  m_Name: GlobalSettingsMenuSystem
+  m_EditorClassIdentifier: 
+  saveSystemSettings: {fileID: 11400000, guid: 2fb2658462f16ea4983369476fe0857f, type: 2}
+  ScreenSettings: {fileID: 11400000, guid: c58e773187866704cb308da7d7dc040a, type: 2}

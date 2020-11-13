@@ -40,7 +40,7 @@ public class SoltUI : MonoBehaviour,ISelectHandler,IDeselectHandler {
     public EventTrigger onClickDelEvent;
     [HideInInspector]
    public EventTrigger.Entry entryDel = new EventTrigger.Entry( );
-   [HideInInspector]
+    [HideInInspector]
     public EventTrigger.Entry entryLoadEvent= new EventTrigger.Entry( );
     [HideInInspector]
     public EventTrigger.Entry entryLoadConfirm= new EventTrigger.Entry( );
@@ -54,7 +54,6 @@ public class SoltUI : MonoBehaviour,ISelectHandler,IDeselectHandler {
             entryLoadEvent.eventID = EventTriggerType.PointerClick;
             onClickDelEvent = onClickDelEvent.gameObject.GetComponent<EventTrigger>();
             entryDel.eventID = EventTriggerType.PointerClick;
-            
         }
         else
         {
@@ -67,12 +66,8 @@ public class SoltUI : MonoBehaviour,ISelectHandler,IDeselectHandler {
     public void Init(InfoSlotResume _slot)
     {
         slot = _slot;
-      
-       
         namePro.text=Utils.MakeString(new string[] { slot.dataInfoSlot.Title, " ", slot.dataInfoSlot.dateTimeCreation.ToLongDateString(), " , ", slot.dataInfoSlot.dateTimeCreation.ToLongTimeString() });
-       
-            textTypeSlotPro.text =slot.dataInfoSlot.typeSaveSlot.ToString();
-        
+        textTypeSlotPro.text =slot.dataInfoSlot.typeSaveSlot.ToString();
         try
         {
             Sprite img = IMG2Sprite.LoadNewSprite(slot.dataInfoSlot.ScreenShot);
@@ -101,6 +96,6 @@ public class SoltUI : MonoBehaviour,ISelectHandler,IDeselectHandler {
 
     public void OnDeselect(BaseEventData eventData)
     {
-       Debug.Log("ssssssssssssssc");
+      // Debug.Log("ssssssssssssssc");
     }
 }

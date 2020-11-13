@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SettingsController : MonoBehaviour
 {
     [SerializeField]
-    private UiSystem uiSystem;
+    private UiSystem uiSystem=null;
 
     [SerializeField] private UiScreen UIScreenAudio=null,UIScreenGamePlay=null,UiScreenGrapics=null;
     // Start is called before the first frame update

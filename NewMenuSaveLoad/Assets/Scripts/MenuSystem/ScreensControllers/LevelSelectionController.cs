@@ -143,7 +143,7 @@ public class LevelSelectionController : MonoBehaviour
     public void LoadLevel(AllLevelsData level)
     {
         GameController.Instance.currentSlotResume.dataInfoSlot.currentLevelPlay = level.SceneToLoad;
-        if (GameController.Instance.globalSettignsMenu.isDificultyLevelSelectionScreenEnabled)
+        if (GameController.Instance.globalSettignsMenuSC.screenSettings.isDificultyLevelSelectionScreenEnabled)
         {
             System.CallSwitchScreen(DificutySelection);
         }
@@ -184,7 +184,7 @@ public class LevelSelectionController : MonoBehaviour
     public void PlayLevel()
     {
         GameController.Instance.currentSlotResume.dataInfoSlot.currentLevelPlay = _currentSelectedLevelSceneName;
-        if (GameController.Instance.globalSettignsMenu.isDificultyLevelSelectionScreenEnabled)
+        if (GameController.Instance.globalSettignsMenuSC.screenSettings.isDificultyLevelSelectionScreenEnabled)
         {
             System.CallSwitchScreen(DificutySelection,null,false);
         }

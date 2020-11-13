@@ -41,7 +41,7 @@ public class RegisterController : MonoBehaviour
             {
                 textMessage.text = SaveController.Instance._response.Error;
             }
-            if (GameController.Instance.globalSettignsMenu.AutoLoginOnRegister)
+            if (GameController.Instance.globalSettignsMenuSC.loginRegisterSettings.AutoLoginOnRegister)
             {
                 loginController.Login(user);    
             }

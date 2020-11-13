@@ -24,6 +24,8 @@ public class GameObjectActorData
     
     public string tag;
     public bool isStatic;
+    public TestSO TestSO;
+    public ObjData Objdata;
     #if UNITY_EDITOR
     public StaticEditorFlags staticFlag;
     #endif

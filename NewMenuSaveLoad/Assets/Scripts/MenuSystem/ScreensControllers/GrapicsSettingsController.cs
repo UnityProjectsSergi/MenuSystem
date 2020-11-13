@@ -137,7 +137,7 @@ public class GrapicsSettingsController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!GameController.Instance.globalSettignsMenu.isUserLoginRegisterActive)
+        if (!GameController.Instance.globalSettignsMenuSC.loginRegisterSettings.isUserLoginRegisterActive)
         {
             InitDataGraphicsSetting();
         }

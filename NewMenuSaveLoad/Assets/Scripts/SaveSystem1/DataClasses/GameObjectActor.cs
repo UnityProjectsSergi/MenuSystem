@@ -87,6 +87,7 @@ public class GameObjectActor
         data.isActive = gameObj.activeSelf;
         data.LayerMask = gameObj.layer;
         data.tag = gameObj.tag;
+        data.Objdata = gameObj.GetComponent<objdataGO>().Getinfo();
         data.isStatic = gameObj.isStatic;
 #if UNITY_EDITOR
         data.staticFlag = GameObjectUtility.GetStaticEditorFlags(gameObj);
@@ -107,6 +108,7 @@ public class GameObjectActor
         gameObj.layer = data.LayerMask;
         gameObj.tag = data.tag;
         gameObj.isStatic = data.isStatic;
+        gameObj.GetComponent<objdataGO>().LoadData( data.Objdata);
         #if UNITY_EDITOR
         GameObjectUtility.SetStaticEditorFlags(gameObj, data.staticFlag);
         #endif

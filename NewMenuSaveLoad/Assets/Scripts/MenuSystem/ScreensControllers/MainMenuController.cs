@@ -69,7 +69,7 @@ public class MainMenuController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-       if(!GameController.Instance.globalSettignsMenu.isUserLoginRegisterActive)
+       if(!GameController.Instance.globalSettignsMenuSC.loginRegisterSettings.isUserLoginRegisterActive)
            InirMainMenuData();
     
     }
@@ -91,7 +91,7 @@ public class MainMenuController : MonoBehaviour
         GameController.Instance.currentSlot=new GameSlot();
         GameController.Instance.hasCurrentSlot = true;
         /// if menu have isLevelSelectonScreenEnabled true 
-        if (GameController.Instance.globalSettignsMenu.isLevelSelectonScreenEnabled)
+        if (GameController.Instance.globalSettignsMenuSC.screenSettings.isLevelSelectonScreenEnabled)
         {
             // Switch screen to levelSelection Screen
             UiSystem.CallSwitchScreen(LevelSelectionScreen);
@@ -100,7 +100,7 @@ public class MainMenuController : MonoBehaviour
         else
         {
             // if menu have isDificultyLevelSelectionScreenEnabled true 
-            if (GameController.Instance.globalSettignsMenu.isDificultyLevelSelectionScreenEnabled)
+            if (GameController.Instance.globalSettignsMenuSC.screenSettings.isDificultyLevelSelectionScreenEnabled)
             {
                 /// if menu have isLevelSelectonScreenEnabled true
                 UiSystem.CallSwitchScreen(DificultSelectionScreen);

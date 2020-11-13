@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -12,12 +13,13 @@ public enum TypeSoundBus {Unity,Wwise,Fmod }
 public  class SoundSliderSlot : MonoBehaviour
 {
     public Action<float> SaveVal;
-    
+    [HideInInspector]
     public TypeSoundBus typeSoundBus;
     public  Slider Slider;
     public string nameBus;
     public RTPCWwise RtpcWwise;
     public SoundBusFMOD BusFmod;
+    public AudioMixer audioMixer;
    
 
     public TMP_Text textPro;
@@ -35,7 +37,7 @@ public  class SoundSliderSlot : MonoBehaviour
                 case TypeSoundBus.Fmod:
                     BusFmod = new SoundBusFMOD(nameBus);
                     break;
-
+              
             }
         }
         catch (ExceptionSound e)
@@ -44,7 +46,7 @@ public  class SoundSliderSlot : MonoBehaviour
         }
     }
     
-    public void SetValueSlider(float value)
+    public void OnChangeValueSlider(float value)
     {
         try
         {
@@ -55,6 +57,14 @@ public  class SoundSliderSlot : MonoBehaviour
                     break;
                 case TypeSoundBus.Fmod:
                     BusFmod.SetBusVolume(value);
+                    break;
+                case TypeSoundBus.Unity:
+                    if(nameBus.Equals("MasterVolume"))
+                    audioMixer.SetFloat(nameBus.Remove(6), value);
+                    else
+                    {
+                        audioMixer.SetFloat(nameBus, value);
+                    }
                     break;
 
             }
@@ -74,5 +84,9 @@ public  class SoundSliderSlot : MonoBehaviour
     {
         return Slider.value;
     }
-    
+
+    public void Update()
+    {
+        Debug.Log(nameBus.Remove(6));
+    }
 }

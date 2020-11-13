@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9182497596306080651}
   - component: {fileID: 366455637904129611}
   - component: {fileID: 8433782494510350848}
+  - component: {fileID: 3510007993283510554}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -56,6 +57,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -107,3 +109,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathOfPrefab: Prefabs\ObjectsScene
   isDirty: 1
+--- !u!114 &3510007993283510554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3608598477440069772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f279837fc4faf204ebed30278d6e1c31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tstoso: {fileID: 11400000, guid: 1a031b9e85b4a4747ab7a9fb47cb495d, type: 2}

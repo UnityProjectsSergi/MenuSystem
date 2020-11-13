@@ -25,7 +25,7 @@ public class SaveController : Singleton<SaveController>
     public  Response SaveNewUser(UserData user)
     {
         
-        if (GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Local)
+        if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.saveSourceData == SaveSystemSourceData.Local)
         {
            
             if(SaveData.usersList.listUsers.Any(item=>item.Username==user.Username ))
@@ -58,7 +58,7 @@ public class SaveController : Singleton<SaveController>
     }
     public  Response GetUser(CheckUserData user)
     {
-        if (GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Local)
+        if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.saveSourceData == SaveSystemSourceData.Local)
         {
          UserData userGet =  SaveData.usersList.listUsers.Where((m => m.Username == user.identifier && m.password == user.password)).Single();
          

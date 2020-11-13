@@ -76,14 +76,11 @@ public class MenuController : MonoBehaviour
             _instance = this;
         pauseController = GetComponent<PauseController>();
         slotController = GetComponent<SlotController>();
-        DontDestroyOnLoad(gameObject);
+      
         }
     }
 
-    void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
+   
     // Update is called once per frame
     void Update()
     {
@@ -131,7 +128,7 @@ public class MenuController : MonoBehaviour
     public void LoadSceneFromSlot()
     {
         // if its enable Loading Scene Plugin sergi
-        if (GameController.Instance.globalSettignsMenu.IsLoaderSceneWithPligun)
+        if (GameController.Instance.globalSettignsMenuSC.screenSettings.IsLoaderSceneWithPligun)
         {
             // call switch screen to Screenloading
             system.CallSwitchScreen(ScreenLoading, delegate
@@ -159,7 +156,7 @@ public class MenuController : MonoBehaviour
         GameController.Instance.CallTakeScreenShotOnDelay(1f,slotController.isSlotsEnabled);
         if (slotController.isSlotsEnabled)
         {
-            GameController.Instance.CallStartSaveSlotInterval(GameController.Instance.globalSettignsMenu.SaveIntervalSeconds);
+            GameController.Instance.CallStartSaveSlotInterval(GameController.Instance.globalSettignsMenuSC.saveSystemSettings.saveIntervalSeconds);
             SaveData.LoadGameSlotDataToScene(SaveData.LoadFromSource<GameSlot>(GameController.Instance.currentSlotResume.FileSlot));
         }
     }
@@ -171,7 +168,7 @@ public class MenuController : MonoBehaviour
         //Set allow EnterPause to true because exit from Main Menu 
        
         // if its enable Loading Scene Plugin sergi
-        if (GameController.Instance.globalSettignsMenu.IsLoaderSceneWithPligun)
+        if (GameController.Instance.globalSettignsMenuSC.screenSettings.IsLoaderSceneWithPligun)
         {   system.CallSwitchScreen(ScreenLoading, delegate
             {
              
@@ -300,7 +297,7 @@ public class MenuController : MonoBehaviour
 
     public void NoLostGameProgressionContinueFromPause()
     {
-        GameController.Instance.CallStartSaveSlotInterval(GameController.Instance.globalSettignsMenu.SaveIntervalSeconds);
+        GameController.Instance.CallStartSaveSlotInterval(GameController.Instance.globalSettignsMenuSC.saveSystemSettings.saveIntervalSeconds);
         system.CallSwitchScreen(MainMenuScreen );
     }
 

@@ -1,7 +1,8 @@
 ﻿using Assets.SaveSystem1.DataClasses;
 using System.Collections;
 using System.IO;
-using System.Linq;
+
+using Assets.Scripts.ScriptableObjects;
 using JetBrains.Annotations;
 using RestClient.Scripts.Core.Models;
 using SaveSystem1.DataClasses;
@@ -11,10 +12,12 @@ using UnityEngine.Serialization;
 public class GameController : MonoBehaviour
 {
     #region  Variables
+
     /// <summary>
     /// SettignsMenu 
     /// </summary>
-        public GlobalSettignsMenu globalSettignsMenu;
+    public GlobalSettignsMenu globalSettignsMenu;
+        public GlobalSettingsMenuScriptObj globalSettignsMenuSC;
         /// <summary>
         /// Path of the file to save data
         /// </summary>
@@ -73,6 +76,8 @@ public class GameController : MonoBehaviour
                   // set null currentSlotResume property on Start
                   //currentSlotResume= null;
               }
+            
+              
               /// <summary>
               /// Awakw Unity Method
               /// </summary>
@@ -89,30 +94,28 @@ public class GameController : MonoBehaviour
                     currentSlot = null;
                     currentSlotResume = null;
                     _instance = this;
-                    DontDestroyOnLoad(this.gameObject);
                     pauseController = GetComponent<PauseController>();
-                    if (globalSettignsMenu.saveSourceData == SaveSystemSourceData.Local)
+                    if (globalSettignsMenuSC.saveSystemSettings.saveSourceData == SaveSystemSourceData.Local)
                     {
-                        if (globalSettignsMenu.typeSaveFormat == SaveSystemFormat.JSON)
-                            globalSettignsMenu.currentExtFile = globalSettignsMenu.jsonExt;
-                        else if (globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Xml)
-                            globalSettignsMenu.currentExtFile = globalSettignsMenu.xmlExt;
-                        else if (globalSettignsMenu.typeSaveFormat == SaveSystemFormat.Binnary)
-                            globalSettignsMenu.currentExtFile = globalSettignsMenu.BinExt;
-                        globalSettignsMenu.fileGlobalSlotsSaveData += globalSettignsMenu.currentExtFile;
+                        if (globalSettignsMenuSC.saveSystemSettings.typeSaveFormat == SaveSystemFormat.JSON)
+                            globalSettignsMenuSC.saveSystemSettings.currentExtFile = globalSettignsMenuSC.saveSystemSettings.jsonExt;
+                        else if (globalSettignsMenuSC.saveSystemSettings.typeSaveFormat == SaveSystemFormat.Xml)
+                            globalSettignsMenuSC.saveSystemSettings.currentExtFile = globalSettignsMenuSC.saveSystemSettings.xmlExt;
+                        else if (globalSettignsMenuSC.saveSystemSettings.typeSaveFormat == SaveSystemFormat.Binnary)
+                            globalSettignsMenuSC.saveSystemSettings.currentExtFile = globalSettignsMenuSC.saveSystemSettings.binExt;
+                        globalSettignsMenuSC.saveSystemSettings.fileGlobalSlotsSaveData += globalSettignsMenuSC.saveSystemSettings.currentExtFile;
                         datapath = System.IO.Path.Combine(Application.persistentDataPath,
-                            globalSettignsMenu.fileGlobalSlotsSaveData);
+                            globalSettignsMenuSC.saveSystemSettings.fileGlobalSlotsSaveData);
                         dataExists = File.Exists(datapath);
 
-                        globalSettignsMenu.fileListUsers += globalSettignsMenu.currentExtFile;
+                        globalSettignsMenuSC.saveSystemSettings.fileListUsers += globalSettignsMenuSC.saveSystemSettings.currentExtFile;
                         datapathListUsers = System.IO.Path.Combine(Application.persistentDataPath,
-                            globalSettignsMenu.fileListUsers);
+                            globalSettignsMenuSC.saveSystemSettings.fileListUsers);
 
                     }
-                    else if(globalSettignsMenu.saveSourceData == SaveSystemSourceData.Remote)
+                    else if(globalSettignsMenuSC.saveSystemSettings.saveSourceData == SaveSystemSourceData.Remote)
                     {
                        SaveController.Instance.CheckConnection(this);
-                      
                     }
                     LoadData();
                     // Load Data from Anywhere
@@ -220,7 +223,7 @@ public class GameController : MonoBehaviour
         /// </summary>
         public static void SaveGame()
         {
-            if (GameController.Instance.globalSettignsMenu.saveSourceData == SaveSystemSourceData.Remote)
+            if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.saveSourceData == SaveSystemSourceData.Remote)
             {
                // SaveController.Instance.
             }

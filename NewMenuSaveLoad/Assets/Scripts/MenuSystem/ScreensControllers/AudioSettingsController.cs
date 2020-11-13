@@ -28,32 +28,47 @@ public class AudioSettingsController : MonoBehaviour
                 return _overrideAudioParameters ?? DefaultAudioParameters;
             }
         }
-        set { }
     }
 
+    public TypeSoundBus typeSoundBus;
     public SoundSliderSlot SlotMaster, SlotMusic, SlotSFX, SlotVoices;
 
     public void InitDataAudioSettings()
     {
+        SetActionsOnSlots();
         if (GameController.hasLoadedGameData)
         {
-            //get Instances from Unity or FMOD or WWISE call SoundSliderSlot.IniBus
-            
             if (GameController.Instance.dataExists)
                 _loadedAudioParameters = SaveData.objcts.Parameters.Sound;
+            LoadSlidersValues();
         }
-        SerActionsOnSlots();
-        SetDefaults();
+        else
+        {
+            SetDefaults();
+        }
     }
+
+    private void LoadSlidersValues()
+    {
+        SlotMaster.OnChangeValueSlider(Parameters.masterValue);
+        SlotMusic.OnChangeValueSlider(Parameters.musicValue);
+        SlotVoices.OnChangeValueSlider(Parameters.voicesValue);
+        SlotSFX.OnChangeValueSlider(Parameters.soundFXValue);
+        SlotMaster.typeSoundBus = typeSoundBus;
+        SlotMusic.typeSoundBus = typeSoundBus;
+        SlotVoices.typeSoundBus = typeSoundBus;
+        SlotSFX.typeSoundBus = typeSoundBus;
+    }
+
     void Start()
     {
-        if (!GameController.Instance.globalSettignsMenu.isUserLoginRegisterActive)
+        if (!GameController.Instance.globalSettignsMenuSC.loginRegisterSettings.isUserLoginRegisterActive)
         {
             InitDataAudioSettings();
         }
     }
 
-    public void SetParametersOnSaveData()
+    public void SetSoundParametersOnSaveData()
     {
         SaveData.objcts.Parameters.Sound = Parameters;
     }
@@ -61,17 +76,17 @@ public class AudioSettingsController : MonoBehaviour
     public void SetDefaults()
     {
         if(SlotMusic!=null)
-         SlotMusic.SetValueSlider(DefaultAudioParameters.musicValue);
+         SlotMusic.OnChangeValueSlider(DefaultAudioParameters.musicValue);
         if(SlotMaster!=null)
-         SlotMaster.SetValueSlider(DefaultAudioParameters.masterValue);
+         SlotMaster.OnChangeValueSlider(DefaultAudioParameters.masterValue);
         if(SlotVoices!=null)
-          SlotVoices.SetValueSlider(DefaultAudioParameters.voicesValue);
+          SlotVoices.OnChangeValueSlider(DefaultAudioParameters.voicesValue);
         if(SlotSFX!=null)
-          SlotSFX.SetValueSlider(DefaultAudioParameters.soundFXValue);
+          SlotSFX.OnChangeValueSlider(DefaultAudioParameters.soundFXValue);
         SaveAudioData();
     }
 
-    public void SerActionsOnSlots()
+    public void SetActionsOnSlots()
     {
         if(SlotMaster!=null)
             SlotMaster.SaveVal += SetMasterVolume;
@@ -105,7 +120,7 @@ public class AudioSettingsController : MonoBehaviour
     }
     private void SaveAudioData()
     {
-        SetParametersOnSaveData();
+        SetSoundParametersOnSaveData();
         GameController.SaveGame();
     }
 }

@@ -82,12 +82,9 @@ public class LoadSlotListController : MonoBehaviour
         foreach (Transform child in parentOflist.transform) 
             Destroy(child.gameObject);
         
-        Debug.Log(parentOflist.transform.childCount);
         int i = 0;
         foreach (InfoSlotResume item in slotList)
         {
-            
-           
             // Instanciate loadSlotUIpreafb
             GameObject ObjSlot = Instantiate(loadSlotUIPrefab, new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), transform.localRotation);
            // set parent of parentOfList
@@ -105,12 +102,6 @@ public class LoadSlotListController : MonoBehaviour
             {
                 // remove and load butons the Delete Listener
                 
-              //  soltUi.btnDel.onClick.RemoveAllListeners();
-               // soltUi.btnLoadSave.onClick.RemoveAllListeners();
-                // Add new listener to LoadBtn and Del btn
-               
-                //soltUi.btnLoadSave.onClick.AddListener();
-              //  soltUi.btnDel.onClick.AddListener(() => AskForDeleteSlot(soltUi.slot, ObjSlot));
               soltUi.entryLoadEvent.callback.AddListener((data) => LoadSlot(soltUi.slot));
               soltUi.entryLoadConfirm.callback.AddListener((data) => LoadSlot(soltUi.slot));
               soltUi.onClickLoadEvent.triggers.Add(soltUi.entryLoadEvent);

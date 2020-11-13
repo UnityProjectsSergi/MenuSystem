@@ -22,13 +22,13 @@ public class MouseEventsIU : MonoBehaviour,IPointerClickHandler,IPointerEnterHan
     {
         SoundFX.PlaySoundFX("SFXClickUI",gameObject);
         
-        Debug.Log("Enter");
+      //  Debug.Log("Enter");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         SoundFX.PlaySoundFX("SFXClickUI",gameObject);
-       Debug.Log("Exit");
+      /// Debug.Log("Exit");
     }
    
   

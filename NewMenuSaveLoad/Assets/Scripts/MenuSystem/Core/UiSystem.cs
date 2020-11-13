@@ -92,7 +92,7 @@ public class UiSystem : MonoBehaviour
 
     void Start()
     {
-        if (GameController.Instance.globalSettignsMenu.isUserLoginRegisterActive)
+        if (GameController.Instance.globalSettignsMenuSC.loginRegisterSettings.isUserLoginRegisterActive)
         {
             startScreen = OnStartScreenOnLoginRegisterActive;
         }

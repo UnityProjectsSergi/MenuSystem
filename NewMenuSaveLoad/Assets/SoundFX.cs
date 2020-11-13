@@ -15,5 +15,6 @@ public class SoundFX : MonoBehaviour
     public static void PlaySoundFX(string nameEvent, GameObject go)
     {
         AkSoundEngine.PostEvent(nameEvent, go);
+        
     }
 }
