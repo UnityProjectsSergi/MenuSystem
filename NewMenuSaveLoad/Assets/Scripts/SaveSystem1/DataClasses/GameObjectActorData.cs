@@ -14,13 +14,14 @@ public class GameObjectActorData
     {
         
     }
+    
     public string name;
-    public string __prefabPath;
+    public string prefabPath;
     public Vector3 position;
-    public Quaternion rotationQuaterion;
+    public Quaternion rotation;
     public Vector3 scale;
     public bool isActive;
-    public int LayerMask;
+    public int layerMask;
     
     public string tag;
     public bool isStatic;

@@ -81,12 +81,13 @@ public class GameObjectActor
         data.name = gameObj.name;
        
         data.position = gameObj.transform.position;
-        data.rotationQuaterion = gameObj.transform.rotation;
+        data.rotation = gameObj.transform.rotation;
         data.scale = gameObj.transform.localScale;
-        data.__prefabPath = _prefabPath;
+        data.prefabPath = _prefabPath;
         data.isActive = gameObj.activeSelf;
-        data.LayerMask = gameObj.layer;
+        data.layerMask = gameObj.layer;
         data.tag = gameObj.tag;
+        data.TestSO = ScriptableObject.CreateInstance<TestSO>();
         data.Objdata = gameObj.GetComponent<objdataGO>().Getinfo();
         data.isStatic = gameObj.isStatic;
 #if UNITY_EDITOR
@@ -102,10 +103,10 @@ public class GameObjectActor
         gameObj.name = data.name;
         gameObj.transform.localScale = data.scale;
         gameObj.transform.position = data.position;
-        gameObj.transform.rotation = data.rotationQuaterion;
-        _prefabPath = data.__prefabPath;
+        gameObj.transform.rotation = data.rotation;
+        _prefabPath = data.prefabPath;
         gameObj.SetActive(data.isActive);
-        gameObj.layer = data.LayerMask;
+        gameObj.layer = data.layerMask;
         gameObj.tag = data.tag;
         gameObj.isStatic = data.isStatic;
         gameObj.GetComponent<objdataGO>().LoadData( data.Objdata);

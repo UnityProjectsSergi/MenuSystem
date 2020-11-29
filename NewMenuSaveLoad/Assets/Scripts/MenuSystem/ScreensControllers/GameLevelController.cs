@@ -84,7 +84,7 @@ public class GameLevelController : MonoBehaviour
     public static ObjToSave CreateObjSaved(GameObjectActorData data)
     {
 //        Debug.Log(data.__prefabPath+"\\"+data.name.Remove(data.name.Length-7)+" vvvv"+ Resources.Load<GameObject>(data.__prefabPath+"/"+data.name.Remove(data.name.Length-7)));
-        ObjToSave obj = CreateGameObject(Resources.Load<GameObject>(data.__prefabPath+Path.DirectorySeparatorChar+data.name.Remove(data.name.Length-7)), data.position, data.rotationQuaterion);
+        ObjToSave obj = CreateGameObject(Resources.Load<GameObject>(data.prefabPath+Path.DirectorySeparatorChar+data.name.Remove(data.name.Length-7)), data.position, data.rotation);
         obj.gameObjSave.data = data;
         return obj;
     }

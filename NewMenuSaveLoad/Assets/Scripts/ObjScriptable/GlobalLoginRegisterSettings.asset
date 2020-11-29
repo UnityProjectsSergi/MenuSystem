@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: e76c696fb716473496a97ec8f5e61b5f, type: 3}
   m_Name: GlobalLoginRegisterSettings
-  m_EditorClassIdentifier: Assembly-CSharp::GlobalLoginRegisterSettings
+  m_EditorClassIdentifier: 
+  isUserLoginRegisterActive: 1
+  AutoLoginOnRegister: 0

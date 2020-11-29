@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20081879f728f204cb5e39c4af80d6fd, type: 3}
   m_Name: GlobalSettingsMenuSystem
   m_EditorClassIdentifier: 
-  saveSystemSettings: {fileID: 11400000, guid: 2fb2658462f16ea4983369476fe0857f, type: 2}
-  ScreenSettings: {fileID: 11400000, guid: c58e773187866704cb308da7d7dc040a, type: 2}
+  saveSystemSettings: {fileID: 11400000, guid: 671e1bf5d75a6d14586b187819b068b4, type: 2}
+  screenSettings: {fileID: 11400000, guid: d786fec3769cb3e40ba164b54ae1e062, type: 2}
+  loginRegisterSettings: {fileID: 11400000, guid: f429f31a25b07614f8662fa190c20d94,
+    type: 2}

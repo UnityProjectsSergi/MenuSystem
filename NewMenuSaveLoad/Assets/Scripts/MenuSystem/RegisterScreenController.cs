@@ -4,7 +4,7 @@ using SaveSystem1.DataClasses;
 using TMPro;
 using UnityEngine;
 
-public class RegisterController : MonoBehaviour
+public class RegisterScreenController : MonoBehaviour
 {
     [Header("UiScreens")]
     public UiSystem system;
@@ -18,7 +18,7 @@ public class RegisterController : MonoBehaviour
     public TMP_InputField ConfirmPassword;
     
     [Header("Controllers")]
-    public LoginController loginController;
+    public LoginScreenController loginScreenController;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,9 +41,13 @@ public class RegisterController : MonoBehaviour
             {
                 textMessage.text = SaveController.Instance._response.Error;
             }
+            else
+            {
+                textMessage.text = "RegisterSuccess";
+            }
             if (GameController.Instance.globalSettignsMenuSC.loginRegisterSettings.AutoLoginOnRegister)
             {
-                loginController.Login(user);    
+                loginScreenController.Login(user);    
             }
                 
         }

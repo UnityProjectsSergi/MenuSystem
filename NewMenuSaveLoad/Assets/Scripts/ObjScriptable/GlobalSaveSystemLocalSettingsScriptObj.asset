@@ -9,15 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: SaveSystemSettingsMenuSystem
-  m_EditorClassIdentifier: Assembly-CSharp::GlobalSaveSystemSettingsScriptObj
-  TimeToTakeScreenShoot: 2
-  IsSaveingSystemEnabled: 0
-  IsSaveingInterval: 0
-  saveSourceData: 0
+  m_Script: {fileID: 11500000, guid: e0d4e27703564f6b952f854e0e462511, type: 3}
+  m_Name: GlobalSaveSystemLocalSettingsScriptObj
+  m_EditorClassIdentifier: 
+  datapathFinal: 
+  dataPathListUsers: 
   typeSaveFormat: 0
-  SaveIntervalSeconds: 2
   currentExtFile: 
   fileGlobalSlotsSaveData: data
   fileListUsers: listUsers

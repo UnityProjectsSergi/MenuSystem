@@ -45,7 +45,7 @@ namespace SaveSystem1.DataClasses
                 {
                     Application.persistentDataPath, "/", FolderOfGameData, "/",
                     "GameData_" + Path.GetRandomFileName() +Username+
-                    GameController.Instance.globalSettignsMenuSC.saveSystemSettings.currentExtFile
+                    GameController.Instance.globalSettignsMenuSC.saveSystemSettings.SaveLocalSystem.currentExtFile
                 });
                 if (!File.Exists(Application.persistentDataPath + "/" + FolderOfGameData))
                 {

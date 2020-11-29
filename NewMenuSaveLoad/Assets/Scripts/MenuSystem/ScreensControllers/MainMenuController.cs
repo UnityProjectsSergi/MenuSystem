@@ -53,15 +53,13 @@ public class MainMenuController : MonoBehaviour
     /// </summary>
     public UiSystem UiSystem;
 
-    public void InirMainMenuData()
+    public void InitMainMenuData()
     {
         OwnScreen = GetComponent<UiScreen>();
         //Initialize menuController variable
         if (MenuController == null) MenuController = MenuController.GetComponent<MenuController>();
-        if (SlotController == null)
-            SlotController = MenuController.GetComponent<SlotController>();
+        if (SlotController == null) SlotController = MenuController.GetComponent<SlotController>();
         // Initialize UI system variable
-        
         // if has loaded data from file
         if (GameController.hasLoadedGameData) SetMainMenuWithSlots();   
     }
@@ -70,7 +68,7 @@ public class MainMenuController : MonoBehaviour
     private void Start()
     {
        if(!GameController.Instance.globalSettignsMenuSC.loginRegisterSettings.isUserLoginRegisterActive)
-           InirMainMenuData();
+           InitMainMenuData();
     
     }
 
@@ -219,7 +217,7 @@ public class MainMenuController : MonoBehaviour
 
     public void SetMainMenuWithSlots()
     {
-        
+        Debug.Log(SaveData.objcts);
         // Active Main Menu Buttons
         MainMenuButtons.SetMainMenu(MenuController.slotController,SaveData.objcts.Slots.Count);
         // if not have slots in list

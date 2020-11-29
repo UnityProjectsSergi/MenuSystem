@@ -23,18 +23,16 @@ namespace RestClient.Core
                         Error = webRequest.error,
                     });
                 }
-                /// unity
-                ///  srvix 
+                
                 if(webRequest.isDone)
                 {
-                    string data = System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
-                    string DATA = webRequest.downloadHandler.text;
+                    string dataObj = System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
+                    Debug.Log(webRequest.downloadHandler.text);
+                    string dataText = webRequest.downloadHandler.text;
                     callback.Invoke(new Response {
                         StatusCode = webRequest.responseCode,
-                        Error = webRequest.error,
-                        Data = DATA,
-                        
-                        
+                        DataText = dataText,
+                        Dataobj = dataObj
                     });
                     
                 }
@@ -90,13 +88,13 @@ namespace RestClient.Core
                 
                 if(webRequest.isDone)
                 {
-                    string data = System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
+                    string dataObj = System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
+                    string dataText = webRequest.downloadHandler.text;
+                    
                     callback(new Response {
                         StatusCode = webRequest.responseCode,
-                        Error = webRequest.error,
-                        Data = data
-                       ,
-                       Dataobj=data
+                        DataText = dataText,
+                       Dataobj=dataObj
                     });
                 }
             }
@@ -129,8 +127,12 @@ namespace RestClient.Core
                 
                 if(webRequest.isDone)
                 {
+                    string dataObj = System.Text.Encoding.UTF8.GetString(webRequest.downloadHandler.data);
+                    string dataText = webRequest.downloadHandler.text;
                     callback(new Response {
                         StatusCode = webRequest.responseCode,
+                        Dataobj = dataObj,
+                        DataText = dataText
                     });
                 }
             }
@@ -154,7 +156,6 @@ namespace RestClient.Core
                     var responseHeaders = webRequest.GetResponseHeaders();
                     callback(new Response {
                         StatusCode = webRequest.responseCode,
-                        Error = webRequest.error,
                         Headers = responseHeaders
                     });
                 }

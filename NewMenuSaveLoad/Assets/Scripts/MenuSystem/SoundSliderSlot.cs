@@ -87,6 +87,6 @@ public  class SoundSliderSlot : MonoBehaviour
 
     public void Update()
     {
-        Debug.Log(nameBus.Remove(6));
+       
     }
 }

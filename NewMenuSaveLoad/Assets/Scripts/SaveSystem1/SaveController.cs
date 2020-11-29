@@ -1,15 +1,11 @@
-﻿﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿
 using SaveSystem1.DataClasses;
 using UnityEngine;
 using System.Linq;
-using System.Net.Http;
-using System.Runtime.CompilerServices;
+
 using Assets.SaveSystem1.DataClasses;
 using Newtonsoft.Json;
-using UnityEngine;
-using Newtonsoft.Json.Utilities;
+
 using RestClient.Core;
 using RestClient.Scripts.Core.Models;
 
@@ -17,23 +13,22 @@ public class SaveController : Singleton<SaveController>
 {
 
    
-  ///////////////// [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+  
     
 
     public  Response _response=new Response();
-    public static Response data;
+    
     public  Response SaveNewUser(UserData user)
     {
-        
+        Response response=new Response();
         if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.saveSourceData == SaveSystemSourceData.Local)
         {
-           
             if(SaveData.usersList.listUsers.Any(item=>item.Username==user.Username ))
             {
                 _response.Error = "Usernam Exists";
                 _response.StatusCode = 2;
                 // return messag exists usrname
-                return _response;
+                return response;
             }
             else
             {
@@ -41,20 +36,19 @@ public class SaveController : Singleton<SaveController>
                 GameController.SaveGame();
                 _response.Error = "";
                 _response.StatusCode = 0;
-                return _response;
+                return response;
             }
         }
         else
         {
-            //nstance.StartCoroutine(RestWebClient.Instance.HttpPost("http://localhost/login",JsonUtility.ToJson(user),(r)=>OnCompleteSaveNewUser(r)));
+            Instance.StartCoroutine(RestWebClient.Instance.HttpPost("http://localhost/login",JsonUtility.ToJson(user),(_response)=>OnCompleteSaveNewUser(response)));
+            return response;
         }
-
-        return null;
     }
 
-    public static void OnCompleteSaveNewUser(Response response)
+    public Response  OnCompleteSaveNewUser(Response response)
     {
-            
+        return response;
     }
     public  Response GetUser(CheckUserData user)
     {
@@ -71,7 +65,7 @@ public class SaveController : Singleton<SaveController>
             else
             {
                 _response.Error = "Error";
-                _response.Data = null;
+                _response.DataText = null;
                 _response.Dataobj = null;
                 _response.StatusCode = 1;
             }
@@ -94,7 +88,7 @@ public class SaveController : Singleton<SaveController>
 
     public  void GetGame()
     {
-        Instance.StartCoroutine(RestWebClient.Instance.HttpGet("http://localhost:8080/GetGameData",(r)=>
+        Instance.StartCoroutine(RestWebClient.Instance.HttpGet("http://localhost:8080/api/GetGameData",(r)=>
             {
                 Debug.Log(r.StatusCode+"  "+r.Error);
                 if (r.StatusCode == 410 || r.StatusCode == 500)
@@ -104,7 +98,7 @@ public class SaveController : Singleton<SaveController>
                 }
                 else
                 {
-                    SaveData.objcts = JsonConvert.DeserializeObject<GameDataSaveContainer>(r.Data);
+                    SaveData.objcts = JsonConvert.DeserializeObject<GameDataSaveContainer>(r.DataText);
                 }
 
                 GameController.Instance.dataExists = true;
@@ -114,10 +108,19 @@ public class SaveController : Singleton<SaveController>
     public void CheckConnection(MonoBehaviour jutCo)
     {
         
-        jutCo.StartCoroutine(RestWebClient.Instance.HttpGet("http://localhost:8080/test", (r) =>
+        jutCo.StartCoroutine(RestWebClient.Instance.HttpGet("http://localhost:8080/api/GetGameDaya", (r) =>
         {
-            // = (r.StatusCode == 200) ? true : false;
-            Debug.Log("CheckConnection");
+            bool check= (r.StatusCode == 200) ? true : false;
+            if (check)
+            {
+                Debug.Log("CheckConnectionok");
+                Debug.Log("Data ok"+r.DataText);
+            }
+            else
+            {
+                Debug.Log("failed connection");
+                Debug.Log("Data error"+r.Dataobj+"  "+r.DataText);
+            }
         }));
     }
 
@@ -128,7 +131,7 @@ public class SaveController : Singleton<SaveController>
             if (r.StatusCode == 200)
             {
             //  GameSlot AUX2= JsonUtility.FromJson<GameSlot>(r.Data);
-                GameSlot aux = JsonConvert.DeserializeObject<GameSlot>(r.Data);
+                GameSlot aux = JsonConvert.DeserializeObject<GameSlot>(r.DataText);
                 SaveData.LoadGameSlotDataToScene(aux);
             }
         }));

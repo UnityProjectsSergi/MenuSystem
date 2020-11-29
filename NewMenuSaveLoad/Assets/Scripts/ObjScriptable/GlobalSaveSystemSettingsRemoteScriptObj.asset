@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0070093a06c429fbf4a263376e90f76, type: 3}
-  m_Name: GlobalScreenSettings
+  m_Script: {fileID: 11500000, guid: 571be7daa26244f6b941d27f0c9c7c63, type: 3}
+  m_Name: GlobalSaveSystemSettingsRemoteScriptObj
   m_EditorClassIdentifier: 
-  isDificultyLevelSelectionScreenEnabled: 0
-  isLevelSelectonScreenEnabled: 0
-  IsLoaderSceneWithPligun: 0
-  listsOfDificulties: []
+  server: 
+  port: 

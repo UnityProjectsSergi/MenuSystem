@@ -4,12 +4,13 @@ using SaveSystem1.DataClasses;
 using TMPro;
 using UnityEngine;
 
-public class LoginController : MonoBehaviour
+public class LoginScreenController : MonoBehaviour
 {
     public static string message;
     public TMP_InputField userName;
 
     public TMP_InputField password;
+    public TMP_Text messageText;
 
     public UiSystem system;
 
@@ -40,7 +41,12 @@ public class LoginController : MonoBehaviour
         {
             CheckUserData userCheck = new CheckUserData(password.text, userName.text);
             UserData user=userCheck.CheckIfUserIsRegister();
+            if(user!=null)
             Login(user);
+            else
+            {
+                messageText.text = message;
+            }
         }
     }
 

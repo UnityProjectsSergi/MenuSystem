@@ -20,7 +20,7 @@ public class GrapicsSettingsController : MonoBehaviour
     /// Default Audio Parameters
     /// </summary>
     public GraphicsSettingsData DefaultGraphicsParameters;
-    public GraphicsSettingsData Parameters
+    public GraphicsSettingsData ParametersGraphics
     {
         get
         {
@@ -89,8 +89,8 @@ public class GrapicsSettingsController : MonoBehaviour
             DropdownResolution.ClearOptions();
             dropdownQuality.AddOptions(QualitySettings.names.ToList());
             DropdownQuality.AddOptions(QualitySettings.names.ToList());
-            dropdownQuality.value = (int) SaveData.objcts.Parameters.Graphics.currentQualityLevel;
-            DropdownQuality.value = (int) SaveData.objcts.Parameters.Graphics.currentQualityLevel;
+            dropdownQuality.value = (int) ParametersGraphics.currentQualityLevel;
+            DropdownQuality.value = (int) ParametersGraphics.currentQualityLevel;
 
             #endregion
 
@@ -114,8 +114,8 @@ public class GrapicsSettingsController : MonoBehaviour
                     lw = resolution.width;
                     lh = resolution.height;
                     //figured out if this is the users's current resolution
-                    if (lw == SaveData.objcts.Parameters.Graphics.width &&
-                        lh == SaveData.objcts.Parameters.Graphics.height)
+                    if (lw == ParametersGraphics.width &&
+                        lh == ParametersGraphics.height)
                         currentResIndex = index;
                     index++;
                 }
@@ -129,8 +129,8 @@ public class GrapicsSettingsController : MonoBehaviour
             DropdownResolution.AddOptions(resos);
             dropdownResolutions.value = currentResIndex;
             DropdownResolution.value = currentResIndex;
-            Screen.SetResolution(SaveData.objcts.Parameters.Graphics.width, SaveData.objcts.Parameters.Graphics.height,
-                SaveData.objcts.Parameters.Graphics.isFullScreen);
+            Screen.SetResolution(ParametersGraphics.width, ParametersGraphics.height,
+                ParametersGraphics.isFullScreen);
             #endregion
     }
     
@@ -139,6 +139,7 @@ public class GrapicsSettingsController : MonoBehaviour
     {
         if (!GameController.Instance.globalSettignsMenuSC.loginRegisterSettings.isUserLoginRegisterActive)
         {
+            Debug.Log("entra");
             InitDataGraphicsSetting();
         }
      
@@ -151,13 +152,13 @@ public class GrapicsSettingsController : MonoBehaviour
 
     private void SetDefaults()
     {
-        Parameters = DefaultGraphicsParameters;
+        ParametersGraphics = DefaultGraphicsParameters;
         
         SaveGraphicsData();
     }
     public void SetParametersOnSaveData()
     {
-        SaveData.objcts.Parameters.Graphics = Parameters;
+        SaveData.objcts.Parameters.Graphics = ParametersGraphics;
     }
     
     private void SaveGraphicsData()
@@ -169,7 +170,7 @@ public class GrapicsSettingsController : MonoBehaviour
     public void OnValueChangeQuality(int num)
     {
         QualitySettings.SetQualityLevel(num);
-        Parameters.currentQualityLevel = (GrapicsSettings)num;
+        ParametersGraphics.currentQualityLevel = (GrapicsSettings)num;
         SaveGraphicsData();
     }
 
@@ -177,13 +178,13 @@ public class GrapicsSettingsController : MonoBehaviour
     {
         Resolution res = filterdResoltions[DropdownResolution.value];
         Screen.SetResolution(res.width,res.height,fullScreen);
-        Parameters.height = res.height;
-        Parameters.width = res.width;
+        ParametersGraphics.height = res.height;
+        ParametersGraphics.width = res.width;
         SaveGraphicsData();
     }
     public void setFullScreen(bool newValue)
     {
-        Parameters.isFullScreen = newValue;
+        ParametersGraphics.isFullScreen = newValue;
         Screen.fullScreen = newValue;
         fullScreen = newValue;
         SaveGraphicsData();

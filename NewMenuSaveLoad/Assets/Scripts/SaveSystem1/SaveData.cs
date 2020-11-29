@@ -34,14 +34,14 @@ public class SaveData
     /// Load File data into memory And create the objects saved in file. 
     /// </summary>
     /// <param name="Path">Path of the file to load</param>
-    public static void Load()
+    public static void LoadGlobalData()
     {
         //Load From file 
         objcts = null;
         if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.saveSourceData == SaveSystemSourceData.Local)
             if (GameController.Instance.globalSettignsMenuSC.loginRegisterSettings.isUserLoginRegisterActive)
             {
-                usersList = LoadFromFile<UsersContinerData>(GameController.datapath);
+                usersList = LoadFromFile<UsersContinerData>(GameController._datapPathListUsers);
             }
             else
             {
@@ -50,7 +50,13 @@ public class SaveData
         else if(GameController.Instance.globalSettignsMenuSC.saveSystemSettings.saveSourceData == SaveSystemSourceData.Remote)
         {
             if (!GameController.Instance.globalSettignsMenuSC.loginRegisterSettings.isUserLoginRegisterActive)
+            {
                  LoadFromWeb();
+            }
+            else
+            {
+                //LoadFromWebUsersList();
+            }
         }
     }
     private static void LoadFromWeb()
@@ -189,43 +195,21 @@ public class SaveData
         {
             T obj=new T();
             string json = File.ReadAllText(path);
-            if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.typeSaveFormat == SaveSystemFormat.JSON)
+            if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.SaveLocalSystem.typeSaveFormat == SaveSystemFormat.JSON)
             {
                 return JsonConvert.DeserializeObject<T>(json);
             }
-            else if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.typeSaveFormat == SaveSystemFormat.Xml)
+            else if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.SaveLocalSystem.typeSaveFormat == SaveSystemFormat.Xml)
             {
                 System.Xml.Serialization.XmlSerializer serializer =
                     new System.Xml.Serialization.XmlSerializer(typeof(T));
                 StringReader reader = new StringReader(json);
                 return (T) serializer.Deserialize(reader);
             }
-            else if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.typeSaveFormat == SaveSystemFormat.Binnary)
+            else if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.SaveLocalSystem.typeSaveFormat == SaveSystemFormat.Binnary)
             {
                return  BinarySerializer.Load<T>(path);
-                BinaryFormatter formatter = new BinaryFormatter();
-                // Open up a filestream, combining the path and object key
-                FileStream fileStream = new FileStream(path , FileMode.Open);
-                // Initialize a variable with the default value of whatever type we're using
-                T returnValue = new T();
-                /* 
-                 * Try/Catch/Finally block that will attempt to deserialize the data
-                 * If we fail to successfully deserialize the data, we'll just return the default value for Type
-                 */
-                try
-                {
-                    returnValue = (T)formatter.Deserialize(fileStream);
-                }
-                catch (SerializationException exception)
-                {
-                    Debug.Log("Load failed. Error: " + exception.Message);
-                }
-                finally
-                {
-                    fileStream.Close();
-                }
-
-                return returnValue;
+          
             }
             return obj;
         }
@@ -253,7 +237,7 @@ public class SaveData
                 //delete file and create wen
                 File.Delete(path);
                 // if file type format is json
-                if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.typeSaveFormat == SaveSystemFormat.JSON)
+                if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.SaveLocalSystem.typeSaveFormat == SaveSystemFormat.JSON)
                 {
                     //write to file
                     File.WriteAllText(path, JsonConvert.SerializeObject(content, Formatting.Indented,
@@ -263,7 +247,7 @@ public class SaveData
                         }));
                 }
                 // if file type format is xml
-                else if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.typeSaveFormat == SaveSystemFormat.Xml)
+                else if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.SaveLocalSystem.typeSaveFormat == SaveSystemFormat.Xml)
                 {
                     // write on xml
                     var stringwriter = new System.IO.StringWriter();
@@ -271,24 +255,18 @@ public class SaveData
                     serializer.Serialize(stringwriter, content);
                     File.WriteAllText(path, stringwriter.ToString());
                 }
-                else if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.typeSaveFormat == SaveSystemFormat.Binnary)
+                else if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.SaveLocalSystem.typeSaveFormat == SaveSystemFormat.Binnary)
                 {
                     
                     BinarySerializer.Save(content,path);
-                    
-                    /*
-                    BinaryFormatter bf = new BinaryFormatter();
-                    FileStream file = File.Open(path ,FileMode.OpenOrCreate);
-                   
-                    bf.Serialize(file, content);
-                    file.Close();*/
+                 
                 }
             }
             // if exist and not delete
             else
             {
                 // if file type format is json
-                if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.typeSaveFormat == SaveSystemFormat.JSON)
+                if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.SaveLocalSystem.typeSaveFormat == SaveSystemFormat.JSON)
                 {
                     // read the file and apped extra information
                     string json = File.ReadAllText(path);
@@ -300,7 +278,7 @@ public class SaveData
                         }));
                 }
                 // if file type format is xml
-                else if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.typeSaveFormat == SaveSystemFormat.Xml)
+                else if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.SaveLocalSystem.typeSaveFormat == SaveSystemFormat.Xml)
                 {
                     // write on xml file
                     string xml = File.ReadAllText(path);
@@ -309,16 +287,11 @@ public class SaveData
                     serializer.Serialize(stringwriter, content);
                     Append(path, xml + stringwriter.ToString());
                 }
-                else if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.typeSaveFormat == SaveSystemFormat.Binnary)
+                else if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.SaveLocalSystem.typeSaveFormat == SaveSystemFormat.Binnary)
                 {
                     BinarySerializer.Save(content,path);
                     
-                    /*
-                    BinaryFormatter bf = new BinaryFormatter();
-                    FileStream file = File.Open(path ,FileMode.OpenOrCreate);
-                   
-                    bf.Serialize(file, content);
-                    file.Close();*/
+                 
                 }
                 
             }
@@ -327,7 +300,7 @@ public class SaveData
         // if not exists create and write file
         {
             // if file type format is json
-            if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.typeSaveFormat == SaveSystemFormat.JSON)
+            if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.SaveLocalSystem.typeSaveFormat == SaveSystemFormat.JSON)
             {
                 File.WriteAllText(path, JsonConvert.SerializeObject(content, Formatting.Indented,
                     new JsonSerializerSettings
@@ -336,23 +309,18 @@ public class SaveData
                     }));
             }
             // if file type format is xml
-            else if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.typeSaveFormat == SaveSystemFormat.Xml)
+            else if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.SaveLocalSystem.typeSaveFormat == SaveSystemFormat.Xml)
             {
                 var stringwriter = new System.IO.StringWriter();
                 var serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
                 serializer.Serialize(stringwriter, content);
                 File.WriteAllText(path, stringwriter.ToString());
             }
-            else if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.typeSaveFormat == SaveSystemFormat.Binnary)
+            else if (GameController.Instance.globalSettignsMenuSC.saveSystemSettings.SaveLocalSystem.typeSaveFormat == SaveSystemFormat.Binnary)
             {
                 BinarySerializer.Save(content,path);
                     
-                /*
-                BinaryFormatter bf = new BinaryFormatter();
-                FileStream file = File.Open(path ,FileMode.OpenOrCreate);
-               
-                bf.Serialize(file, content);
-                file.Close();*/
+            
             }
         }
     }
